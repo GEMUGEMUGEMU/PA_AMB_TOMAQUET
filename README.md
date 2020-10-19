@@ -1,2 +1,2 @@
 # PA_AMB_TOMAQUET
-A work in progress 2d game engine writted in c++
+PA AMB TOMÀQUET is a work in progress 2D game engine writted in c++
