@@ -1,0 +1,8 @@
+*.o
+*.out
+*.swp
+*.swo
+*.gch
+OLD
+debug
+Test/*
