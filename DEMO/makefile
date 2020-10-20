@@ -1,7 +1,8 @@
 #DEMO MAKE FILE
 PA_AMB_TOMAQUET_FOLDER=..
 PAT_OBJECT_DIRECTORY=$(PA_AMB_TOMAQUET_FOLDER)/FileObjects
-PAT_OBJECTS=$(PAT_OBJECT_DIRECTORY)/Screen.o $(PAT_OBJECT_DIRECTORY)/AnimatedStaticObject.o $(PAT_OBJECT_DIRECTORY)/AnimationManager.o $(PAT_OBJECT_DIRECTORY)/Controller.o
+PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimationManager.o Controller.o
+PAT_OBJECTS=$(patsubst %.o,$(PAT_OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS_USED))
 
 OBJECTS=$(PAT_OBJECTS) $(DEMO_OBJECTS)
 
@@ -21,14 +22,15 @@ GAME_OBJECTS=./GameObjects
 TEST1=$(GAME_OBJECTS)/Test1
 
 #DEMO OBJECTS
-DEMO_OBJECTS=$(OBJECT_FILES)/Main.o $(OBJECT_FILES)/Game.o $(OBJECT_FILES)/Test1.o $(OBJECT_FILES)/Test1AnimationManager.o
- 
+DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o
+DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
+
 
 
 #INCLUDE FOR OBJECTS
 I_MAIN=-I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_MATH) -I$(PTA_UTILS) -I$(PTA_GAME) -I$(PTA_GAME_OBJECTS)
 I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(TEST1)
-I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) 
+I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 
@@ -40,9 +42,9 @@ LINKER_FLAGS=-lSDL2 -lSDL2_image
 
 #$@ is a macro that refers to the target
 #$^ is a macro that name of all dependencies separated by space
-$(TARGET): $(DEMO_OBJECTS) 
+$(TARGET): $(DEMO_OBJECTS)
 	cd $(PA_AMB_TOMAQUET_FOLDER) && $(MAKE)
-	$(CC) -g $(OBJECTS) $(LINKER_FLAGS) -o $@ 
+	$(CC) -g $(OBJECTS) $(LINKER_FLAGS) -o $@
 
 
 $(OBJECT_FILES)/Main.o: $(MAIN)/Main.cpp
@@ -77,4 +79,3 @@ c_all:
 #build pa amb tomaquet objects
 pa_amb_tomaquet:
 	cd $(PA_AMB_TOMAQUET_FOLDER) && $(MAKE)
-
