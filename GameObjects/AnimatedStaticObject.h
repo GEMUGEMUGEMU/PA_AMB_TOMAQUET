@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: AnimatedStaticObject.h
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 15-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -20,7 +20,7 @@
 class AnimatedStaticObject : public GraphicObject
 {
 public:
-	AnimatedStaticObject();
+	AnimatedStaticObject(): mX(0) , mY(0) {}
 	virtual ~AnimatedStaticObject(){}
 	void Draw(SDL_Renderer* renderer);
 	virtual void Init(int x, int y, SDL_Renderer* render){}

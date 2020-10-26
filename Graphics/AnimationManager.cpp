@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: AnimationManager.cpp
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 03-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -24,31 +24,27 @@ void AnimationManager::Init(SDL_Renderer* render)
 
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
-	uint32_t clipIndex = mFrameNumber / FRAMES_PER_CLIP;
+	uint32_t tClipNumber = mFrameNumber / FRAMES_PER_CLIP;
 
 	mFrameNumber++;
 
-	if(mFrameNumber / FRAMES_PER_CLIP  >= FRAMES_NUMBER)
+	if( tClipNumber >= FRAMES_NUMBER)
 	{
 		mFrameNumber = 0;
+		tClipNumber = 0;
 	}
 
-	if (mPreviousClip != clipIndex || (clipIndex == 0 && mFrameNumber == 0))
-	{
-		mPreviousClip = clipIndex;
-		SDL_Rect* clip = mClipList.Get(clipIndex);
+	mPreviousClip = tClipNumber;
+	SDL_Rect* clip = mClipList.Get(tClipNumber);
 
 
 
-		SDL_Rect* drawPosition = new SDL_Rect();
-		drawPosition->x = x;
-		drawPosition->y = y;
-		drawPosition->w = clip->w;
-		drawPosition->h = clip->h;
+	SDL_Rect* drawPosition = new SDL_Rect();
+	drawPosition->x = x;
+	drawPosition->y = y;
+	drawPosition->w = clip->w;
+	drawPosition->h = clip->h;
 
-		SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
-		SDL_RenderClear( renderer ); 
-		SDL_RenderCopy( renderer, mAnimationSheet, clip, drawPosition);	
+	SDL_RenderCopy( renderer, mAnimationSheet, clip, drawPosition);
 
-	}
 }
