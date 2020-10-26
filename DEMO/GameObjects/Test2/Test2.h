@@ -22,6 +22,7 @@ public:
 	Test2() : AnimatedKineticObject() {}
 	~Test2();
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Move(float deltaTime);
 
 };
 

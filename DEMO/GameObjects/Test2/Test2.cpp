@@ -13,6 +13,7 @@
 
 #include "Test2.h"
 #include "Test2AnimationManager.h"
+#include "Vector2D.h"
 
 Test2::~Test2()
 {
@@ -27,4 +28,19 @@ void Test2::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 
 	mX = x;
 	mY = y;
+}
+
+void Test2::Move(float deltaTime)
+{
+	if(mDirection.GetX() != 0 || mDirection.GetY() != 0)
+	{
+		Vector2D newPosition = mDirection * mSpeed * deltaTime;
+
+		mX = newPosition.GetX();
+		mY = newPosition.GetY();
+
+		//Clean direction
+		mDirection.SetX(0);
+		mDirection.SetY(0);
+	}
 }

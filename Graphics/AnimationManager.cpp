@@ -34,22 +34,17 @@ void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 		tClipNumber = 0;
 	}
 
-	//if (mPreviousClip != tClipNumber || (tClipNumber == 0 && mFrameNumber == 0))
-	//{
-		mPreviousClip = tClipNumber;
-		SDL_Rect* clip = mClipList.Get(tClipNumber);
+	mPreviousClip = tClipNumber;
+	SDL_Rect* clip = mClipList.Get(tClipNumber);
 
 
 
-		SDL_Rect* drawPosition = new SDL_Rect();
-		drawPosition->x = x;
-		drawPosition->y = y;
-		drawPosition->w = clip->w;
-		drawPosition->h = clip->h;
+	SDL_Rect* drawPosition = new SDL_Rect();
+	drawPosition->x = x;
+	drawPosition->y = y;
+	drawPosition->w = clip->w;
+	drawPosition->h = clip->h;
 
-//		SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
-//		SDL_RenderClear( renderer );
-		SDL_RenderCopy( renderer, mAnimationSheet, clip, drawPosition);
+	SDL_RenderCopy( renderer, mAnimationSheet, clip, drawPosition);
 
-	//}
 }

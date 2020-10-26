@@ -1,7 +1,7 @@
 #DEMO MAKE FILE
 PA_AMB_TOMAQUET_FOLDER=..
 PAT_OBJECT_DIRECTORY=$(PA_AMB_TOMAQUET_FOLDER)/FileObjects
-PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o AnimationManager.o Controller.o
+PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o AnimationManager.o Controller.o Vector2D.o
 PAT_OBJECTS=$(patsubst %.o,$(PAT_OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS_USED))
 
 #PA AMB TOMÀTEQT FOLDERS
