@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: Demo.cpp
-*  Purpose: Implement Game.h in order to create a demo of pa amb tomàquet 
+*  Purpose: Implement Game.h in order to create a demo of pa amb tomàquet
 *  Creation Date: 16-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -15,9 +15,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "AnimatedStaticObject.h"
 #include "LinkedList.h"
 #include "Test1.h"
+#include "Test2.h"
 
 double Game::FRAME_PER_SECOND = 30;
 
@@ -38,20 +38,28 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 
 	int imgFlags = IMG_INIT_PNG;
 /*
-	IMG_INIT_PNG is 2. If you init with IMG_INIT_PNG and 
-	get bacK IMG_INIT_PNG you get 2 & 2 which is 2. 
+	IMG_INIT_PNG is 2. If you init with IMG_INIT_PNG and
+	get bacK IMG_INIT_PNG you get 2 & 2 which is 2.
 	2 will evaluate to true
-*/			
+*/
 	if(!(IMG_Init(imgFlags) & imgFlags))
 	{
 		return false;
 	}
 
-	AnimatedStaticObject* animatedStatic = new Test1(); 
+	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
+
+	AnimatedStaticObject* animatedStatic = new Test1();
 	animatedStatic->Init(100, 100, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(animatedStatic);
 
-	return true;	
+	AnimatedKineticObject* animatedKinetic = new Test2();
+	animatedKinetic->Init(5, 300, 100, mScreen.GetRenderer());
+	mGraphicObjectsList.Add(animatedKinetic);
+
+
+
+	return true;
 }
 
 void Game::Run()
@@ -63,14 +71,14 @@ void Game::Run()
 		//VARIABLE FRAME RATE
 		bool running = true;
 		double mSecStart;
-		double mSecEnd;  
+		double mSecEnd;
 		double mSecDelay;
 		double deltaTime = 0;
 		while(running)
 		{
 			mSecStart= SDL_GetTicks();
 
-			////////////////	
+			////////////////
 			//Process input:
 			////////////////
 			value = mController.ManageInput();
@@ -131,7 +139,10 @@ void Game::Draw()
 
 void Game::Render()
 {
-//	mScreen.CleanSurface();
+	//	mScreen.CleanSurface();
+//	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
+	SDL_RenderClear( mScreen.GetRenderer() );
+
 	Draw();
 
 	SDL_RenderPresent(mScreen.GetRenderer());

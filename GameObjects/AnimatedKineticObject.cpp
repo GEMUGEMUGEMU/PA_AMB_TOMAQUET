@@ -13,21 +13,12 @@
 
 #include "AnimatedKineticObject.h"
 
-/*
-AnimatedKineticObject::Move(float deltaTime)
-{
-	if(mDirection.GetX() != 0 || mDirection.GetY() != 0)
-	{
-		Vector2D newPosition = mDirection * mSpeed * deltaTime;
-		mRectangle->x += newPosition.GetX();
-		mRectangle->y += newPosition.GetY();
-		mDirection.SetX(0);
-		mDirection.SetY(0);
-	}
-}
-*/
-
-AnimatedKineticObject::Update(float deltaTime)
+void AnimatedKineticObject::Update(float deltaTime)
 {
 	Move(deltaTime);
+}
+
+void AnimatedKineticObject::Draw(SDL_Renderer* renderer)
+{
+	mAnimationManager->Draw(mX, mY, renderer);
 }

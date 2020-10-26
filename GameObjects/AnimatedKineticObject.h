@@ -16,22 +16,31 @@
 
 #include "SDL2/SDL.h"
 #include "Vector2D.h"
+#include "GraphicObject.h"
+#include "AnimationManager.h"
 
 class AnimatedKineticObject : public GraphicObject
 {
 public:
-	AnimatedKineticObject() : mSpeed(0) {}
+	AnimatedKineticObject() : mX(0), mY(0), mSpeed(0) {}
 	virtual ~AnimatedKineticObject(){}
-
 	void Draw(SDL_Renderer* render);
+	virtual void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer * render){}
+
+
+	void Update(float deltaTime);
+	virtual void Move(float deltaTime){}
+
+
+protected:
+	AnimationManager* mAnimationManager = nullptr;
+	//in screen position
+	uint32_t mX, mY;
 
 	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
-	virtual void Move(float deltaTime);
-	void Update(float deltaTime);
-
-private:
 	uint32_t mSpeed;
 	Vector2D mDirection;
+
 };
 
 #endif /* AnimatedKineticObject_h */
