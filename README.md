@@ -13,6 +13,7 @@
 - gdb
 - VIM
 - git
+- GraphicsGale
 
 ### What's next?
 1. Develop moving objects
