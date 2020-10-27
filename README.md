@@ -1,5 +1,5 @@
 # PA_AMB_TOMAQUET
-*PA AMB TOMÀQUET is a c++ work in progress 2D game engine*
+*PA AMB TOMÀQUET is a work in progress c++ 2D game engine*
 
 ### Try demo:
 *You need SDL2 in order to build the demo*
@@ -13,6 +13,7 @@
 - gdb
 - VIM
 - git
+- GraphicsGale
 
 ### What's next?
 1. Develop moving objects

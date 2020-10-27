@@ -61,6 +61,7 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	mGraphicObjectsList.Add(animatedKinetic);
 	mUpdateObjectsList.Add(animatedKinetic);
 
+<<<<<<< HEAD
 
 	Player * player = new Player();
 	player->Init(5, 200, 100, mScreen.GetRenderer());
@@ -68,6 +69,13 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	mUpdateObjectsList.Add(player);
 
 	mController.SetPlayer(player);
+=======
+	AnimatedKineticObject* animatedKinetic = new Test2();
+	animatedKinetic->Init(5, 300, 100, mScreen.GetRenderer());
+	mGraphicObjectsList.Add(animatedKinetic);
+
+
+>>>>>>> master
 
 	return true;
 }
@@ -160,6 +168,11 @@ void Game::Draw()
 
 void Game::Render()
 {
+<<<<<<< HEAD
+=======
+	//	mScreen.CleanSurface();
+//	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
+>>>>>>> master
 	SDL_RenderClear( mScreen.GetRenderer() );
 
 	Draw();

@@ -24,23 +24,7 @@ void AnimationManager::Init(SDL_Renderer* render)
 
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
-	/*
-	uint32_t tClipNumber = mFrameNumber / FRAMES_PER_CLIP;
-
-	mFrameNumber++;
-
-	if( tClipNumber >= FRAMES_NUMBER)
-	{
-		mFrameNumber = 0;
-		tClipNumber = 0;
-	}
-
-	mPreviousClip = tClipNumber;
-	*/
-
-	//SDL_Rect* tClip = mClipList.Get(tClipNumber);
 	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
-
 
 	SDL_Rect* tDrawPosition = new SDL_Rect();
 	tDrawPosition->x = x;
