@@ -16,14 +16,16 @@
 
 #include "GraphicObject.h"
 #include "AnimationManager.h"
+#include "UpdateObject.h"
 
-class AnimatedStaticObject : public GraphicObject
+class AnimatedStaticObject : public GraphicObject, public UpdateObject
 {
 public:
 	AnimatedStaticObject(): mX(0) , mY(0) {}
 	virtual ~AnimatedStaticObject(){}
 	void Draw(SDL_Renderer* renderer);
 	virtual void Init(int x, int y, SDL_Renderer* render){}
+	virtual void Update(){}
 
 protected:
 	AnimationManager* mAnimationManager;

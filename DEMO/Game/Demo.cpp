@@ -51,13 +51,16 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 
 	AnimatedStaticObject* animatedStatic = new Test1();
 	animatedStatic->Init(100, 100, mScreen.GetRenderer());
+
 	mGraphicObjectsList.Add(animatedStatic);
+	mUpdateObjectsList.Add(animatedStatic);
+
+
 
 	AnimatedKineticObject* animatedKinetic = new Test2();
 	animatedKinetic->Init(5, 300, 100, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(animatedKinetic);
-
-	mUpdateObjectList.Add(animatedKinetic);
+	mUpdateObjectsList.Add(animatedKinetic);
 
 	return true;
 }
@@ -119,7 +122,17 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-//
+	uint32_t max = mUpdateObjectsList.GetSize();
+	UpdateObject* tObject;
+
+	uint32_t counter = 0;
+
+	while ( counter < max)
+	{
+		tObject = mUpdateObjectsList.Get(counter);
+		tObject->Update(deltaTime);
+		counter = counter + 1;
+	}
 }
 
 void Game::Draw()
@@ -141,7 +154,7 @@ void Game::Draw()
 void Game::Render()
 {
 	//	mScreen.CleanSurface();
-//	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
+	//	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
 	SDL_RenderClear( mScreen.GetRenderer() );
 
 	Draw();

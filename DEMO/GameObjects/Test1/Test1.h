@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: Test1.h
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 17-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -22,7 +22,7 @@ public:
 	Test1() : AnimatedStaticObject() {}
 	~Test1();
 	void Init(int x, int y, SDL_Renderer* render);
-
+	void Update(float deltaTime);
 };
 
 #endif /* Test1_h */

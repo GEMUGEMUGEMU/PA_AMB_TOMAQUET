@@ -24,6 +24,7 @@ void AnimationManager::Init(SDL_Renderer* render)
 
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
+	/*
 	uint32_t tClipNumber = mFrameNumber / FRAMES_PER_CLIP;
 
 	mFrameNumber++;
@@ -35,16 +36,31 @@ void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 	}
 
 	mPreviousClip = tClipNumber;
-	SDL_Rect* clip = mClipList.Get(tClipNumber);
+	*/
+
+	//SDL_Rect* tClip = mClipList.Get(tClipNumber);
+	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
 
 
+	SDL_Rect* tDrawPosition = new SDL_Rect();
+	tDrawPosition->x = x;
+	tDrawPosition->y = y;
+	tDrawPosition->w = tClip->w;
+	tDrawPosition->h = tClip->h;
 
-	SDL_Rect* drawPosition = new SDL_Rect();
-	drawPosition->x = x;
-	drawPosition->y = y;
-	drawPosition->w = clip->w;
-	drawPosition->h = clip->h;
+	SDL_RenderCopy( renderer, mAnimationSheet, tClip, tDrawPosition);
 
-	SDL_RenderCopy( renderer, mAnimationSheet, clip, drawPosition);
+}
 
+void AnimationManager::UpdateFrame()
+{
+	mSpriteIndex = mFrameNumber / FRAMES_PER_CLIP;
+
+	mFrameNumber++;
+
+	if( mSpriteIndex >= FRAMES_NUMBER )
+	{
+		mFrameNumber = 0;
+		mSpriteIndex= 0;
+	}
 }

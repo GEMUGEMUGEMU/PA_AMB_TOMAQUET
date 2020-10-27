@@ -14,6 +14,7 @@ Created By: Andrea Andreu Salvagnin
 #include "Controller.h"
 #include "LinkedList.h"
 #include "GraphicObject.h"
+#include "UpdateObject.h"
 
 
 class Game
@@ -35,6 +36,6 @@ private:
 	Controller mController;
 	static double FRAME_PER_SECOND;
 	LinkedList<GraphicObject> mGraphicObjectsList;
-	LinkedList<GraphicObject> mUpdateObjectsList;
+	LinkedList<UpdateObject> mUpdateObjectsList;
 };
 #endif /* Game_h */

@@ -24,6 +24,8 @@ public:
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
 	void Move(float deltaTime);
 
+	void Update(float deltaTime);
+
 };
 
 #endif /* Test2_h */

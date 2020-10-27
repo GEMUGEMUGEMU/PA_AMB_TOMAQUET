@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: Test1.cpp
-*  Purpose: Try animated static object in demo 
+*  Purpose: Try animated static object in demo
 *  Creation Date: 16-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -16,7 +16,7 @@
 
 Test1::~Test1()
 {
-	delete mAnimationManager; 
+	delete mAnimationManager;
 }
 
 void Test1::Init(int x, int y, SDL_Renderer* render)
@@ -26,4 +26,9 @@ void Test1::Init(int x, int y, SDL_Renderer* render)
 
 	mX = x;
 	mY = y;
+}
+
+void Test1::Update(float deltaTime)
+{
+	mAnimationManager->UpdateFrame();
 }

@@ -18,8 +18,9 @@
 #include "Vector2D.h"
 #include "GraphicObject.h"
 #include "AnimationManager.h"
+#include "UpdateObject.h"
 
-class AnimatedKineticObject : public GraphicObject
+class AnimatedKineticObject : public GraphicObject, public UpdateObject
 {
 public:
 	AnimatedKineticObject() : mX(0), mY(0), mSpeed(0) {}
@@ -28,7 +29,7 @@ public:
 	virtual void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer * render){}
 
 
-	void Update(float deltaTime);
+	virtual void Update(float deltaTime){}
 	virtual void Move(float deltaTime){}
 
 

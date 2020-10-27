@@ -37,18 +37,19 @@ void Test2::Move(float deltaTime)
 	{
 		mDirection.SetY(1);
 	}
-	else
+	if(mY > 300)
 	{
 		mDirection.SetY(-1);
 	}
 
 	Vector2D newPosition = mDirection * mSpeed * deltaTime;
 
-	mX = newPosition.GetX();
-	mY = newPosition.GetY();
+	mY = newPosition.GetY() + mY;
 
-	//Clean direction
-	mDirection.SetX(0);
-	mDirection.SetY(0);
+}
 
+void Test2::Update(float deltaTime)
+{
+	mAnimationManager->UpdateFrame();
+	Move(deltaTime);
 }
