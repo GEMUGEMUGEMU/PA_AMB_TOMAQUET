@@ -18,8 +18,9 @@
 #include "Vector2D.h"
 #include "GraphicObject.h"
 #include "AnimationManager.h"
+#include "UpdateObject.h"
 
-class AnimatedKineticObject : public GraphicObject
+class AnimatedKineticObject : public GraphicObject, public UpdateObject
 {
 public:
 	AnimatedKineticObject() : mX(0), mY(0), mSpeed(0) {}
@@ -28,6 +29,10 @@ public:
 	virtual void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer * render){}
 
 
+	virtual void Update(float deltaTime){}
+	virtual void Move(float deltaTime){}
+
+	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
 	void Update(float deltaTime);
 	virtual void Move(float deltaTime){}
 
@@ -37,7 +42,6 @@ protected:
 	//in screen position
 	uint32_t mX, mY;
 
-	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
 	uint32_t mSpeed;
 	Vector2D mDirection;
 

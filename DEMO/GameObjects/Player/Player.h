@@ -5,27 +5,28 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: Test2.h
+*  File Name: Player.h
 *  Purpose:
-*  Creation Date: 17-10-20
+*  Creation Date: 27-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef Test2_h
-#define Test2_h
+#ifndef Player_h
+#define Player_h
 
 #include "AnimatedKineticObject.h"
 
-class Test2 : public AnimatedKineticObject
+class Player : public AnimatedKineticObject
 {
 public:
-	Test2() : AnimatedKineticObject() {}
-	~Test2();
+	Player() : AnimatedKineticObject() {}
+	~Player();
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
 	void Move(float deltaTime);
 
 	void Update(float deltaTime);
 
+	void SetDirection(Vector2D newDirection);
 };
 
-#endif /* Test2_h */
+#endif /* Player_h */

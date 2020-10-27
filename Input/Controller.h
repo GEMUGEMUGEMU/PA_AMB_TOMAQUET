@@ -1,13 +1,13 @@
 /*
 File Name: Controller.h
-Purpose: 
+Purpose:
 Creation Date: 16-09-20
 Created By: Andrea Andreu Salvagnin
 */
 
 #ifndef Controller_h
 #define Controller_h
-
+#include "AnimatedKineticObject.h"
 
 enum COMMAND_TYPE
 {
@@ -22,5 +22,10 @@ public:
 	Controller(){}
 	~Controller(){}
 	COMMAND_TYPE ManageInput();
+
+	void SetPlayer(AnimatedKineticObject * player){ mPlayer = player; }
+
+private:
+	AnimatedKineticObject * mPlayer = nullptr;
 };
 #endif /* Controller_h */

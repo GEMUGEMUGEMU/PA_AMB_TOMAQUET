@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: AnimationManager.h
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 03-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -25,6 +25,7 @@ public:
 
 	void Init(SDL_Renderer* render);
 	void Draw(int x, int y, SDL_Renderer* renderer);
+	void UpdateFrame();
 
 protected:
 	virtual void LoadImage(SDL_Renderer* render){}
@@ -37,7 +38,7 @@ protected:
 private:
 	const uint32_t FRAMES_PER_CLIP = 30;
 	uint32_t mFrameNumber = 0;
-	uint32_t mPreviousClip= 0;
+	uint32_t mSpriteIndex = 0;
 };
 
 #endif /* AnimationManager_h */
