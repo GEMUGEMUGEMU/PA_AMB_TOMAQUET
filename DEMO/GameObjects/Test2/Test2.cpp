@@ -32,15 +32,23 @@ void Test2::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 
 void Test2::Move(float deltaTime)
 {
-	if(mDirection.GetX() != 0 || mDirection.GetY() != 0)
+
+	if(mY <= 100)
 	{
-		Vector2D newPosition = mDirection * mSpeed * deltaTime;
-
-		mX = newPosition.GetX();
-		mY = newPosition.GetY();
-
-		//Clean direction
-		mDirection.SetX(0);
-		mDirection.SetY(0);
+		mDirection.SetY(1);
 	}
+	else
+	{
+		mDirection.SetY(-1);
+	}
+
+	Vector2D newPosition = mDirection * mSpeed * deltaTime;
+
+	mX = newPosition.GetX();
+	mY = newPosition.GetY();
+
+	//Clean direction
+	mDirection.SetX(0);
+	mDirection.SetY(0);
+
 }

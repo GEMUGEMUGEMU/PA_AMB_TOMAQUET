@@ -1,6 +1,6 @@
 /*
 File Name: Game.h
-Purpose: 
+Purpose:
 Creation Date: 05-09-20
 Created By: Andrea Andreu Salvagnin
 */
@@ -35,5 +35,6 @@ private:
 	Controller mController;
 	static double FRAME_PER_SECOND;
 	LinkedList<GraphicObject> mGraphicObjectsList;
+	LinkedList<GraphicObject> mUpdateObjectsList;
 };
 #endif /* Game_h */

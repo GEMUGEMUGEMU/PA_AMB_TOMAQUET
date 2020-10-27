@@ -57,7 +57,7 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	animatedKinetic->Init(5, 300, 100, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(animatedKinetic);
 
-
+	mUpdateObjectList.Add(animatedKinetic);
 
 	return true;
 }
@@ -119,6 +119,7 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
+//
 }
 
 void Game::Draw()
