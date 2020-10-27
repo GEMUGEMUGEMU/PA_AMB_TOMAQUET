@@ -25,7 +25,6 @@ void AnimationManager::Init(SDL_Renderer* render)
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
 	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
-	SDL_RenderCopy( renderer, mAnimationSheet, tClip, tDrawPosition);
 
 	SDL_Rect* tDrawPosition = new SDL_Rect();
 	tDrawPosition->x = x;
