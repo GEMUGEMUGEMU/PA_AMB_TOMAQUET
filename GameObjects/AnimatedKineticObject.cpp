@@ -13,14 +13,6 @@
 
 #include "AnimatedKineticObject.h"
 
-/*
-void AnimatedKineticObject::Update(float deltaTime)
-{
-	UpdateFrame();
-	Move(deltaTime);
-}
-*/
-
 void AnimatedKineticObject::Draw(SDL_Renderer* renderer)
 {
 	mAnimationManager->Draw(mX, mY, renderer);

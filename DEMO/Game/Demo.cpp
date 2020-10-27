@@ -61,7 +61,6 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	mGraphicObjectsList.Add(animatedKinetic);
 	mUpdateObjectsList.Add(animatedKinetic);
 
-
 	Player * player = new Player();
 	player->Init(5, 200, 100, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(player);
@@ -160,6 +159,7 @@ void Game::Draw()
 
 void Game::Render()
 {
+
 	SDL_RenderClear( mScreen.GetRenderer() );
 
 	Draw();
