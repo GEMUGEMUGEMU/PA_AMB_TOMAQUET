@@ -19,17 +19,11 @@ GAME=./Game
 GAME_OBJECTS=./GameObjects
 TEST1=$(GAME_OBJECTS)/Test1
 TEST2=$(GAME_OBJECTS)/Test2
-<<<<<<< HEAD
 PLAYER=$(GAME_OBJECTS)/Player
 INPUT=./Input
 
 #DEMO OBJECTS
 DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o Controller.o Player.o
-=======
-
-#DEMO OBJECTS
-DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o
->>>>>>> master
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
 
@@ -38,18 +32,12 @@ OBJECTS=$(PAT_OBJECTS) $(DEMO_OBJECTS)
 
 #INCLUDE FOR OBJECTS
 I_MAIN=-I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_MATH) -I$(PTA_UTILS) -I$(PTA_GAME) -I$(PTA_GAME_OBJECTS)
-<<<<<<< HEAD
 I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(TEST1)  -I$(TEST2) -I$(PLAYER)
 I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 I_TEST2=-I$(TEST2) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) -I$(PTA_MATH)
 I_PLAYER=-I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 I_CONTROLLER=-I$(PTA_INPUT) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
-=======
-I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(TEST1)  -I$(TEST2)
-I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
-I_TEST2=-I$(TEST2) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) -I$(PTA_MATH)
 
->>>>>>> master
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 
 CC=g++
@@ -82,17 +70,12 @@ $(OBJECT_FILES)/Test2.o: $(TEST2)/Test2.cpp $(TEST2)/Test2.h
 
 $(OBJECT_FILES)/Test2AnimationManager.o: $(TEST2)/Test2AnimationManager.h
 	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_TEST2) -x c++ $< -o $@
-<<<<<<< HEAD
 
 $(OBJECT_FILES)/Controller.o: $(INPUT)/Controller.cpp
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_CONTROLLER) $< -o $@
 
 $(OBJECT_FILES)/Player.o: $(PLAYER)/Player.cpp $(PLAYER)/Player.h
 	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_PLAYER) $< -o $@
-
-=======
->>>>>>> master
-
 
 
 

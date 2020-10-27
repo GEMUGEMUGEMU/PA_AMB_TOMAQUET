@@ -33,9 +33,6 @@ public:
 	virtual void Move(float deltaTime){}
 
 	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
-	void Update(float deltaTime);
-	virtual void Move(float deltaTime){}
-
 
 protected:
 	AnimationManager* mAnimationManager = nullptr;
