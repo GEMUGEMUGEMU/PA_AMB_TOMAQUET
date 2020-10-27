@@ -32,13 +32,13 @@ public:
 	virtual void Update(float deltaTime){}
 	virtual void Move(float deltaTime){}
 
+	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
 
 protected:
 	AnimationManager* mAnimationManager = nullptr;
 	//in screen position
 	uint32_t mX, mY;
 
-	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
 	uint32_t mSpeed;
 	Vector2D mDirection;
 

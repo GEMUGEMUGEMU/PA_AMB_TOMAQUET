@@ -26,7 +26,7 @@ public:
 protected:
 	void LoadImage(SDL_Renderer* render)
 	{
-		const char* filePath= "./Sprites/Prehistoric.png";
+		const char* filePath= "./Sprites/Prehistoric0.png";
 
 		SDL_Surface * tempSurface = IMG_Load(filePath);
 
