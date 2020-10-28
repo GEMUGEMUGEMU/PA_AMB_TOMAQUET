@@ -1,6 +1,6 @@
 #Declare variables
 OBJECT_DIRECTORY=FileObjects
-PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o
+PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
 COMPILER_FLAGS=-Wall -c -g
@@ -25,6 +25,7 @@ I_SCREEN=-I$(UTILS) -I$(GRAPHICS)
 I_ANIMATED_STATIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS)
 I_ANIMATED_KINETIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS) -I$(MATH)
 I_ANIMATION_MANAGER=-I$(UTILS)
+I_GRAPICH_STATIC_OBJECT=-I$(GAME_OBJECTS)
 
 
 
@@ -60,6 +61,12 @@ $(OBJECT_DIRECTORY)/AnimatedKineticObject.o: $(GAME_OBJECTS)AnimatedKineticObjec
 
 $(OBJECT_DIRECTORY)/AnimationManager.o: $(GRAPHICS)AnimationManager.cpp $(GRAPHICS)AnimationManager.h
 	$(CC) $(COMPILER_FLAGS) $(I_ANIMATION_MANAGER) $(LINKER_FLAGS) $< -o $@
+
+$(OBJECT_DIRECTORY)/GraphicStaticObject.o: $(GAME_OBJECTS)GraphicStaticObject.cpp $(GAME_OBJECTS)GraphicStaticObject.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GRAPICH_STATIC_OBJECT) $< -o $@
+
+
+
 
 .PHONY: clean
 clean:

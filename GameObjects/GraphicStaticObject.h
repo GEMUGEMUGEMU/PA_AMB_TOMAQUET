@@ -15,6 +15,8 @@
 #define GraphicStaticObject_h
 
 #include "GraphicObject.h"
+#include "SDL2/SDL_image.h"
+
 
 class GraphicStaticObject : public GraphicObject
 {
@@ -23,11 +25,11 @@ public:
 	virtual ~GraphicStaticObject(){}
 
 	virtual void Init(uint32_t x, uint32_t y, SDL_Renderer* render){}
-	virtual void Draw(SDL_Renderer* renderer){}
-private:
-	SDL_Texture mSprite = nullptr;
-	SDL_Rect mSpriteCordinates;
-	SDL_Rect mSpriteDimensions;
+	void Draw(SDL_Renderer* renderer);
+protected:
+	SDL_Texture * mSprite = nullptr;
+	SDL_Rect * mSpriteCordinates;
+	SDL_Rect * mSpriteDimensions;
 };
 
 #endif /* GraphicStaticObject_h */

@@ -13,7 +13,7 @@
 
 #include "GraphicStaticObject.h"
 
-GraphicStaticObject::Draw(SDL_Renderer* renderer)
+void GraphicStaticObject::Draw(SDL_Renderer* renderer)
 {
-	SDL_RenderCopy( renderer, mSprite, mSpriteDimensions, mSpriteCoordinates);
+	SDL_RenderCopy( renderer, mSprite, mSpriteDimensions, mSpriteCordinates);
 }
