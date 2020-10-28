@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: GraphicObject.h
-*  Purpose: 
+*  Purpose: Wraps visible objects
 *  Creation Date: 15-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
