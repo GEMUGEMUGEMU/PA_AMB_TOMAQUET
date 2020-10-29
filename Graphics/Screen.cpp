@@ -91,6 +91,11 @@ void Screen::RenderClear()
 	SDL_RenderClear( mRenderer );
 }
 
+void Screen::Render()
+{
+	SDL_RenderPresent( mRenderer );
+}
+
 SDL_Renderer* Screen::GetRenderer()
 {
 	return mRenderer;

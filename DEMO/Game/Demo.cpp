@@ -171,7 +171,9 @@ void Game::Render()
 
 	Draw();
 
-	SDL_RenderPresent(mScreen.GetRenderer());
+	//SDL_RenderPresent(mScreen.GetRenderer());
+	mScreen.Render();
+
 
 }
 

@@ -18,6 +18,7 @@ public:
 
 	SDL_Window* Init(uint32_t w, uint32_t h, const char* windowName);
 	void RenderClear();
+	void Render();
 	SDL_Renderer* GetRenderer();
 
 private:
