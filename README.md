@@ -16,7 +16,7 @@
 - GraphicsGale
 
 ### What's next?
-1. Find memory issues with Valgrind
+1. Create Scene
 
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
