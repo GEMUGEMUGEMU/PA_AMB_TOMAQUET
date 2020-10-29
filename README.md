@@ -16,8 +16,7 @@
 - GraphicsGale
 
 ### What's next?
-1. Develop moving objects
-2. Find memory issues with Valgrind
+1. Find memory issues with Valgrind
 
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
