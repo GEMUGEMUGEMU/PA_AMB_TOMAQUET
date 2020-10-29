@@ -3,7 +3,7 @@ OBJECT_DIRECTORY=FileObjects
 PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
-COMPILER_FLAGS=-Wall -c -g
+COMPILER_FLAGS=-Wall -c -g -O0
 #CC defines wich compiler will be used
 CC = g++
 LINKER_FLAGS = -lSDL2 -lSDL2_image
