@@ -28,8 +28,8 @@ public:
 	void Draw(SDL_Renderer* renderer);
 protected:
 	SDL_Texture * mSprite = nullptr;
-	SDL_Rect * mSpriteCordinates;
-	SDL_Rect * mSpriteDimensions;
+	SDL_Rect * mSpriteCordinates = nullptr;
+	SDL_Rect * mSpriteDimensions = nullptr;
 };
 
 #endif /* GraphicStaticObject_h */

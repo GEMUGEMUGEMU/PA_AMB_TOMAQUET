@@ -33,9 +33,9 @@ public:
 
 		SDL_Surface * tempSurface = IMG_Load(filePath);
 
-		mSpriteCordinates = new SDL_Rect;
-		mSpriteCordinates->x = 0;
-		mSpriteCordinates->y = 0;
+		mSpriteDimensions = new SDL_Rect;
+		mSpriteDimensions->x = 0;
+		mSpriteDimensions->y = 0;
 		mSpriteDimensions->w = tempSurface->w;
 		mSpriteDimensions->h = tempSurface->h;
 
