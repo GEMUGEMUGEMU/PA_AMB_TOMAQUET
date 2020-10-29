@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: UpdateObject.h
-*  Purpose:
+*  Purpose: Wraps objects that can change over time
 *  Creation Date: 27-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -19,7 +19,7 @@ class UpdateObject
 public:
 	UpdateObject(){}
 	virtual ~UpdateObject(){}
-
+//	Everything that needs to be update will be done here
 	virtual void Update(float deltaTime){}
 };
 

@@ -19,6 +19,7 @@
 #include "Test1.h"
 #include "Test2.h"
 #include "Player.h"
+#include "Instructions.h"
 
 double Game::FRAME_PER_SECOND = 30;
 
@@ -67,6 +68,11 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	mUpdateObjectsList.Add(player);
 
 	mController.SetPlayer(player);
+
+
+	Instructions* instructions = new Instructions();
+	instructions->Init(400, 400, mScreen.GetRenderer());
+	mGraphicObjectsList.Add(instructions);
 
 	return true;
 }

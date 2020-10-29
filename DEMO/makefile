@@ -1,7 +1,7 @@
 #DEMO MAKE FILE
 PA_AMB_TOMAQUET_FOLDER=..
 PAT_OBJECT_DIRECTORY=$(PA_AMB_TOMAQUET_FOLDER)/FileObjects
-PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o AnimationManager.o Controller.o Vector2D.o
+PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o AnimationManager.o Controller.o Vector2D.o GraphicStaticObject.o
 PAT_OBJECTS=$(patsubst %.o,$(PAT_OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS_USED))
 
 #PA AMB TOMÀTEQT FOLDERS
@@ -20,10 +20,11 @@ GAME_OBJECTS=./GameObjects
 TEST1=$(GAME_OBJECTS)/Test1
 TEST2=$(GAME_OBJECTS)/Test2
 PLAYER=$(GAME_OBJECTS)/Player
+INSTRUCTIONS=$(GAME_OBJECTS)/Instructions
 INPUT=./Input
 
 #DEMO OBJECTS
-DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o Controller.o Player.o
+DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o Controller.o Player.o Instructions.o
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
 
@@ -32,11 +33,12 @@ OBJECTS=$(PAT_OBJECTS) $(DEMO_OBJECTS)
 
 #INCLUDE FOR OBJECTS
 I_MAIN=-I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_MATH) -I$(PTA_UTILS) -I$(PTA_GAME) -I$(PTA_GAME_OBJECTS)
-I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(TEST1)  -I$(TEST2) -I$(PLAYER)
+I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(TEST1)  -I$(TEST2) -I$(PLAYER) -I$(INSTRUCTIONS)
 I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 I_TEST2=-I$(TEST2) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) -I$(PTA_MATH)
 I_PLAYER=-I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 I_CONTROLLER=-I$(PTA_INPUT) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
+I_INSTRUCTIONS=-I$(PTA_GAME_OBJECTS)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 
@@ -77,6 +79,8 @@ $(OBJECT_FILES)/Controller.o: $(INPUT)/Controller.cpp
 $(OBJECT_FILES)/Player.o: $(PLAYER)/Player.cpp $(PLAYER)/Player.h
 	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_PLAYER) $< -o $@
 
+$(OBJECT_FILES)/Instructions.o: $(INSTRUCTIONS)/Instructions.h
+	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_INSTRUCTIONS) -x c++ $< -o $@
 
 
 .PHONY: clean c_all c_pa_amb_tomaquet pa_amb_tomaquet
