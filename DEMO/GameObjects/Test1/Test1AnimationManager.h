@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: Test1AnimationManager.h
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 17-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -20,7 +20,10 @@ class Test1AnimationManager : public AnimationManager
 {
 public:
 	Test1AnimationManager() : AnimationManager(){}
-	~Test1AnimationManager(){}
+	~Test1AnimationManager()
+	{
+		SDL_DestroyTexture(mAnimationSheet);
+	}
 
 protected:
 	void LoadImage(SDL_Renderer* render);
