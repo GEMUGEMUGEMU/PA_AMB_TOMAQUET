@@ -1,6 +1,6 @@
 /*
 File Name: Screen.cpp
-Purpose: 
+Purpose:
 Creation Date: 06-09-20
 Created By: Andrea Andreu Salvagnin
 */
@@ -9,8 +9,8 @@ Created By: Andrea Andreu Salvagnin
 #include "SDL2/SDL.h"
 
 
-Screen::Screen(): mWidth(0), mHeight(0), mWindow(nullptr), 
-mWindowSurface(nullptr), mRenderer(nullptr), mPixelFormat(nullptr), 
+Screen::Screen(): mWidth(0), mHeight(0), mWindow(nullptr),
+mWindowSurface(nullptr), mRenderer(nullptr), mPixelFormat(nullptr),
 	mTexture(nullptr), mCleanColor(0)
 {
 
@@ -61,8 +61,8 @@ SDL_Window* Screen::Init(uint32_t w, uint32_t h, const char* windowName)
 
 
 	mRenderer = SDL_CreateRenderer(
-			mWindow, -1, 
-			SDL_RENDERER_ACCELERATED 
+			mWindow, -1,
+			SDL_RENDERER_ACCELERATED
 			| SDL_RENDERER_PRESENTVSYNC);
 
 	if(mRenderer == nullptr)
@@ -70,13 +70,13 @@ SDL_Window* Screen::Init(uint32_t w, uint32_t h, const char* windowName)
 		return nullptr;
 	}
 
-	SDL_SetRenderDrawColor(mRenderer, 0, 
+	SDL_SetRenderDrawColor(mRenderer, 0,
 		0, 255, 255 );
-	
-	mWindowSurface = 
+
+	mWindowSurface =
 		SDL_GetWindowSurface(mWindow);
 
-	mPixelFormat = 
+	mPixelFormat =
 		SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 
 	mCleanColor = SDL_MapRGBA(
@@ -86,13 +86,10 @@ SDL_Window* Screen::Init(uint32_t w, uint32_t h, const char* windowName)
 	return mWindow;
 }
 
-//void Screen::CleanSurface()
-//{
-//	SDL_FillRect(mWindowSurface, nullptr, mCleanColor);
-	//SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-	//SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-	//	SDL_RenderClear( mRenderer ); 
-//}
+void Screen::RenderClear()
+{
+	SDL_RenderClear( mRenderer );
+}
 
 SDL_Renderer* Screen::GetRenderer()
 {

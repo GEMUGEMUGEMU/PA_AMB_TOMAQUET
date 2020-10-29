@@ -166,7 +166,8 @@ void Game::Draw()
 void Game::Render()
 {
 
-	SDL_RenderClear( mScreen.GetRenderer() );
+	//SDL_RenderClear( mScreen.GetRenderer() );
+	mScreen.RenderClear();
 
 	Draw();
 
