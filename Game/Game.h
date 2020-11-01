@@ -13,6 +13,7 @@ Created By: Andrea Andreu Salvagnin
 #include "Screen.h"
 #include "Controller.h"
 #include "LinkedList.h"
+#include "Stack.h"
 #include "GraphicObject.h"
 #include "UpdateObject.h"
 
@@ -33,6 +34,7 @@ private:
 	Screen mScreen;
 	SDL_Window * mWindow;
 	SDL_Surface* mSurface;
+	Stack<int> mStackScene;
 	Controller mController;
 	static double FRAME_PER_SECOND;
 	LinkedList<GraphicObject> mGraphicObjectsList;

@@ -1,6 +1,6 @@
 #Declare variables
 OBJECT_DIRECTORY=FileObjects
-PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o
+PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
 COMPILER_FLAGS=-Wall -c -g -O0
@@ -45,6 +45,9 @@ $(OBJECT_DIRECTORY)/Controller.o: Input/Controller.h
 	$(CC) $(COMPILER_FLAGS) $(I_CONTROLLER) $(LINKER_FLAGS) -x c++ $< -o $@
 
 $(OBJECT_DIRECTORY)/LinkedList.o: Utils/LinkedList.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -x c++ $< -o $@
+
+$(OBJECT_DIRECTORY)/Stack.o: Utils/Stack.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -x c++ $< -o $@
 
 $(OBJECT_DIRECTORY)/Vector2D.o: Math/Vector2D.cpp Math/Vector2D.h
