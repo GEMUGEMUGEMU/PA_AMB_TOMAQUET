@@ -1,6 +1,6 @@
 #Declare variables
 OBJECT_DIRECTORY=FileObjects
-PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o
+PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o AnimationManager.o GraphicObject.o AnimatedStaticObject.o AnimatedKineticObject.o GraphicStaticObject.o Scene.o
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
 COMPILER_FLAGS=-Wall -c -g -O0
@@ -15,18 +15,19 @@ MATH=./Math/
 INPUT=./Input/
 UTILS=./Utils/
 GAME_OBJECTS=./GameObjects/
+SCENE=./Scene/
 
 #INCLUDERS FOR:
 I_PLAYER=-I$(GRAPHICS) -I$(MATH)
 I_CONTROLLER=-I$(GRAPHICS) -I$(MATH) -I$(GAME_OBJECTS) -I$(UTILS)
-I_GAME=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) -I$(GAME_OBJECTS)
-I_MAIN=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) -I$(GAME_OBJECTS)
+I_GAME=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) -I$(GAME_OBJECTS) -I$(SCENE)
+I_MAIN=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) -I$(GAME_OBJECTS) -I$(SCENE)
 I_SCREEN=-I$(UTILS) -I$(GRAPHICS)
 I_ANIMATED_STATIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS)
 I_ANIMATED_KINETIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS) -I$(MATH)
 I_ANIMATION_MANAGER=-I$(UTILS)
 I_GRAPICH_STATIC_OBJECT=-I$(GAME_OBJECTS)
-
+I_SCENE=-I$(INPUT) -I$(GAME_OBJECTS) -I$(MATH) -I$(GRAPHICS) -I$(UTILS)
 
 
 .PHONY: objects
@@ -68,7 +69,8 @@ $(OBJECT_DIRECTORY)/AnimationManager.o: $(GRAPHICS)AnimationManager.cpp $(GRAPHI
 $(OBJECT_DIRECTORY)/GraphicStaticObject.o: $(GAME_OBJECTS)GraphicStaticObject.cpp $(GAME_OBJECTS)GraphicStaticObject.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GRAPICH_STATIC_OBJECT) $< -o $@
 
-
+$(OBJECT_DIRECTORY)/Scene.o: $(SCENE)Scene.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) -x c++ $< -o $@
 
 
 .PHONY: clean
