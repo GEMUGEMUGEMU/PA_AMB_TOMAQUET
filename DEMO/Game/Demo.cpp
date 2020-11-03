@@ -72,7 +72,7 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	mGraphicObjectsList.Add(instructions);
 */
 
-	Scene* demoScene = new DemoScene();
+	DemoScene* demoScene = new DemoScene();
 	demoScene->Init(mScreen.GetRenderer());
 	mStackScene.Push(demoScene);
 

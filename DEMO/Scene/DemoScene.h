@@ -18,6 +18,7 @@
 #include "LinkedList.h"
 #include "GraphicObject.h"
 #include "UpdateObject.h"
+#include "DemoSceneController.h"
 
 class DemoScene : public Scene
 {
@@ -25,7 +26,6 @@ public:
 	void Init(SDL_Renderer * render);
 	void Update(float deltaTime);
 	void Draw(SDL_Renderer * render);
-	Controller* GetController();
 
 private:
 	LinkedList<GraphicObject> mGraphicObjectsList;

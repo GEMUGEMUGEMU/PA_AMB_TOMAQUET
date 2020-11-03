@@ -26,8 +26,17 @@ public:
 	virtual void Update(float deltaTime){}
 	virtual void Draw(SDL_Renderer * render){}
 
-	virtual Controller* GetController(){ return nullptr; }
-
+	Controller* GetController()
+	{
+		if(mController == nullptr)
+		{
+			return nullptr;
+		}
+		else
+		{
+			return mController;
+		}
+	}
 
 protected:
 	Controller* mController = nullptr;

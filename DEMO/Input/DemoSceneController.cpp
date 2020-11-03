@@ -77,4 +77,3 @@ DemoSceneController::~DemoSceneController()
 {
 	delete mPlayer;
 }
-

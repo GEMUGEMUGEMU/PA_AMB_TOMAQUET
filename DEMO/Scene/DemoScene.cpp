@@ -49,8 +49,18 @@ void DemoScene::Init(SDL_Renderer* render)
 //	mController = dynamic_cast<Controller*>(&sceneController);
 
 //	mController->SetPlayer(player);
-	DemoSceneController* sceneController = dynamic_cast<DemoSceneController*>(mController);
+	DemoSceneController* sceneController = new DemoSceneController();
 	sceneController->SetPlayer(player);
+
+	mController = sceneController;
+
+
+	/*
+	   DemoSceneController* sceneController = dynamic_cast<DemoSceneController*>(mController);
+	   sceneController->SetPlayer(player);
+
+	   mController = sceneController;
+	 */
 }
 
 void DemoScene::Update(float deltaTime)
@@ -84,14 +94,3 @@ void DemoScene::Draw(SDL_Renderer * render)
 	}
 }
 
-Controller* DemoScene::GetController()
-{
-	if(mController == nullptr)
-	{
-		return nullptr;
-	}
-	else
-	{
-		return mController;
-	}
-}
