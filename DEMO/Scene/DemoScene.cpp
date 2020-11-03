@@ -18,6 +18,7 @@
 #include "Player.h"
 #include "Instructions.h"
 #include "Screen.h"
+#include "Controller.h"
 
 void DemoScene::Init(SDL_Renderer* render)
 {
@@ -43,8 +44,13 @@ void DemoScene::Init(SDL_Renderer* render)
 	instructions->Init(400, 400, render);
 	mGraphicObjectsList.Add(instructions);
 
-	mSceneController = new Controller();
-	mSceneController->SetPlayer(player);
+	//mController = new DemoSceneController();
+//	DemoSceneController sceneController;
+//	mController = dynamic_cast<Controller*>(&sceneController);
+
+//	mController->SetPlayer(player);
+	DemoSceneController* sceneController = dynamic_cast<DemoSceneController*>(mController);
+	sceneController->SetPlayer(player);
 }
 
 void DemoScene::Update(float deltaTime)
@@ -80,12 +86,12 @@ void DemoScene::Draw(SDL_Renderer * render)
 
 Controller* DemoScene::GetController()
 {
-	if(mSceneController == nullptr)
+	if(mController == nullptr)
 	{
 		return nullptr;
 	}
 	else
 	{
-		return mSceneController;
+		return mController;
 	}
 }

@@ -1,16 +1,21 @@
 /*
-File Name: Controller.cpp
-Purpose:
-Creation Date: 16-09-20
-Created By: Andrea Andreu Salvagnin
+*        ~_
+*     ~_ )_)~_
+*     )_))_))_)
+*     _!__!__!_
+*   ~~\t  Gemu/~~
+*
+*  File Name: DemoSceneController.cpp
+*  Purpose:
+*  Creation Date: 02-11-20
+*  Created By: Andrea Andreu Salvagnin
 */
 
 #include "SDL2/SDL.h"
-#include "Controller.h"
+#include "DemoSceneController.h"
 #include "Vector2D.h"
-#include "AnimatedKineticObject.h"
 
-COMMAND_TYPE Controller::ManageInput()
+COMMAND_TYPE DemoSceneController::ManageInput()
 {
 	SDL_Event event;
 	while( SDL_PollEvent( &event ) != 0 )
@@ -67,3 +72,9 @@ COMMAND_TYPE Controller::ManageInput()
 
 	return NOTHING;
 }
+
+DemoSceneController::~DemoSceneController()
+{
+	delete mPlayer;
+}
+

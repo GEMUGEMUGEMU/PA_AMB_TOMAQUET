@@ -26,7 +26,7 @@ INPUT=./Input
 SCENE=./Scene
 
 #DEMO OBJECTS
-DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o Controller.o Player.o Instructions.o DemoScene.o
+DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o Test2AnimationManager.o DemoSceneController.o Player.o Instructions.o DemoScene.o
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
 
@@ -39,9 +39,9 @@ I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_UTILS) -I$(PTA_GAM
 I_TEST1=-I$(TEST1) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 I_TEST2=-I$(TEST2) -I$(PTA_GAME_OBJECTS) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) -I$(PTA_MATH)
 I_PLAYER=-I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
-I_CONTROLLER=-I$(PTA_INPUT) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
+I_CONTROLLER=-I$(PTA_INPUT) -I$(INPUT) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS) -I$(PLAYER)
 I_INSTRUCTIONS=-I$(PTA_GAME_OBJECTS)
-I_SCENE=-I$(PTA_SCENE) -I$(SCENE) -I$(INPUT) -I$(PTA_INPUT) -I$(PTA_GAME_OBJECTS) -I$(PLAYER) -I$(TEST1) -I$(TEST2) -I$(INSTRUCTIONS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
+I_SCENE=-I$(PTA_SCENE) -I$(SCENE) -I$(PTA_INPUT) -I$(INPUT) -I$(PTA_GAME_OBJECTS) -I$(PLAYER) -I$(TEST1) -I$(TEST2) -I$(INSTRUCTIONS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 
@@ -76,7 +76,7 @@ $(OBJECT_FILES)/Test2.o: $(TEST2)/Test2.cpp $(TEST2)/Test2.h
 $(OBJECT_FILES)/Test2AnimationManager.o: $(TEST2)/Test2AnimationManager.h
 	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_TEST2) -x c++ $< -o $@
 
-$(OBJECT_FILES)/Controller.o: $(INPUT)/Controller.cpp
+$(OBJECT_FILES)/DemoSceneController.o: $(INPUT)/DemoSceneController.cpp $(INPUT)/DemoSceneController.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_CONTROLLER) $< -o $@
 
 $(OBJECT_FILES)/Player.o: $(PLAYER)/Player.cpp $(PLAYER)/Player.h

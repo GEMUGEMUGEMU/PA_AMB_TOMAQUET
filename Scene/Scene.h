@@ -20,7 +20,7 @@
 class Scene
 {
 public:
-	Scene() : mSceneController(nullptr){}
+	Scene(){}
 	virtual ~Scene(){}
 	virtual void Init(SDL_Renderer * render){}
 	virtual void Update(float deltaTime){}
@@ -30,7 +30,7 @@ public:
 
 
 protected:
-	Controller* mSceneController;
+	Controller* mController = nullptr;
 };
 
 #endif /* Scene_h */

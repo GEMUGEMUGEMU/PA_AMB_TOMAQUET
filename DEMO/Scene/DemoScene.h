@@ -15,6 +15,9 @@
 #define DemoScene_h
 
 #include "Scene.h"
+#include "LinkedList.h"
+#include "GraphicObject.h"
+#include "UpdateObject.h"
 
 class DemoScene : public Scene
 {

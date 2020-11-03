@@ -14,10 +14,21 @@
 #ifndef DemoSceneController_h
 #define DemoSceneController_h
 
-#include "Scene.h"
+#include "Controller.h"
+#include "Player.h"
 
-class DemoSceneController : public Scene
+
+class DemoSceneController : public Controller
 {
+public:
+	DemoSceneController(){}
+	~DemoSceneController();
+	COMMAND_TYPE ManageInput();
+
+	void SetPlayer(Player * player){ mPlayer = player; }
+
+private:
+	Player* mPlayer = nullptr;
 };
 
 #endif /* DemoSceneController_h */
