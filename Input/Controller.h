@@ -7,7 +7,6 @@ Created By: Andrea Andreu Salvagnin
 
 #ifndef Controller_h
 #define Controller_h
-#include "AnimatedKineticObject.h"
 
 enum COMMAND_TYPE
 {
@@ -20,12 +19,7 @@ class Controller
 {
 public:
 	Controller(){}
-	~Controller(){}
-	COMMAND_TYPE ManageInput();
-
-	void SetPlayer(AnimatedKineticObject * player){ mPlayer = player; }
-
-private:
-	AnimatedKineticObject * mPlayer = nullptr;
+	virtual ~Controller(){ }
+	virtual COMMAND_TYPE ManageInput(){return NOTHING;}
 };
 #endif /* Controller_h */

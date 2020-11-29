@@ -21,7 +21,10 @@ class PlayerAnimationManager : public AnimationManager
 {
 public:
 	PlayerAnimationManager() : AnimationManager(){}
-	~PlayerAnimationManager(){}
+	~PlayerAnimationManager()
+	{
+		SDL_DestroyTexture(mAnimationSheet);
+	}
 
 protected:
 	void LoadImage(SDL_Renderer* render)

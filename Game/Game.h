@@ -13,9 +13,10 @@ Created By: Andrea Andreu Salvagnin
 #include "Screen.h"
 #include "Controller.h"
 #include "LinkedList.h"
+#include "Stack.h"
 #include "GraphicObject.h"
 #include "UpdateObject.h"
-
+#include "Scene.h"
 
 class Game
 {
@@ -29,13 +30,23 @@ public:
 	void Update(double deltaTime);
 	void Draw();
 	void Render();
+
+protected:
+	Controller* mController;
+
 private:
 	Screen mScreen;
 	SDL_Window * mWindow;
 	SDL_Surface* mSurface;
-	Controller mController;
+	Scene * actualScene;
+	Stack<Scene> mStackScene;
 	static double FRAME_PER_SECOND;
+	bool mRunning = false;
+
+/*
 	LinkedList<GraphicObject> mGraphicObjectsList;
 	LinkedList<UpdateObject> mUpdateObjectsList;
+*/
+
 };
 #endif /* Game_h */

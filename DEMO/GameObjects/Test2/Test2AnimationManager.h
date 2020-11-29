@@ -21,7 +21,10 @@ class Test2AnimationManager : public AnimationManager
 {
 public:
 	Test2AnimationManager() : AnimationManager(){}
-	~Test2AnimationManager(){}
+	~Test2AnimationManager()
+	{
+		SDL_DestroyTexture(mAnimationSheet);
+	}
 
 protected:
 	void LoadImage(SDL_Renderer* render)

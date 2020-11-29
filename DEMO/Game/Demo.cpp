@@ -14,12 +14,9 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <iostream>
+//#include <iostream>
 #include "LinkedList.h"
-#include "Test1.h"
-#include "Test2.h"
-#include "Player.h"
-#include "Instructions.h"
+#include "DemoScene.h"
 
 double Game::FRAME_PER_SECOND = 30;
 
@@ -50,7 +47,7 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	}
 
 	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
-
+/*
 	AnimatedStaticObject* animatedStatic = new Test1();
 	animatedStatic->Init(100, 100, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(animatedStatic);
@@ -73,6 +70,16 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	Instructions* instructions = new Instructions();
 	instructions->Init(400, 400, mScreen.GetRenderer());
 	mGraphicObjectsList.Add(instructions);
+*/
+
+	DemoScene* demoScene = new DemoScene();
+	demoScene->Init(mScreen.GetRenderer());
+	mStackScene.Push(demoScene);
+
+	actualScene = demoScene;
+	mController = demoScene->GetController();
+
+	mRunning = true;
 
 	return true;
 }
@@ -84,22 +91,22 @@ void Game::Run()
 	if(mWindow)
 	{
 		//VARIABLE FRAME RATE
-		bool running = true;
+		//		bool running = true;
 		double mSecStart;
 		double mSecEnd;
 		double mSecDelay;
 		double deltaTime = 0;
-		while(running)
+		while(mRunning)
 		{
 			mSecStart= SDL_GetTicks();
 
 			////////////////
 			//Process input:
 			////////////////
-			value = mController.ManageInput();
+			value = mController->ManageInput();
 			if(value == QUIT)
 			{
-				running = false;
+				mRunning = false;
 				break;
 			}
 
@@ -134,43 +141,51 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-	uint32_t max = mUpdateObjectsList.GetSize();
-	UpdateObject* tObject;
+	/*
+	   uint32_t max = mUpdateObjectsList.GetSize();
+	   UpdateObject* tObject;
 
-	uint32_t counter = 0;
+	   uint32_t counter = 0;
 
-	while ( counter < max)
-	{
-		tObject = mUpdateObjectsList.Get(counter);
-		tObject->Update(deltaTime);
-		counter = counter + 1;
-	}
+	   while ( counter < max)
+	   {
+	   tObject = mUpdateObjectsList.Get(counter);
+	   tObject->Update(deltaTime);
+	   counter = counter + 1;
+	   }
+	 */
+	actualScene->Update(deltaTime);
 }
 
 void Game::Draw()
 {
+	/*
+	   uint32_t max = mGraphicObjectsList.GetSize();
+	   GraphicObject* tObject;
 
-	uint32_t max = mGraphicObjectsList.GetSize();
-	GraphicObject* tObject;
+	   uint32_t counter = 0;
 
-	uint32_t counter = 0;
-
-	while ( counter < max)
-	{
-		tObject = mGraphicObjectsList.Get(counter);
-		tObject->Draw(mScreen.GetRenderer());
-		counter = counter + 1;
-	}
+	   while ( counter < max)
+	   {
+	   tObject = mGraphicObjectsList.Get(counter);
+	   tObject->Draw(mScreen.GetRenderer());
+	   counter = counter + 1;
+	   }
+	 */
+	actualScene->Draw(mScreen.GetRenderer());
 }
 
 void Game::Render()
 {
 
-	SDL_RenderClear( mScreen.GetRenderer() );
+	//SDL_RenderClear( mScreen.GetRenderer() );
+	mScreen.RenderClear();
 
 	Draw();
 
-	SDL_RenderPresent(mScreen.GetRenderer());
+	//SDL_RenderPresent(mScreen.GetRenderer());
+	mScreen.Render();
+
 
 }
 
