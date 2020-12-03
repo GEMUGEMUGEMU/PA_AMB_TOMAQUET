@@ -30,6 +30,7 @@ public:
 	void Update(double deltaTime);
 	void Draw();
 	void Render();
+	void Input();
 
 protected:
 	Controller* mController;
@@ -42,11 +43,6 @@ private:
 	Stack<Scene> mStackScene;
 	static double FRAME_PER_SECOND;
 	bool mRunning = false;
-
-/*
-	LinkedList<GraphicObject> mGraphicObjectsList;
-	LinkedList<UpdateObject> mUpdateObjectsList;
-*/
 
 };
 #endif /* Game_h */

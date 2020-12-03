@@ -14,7 +14,6 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-//#include <iostream>
 #include "LinkedList.h"
 #include "DemoScene.h"
 
@@ -47,30 +46,6 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	}
 
 	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
-/*
-	AnimatedStaticObject* animatedStatic = new Test1();
-	animatedStatic->Init(100, 100, mScreen.GetRenderer());
-	mGraphicObjectsList.Add(animatedStatic);
-	mUpdateObjectsList.Add(animatedStatic);
-
-
-	AnimatedKineticObject* animatedKinetic = new Test2();
-	animatedKinetic->Init(5, 300, 100, mScreen.GetRenderer());
-	mGraphicObjectsList.Add(animatedKinetic);
-	mUpdateObjectsList.Add(animatedKinetic);
-
-	Player * player = new Player();
-	player->Init(5, 200, 100, mScreen.GetRenderer());
-	mGraphicObjectsList.Add(player);
-	mUpdateObjectsList.Add(player);
-
-	mController.SetPlayer(player);
-
-
-	Instructions* instructions = new Instructions();
-	instructions->Init(400, 400, mScreen.GetRenderer());
-	mGraphicObjectsList.Add(instructions);
-*/
 
 	DemoScene* demoScene = new DemoScene();
 	demoScene->Init(mScreen.GetRenderer());
@@ -90,8 +65,6 @@ void Game::Run()
 
 	if(mWindow)
 	{
-		//VARIABLE FRAME RATE
-		//		bool running = true;
 		double mSecStart;
 		double mSecEnd;
 		double mSecDelay;
@@ -103,12 +76,7 @@ void Game::Run()
 			////////////////
 			//Process input:
 			////////////////
-			value = mController->ManageInput();
-			if(value == QUIT)
-			{
-				mRunning = false;
-				break;
-			}
+			Input();
 
 			/////////
 			//Update:
@@ -141,37 +109,11 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-	/*
-	   uint32_t max = mUpdateObjectsList.GetSize();
-	   UpdateObject* tObject;
-
-	   uint32_t counter = 0;
-
-	   while ( counter < max)
-	   {
-	   tObject = mUpdateObjectsList.Get(counter);
-	   tObject->Update(deltaTime);
-	   counter = counter + 1;
-	   }
-	 */
 	actualScene->Update(deltaTime);
 }
 
 void Game::Draw()
 {
-	/*
-	   uint32_t max = mGraphicObjectsList.GetSize();
-	   GraphicObject* tObject;
-
-	   uint32_t counter = 0;
-
-	   while ( counter < max)
-	   {
-	   tObject = mGraphicObjectsList.Get(counter);
-	   tObject->Draw(mScreen.GetRenderer());
-	   counter = counter + 1;
-	   }
-	 */
 	actualScene->Draw(mScreen.GetRenderer());
 }
 
@@ -188,4 +130,27 @@ void Game::Render()
 
 
 }
+
+void Game::Input()
+{
+	COMMAND_TYPE value = mController->ManageInput();
+	switch(value)
+	{
+		case QUIT:
+			mRunning = false;
+			break;
+		case PAUSE:
+//			PauseScene pause = new PauseScene();
+			break;
+	}
+	/*
+	if(value == QUIT)
+	{
+		mRunning = false;
+		break;
+	}
+	*/
+}
+
+
 

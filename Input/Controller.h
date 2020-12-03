@@ -12,7 +12,8 @@ enum COMMAND_TYPE
 {
 	QUIT,
 	KEY,
-	NOTHING
+	NOTHING,
+	PAUSE
 };
 
 class Controller

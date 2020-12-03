@@ -59,7 +59,10 @@ COMMAND_TYPE DemoSceneController::ManageInput()
 					movement = movement + right;
 				}
 				break;
-
+			case SDLK_SPACE:
+				{
+					return PAUSE;
+				}
 			default:
 
 				break;
