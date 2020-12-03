@@ -49,10 +49,11 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 
 	DemoScene* demoScene = new DemoScene();
 	demoScene->Init(mScreen.GetRenderer());
-	mStackScene.Push(demoScene);
+	PushScene(demoScene);
+//	mStackScene.Push(demoScene);
 
-	actualScene = demoScene;
-	mController = demoScene->GetController();
+//	actualScene = demoScene;
+//	mController = demoScene->GetController();
 
 	mRunning = true;
 
@@ -120,12 +121,10 @@ void Game::Draw()
 void Game::Render()
 {
 
-	//SDL_RenderClear( mScreen.GetRenderer() );
 	mScreen.RenderClear();
 
 	Draw();
 
-	//SDL_RenderPresent(mScreen.GetRenderer());
 	mScreen.Render();
 
 
@@ -140,17 +139,15 @@ void Game::Input()
 			mRunning = false;
 			break;
 		case PAUSE:
-//			PauseScene pause = new PauseScene();
+			//PauseScene pause = new PauseScene();
 			break;
 	}
-	/*
-	if(value == QUIT)
-	{
-		mRunning = false;
-		break;
-	}
-	*/
 }
 
 
-
+void Game::PushScene(Scene * newScene)
+{
+	mStackScene.Push(newScene);
+	actualScene = newScene;
+	mController = newScene->GetController();
+}

@@ -31,6 +31,7 @@ public:
 	void Draw();
 	void Render();
 	void Input();
+	void PushScene(Scene * scene);
 
 protected:
 	Controller* mController;
