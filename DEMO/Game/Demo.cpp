@@ -110,12 +110,12 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-	actualScene->Update(deltaTime);
+	mActualScene->Update(deltaTime);
 }
 
 void Game::Draw()
 {
-	actualScene->Draw(mScreen.GetRenderer());
+	mActualScene->Draw(mScreen.GetRenderer());
 }
 
 void Game::Render()
@@ -148,6 +148,6 @@ void Game::Input()
 void Game::PushScene(Scene * newScene)
 {
 	mStackScene.Push(newScene);
-	actualScene = newScene;
+	mActualScene = newScene;
 	mController = newScene->GetController();
 }

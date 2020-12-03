@@ -40,7 +40,7 @@ private:
 	Screen mScreen;
 	SDL_Window * mWindow;
 	SDL_Surface* mSurface;
-	Scene * actualScene;
+	Scene * mActualScene;
 	Stack<Scene> mStackScene;
 	static double FRAME_PER_SECOND;
 	bool mRunning = false;
