@@ -2,7 +2,7 @@
 OBJECT_DIRECTORY=FileObjects
 PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o \
 	AnimationManager.o GraphicObject.o AnimatedStaticObject.o \
-	AnimatedKineticObject.o GraphicStaticObject.o Scene.o
+	AnimatedKineticObject.o GraphicStaticObject.o Scene.o SceneManager.o
 
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
@@ -33,6 +33,7 @@ I_ANIMATED_KINETIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS) -I$(MATH)
 I_ANIMATION_MANAGER=-I$(UTILS)
 I_GRAPICH_STATIC_OBJECT=-I$(GAME_OBJECTS)
 I_SCENE=-I$(INPUT) -I$(GAME_OBJECTS) -I$(MATH) -I$(GRAPHICS) -I$(UTILS)
+I_SCENE_MANAGER=-I$(INPUT) -I$(UTILS)
 
 
 .PHONY: objects
@@ -83,6 +84,10 @@ $(OBJECT_DIRECTORY)/GraphicStaticObject.o: \
 
 $(OBJECT_DIRECTORY)/Scene.o: $(SCENE)/Scene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) -x c++ $< -o $@
+
+$(OBJECT_DIRECTORY)/SceneManager.o: $(SCENE)/SceneManager.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) -x c++ $< -o $@
+
 
 
 .PHONY: clean

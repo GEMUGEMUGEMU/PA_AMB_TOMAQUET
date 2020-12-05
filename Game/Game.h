@@ -13,10 +13,7 @@ Created By: Andrea Andreu Salvagnin
 #include "Screen.h"
 #include "Controller.h"
 #include "LinkedList.h"
-#include "Stack.h"
-#include "GraphicObject.h"
-#include "UpdateObject.h"
-#include "Scene.h"
+#include "SceneManager.h"
 
 class Game
 {
@@ -31,7 +28,7 @@ public:
 	void Draw();
 	void Render();
 	void Input();
-	void PushScene(Scene * scene);
+//	void PushScene(Scene * scene);
 
 protected:
 	Controller* mController;
@@ -40,8 +37,7 @@ private:
 	Screen mScreen;
 	SDL_Window * mWindow;
 	SDL_Surface* mSurface;
-	Scene * mActualScene;
-	Stack<Scene> mStackScene;
+	SceneManager mSceneManager;
 	static double FRAME_PER_SECOND;
 	bool mRunning = false;
 

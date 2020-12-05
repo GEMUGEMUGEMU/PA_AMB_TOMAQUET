@@ -36,6 +36,7 @@ public:
 	void Pop();
 	void Push(T* newValue);
 	bool IsEmpty();
+	T* GetOnTop();
 };
 
 template <class T>
@@ -97,4 +98,12 @@ Stack<T>::~Stack()
 		Pop();
 	}
 }
+
+
+template <class T>
+T* Stack<T>::GetOnTop()
+{
+	return mTop->mData;
+}
+
 #endif /* Stack_h */

@@ -16,6 +16,15 @@
 
 #include "Controller.h"
 #include "Player.h"
+enum COMMAND_TYPE
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	PAUSE,
+	QUIT
+};
 
 
 class DemoSceneController : public Controller
@@ -23,7 +32,7 @@ class DemoSceneController : public Controller
 public:
 	DemoSceneController(){}
 	~DemoSceneController();
-	COMMAND_TYPE ManageInput();
+	/*COMMAND_TYPE*/ void  ManageInput(SDL_Event * event);
 
 	void SetPlayer(Player * player){ mPlayer = player; }
 

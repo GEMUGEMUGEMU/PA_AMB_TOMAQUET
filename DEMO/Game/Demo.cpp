@@ -15,7 +15,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "LinkedList.h"
-#include "DemoScene.h"
+//#include "DemoScene.h"
+#include "SceneManager.h"
 
 double Game::FRAME_PER_SECOND = 30;
 
@@ -47,14 +48,8 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 
 	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
 
-	DemoScene* demoScene = new DemoScene();
-	demoScene->Init(mScreen.GetRenderer());
-	PushScene(demoScene);
-//	mStackScene.Push(demoScene);
-
-//	actualScene = demoScene;
-//	mController = demoScene->GetController();
-
+//	INITIALIZE SCENE MANAGER
+	mSceneManager.Init(mScreen.GetRenderer());
 	mRunning = true;
 
 	return true;
@@ -110,44 +105,43 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-	mActualScene->Update(deltaTime);
+	mSceneManager.Update(deltaTime);
 }
 
 void Game::Draw()
 {
-	mActualScene->Draw(mScreen.GetRenderer());
+	//mActualScene->Draw(mScreen.GetRenderer());
+	mSceneManager.Draw(mScreen.GetRenderer());
 }
 
 void Game::Render()
 {
-
 	mScreen.RenderClear();
-
 	Draw();
-
 	mScreen.Render();
-
-
 }
 
 void Game::Input()
 {
-	COMMAND_TYPE value = mController->ManageInput();
-	switch(value)
+	SDL_Event event;
+	while(SDL_PollEvent(&event) != 0)
 	{
-		case QUIT:
+		if( event.type == SDL_QUIT )
+		{
 			mRunning = false;
 			break;
-		case PAUSE:
-			//PauseScene pause = new PauseScene();
-			break;
+		}
+		else
+		{
+			mSceneManager.Input(&event);
+		}
 	}
 }
 
-
+/*
 void Game::PushScene(Scene * newScene)
 {
 	mStackScene.Push(newScene);
 	mActualScene = newScene;
-	mController = newScene->GetController();
 }
+*/

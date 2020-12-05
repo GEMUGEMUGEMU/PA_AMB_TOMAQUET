@@ -15,22 +15,13 @@
 #include "DemoSceneController.h"
 #include "Vector2D.h"
 
-COMMAND_TYPE DemoSceneController::ManageInput()
+void DemoSceneController::ManageInput(SDL_Event * event)
 {
-	SDL_Event event;
-	while( SDL_PollEvent( &event ) != 0 )
-	{
-		//User requests quit
-		if( event.type == SDL_QUIT )
-		{
-			return QUIT;
-		}
-	}
-	if( event.type == SDL_KEYDOWN)
+	if( event->type == SDL_KEYDOWN)
 	{
 		Vector2D movement;
 
-		switch (event.key.keysym.sym)
+		switch (event->key.keysym.sym)
 		{
 			case SDLK_UP:
 				{
@@ -61,7 +52,7 @@ COMMAND_TYPE DemoSceneController::ManageInput()
 				break;
 			case SDLK_SPACE:
 				{
-					return PAUSE;
+			//		return PAUSE;
 				}
 			default:
 
@@ -73,7 +64,7 @@ COMMAND_TYPE DemoSceneController::ManageInput()
 	}
 
 
-	return NOTHING;
+//	return NOTHING;
 }
 
 DemoSceneController::~DemoSceneController()

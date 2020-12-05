@@ -8,19 +8,13 @@ Created By: Andrea Andreu Salvagnin
 #ifndef Controller_h
 #define Controller_h
 
-enum COMMAND_TYPE
-{
-	QUIT,
-	KEY,
-	NOTHING,
-	PAUSE
-};
+#include "SDL2/SDL.h"
 
 class Controller
 {
 public:
 	Controller(){}
 	virtual ~Controller(){ }
-	virtual COMMAND_TYPE ManageInput(){return NOTHING;}
+	virtual void ManageInput(SDL_Event * event){/*return NOTHING;*/}
 };
 #endif /* Controller_h */
