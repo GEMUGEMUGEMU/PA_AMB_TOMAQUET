@@ -23,9 +23,9 @@ class SceneManager
 {
 public:
 	SceneManager(){}
-	~SceneManager(){}
-	void Init(SDL_Renderer* renderer);
-	Scene * GetActualScene();
+	virtual ~SceneManager(){}
+	virtual void Init(SDL_Renderer* renderer) = 0;
+	//	Scene * GetActualScene();
 	void PopScene();
 	void PushScene(Scene * newScene);
 
@@ -34,11 +34,11 @@ public:
 	void Render();
 	void Input(SDL_Event * event);
 
-private:
-	Stack<Scene> mStackScene;
+protected:
 	Scene * mActualScene;
 	Controller * mController;
 	SDL_Renderer * mRender;
+	Stack<Scene> mStackScene;
 };
 
 #endif /* SceneManager_h */

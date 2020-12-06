@@ -16,7 +16,7 @@
 #include <SDL2/SDL_image.h>
 #include "LinkedList.h"
 //#include "DemoScene.h"
-#include "SceneManager.h"
+#include "DemoSceneManager.h"
 
 double Game::FRAME_PER_SECOND = 30;
 
@@ -49,7 +49,8 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	SDL_SetRenderDrawColor( mScreen.GetRenderer(), 0, 0, 255, 255 );
 
 //	INITIALIZE SCENE MANAGER
-	mSceneManager.Init(mScreen.GetRenderer());
+	mSceneManager = new DemoSceneManager();
+	mSceneManager->Init(mScreen.GetRenderer());
 	mRunning = true;
 
 	return true;
@@ -105,13 +106,13 @@ void Game::Close()
 
 void Game::Update(double deltaTime)
 {
-	mSceneManager.Update(deltaTime);
+	mSceneManager->Update(deltaTime);
 }
 
 void Game::Draw()
 {
 	//mActualScene->Draw(mScreen.GetRenderer());
-	mSceneManager.Draw(mScreen.GetRenderer());
+	mSceneManager->Draw(mScreen.GetRenderer());
 }
 
 void Game::Render()
@@ -133,15 +134,15 @@ void Game::Input()
 		}
 		else
 		{
-			mSceneManager.Input(&event);
+			mSceneManager->Input(&event);
 		}
 	}
 }
 
 /*
-void Game::PushScene(Scene * newScene)
-{
-	mStackScene.Push(newScene);
-	mActualScene = newScene;
-}
-*/
+   void Game::PushScene(Scene * newScene)
+   {
+   mStackScene.Push(newScene);
+   mActualScene = newScene;
+   }
+ */

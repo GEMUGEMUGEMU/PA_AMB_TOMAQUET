@@ -85,8 +85,8 @@ $(OBJECT_DIRECTORY)/GraphicStaticObject.o: \
 $(OBJECT_DIRECTORY)/Scene.o: $(SCENE)/Scene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) -x c++ $< -o $@
 
-$(OBJECT_DIRECTORY)/SceneManager.o: $(SCENE)/SceneManager.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) -x c++ $< -o $@
+$(OBJECT_DIRECTORY)/SceneManager.o: $(SCENE)/SceneManager.cpp $(SCENE)/SceneManager.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) $< -o $@
 
 
 

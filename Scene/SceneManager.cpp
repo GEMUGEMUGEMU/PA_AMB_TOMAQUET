@@ -12,21 +12,13 @@
 */
 
 #include "SceneManager.h"
-#include "DemoScene.h"
 
-void SceneManager::Init(SDL_Renderer* renderer)
-{
-	mRender = renderer;
-	DemoScene* demoScene = new DemoScene();
-	demoScene->Init(mRender);
-	PushScene(demoScene);
-}
-
-Scene * SceneManager::GetActualScene()
-{
-	return mActualScene;
-}
-
+/*
+   Scene * SceneManager::GetActualScene()
+   {
+   return mActualScene;
+   }
+ */
 void SceneManager::PopScene()
 {
 	mStackScene.Pop();

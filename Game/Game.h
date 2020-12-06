@@ -37,7 +37,7 @@ private:
 	Screen mScreen;
 	SDL_Window * mWindow;
 	SDL_Surface* mSurface;
-	SceneManager mSceneManager;
+	SceneManager* mSceneManager;
 	static double FRAME_PER_SECOND;
 	bool mRunning = false;
 

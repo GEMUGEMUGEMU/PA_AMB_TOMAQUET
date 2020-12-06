@@ -30,7 +30,7 @@ SCENE=./Scene
 #DEMO OBJECTS
 DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o \
 	Test2AnimationManager.o DemoSceneController.o Player.o Instructions.o \
-	DemoScene.o SceneManager.o
+	DemoScene.o DemoSceneManager.o
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
 
@@ -112,7 +112,8 @@ $(OBJECT_FILES)/Instructions.o: $(INSTRUCTIONS)/Instructions.h
 $(OBJECT_FILES)/DemoScene.o: $(SCENE)/DemoScene.cpp $(SCENE)/DemoScene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) $< -o $@
 
-$(OBJECT_FILES)/SceneManager.o: $(SCENE)/SceneManager.cpp
+$(OBJECT_FILES)/DemoSceneManager.o: $(SCENE)/DemoSceneManager.cpp \
+	$(SCENE)/DemoSceneManager.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) $< -o $@
 
 
