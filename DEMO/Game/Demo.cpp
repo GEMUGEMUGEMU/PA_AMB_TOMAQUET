@@ -6,27 +6,18 @@
 *   ~~\t  Gemu/~~
 *
 *  File Name: Demo.cpp
-*  Purpose: Implement Game.h in order to create a demo of pa amb tomàquet
+*  Purpose:
 *  Creation Date: 16-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "Game.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "LinkedList.h"
-//#include "DemoScene.h"
+#include "Demo.h"
 #include "DemoSceneManager.h"
+#include <SDL2/SDL_image.h>
 
-double Game::FRAME_PER_SECOND = 30;
+double PTA_Game::FRAME_PER_SECOND = 30;
 
-Game& Game::Singleton()
-{
-	static Game theGame;
-	return theGame;
-}
-
-bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
+bool Demo::Init(uint32_t width, uint32_t height, const char* windowName)
 {
 	//InitWindow() ??
 	mWindow = mScreen.Init(width, height, windowName);
@@ -56,93 +47,7 @@ bool Game::Init(uint32_t width, uint32_t height, const char* windowName)
 	return true;
 }
 
-void Game::Run()
+Demo::~Demo()
 {
-	uint32_t value;
-
-	if(mWindow)
-	{
-		double mSecStart;
-		double mSecEnd;
-		double mSecDelay;
-		double deltaTime = 0;
-		while(mRunning)
-		{
-			mSecStart= SDL_GetTicks();
-
-			////////////////
-			//Process input:
-			////////////////
-			Input();
-
-			/////////
-			//Update:
-			/////////
-			Update(deltaTime);
-
-			/////////
-			//Render:
-			/////////
-			Render();
-
-			mSecEnd = SDL_GetTicks();
-			deltaTime = mSecEnd - mSecStart;
-			mSecDelay = FRAME_PER_SECOND - (deltaTime);
-			SDL_Delay(mSecDelay);
-		}
-	}
-
-	Close();
+	delete mSceneManager;
 }
-
-void Game::Close()
-{
-	//Destroy window
-	SDL_DestroyWindow( mWindow );
-
-	//Quit SDL subsystems
-	SDL_Quit();
-}
-
-void Game::Update(double deltaTime)
-{
-	mSceneManager->Update(deltaTime);
-}
-
-void Game::Draw()
-{
-	//mActualScene->Draw(mScreen.GetRenderer());
-	mSceneManager->Draw(mScreen.GetRenderer());
-}
-
-void Game::Render()
-{
-	mScreen.RenderClear();
-	Draw();
-	mScreen.Render();
-}
-
-void Game::Input()
-{
-	SDL_Event event;
-	while(SDL_PollEvent(&event) != 0)
-	{
-		if( event.type == SDL_QUIT )
-		{
-			mRunning = false;
-			break;
-		}
-		else
-		{
-			mSceneManager->Input(&event);
-		}
-	}
-}
-
-/*
-   void Game::PushScene(Scene * newScene)
-   {
-   mStackScene.Push(newScene);
-   mActualScene = newScene;
-   }
- */

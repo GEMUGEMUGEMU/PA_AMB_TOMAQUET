@@ -3,7 +3,7 @@ PA_AMB_TOMAQUET_FOLDER=..
 PAT_OBJECT_DIRECTORY=$(PA_AMB_TOMAQUET_FOLDER)/FileObjects
 PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o \
 	AnimationManager.o Controller.o Vector2D.o GraphicStaticObject.o \
-	Scene.o SceneManager.o
+	Scene.o SceneManager.o PTA_Game.o
 
 PAT_OBJECTS=$(patsubst %.o,$(PAT_OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS_USED))
 
@@ -28,7 +28,7 @@ INPUT=./Input
 SCENE=./Scene
 
 #DEMO OBJECTS
-DEMO_OBJECTS_USED=Main.o Game.o Test1.o Test1AnimationManager.o Test2.o \
+DEMO_OBJECTS_USED=Main.o Demo.o Test1.o Test1AnimationManager.o Test2.o \
 	Test2AnimationManager.o DemoSceneController.o Player.o Instructions.o \
 	DemoScene.o DemoSceneManager.o
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
@@ -39,7 +39,8 @@ OBJECTS=$(PAT_OBJECTS) $(DEMO_OBJECTS)
 
 #INCLUDE FOR OBJECTS
 I_MAIN=-I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(PTA_MATH) -I$(PTA_UTILS) \
-	-I$(PTA_GAME) -I$(PTA_GAME_OBJECTS) -I$(PTA_SCENE) -I$(SCENE)
+	-I$(PTA_GAME) -I$(GAME) -I$(PTA_GAME_OBJECTS) -I$(PTA_SCENE) \
+	-I$(SCENE)
 
 I_GAME=-I$(PTA_GAME) -I$(PTA_GRAPHICS) -I$(PTA_INPUT) -I$(INPUT) \
 	-I$(PTA_UTILS) -I$(PTA_GAME_OBJECTS) -I$(PTA_MATH) -I$(TEST1) \
@@ -83,7 +84,7 @@ $(TARGET): $(DEMO_OBJECTS)
 $(OBJECT_FILES)/Main.o: $(MAIN)/Main.cpp
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_MAIN) $< -o $@
 
-$(OBJECT_FILES)/Game.o: $(GAME)/Demo.cpp
+$(OBJECT_FILES)/Demo.o: $(GAME)/Demo.cpp $(GAME)/Demo.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GAME) $< -o $@
 
 $(OBJECT_FILES)/Test1.o: $(TEST1)/Test1.cpp $(TEST1)/Test1.h

@@ -18,12 +18,12 @@ Created By: Andrea Andreu Salvagnin
 class Game
 {
 public:
-	Game(){}
-	~Game(){}
-	static Game& Singleton();
-	bool Init(uint32_t width, uint32_t height, const char* windowName);
-	void Run();
-	void Close();
+//	Game(){}
+//	~Game(){}
+//	static Game& Singleton();
+//	bool Init(uint32_t width, uint32_t height, const char* windowName);
+//	void Run();
+//	void Close();
 	void Update(double deltaTime);
 	void Draw();
 	void Render();

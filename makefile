@@ -2,7 +2,8 @@
 OBJECT_DIRECTORY=FileObjects
 PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o \
 	AnimationManager.o GraphicObject.o AnimatedStaticObject.o \
-	AnimatedKineticObject.o GraphicStaticObject.o Scene.o SceneManager.o
+	AnimatedKineticObject.o GraphicStaticObject.o Scene.o SceneManager.o \
+	PTA_Game.o
 
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 
@@ -19,12 +20,12 @@ INPUT=./Input
 UTILS=./Utils
 GAME_OBJECTS=./GameObjects
 SCENE=./Scene
+GAME=./Game
 
 #INCLUDERS FOR:
 I_PLAYER=-I$(GRAPHICS) -I$(MATH)
 I_CONTROLLER=-I$(GRAPHICS) -I$(MATH) -I$(GAME_OBJECTS) -I$(UTILS)
-I_GAME=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) \
-	-I$(GAME_OBJECTS) -I$(SCENE)
+I_GAME=-I$(SCENE) -I$(INPUT) -I$(UTILS) -I$(GRAPHICS)
 I_MAIN=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) \
 	-I$(GAME_OBJECTS) -I$(SCENE)
 I_SCREEN=-I$(UTILS) -I$(GRAPHICS)
@@ -87,6 +88,9 @@ $(OBJECT_DIRECTORY)/Scene.o: $(SCENE)/Scene.h
 
 $(OBJECT_DIRECTORY)/SceneManager.o: $(SCENE)/SceneManager.cpp $(SCENE)/SceneManager.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) $< -o $@
+
+$(OBJECT_DIRECTORY)/PTA_Game.o: $(GAME)/PTA_Game.cpp $(GAME)/PTA_Game.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GAME) $< -o $@
 
 
 
