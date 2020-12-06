@@ -20,6 +20,10 @@
 #include "Screen.h"
 #include "Controller.h"
 
+DemoScene::~DemoScene()
+{
+	delete mController;
+}
 void DemoScene::Init(SDL_Renderer* render)
 {
 	AnimatedStaticObject* animatedStatic = new Test1();

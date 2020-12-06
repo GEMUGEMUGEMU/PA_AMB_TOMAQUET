@@ -23,9 +23,11 @@
 class DemoScene : public Scene
 {
 public:
-	void Init(SDL_Renderer * render);
-	void Update(float deltaTime);
-	void Draw(SDL_Renderer * render);
+	DemoScene(){}
+	~DemoScene();
+	void Init(SDL_Renderer * render) override;
+	void Update(float deltaTime) override;
+	void Draw(SDL_Renderer * render) override;
 
 private:
 	LinkedList<GraphicObject> mGraphicObjectsList;

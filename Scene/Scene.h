@@ -22,9 +22,9 @@ class Scene
 public:
 	Scene(){}
 	virtual ~Scene(){}
-	virtual void Init(SDL_Renderer * render){}
-	virtual void Update(float deltaTime){}
-	virtual void Draw(SDL_Renderer * render){}
+	virtual void Init(SDL_Renderer * render) = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Draw(SDL_Renderer * render) = 0;
 
 	Controller* GetController()
 	{
@@ -39,6 +39,9 @@ public:
 	}
 
 protected:
+/*
+	WARNING: delete mController in derived classes deconstructor
+*/
 	Controller* mController = nullptr;
 };
 
