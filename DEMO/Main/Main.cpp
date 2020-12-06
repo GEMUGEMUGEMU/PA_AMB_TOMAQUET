@@ -4,7 +4,7 @@ Purpose:
 Creation Date: 08-09-20
 Created By: Andrea Andreu Salvagnin
 */
-//#include "Game.h"
+
 #include "Demo.h"
 #include "Singleton.h"
 const uint32_t SCREEN_WIDTH = 600;
@@ -21,9 +21,4 @@ int main(int argc, const char * argv[])
 
 	return 0;
 }
-/*
-   if(Game::Singleton().Init(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_NAME))
-   {
-   Game::Singleton().Run();
-   }
- */
+
