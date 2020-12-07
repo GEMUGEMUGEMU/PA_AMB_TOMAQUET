@@ -62,9 +62,6 @@ void DemoSceneController::ManageInput(SDL_Event * event)
 		mPlayer->SetDirection(movement);
 
 	}
-
-
-//	return NOTHING;
 }
 
 DemoSceneController::~DemoSceneController()

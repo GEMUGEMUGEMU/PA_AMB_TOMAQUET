@@ -13,12 +13,6 @@
 
 #include "SceneManager.h"
 
-/*
-   Scene * SceneManager::GetActualScene()
-   {
-   return mActualScene;
-   }
- */
 void SceneManager::PopScene()
 {
 	mStackScene.Pop();

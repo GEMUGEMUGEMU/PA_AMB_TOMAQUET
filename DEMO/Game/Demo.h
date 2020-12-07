@@ -16,8 +16,6 @@
 
 #include "PTA_Game.h"
 
-//double Game::FRAME_PER_SECOND = 30;
-
 class Demo : public PTA_Game
 {
 public:

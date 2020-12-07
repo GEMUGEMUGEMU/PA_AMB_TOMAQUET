@@ -32,7 +32,7 @@ class DemoSceneController : public Controller
 public:
 	DemoSceneController(){}
 	~DemoSceneController();
-	/*COMMAND_TYPE*/ void  ManageInput(SDL_Event * event) override;
+	void  ManageInput(SDL_Event * event) override;
 
 	void SetPlayer(Player * player){ mPlayer = player; }
 
