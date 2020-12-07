@@ -28,7 +28,7 @@ private:
 		Node(T* newData): mData(newData), next(nullptr){}
 	};
 	Node * mTop = nullptr;
-	uint32_t mSize;
+	uint32_t mSize = 0;
 public:
 	Stack(){}
 	~Stack();

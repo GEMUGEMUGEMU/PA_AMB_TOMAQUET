@@ -15,6 +15,6 @@ class Controller
 public:
 	Controller(){}
 	virtual ~Controller(){ }
-	virtual void ManageInput(SDL_Event * event){/*return NOTHING;*/}
+	virtual void ManageInput(SDL_Event * event) = 0;
 };
 #endif /* Controller_h */
