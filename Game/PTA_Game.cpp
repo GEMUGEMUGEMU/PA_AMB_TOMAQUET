@@ -15,8 +15,6 @@
 
 void PTA_Game::Run()
 {
-	uint32_t value;
-
 	if(mWindow)
 	{
 		double secondsStart;
