@@ -14,8 +14,9 @@
 #ifndef Scene_h
 #define Scene_h
 
-#include "Controller.h"
 #include "SDL2/SDL.h"
+
+class Controller;
 
 class Scene
 {

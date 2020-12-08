@@ -10,11 +10,17 @@ Created By: Andrea Andreu Salvagnin
 
 #include "SDL2/SDL.h"
 
+class Scene;
+
 class Controller
 {
 public:
 	Controller(){}
 	virtual ~Controller(){ }
-	virtual void ManageInput(SDL_Event * event) = 0;
+/*
+	envent: event to manage
+	nextScene: if event implies a new scene, it will initialize this ponter
+ */
+	virtual void ManageInput(SDL_Event * event, Scene * nextScene) = 0;
 };
 #endif /* Controller_h */

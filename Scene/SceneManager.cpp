@@ -31,7 +31,12 @@ void SceneManager::PushScene(Scene * newScene)
 
 void SceneManager::Input(SDL_Event * event)
 {
-	mController->ManageInput(event);
+	Scene * sceneToPush = nullptr;
+	mController->ManageInput(event, sceneToPush);
+	if(sceneToPush != nullptr)
+	{
+		PushScene(sceneToPush);
+	}
 }
 
 void SceneManager::Update(double deltaTime)

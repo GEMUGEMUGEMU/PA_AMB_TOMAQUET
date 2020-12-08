@@ -16,23 +16,14 @@
 
 #include "Controller.h"
 #include "Player.h"
-enum COMMAND_TYPE
-{
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-	PAUSE,
-	QUIT
-};
-
+#include "Scene.h"
 
 class DemoSceneController : public Controller
 {
 public:
 	DemoSceneController(){}
 	~DemoSceneController();
-	void  ManageInput(SDL_Event * event) override;
+	void  ManageInput(SDL_Event * event, Scene * nextScene) override;
 
 	void SetPlayer(Player * player){ mPlayer = player; }
 

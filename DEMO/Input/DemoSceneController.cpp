@@ -14,8 +14,9 @@
 #include "SDL2/SDL.h"
 #include "DemoSceneController.h"
 #include "Vector2D.h"
+#include "PauseScene.h"
 
-void DemoSceneController::ManageInput(SDL_Event * event)
+void DemoSceneController::ManageInput(SDL_Event * event, Scene * nextScene)
 {
 	if( event->type == SDL_KEYDOWN)
 	{
@@ -51,9 +52,8 @@ void DemoSceneController::ManageInput(SDL_Event * event)
 				}
 				break;
 			case SDLK_SPACE:
-				{
-			//		return PAUSE;
-				}
+				nextScene = new PauseScene();
+				break;
 			default:
 
 				break;
