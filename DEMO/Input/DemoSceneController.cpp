@@ -16,12 +16,13 @@
 #include "Vector2D.h"
 #include "PauseScene.h"
 
-void DemoSceneController::ManageInput(SDL_Event * event, Scene * nextScene)
+void DemoSceneController::ManageInput(SDL_Event * event, Scene *& nextScene)
 {
+	Scene * tempScene = nullptr;
+/*
 	if( event->type == SDL_KEYDOWN)
 	{
 		Vector2D movement;
-
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_UP:
@@ -52,7 +53,7 @@ void DemoSceneController::ManageInput(SDL_Event * event, Scene * nextScene)
 				}
 				break;
 			case SDLK_SPACE:
-				nextScene = new PauseScene();
+				*/tempScene = new PauseScene();/*
 				break;
 			default:
 
@@ -60,8 +61,9 @@ void DemoSceneController::ManageInput(SDL_Event * event, Scene * nextScene)
 		}
 		movement.Normalize();
 		mPlayer->SetDirection(movement);
-
 	}
+*/
+	nextScene = tempScene;
 }
 
 DemoSceneController::~DemoSceneController()

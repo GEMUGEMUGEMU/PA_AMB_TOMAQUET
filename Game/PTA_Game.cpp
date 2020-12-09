@@ -83,6 +83,7 @@ void PTA_Game::Update(double deltaTime)
 
 void PTA_Game::Render()
 {
+	//TODO investigate if it's ok to RenderClear and Render to SceneManager
 	mScreen.RenderClear();
 	mSceneManager->Draw(mScreen.GetRenderer());
 	mScreen.Render();

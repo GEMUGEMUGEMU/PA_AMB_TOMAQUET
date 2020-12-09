@@ -27,6 +27,7 @@ public:
 	virtual void Init(SDL_Renderer* renderer) = 0;
 	void PopScene();
 	void PushScene(Scene * newScene);
+	void InitAndPushScene(Scene * newScene);
 
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);

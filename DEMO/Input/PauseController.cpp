@@ -12,7 +12,18 @@
 */
 #include "PauseController.h"
 
-void DemoSceneController::ManageInput(SDL_Event * event)
+/*
+PauseController::PauseController()
+{
+	return;
+}
+
+PauseController::~PauseController()
+{
+	return;
+}
+*/
+void PauseController::ManageInput(SDL_Event * event, Scene *& nextScene)
 {
 	if( event->type == SDL_KEYDOWN)
 	{

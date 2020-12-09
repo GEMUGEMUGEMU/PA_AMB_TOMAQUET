@@ -12,6 +12,7 @@
 */
 
 #include "PauseScene.h"
+#include "PauseController.h"
 
 PauseScene::~PauseScene()
 {
@@ -20,7 +21,8 @@ PauseScene::~PauseScene()
 
 void PauseScene::Init(SDL_Renderer * render)
 {
-
+	PauseController * controller = new PauseController();
+	mController = controller;
 }
 
 void PauseScene::Update(float deltaTime)

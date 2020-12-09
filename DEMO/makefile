@@ -31,7 +31,7 @@ PAUSE=$(SCENE)/Pause
 #DEMO OBJECTS
 DEMO_OBJECTS_USED=Main.o Demo.o Test1.o Test1AnimationManager.o Test2.o \
 	Test2AnimationManager.o DemoSceneController.o Player.o Instructions.o \
-	DemoScene.o DemoSceneManager.o PauseScene.o
+	DemoScene.o DemoSceneManager.o PauseScene.o PauseController.o
 
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
@@ -65,11 +65,13 @@ I_SCENE=-I$(PTA_SCENE) -I$(SCENE) -I$(PTA_INPUT) -I$(INPUT) \
 	-I$(PTA_GAME_OBJECTS) -I$(PLAYER) -I$(TEST1) -I$(TEST2) \
 	-I$(INSTRUCTIONS) -I$(PTA_MATH) -I$(PTA_GRAPHICS) -I$(PTA_UTILS)
 
-I_P_SCENE=-I$(PTA_SCENE)
+I_P_SCENE=-I$(PTA_SCENE) -I$(PTA_INPUT) -I$(INPUT)
 
 I_SCENE_MANAGER=-I$(SCENE) -I$(PTA_SCENE) -I$(PTA_INPUT) -I$(PTA_UTILS) \
 	-I$(PTA_GAME_OBJECTS) -I$(INPUT) -I$(PLAYER) -I$(PTA_MATH) \
 	-I$(PTA_GRAPHICS)
+
+I_P_CONTROLLER=-I$(PTA_INPUT)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 
@@ -124,6 +126,11 @@ $(OBJECT_FILES)/DemoSceneManager.o: $(SCENE)/DemoSceneManager.cpp \
 
 $(OBJECT_FILES)/PauseScene.o: $(PAUSE)/PauseScene.cpp $(PAUSE)/PauseScene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_P_SCENE) $< -o $@
+
+$(OBJECT_FILES)/PauseController.o: $(INPUT)/PauseController.cpp \
+	$(INPUT)/PauseController.h
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_P_CONTROLLER) $< -o $@
+
 
 
 .PHONY: clean c_all c_pa_amb_tomaquet pa_amb_tomaquet

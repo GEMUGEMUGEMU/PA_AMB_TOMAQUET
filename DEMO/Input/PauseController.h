@@ -18,9 +18,10 @@
 
 class PauseController : public Controller
 {
+public:
 	PauseController(){}
-	~DemoSceneController(){}
-	void  ManageInput(SDL_Event * event) override;
+	~PauseController(){}
+	void  ManageInput(SDL_Event * event, Scene *& nextScene) override;
 };
 
 #endif /* PauseController_h */

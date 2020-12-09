@@ -29,13 +29,24 @@ void SceneManager::PushScene(Scene * newScene)
 	mController = newScene->GetController();
 }
 
+void SceneManager::InitAndPushScene(Scene * newScene)
+{
+	newScene->Init(mRender);
+	PushScene(newScene);
+}
+
+
 void SceneManager::Input(SDL_Event * event)
 {
-	Scene * sceneToPush = nullptr;
+/*
+	sceneToPush isn't initialized to nullptr because it have to be
+	dereferenciable in mController->ManageInput
+*/
+	Scene * sceneToPush;
 	mController->ManageInput(event, sceneToPush);
 	if(sceneToPush != nullptr)
 	{
-		PushScene(sceneToPush);
+		InitAndPushScene(sceneToPush);
 	}
 }
 

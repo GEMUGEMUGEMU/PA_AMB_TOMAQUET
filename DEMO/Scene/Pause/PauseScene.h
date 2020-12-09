@@ -21,9 +21,9 @@ class PauseScene : public Scene
 public:
 	PauseScene(){}
 	~PauseScene();
-	void Init(SDL_Renderer * render);
-	void Update(float deltaTime);
-	void Draw(SDL_Renderer * render);
+	void Init(SDL_Renderer * render) override;
+	void Update(float deltaTime) override;
+	void Draw(SDL_Renderer * render) override;
 };
 
 #endif /* PauseScene_h */

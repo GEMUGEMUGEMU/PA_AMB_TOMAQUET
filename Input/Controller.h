@@ -15,12 +15,12 @@ class Scene;
 class Controller
 {
 public:
-	Controller(){}
+	Controller(){ }
 	virtual ~Controller(){ }
 /*
 	envent: event to manage
 	nextScene: if event implies a new scene, it will initialize this ponter
  */
-	virtual void ManageInput(SDL_Event * event, Scene * nextScene) = 0;
+	virtual void ManageInput(SDL_Event * event, Scene *& nextScene) = 0;
 };
 #endif /* Controller_h */
