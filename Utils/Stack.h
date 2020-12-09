@@ -84,7 +84,16 @@ void Stack<T>::Pop()
 		else
 		{
 			Node * tempNode = mTop;
-			mTop = tempNode->next;
+
+			if(tempNode->next != nullptr)
+			{
+				mTop = tempNode->next;
+			}
+			else
+			{
+				mTop = nullptr;
+			}
+
 			delete tempNode;
 		}
 	}
@@ -98,7 +107,6 @@ Stack<T>::~Stack()
 		Pop();
 	}
 }
-
 
 template <class T>
 T* Stack<T>::GetOnTop()

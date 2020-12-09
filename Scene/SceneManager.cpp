@@ -19,6 +19,7 @@ void SceneManager::PopScene()
 	if(!mStackScene.IsEmpty())
 	{
 		mActualScene = mStackScene.GetOnTop();
+		mController = mActualScene->GetController();
 	}
 }
 
@@ -38,15 +39,20 @@ void SceneManager::InitAndPushScene(Scene * newScene)
 
 void SceneManager::Input(SDL_Event * event)
 {
-/*
-	sceneToPush isn't initialized to nullptr because it have to be
-	dereferenciable in mController->ManageInput
-*/
+	/*
+	   sceneToPush isn't initialized to nullptr because it have to be
+	   dereferenciable in mController->ManageInput
+	 */
 	Scene * sceneToPush;
-	mController->ManageInput(event, sceneToPush);
+	bool haveToPop = false;
+	mController->ManageInput(event, sceneToPush, &haveToPop);
 	if(sceneToPush != nullptr)
 	{
 		InitAndPushScene(sceneToPush);
+	}
+	if(haveToPop)
+	{
+		PopScene();
 	}
 }
 

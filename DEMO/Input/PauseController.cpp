@@ -12,27 +12,20 @@
 */
 #include "PauseController.h"
 
-/*
-PauseController::PauseController()
+void PauseController::ManageInput(SDL_Event * event, Scene *& nextScene,
+	bool * haveToPop)
 {
-	return;
-}
+	Scene * tempScene = nullptr;
 
-PauseController::~PauseController()
-{
-	return;
-}
-*/
-void PauseController::ManageInput(SDL_Event * event, Scene *& nextScene)
-{
 	if( event->type == SDL_KEYDOWN)
 	{
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_SPACE:
-			//POP PAUSE
+				*haveToPop = true;
 				break;
 		}
 	}
 
+	nextScene = tempScene;
 }
