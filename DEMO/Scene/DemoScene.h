@@ -14,13 +14,13 @@
 #ifndef DemoScene_h
 #define DemoScene_h
 
-#include "Scene.h"
+#include "PTA_Scene.h"
 #include "LinkedList.h"
 #include "GraphicObject.h"
 #include "UpdateObject.h"
 #include "DemoSceneController.h"
 
-class DemoScene : public Scene
+class DemoScene : public PTA_Scene
 {
 public:
 	DemoScene(){}

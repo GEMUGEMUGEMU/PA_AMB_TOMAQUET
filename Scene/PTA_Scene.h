@@ -5,24 +5,24 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: Scene.h
+*  File Name: PTA_Scene.h
 *  Purpose:
-*  Creation Date: 01-11-20
+*  Creation Date: 10-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef Scene_h
-#define Scene_h
+#ifndef PTA_Scene_h
+#define PTA_Scene_h
 
 #include "SDL2/SDL.h"
 
 class Controller;
 
-class Scene
+class PTA_Scene
 {
 public:
-	Scene(){}
-	virtual ~Scene(){}
+	PTA_Scene(){}
+	virtual ~PTA_Scene(){}
 	virtual void Init(SDL_Renderer * render) = 0;
 	virtual void Update(float deltaTime) = 0;
 	virtual void Draw(SDL_Renderer * render) = 0;
@@ -46,4 +46,6 @@ protected:
 	Controller* mController = nullptr;
 };
 
-#endif /* Scene_h */
+
+
+#endif /* PTA_Scene_h */

@@ -15,7 +15,7 @@
 #define SceneManager_h
 
 #include "SDL2/SDL.h"
-#include "Scene.h"
+#include "PTA_Scene.h"
 #include "Stack.h"
 #include "Controller.h"
 
@@ -29,8 +29,8 @@ public:
 	bool IsEmpty();
 
 	void PopScene();
-	void PushScene(Scene * newScene);
-	void InitAndPushScene(Scene * newScene);
+	void PushScene(PTA_Scene * newScene);
+	void InitAndPushScene(PTA_Scene * newScene);
 
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);
@@ -38,10 +38,10 @@ public:
 	void Input(SDL_Event * event);
 
 protected:
-	Scene * mActualScene;
+	PTA_Scene * mActualScene;
 	Controller * mController;
 	SDL_Renderer * mRender;
-	Stack<Scene> mStackScene;
+	Stack<PTA_Scene> mStackScene;
 };
 
 #endif /* SceneManager_h */

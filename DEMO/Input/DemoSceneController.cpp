@@ -16,10 +16,10 @@
 #include "Vector2D.h"
 #include "PauseScene.h"
 
-void DemoSceneController::ManageInput(SDL_Event * event, Scene *& nextScene,
+void DemoSceneController::ManageInput(SDL_Event * event, PTA_Scene *& nextScene,
 	bool * haveToPop)
 {
-	Scene * tempScene = nullptr;
+	PTA_Scene * tempScene = nullptr;
 
 	if( event->type == SDL_KEYDOWN)
 	{

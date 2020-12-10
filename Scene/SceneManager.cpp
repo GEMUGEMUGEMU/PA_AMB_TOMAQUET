@@ -35,14 +35,14 @@ void SceneManager::PopScene()
 	}
 }
 
-void SceneManager::PushScene(Scene * newScene)
+void SceneManager::PushScene(PTA_Scene * newScene)
 {
 	mStackScene.Push(newScene);
 	mActualScene = newScene;
 	mController = newScene->GetController();
 }
 
-void SceneManager::InitAndPushScene(Scene * newScene)
+void SceneManager::InitAndPushScene(PTA_Scene * newScene)
 {
 	newScene->Init(mRender);
 	PushScene(newScene);
@@ -55,7 +55,7 @@ void SceneManager::Input(SDL_Event * event)
 	   sceneToPush isn't initialized to nullptr because it have to be
 	   dereferenciable in mController->ManageInput
 	 */
-	Scene * sceneToPush;
+	PTA_Scene * sceneToPush;
 	bool haveToPop = false;
 	mController->ManageInput(event, sceneToPush, &haveToPop);
 

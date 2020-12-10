@@ -12,10 +12,10 @@
 */
 #include "PauseController.h"
 
-void PauseController::ManageInput(SDL_Event * event, Scene *& nextScene,
+void PauseController::ManageInput(SDL_Event * event, PTA_Scene *& nextScene,
 	bool * haveToPop)
 {
-	Scene * tempScene = nullptr;
+	PTA_Scene * tempScene = nullptr;
 
 	if( event->type == SDL_KEYDOWN)
 	{
