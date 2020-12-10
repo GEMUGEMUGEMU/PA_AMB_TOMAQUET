@@ -14,9 +14,9 @@
 #ifndef PauseScene_h
 #define PauseScene_h
 
-#include "PTA_Scene.h"
+#include "PAT_Scene.h"
 
-class PauseScene : public PTA_Scene
+class PauseScene : public PAT_Scene
 {
 public:
 	PauseScene(){}

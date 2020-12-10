@@ -10,7 +10,7 @@ Created By: Andrea Andreu Salvagnin
 
 #include "SDL2/SDL.h"
 
-class PTA_Scene;
+class PAT_Scene;
 
 class Controller
 {
@@ -21,7 +21,7 @@ public:
 	envent: event to manage
 	nextScene: if event implies a new scene, it will initialize this ponter
  */
-	virtual void ManageInput(SDL_Event * event, PTA_Scene *& nextScene,
+	virtual void ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
 		bool * haveToPop) = 0;
 };
 #endif /* Controller_h */

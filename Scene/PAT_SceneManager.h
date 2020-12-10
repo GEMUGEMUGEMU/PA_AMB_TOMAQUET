@@ -15,7 +15,7 @@
 #define PAT_SceneManager_h
 
 #include "SDL2/SDL.h"
-#include "PTA_Scene.h"
+#include "PAT_Scene.h"
 #include "Stack.h"
 #include "Controller.h"
 
@@ -29,8 +29,8 @@ public:
 	bool IsEmpty();
 
 	void PopScene();
-	void PushScene(PTA_Scene * newScene);
-	void InitAndPushScene(PTA_Scene * newScene);
+	void PushScene(PAT_Scene * newScene);
+	void InitAndPushScene(PAT_Scene * newScene);
 
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);
@@ -38,10 +38,10 @@ public:
 	void Input(SDL_Event * event);
 
 protected:
-	PTA_Scene * mActualScene;
+	PAT_Scene * mActualScene;
 	Controller * mController;
 	SDL_Renderer * mRender;
-	Stack<PTA_Scene> mStackScene;
+	Stack<PAT_Scene> mStackScene;
 };
 
 #endif /* PAT_SceneManager_h */

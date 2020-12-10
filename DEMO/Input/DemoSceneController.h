@@ -16,14 +16,14 @@
 
 #include "Controller.h"
 #include "Player.h"
-#include "PTA_Scene.h"
+#include "PAT_Scene.h"
 
 class DemoSceneController : public Controller
 {
 public:
 	DemoSceneController(){}
 	~DemoSceneController();
-	void  ManageInput(SDL_Event * event, PTA_Scene *& nextScene,
+	void  ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
 		bool * haveToPop) override;
 
 	void SetPlayer(Player * player){ mPlayer = player; }

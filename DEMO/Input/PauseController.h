@@ -21,7 +21,7 @@ class PauseController : public Controller
 public:
 	PauseController(){}
 	~PauseController(){}
-	void  ManageInput(SDL_Event * event, PTA_Scene *& nextScene,
+	void  ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
 		bool * haveToPop) override;
 };
 
