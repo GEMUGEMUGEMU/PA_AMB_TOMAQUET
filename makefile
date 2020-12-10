@@ -2,7 +2,7 @@
 OBJECT_DIRECTORY=FileObjects
 PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o \
 	AnimationManager.o GraphicObject.o AnimatedStaticObject.o \
-	AnimatedKineticObject.o GraphicStaticObject.o PTA_Scene.o SceneManager.o \
+	AnimatedKineticObject.o GraphicStaticObject.o PTA_Scene.o PAT_SceneManager.o \
 	PTA_Game.o
 
 OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
@@ -86,7 +86,8 @@ $(OBJECT_DIRECTORY)/GraphicStaticObject.o: \
 $(OBJECT_DIRECTORY)/PTA_Scene.o: $(SCENE)/PTA_Scene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) -x c++ $< -o $@
 
-$(OBJECT_DIRECTORY)/SceneManager.o: $(SCENE)/SceneManager.cpp $(SCENE)/SceneManager.h
+$(OBJECT_DIRECTORY)/PAT_SceneManager.o: $(SCENE)/PAT_SceneManager.cpp \
+	$(SCENE)/PAT_SceneManager.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) $< -o $@
 
 $(OBJECT_DIRECTORY)/PTA_Game.o: $(GAME)/PTA_Game.cpp $(GAME)/PTA_Game.h

@@ -14,9 +14,9 @@
 #ifndef DemoSceneManager_h
 #define DemoSceneManager_h
 
-#include "SceneManager.h"
+#include "PAT_SceneManager.h"
 
-class DemoSceneManager : public SceneManager
+class DemoSceneManager : public PAT_SceneManager
 {
 public:
 	DemoSceneManager(){}

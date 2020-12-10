@@ -5,25 +5,25 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: SceneManager.h
+*  File Name: PAT_SceneManager.h
 *  Purpose: Manages every Scene in game
 *  Creation Date: 04-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef SceneManager_h
-#define SceneManager_h
+#ifndef PAT_SceneManager_h
+#define PAT_SceneManager_h
 
 #include "SDL2/SDL.h"
 #include "PTA_Scene.h"
 #include "Stack.h"
 #include "Controller.h"
 
-class SceneManager
+class PAT_SceneManager
 {
 public:
-	SceneManager(){}
-	virtual ~SceneManager(){}
+	PAT_SceneManager(){}
+	virtual ~PAT_SceneManager(){}
 	virtual void Init(SDL_Renderer* renderer) = 0;
 
 	bool IsEmpty();
@@ -44,4 +44,4 @@ protected:
 	Stack<PTA_Scene> mStackScene;
 };
 
-#endif /* SceneManager_h */
+#endif /* PAT_SceneManager_h */

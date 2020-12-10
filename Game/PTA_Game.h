@@ -15,7 +15,7 @@
 #define PTA_Game_h
 
 #include "SDL2/SDL.h"
-#include "SceneManager.h"
+#include "PAT_SceneManager.h"
 #include "Screen.h"
 
 class PTA_Game
@@ -37,7 +37,7 @@ protected:
 	bool mRunning = false;
 	SDL_Window * mWindow;
 	Screen mScreen;
-	SceneManager* mSceneManager;
+	PAT_SceneManager* mSceneManager;
 };
 
 #endif /* PTA_Game_h */

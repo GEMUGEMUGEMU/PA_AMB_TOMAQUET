@@ -5,20 +5,20 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: SceneManager.cpp
+*  File Name: PAT_SceneManager.cpp
 *  Purpose:
 *  Creation Date: 04-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "SceneManager.h"
+#include "PAT_SceneManager.h"
 
-bool SceneManager::IsEmpty()
+bool PAT_SceneManager::IsEmpty()
 {
 	return mStackScene.IsEmpty();
 }
 
-void SceneManager::PopScene()
+void PAT_SceneManager::PopScene()
 {
 	mStackScene.Pop();
 	if(!mStackScene.IsEmpty())
@@ -35,21 +35,21 @@ void SceneManager::PopScene()
 	}
 }
 
-void SceneManager::PushScene(PTA_Scene * newScene)
+void PAT_SceneManager::PushScene(PTA_Scene * newScene)
 {
 	mStackScene.Push(newScene);
 	mActualScene = newScene;
 	mController = newScene->GetController();
 }
 
-void SceneManager::InitAndPushScene(PTA_Scene * newScene)
+void PAT_SceneManager::InitAndPushScene(PTA_Scene * newScene)
 {
 	newScene->Init(mRender);
 	PushScene(newScene);
 }
 
 
-void SceneManager::Input(SDL_Event * event)
+void PAT_SceneManager::Input(SDL_Event * event)
 {
 	/*
 	   sceneToPush isn't initialized to nullptr because it have to be
@@ -69,12 +69,12 @@ void SceneManager::Input(SDL_Event * event)
 	}
 }
 
-void SceneManager::Update(double deltaTime)
+void PAT_SceneManager::Update(double deltaTime)
 {
 	mActualScene->Update(deltaTime);
 }
 
-void SceneManager::Draw(SDL_Renderer * render)
+void PAT_SceneManager::Draw(SDL_Renderer * render)
 {
 	mActualScene->Draw(render);
 }
