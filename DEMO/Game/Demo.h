@@ -14,9 +14,9 @@
 #ifndef Demo_h
 #define Demo_h
 
-#include "PTA_Game.h"
+#include "PAT_Game.h"
 
-class Demo : public PTA_Game
+class Demo : public PAT_Game
 {
 public:
 	Demo(){};

@@ -5,24 +5,24 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: PTA_Game.h
+*  File Name: PAT_Game.h
 *  Purpose:
 *  Creation Date: 06-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef PTA_Game_h
-#define PTA_Game_h
+#ifndef PAT_Game_h
+#define PAT_Game_h
 
 #include "SDL2/SDL.h"
 #include "PAT_SceneManager.h"
 #include "Screen.h"
 
-class PTA_Game
+class PAT_Game
 {
 public:
-	PTA_Game(){}
-	virtual ~PTA_Game(){}
+	PAT_Game(){}
+	virtual ~PAT_Game(){}
 	virtual bool Init(uint32_t width, uint32_t height,
 		const char* windowName) = 0;
 	void Run();
@@ -40,4 +40,4 @@ protected:
 	PAT_SceneManager* mSceneManager;
 };
 
-#endif /* PTA_Game_h */
+#endif /* PAT_Game_h */

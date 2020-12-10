@@ -5,15 +5,15 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: PTA_Game.cpp
+*  File Name: PAT_Game.cpp
 *  Purpose:
 *  Creation Date: 06-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "PTA_Game.h"
+#include "PAT_Game.h"
 
-void PTA_Game::Run()
+void PAT_Game::Run()
 {
 	if(mWindow)
 	{
@@ -52,7 +52,7 @@ void PTA_Game::Run()
 	Close();
 }
 
-void PTA_Game::Close()
+void PAT_Game::Close()
 {
 	//Destroy window
 	SDL_DestroyWindow( mWindow );
@@ -61,7 +61,7 @@ void PTA_Game::Close()
 	SDL_Quit();
 }
 
-void PTA_Game::ProcessInput()
+void PAT_Game::ProcessInput()
 {
 	SDL_Event event;
 	while(SDL_PollEvent(&event) != 0 && !mSceneManager->IsEmpty())
@@ -78,12 +78,12 @@ void PTA_Game::ProcessInput()
 	}
 }
 
-void PTA_Game::Update(double deltaTime)
+void PAT_Game::Update(double deltaTime)
 {
 	mSceneManager->Update(deltaTime);
 }
 
-void PTA_Game::Render()
+void PAT_Game::Render()
 {
 	//TODO investigate if it's ok to RenderClear and Render to SceneManager
 	mScreen.RenderClear();

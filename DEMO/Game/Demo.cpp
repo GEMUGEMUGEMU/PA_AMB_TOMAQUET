@@ -15,7 +15,7 @@
 #include "DemoSceneManager.h"
 #include <SDL2/SDL_image.h>
 
-double PTA_Game::FRAME_PER_SECOND = 30;
+double PAT_Game::FRAME_PER_SECOND = 30;
 
 bool Demo::Init(uint32_t width, uint32_t height, const char* windowName)
 {

@@ -3,7 +3,7 @@ PA_AMB_TOMAQUET_FOLDER=..
 PAT_OBJECT_DIRECTORY=$(PA_AMB_TOMAQUET_FOLDER)/FileObjects
 PAT_OBJECTS_USED=Screen.o AnimatedStaticObject.o AnimatedKineticObject.o \
 	AnimationManager.o Controller.o Vector2D.o GraphicStaticObject.o \
-	PAT_Scene.o PAT_SceneManager.o PTA_Game.o
+	PAT_Scene.o PAT_SceneManager.o PAT_Game.o
 
 PAT_OBJECTS=$(patsubst %.o,$(PAT_OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS_USED))
 
