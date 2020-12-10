@@ -13,6 +13,11 @@
 
 #include "SceneManager.h"
 
+bool SceneManager::IsEmpty()
+{
+	return mStackScene.IsEmpty();
+}
+
 void SceneManager::PopScene()
 {
 	mStackScene.Pop();
@@ -20,6 +25,13 @@ void SceneManager::PopScene()
 	{
 		mActualScene = mStackScene.GetOnTop();
 		mController = mActualScene->GetController();
+	}
+	else
+	{
+		mActualScene = nullptr;
+		//Controller is deleted by popped scene in mStackScene
+		mController = nullptr;
+
 	}
 }
 
@@ -46,6 +58,7 @@ void SceneManager::Input(SDL_Event * event)
 	Scene * sceneToPush;
 	bool haveToPop = false;
 	mController->ManageInput(event, sceneToPush, &haveToPop);
+
 	if(sceneToPush != nullptr)
 	{
 		InitAndPushScene(sceneToPush);

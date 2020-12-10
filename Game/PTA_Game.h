@@ -28,7 +28,7 @@ public:
 	void Run();
 	void Close();
 
-	void Input();
+	void ProcessInput();
 	void Update(double deltaTime);
 	void Render();
 

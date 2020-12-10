@@ -72,6 +72,22 @@ void Stack<T>::Push(T* newValue)
 }
 
 template <class T>
+Stack<T>::~Stack()
+{
+	while(!IsEmpty())
+	{
+		Pop();
+	}
+}
+
+template <class T>
+T* Stack<T>::GetOnTop()
+{
+	return mTop->mData;
+}
+
+
+template <class T>
 void Stack<T>::Pop()
 {
 	if(!IsEmpty())
@@ -85,33 +101,11 @@ void Stack<T>::Pop()
 		{
 			Node * tempNode = mTop;
 
-			if(tempNode->next != nullptr)
-			{
-				mTop = tempNode->next;
-			}
-			else
-			{
-				mTop = nullptr;
-			}
+			mTop = tempNode->next;
 
 			delete tempNode;
 		}
 	}
-}
-
-template <class T>
-Stack<T>::~Stack()
-{
-	while(!IsEmpty())
-	{
-		Pop();
-	}
-}
-
-template <class T>
-T* Stack<T>::GetOnTop()
-{
-	return mTop->mData;
 }
 
 #endif /* Stack_h */

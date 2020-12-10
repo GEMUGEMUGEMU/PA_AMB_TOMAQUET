@@ -56,9 +56,11 @@ void DemoSceneController::ManageInput(SDL_Event * event, Scene *& nextScene,
 			case SDLK_SPACE:
 				tempScene = new PauseScene();
 				break;
+
 			case SDLK_q:
 				*haveToPop = true;
 				break;
+
 			default:
 
 				break;

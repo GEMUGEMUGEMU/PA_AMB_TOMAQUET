@@ -25,6 +25,9 @@ public:
 	SceneManager(){}
 	virtual ~SceneManager(){}
 	virtual void Init(SDL_Renderer* renderer) = 0;
+
+	bool IsEmpty();
+
 	void PopScene();
 	void PushScene(Scene * newScene);
 	void InitAndPushScene(Scene * newScene);

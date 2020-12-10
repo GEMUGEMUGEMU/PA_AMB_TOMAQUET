@@ -21,24 +21,26 @@ void PTA_Game::Run()
 		double secondsEnd;
 		double secondsDelay;
 		double deltaTime = 0;
-		while(mRunning)
+
+/*
+		_,-'2_,-'2_,-'2_,-'2_,-'2_
+		_,-'2_,            2_,-'2_
+		_,-'2_, MAIN LOOP  2_,-'2_
+		_,-'2_,            2_,-'2_
+		_,-'2_,-'2_,-'2_,-'2_,-'2_
+*/
+		while(mRunning && !mSceneManager->IsEmpty())
 		{
 			secondsStart = SDL_GetTicks();
 
-			////////////////
-			//Process input:
-			////////////////
-			Input();
+			ProcessInput();
 
-			/////////
-			//Update:
-			/////////
-			Update(deltaTime);
+			if(!mSceneManager->IsEmpty())
+			{
+				Update(deltaTime);
 
-			/////////
-			//Render:
-			/////////
-			Render();
+				Render();
+			}
 
 			secondsEnd = SDL_GetTicks();
 			deltaTime = secondsEnd - secondsStart;
@@ -59,10 +61,10 @@ void PTA_Game::Close()
 	SDL_Quit();
 }
 
-void PTA_Game::Input()
+void PTA_Game::ProcessInput()
 {
 	SDL_Event event;
-	while(SDL_PollEvent(&event) != 0)
+	while(SDL_PollEvent(&event) != 0 && !mSceneManager->IsEmpty())
 	{
 		if( event.type == SDL_QUIT )
 		{
