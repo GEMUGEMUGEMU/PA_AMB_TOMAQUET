@@ -26,7 +26,7 @@ void PauseScene::Init(SDL_Renderer * render)
 	mController = controller;
 
 	PauseText* pauseText = new PauseText();
-	pauseText->Init(100,100, render);
+	pauseText->Init(250,300, render);
 
 	mGraphicObjectsList.Add(pauseText);
 }
