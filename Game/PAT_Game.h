@@ -25,7 +25,9 @@ public:
 	virtual ~PAT_Game(){}
 	virtual bool Init(uint32_t width, uint32_t height,
 		const char* windowName) = 0;
+
 	void Run();
+	bool InitSDL();
 	void Close();
 
 	void ProcessInput();

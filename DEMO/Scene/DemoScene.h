@@ -18,7 +18,8 @@
 #include "LinkedList.h"
 #include "GraphicObject.h"
 #include "UpdateObject.h"
-#include "DemoSceneController.h"
+//#include "DemoSceneController.h"
+
 
 class DemoScene : public PAT_Scene
 {

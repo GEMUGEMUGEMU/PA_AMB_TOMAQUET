@@ -13,6 +13,7 @@
 
 #include "PauseScene.h"
 #include "PauseController.h"
+#include "PauseText.h"
 
 PauseScene::~PauseScene()
 {
@@ -23,6 +24,11 @@ void PauseScene::Init(SDL_Renderer * render)
 {
 	PauseController * controller = new PauseController();
 	mController = controller;
+
+	PauseText* pauseText = new PauseText();
+	pauseText->Init(100,100, render);
+
+	mGraphicObjectsList.Add(pauseText);
 }
 
 void PauseScene::Update(float deltaTime)
@@ -32,7 +38,17 @@ void PauseScene::Update(float deltaTime)
 
 void PauseScene::Draw(SDL_Renderer * render)
 {
+	uint32_t max = mGraphicObjectsList.GetSize();
+	GraphicObject* tObject;
 
+	uint32_t counter = 0;
+
+	while ( counter < max)
+	{
+		tObject = mGraphicObjectsList.Get(counter);
+		tObject->Draw(render);
+		counter = counter + 1;
+	}
 }
 
 

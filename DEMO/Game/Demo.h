@@ -21,9 +21,7 @@ class Demo : public PAT_Game
 public:
 	Demo(){};
 	~Demo();
-
-	bool Init(uint32_t width, uint32_t height,
-			const char* windowName) override;
+	bool Init(uint32_t width, uint32_t height, const char* windowName);
 
 };
 

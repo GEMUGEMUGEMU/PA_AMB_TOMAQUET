@@ -10,7 +10,7 @@ OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
 COMPILER_FLAGS=-Wall -c -g
 #CC defines wich compiler will be used
 CC = g++
-LINKER_FLAGS = -lSDL2 -lSDL2_image
+LINKER_FLAGS = -lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
 
 
 #HEADERS FOLDERS:

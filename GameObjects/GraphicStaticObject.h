@@ -24,7 +24,7 @@ public:
 	GraphicStaticObject(){}
 	virtual ~GraphicStaticObject(){}
 
-	virtual void Init(uint32_t x, uint32_t y, SDL_Renderer* render){}
+	virtual void Init(uint32_t x, uint32_t y, SDL_Renderer* render) = 0;
 	void Draw(SDL_Renderer* renderer);
 protected:
 	SDL_Texture * mSprite = nullptr;

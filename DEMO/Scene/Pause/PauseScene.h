@@ -15,6 +15,8 @@
 #define PauseScene_h
 
 #include "PAT_Scene.h"
+#include "LinkedList.h"
+#include "GraphicObject.h"
 
 class PauseScene : public PAT_Scene
 {
@@ -24,6 +26,9 @@ public:
 	void Init(SDL_Renderer * render) override;
 	void Update(float deltaTime) override;
 	void Draw(SDL_Renderer * render) override;
+
+private:
+	LinkedList<GraphicObject> mGraphicObjectsList;
 };
 
 #endif /* PauseScene_h */

@@ -12,6 +12,34 @@
 */
 
 #include "PAT_Game.h"
+#include <SDL2/SDL_image.h>
+#include "SDL_ttf.h"
+
+bool PAT_Game::InitSDL()
+{
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	{
+		return false;
+	}
+
+	int imgFlags = IMG_INIT_PNG;
+	/*
+	   IMG_INIT_PNG is 2. If you init with IMG_INIT_PNG and
+	   get bacK IMG_INIT_PNG you get 2 & 2 which is 2.
+	   2 will evaluate to true
+	 */
+	if(!(IMG_Init(imgFlags) & imgFlags))
+	{
+		return false;
+	}
+
+	if( TTF_Init() == -1 )
+	{
+		return false;
+	}
+
+	return true;
+}
 
 void PAT_Game::Run()
 {
@@ -52,12 +80,15 @@ void PAT_Game::Run()
 	Close();
 }
 
+
 void PAT_Game::Close()
 {
 	//Destroy window
 	SDL_DestroyWindow( mWindow );
 
 	//Quit SDL subsystems
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 }
 
