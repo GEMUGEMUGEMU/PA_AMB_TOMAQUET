@@ -8,18 +8,20 @@ Created By: Andrea Andreu Salvagnin
 #ifndef Controller_h
 #define Controller_h
 
-enum COMMAND_TYPE
-{
-	QUIT,
-	KEY,
-	NOTHING
-};
+#include "SDL2/SDL.h"
+
+class PAT_Scene;
 
 class Controller
 {
 public:
-	Controller(){}
+	Controller(){ }
 	virtual ~Controller(){ }
-	virtual COMMAND_TYPE ManageInput(){return NOTHING;}
+/*
+	envent: event to manage
+	nextScene: if event implies a new scene, it will initialize this ponter
+ */
+	virtual void ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
+		bool * haveToPop) = 0;
 };
 #endif /* Controller_h */

@@ -28,7 +28,7 @@ private:
 		Node(T* newData): mData(newData), next(nullptr){}
 	};
 	Node * mTop = nullptr;
-	uint32_t mSize;
+	uint32_t mSize = 0;
 public:
 	Stack(){}
 	~Stack();
@@ -36,6 +36,7 @@ public:
 	void Pop();
 	void Push(T* newValue);
 	bool IsEmpty();
+	T* GetOnTop();
 };
 
 template <class T>
@@ -71,6 +72,22 @@ void Stack<T>::Push(T* newValue)
 }
 
 template <class T>
+Stack<T>::~Stack()
+{
+	while(!IsEmpty())
+	{
+		Pop();
+	}
+}
+
+template <class T>
+T* Stack<T>::GetOnTop()
+{
+	return mTop->mData;
+}
+
+
+template <class T>
 void Stack<T>::Pop()
 {
 	if(!IsEmpty())
@@ -83,18 +100,12 @@ void Stack<T>::Pop()
 		else
 		{
 			Node * tempNode = mTop;
+
 			mTop = tempNode->next;
+
 			delete tempNode;
 		}
 	}
 }
 
-template <class T>
-Stack<T>::~Stack()
-{
-	while(!IsEmpty())
-	{
-		Pop();
-	}
-}
 #endif /* Stack_h */

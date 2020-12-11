@@ -14,23 +14,17 @@
 #include "SDL2/SDL.h"
 #include "DemoSceneController.h"
 #include "Vector2D.h"
+#include "PauseScene.h"
 
-COMMAND_TYPE DemoSceneController::ManageInput()
+void DemoSceneController::ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
+	bool * haveToPop)
 {
-	SDL_Event event;
-	while( SDL_PollEvent( &event ) != 0 )
-	{
-		//User requests quit
-		if( event.type == SDL_QUIT )
-		{
-			return QUIT;
-		}
-	}
-	if( event.type == SDL_KEYDOWN)
+	PAT_Scene * tempScene = nullptr;
+
+	if( event->type == SDL_KEYDOWN)
 	{
 		Vector2D movement;
-
-		switch (event.key.keysym.sym)
+		switch (event->key.keysym.sym)
 		{
 			case SDLK_UP:
 				{
@@ -59,6 +53,13 @@ COMMAND_TYPE DemoSceneController::ManageInput()
 					movement = movement + right;
 				}
 				break;
+			case SDLK_SPACE:
+				tempScene = new PauseScene();
+				break;
+
+			case SDLK_q:
+				*haveToPop = true;
+				break;
 
 			default:
 
@@ -66,11 +67,9 @@ COMMAND_TYPE DemoSceneController::ManageInput()
 		}
 		movement.Normalize();
 		mPlayer->SetDirection(movement);
-
 	}
 
-
-	return NOTHING;
+	nextScene = tempScene;
 }
 
 DemoSceneController::~DemoSceneController()

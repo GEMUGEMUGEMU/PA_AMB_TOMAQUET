@@ -20,6 +20,10 @@
 #include "Screen.h"
 #include "Controller.h"
 
+DemoScene::~DemoScene()
+{
+	delete mController;
+}
 void DemoScene::Init(SDL_Renderer* render)
 {
 	AnimatedStaticObject* animatedStatic = new Test1();
@@ -44,23 +48,11 @@ void DemoScene::Init(SDL_Renderer* render)
 	instructions->Init(400, 400, render);
 	mGraphicObjectsList.Add(instructions);
 
-	//mController = new DemoSceneController();
-//	DemoSceneController sceneController;
-//	mController = dynamic_cast<Controller*>(&sceneController);
-
-//	mController->SetPlayer(player);
 	DemoSceneController* sceneController = new DemoSceneController();
 	sceneController->SetPlayer(player);
 
 	mController = sceneController;
 
-
-	/*
-	   DemoSceneController* sceneController = dynamic_cast<DemoSceneController*>(mController);
-	   sceneController->SetPlayer(player);
-
-	   mController = sceneController;
-	 */
 }
 
 void DemoScene::Update(float deltaTime)

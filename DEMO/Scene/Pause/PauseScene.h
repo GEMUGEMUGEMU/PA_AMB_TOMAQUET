@@ -5,34 +5,30 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: DemoScene.h
+*  File Name: PauseScene.h
 *  Purpose:
-*  Creation Date: 01-11-20
+*  Creation Date: 07-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef DemoScene_h
-#define DemoScene_h
+#ifndef PauseScene_h
+#define PauseScene_h
 
 #include "PAT_Scene.h"
 #include "LinkedList.h"
 #include "GraphicObject.h"
-#include "UpdateObject.h"
-//#include "DemoSceneController.h"
 
-
-class DemoScene : public PAT_Scene
+class PauseScene : public PAT_Scene
 {
 public:
-	DemoScene(){}
-	~DemoScene();
+	PauseScene(){}
+	~PauseScene();
 	void Init(SDL_Renderer * render) override;
 	void Update(float deltaTime) override;
 	void Draw(SDL_Renderer * render) override;
 
 private:
 	LinkedList<GraphicObject> mGraphicObjectsList;
-	LinkedList<UpdateObject> mUpdateObjectsList;
 };
 
-#endif /* DemoScene_h */
+#endif /* PauseScene_h */
