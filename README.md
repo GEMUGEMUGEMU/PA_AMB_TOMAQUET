@@ -15,9 +15,5 @@
 - git
 - GraphicsGale
 
-### What's next?
-1. A class to manage Fonts
-2. Integrate HitBoxes in AnimationManager 
-
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
