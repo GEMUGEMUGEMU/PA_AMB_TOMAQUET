@@ -26,10 +26,11 @@ public:
 
 	virtual void Init(uint32_t x, uint32_t y, SDL_Renderer* render) = 0;
 	void Draw(SDL_Renderer* renderer);
+
 protected:
-	SDL_Texture * mSprite = nullptr;
-	SDL_Rect * mSpriteCordinates = nullptr;
-	SDL_Rect * mSpriteDimensions = nullptr;
+	SDL_Texture * mTexture = nullptr;
+	SDL_Rect * mTextureCordinates = nullptr;
+	SDL_Rect * mTextureDimensions = nullptr;
 };
 
 #endif /* GraphicStaticObject_h */

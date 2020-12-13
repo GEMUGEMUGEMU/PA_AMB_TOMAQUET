@@ -15,5 +15,6 @@
 
 void GraphicStaticObject::Draw(SDL_Renderer* renderer)
 {
-	SDL_RenderCopy( renderer, mSprite, mSpriteDimensions, mSpriteCordinates);
+	SDL_RenderCopy( renderer, mTexture, mTextureDimensions,
+		mTextureCordinates);
 }
