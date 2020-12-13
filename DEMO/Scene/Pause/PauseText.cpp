@@ -52,4 +52,3 @@ void PauseText::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 	SDL_FreeSurface(tempSurface);
 
 }
-
