@@ -17,6 +17,7 @@
 #include "Test2.h"
 #include "Player.h"
 #include "Instructions.h"
+#include "Instructions2.h"
 #include "Screen.h"
 #include "Controller.h"
 
@@ -47,6 +48,12 @@ void DemoScene::Init(SDL_Renderer* render)
 	Instructions* instructions = new Instructions();
 	instructions->Init(400, 400, render);
 	mGraphicObjectsList.Add(instructions);
+
+	Instructions2* instructions2 = new Instructions2();
+	instructions2->Init(50, 400, render);
+	mGraphicObjectsList.Add(instructions2);
+
+
 
 	DemoSceneController* sceneController = new DemoSceneController();
 	sceneController->SetPlayer(player);

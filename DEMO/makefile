@@ -32,7 +32,7 @@ PAUSE=$(SCENE)/Pause
 DEMO_OBJECTS_USED=Main.o Demo.o Test1.o Test1AnimationManager.o Test2.o \
 	Test2AnimationManager.o DemoSceneController.o Player.o Instructions.o \
 	DemoScene.o DemoSceneManager.o PauseScene.o PauseController.o \
-	PauseText.o
+	PauseText.o Instructions2.o
 
 DEMO_OBJECTS=$(patsubst %.o,$(OBJECT_FILES)/%.o, $(DEMO_OBJECTS_USED))
 
@@ -120,6 +120,11 @@ $(OBJECT_FILES)/Player.o: $(PLAYER)/Player.cpp $(PLAYER)/Player.h
 
 $(OBJECT_FILES)/Instructions.o: $(INSTRUCTIONS)/Instructions.h
 	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_INSTRUCTIONS) -x c++ $< -o $@
+
+$(OBJECT_FILES)/Instructions2.o: $(INSTRUCTIONS)/Instructions2.h
+	 $(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_INSTRUCTIONS) -x c++ $< -o $@
+
+
 
 $(OBJECT_FILES)/DemoScene.o: $(SCENE)/DemoScene.cpp $(SCENE)/DemoScene.h
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) $< -o $@
