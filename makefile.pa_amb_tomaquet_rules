@@ -15,7 +15,24 @@
 #FILE_OBJECTS_FOLDER: path to target file objects folder
 
 $(PAT_GAME_O): $(PAT_GAME_CPP) $(PAT_GAME_H)
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_INPUT) -I$(PAT_GRAPHICS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(PAT_SCREEN_O): $(PAT_SCREEN_CPP) $(PAT_SCREEN_H)
+	$(CC) $(COMPILER_FLAGS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(PAT_SCENE_M_O): $(PAT_SCENE_M_CPP) $(PAT_SCENE_M_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_UTILS) -I$(PAT_INPUT) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(PAT_SCENE_O): $(PAT_SCENE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	$(LINKER_FLAGS) -x c++ $< -o $@
+
+
 
 .PHONY:
 #$(PAT_SCREEN) $(PAT_SPRITE)
