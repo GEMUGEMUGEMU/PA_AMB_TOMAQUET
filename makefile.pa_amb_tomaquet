@@ -1,0 +1,90 @@
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#
+#  File Name: makefile.pa_amb_tomaquet
+#  Purpose: Organize pa amb tomaquet environment
+#  Creation Date: 24-01-21
+#  Created By: Andrea Andreu Salvagnin
+#
+#PAT_FOLDER: path to PA_AMB_TOMAQUET folder
+#FILE_OBJECTS_FOLDER: path to target file objects folder
+
+
+#Graphics folder
+PAT_SCREEN_H=$(PAT_FOLDER)/Graphics/Screen.h
+PAT_SCREEN_CPP=$(PAT_FOLDER)/Graphics/Screen.cpp
+PAT_SCREEN=$(FILE_OBJECTS_FOLDER)/PAT_Screen.o
+
+PAT_SPRITE_H=$(PAT_FOLDER)/Graphics/Sprite.h
+PAT_SPRITE_CPP=$(PAT_FOLDER)/Graphics/Sprite.cpp
+PAT_SPRITE=$(FILE_OBJECTS_FOLDER)/PAT_Sprite.o
+
+#Controller folder
+PAT_CONTROLLER_H=$(PAT_FOLDER)/Input/Controller.h
+#PAT_CONTROLLER_CPP=$(PAT_FOLDER)/Input/Controller.cpp
+PAT_CONTROLLER=$(FILE_OBJECTS_FOLDER)/PAT_Controller.o
+
+#Utils folder
+PAT_LINKED_LIST_H=$(PAT_FOLDER)/Utils/LinkedList.h
+PAT_LINKED_LIST=$(FILE_OBJECTS_FOLDER)/PAT_LinkedList.o
+
+PAT_STACK_H=$(PAT_FOLDER)/Utils/Stack.h
+PAT_STACK=$(FILE_OBJECTS_FOLDER)/PAT_Stack.o
+
+#Math folder
+PAT_VECTOR2D_H=$(PAT_FOLDER)/Math/Vector2D.h
+PAT_VECTOR2D_CPP=$(PAT_FOLDER)/Math/Vector2D.cpp
+PAT_VECTOR2D=$(FILE_OBJECTS_FOLDER)/PAT_Vector2D.o
+
+#GameObjects folder
+PAT_GRAPHIC_O_H=$(PAT_FOLDER)/GameObjects/GraphicObject.h
+PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
+
+PAT_GRAPHIC_S_O_H=$(PAT_FOLDER)/GameObjects/GraphicStaticObject.h
+PAT_GRAPHIC_S_O_CPP=$(PAT_FOLDER)/GameObjects/GraphicStaticObject.cpp
+PAT_GRAPHIC_S_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
+
+PAT_ANIMATED_S_O_H=$(PAT_FOLDER)/GameObjects/AnimatedStaticObjec.h
+PAT_ANIMATED_S_O_CPP=$(PAT_FOLDER)/GameObjects/AnimatedStaticObjec.cpp
+PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.cpp
+
+PAT_ANIMATED_K_O_H=$(PAT_FOLDER)/GameObjects/AnimatedKineticObjec.h
+PAT_ANIMATED_K_O_CPP=$(PAT_FOLDER)/GameObjects/AnimatedKineticObjec.cpp
+PAT_ANIMATED_K_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.cpp
+
+#Graphic Folder
+PAT_SPRITE_H=$(PAT_FOLDER)/Graphics/Sprite.h
+PAT_SPRITE_CPP=$(PAT_FOLDER)/Graphics/Sprite.cpp
+PAT_SPRITE=$(FILE_OBJECTS_FOLDER)/PAT_Sprite.cpp
+
+PAT_ANIMATION_M_H=$(PAT_FOLDER)/Graphics/AnimationManager.h
+PAT_ANIMATION_M_CPP=$(PAT_FOLDER)/Graphics/AnimationManager.cpp
+PAT_ANIMATION_M=$(FILE_OBJECTS_FOLDER)/PAT_AnimationM.cpp
+
+#Scene folder
+PAT_SCENE_H=$(PAT_FOLDER)/Scene/Scene.h
+PAT_SCENE_CPP=$(PAT_FOLDER)/Scene/Scene.cpp
+PAT_SCENE=$(FILE_OBJECTS_FOLDER)/PAT_Scene.o
+
+PAT_SCENE_M_H=$(PAT_FOLDER)/Scene/SceneManager.h
+PAT_SCENE_M_CPP=$(PAT_FOLDER)/Scene/SceneManager.cpp
+PAT_SCENE_M=$(FILE_OBJECTS_FOLDER)/PAT_SceneM.o
+
+#GameFolder
+PAT_GAME_H=$(PAT_FOLDER)/Game/Game.h
+PAT_GAME_CPP=$(PAT_FOLDER)/Game/Game.cpp
+PAT_GAME=$(FILE_OBJECTS_FOLDER)/PAT_Game.o
+
+.PHONY: $(PAT_SCREEN) $(PAT_SPRITE)
+
+$(PAT_SCREEN): $(PAT_SCREEN_CPP) $(PAT_SCREEN_H)
+	$(CC) $(COMPILER_FLAGS) $(I_SCREEN) $(LINKER_FLAGS) $< -o $@
+
+$(PAT_SPRITE): $(PAT_SPRITE_CPP) $(PAT_SPRITE_H)
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
+
+
