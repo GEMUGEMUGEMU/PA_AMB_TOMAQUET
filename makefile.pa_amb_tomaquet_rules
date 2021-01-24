@@ -1,0 +1,27 @@
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#
+#  File Name: makefile.pa_amb_tomaquet_rules
+#  Purpose: Organize pa amb tomaquet rules
+#  Creation Date: 24-01-21
+#  Created By: Andrea Andreu Salvagnin
+#
+
+#PAT_FOLDER: path to PA_AMB_TOMAQUET folder
+#FILE_OBJECTS_FOLDER: path to target file objects folder
+
+$(PAT_GAME_O): $(PAT_GAME_CPP) $(PAT_GAME_H)
+	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
+
+.PHONY:
+#$(PAT_SCREEN) $(PAT_SPRITE)
+
+#$(PAT_SCREEN): $(PAT_SCREEN_CPP) $(PAT_SCREEN_H)
+#	$(CC) $(COMPILER_FLAGS) $(I_SCREEN) $(LINKER_FLAGS) $< -o $@
+
+#$(PAT_SPRITE): $(PAT_SPRITE_CPP) $(PAT_SPRITE_H)
+#	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
