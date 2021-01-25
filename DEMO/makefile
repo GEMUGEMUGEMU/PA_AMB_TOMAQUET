@@ -39,12 +39,33 @@ D_SCENE_CPP=./Scene/DemoScene.cpp
 D_SCENE_H=./Scene/DemoScene.h
 D_SCENE=$(FILE_OBJECTS_FOLDER)/DemoScene.o
 
+D_SCENE_P_CPP=./Scene/Pause/PauseScene.cpp
+D_SCENE_P_H=./Scene/Pause/PauseScene.h
+D_SCENE_P=$(FILE_OBJECTS_FOLDER)/PauseScene.o
+
+D_PLAYER_CPP=./GameObjects/Player/Player.cpp
+D_PLAYER_H=./GameObjects/Player/Player.h
+D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
+
+D_SCENE_C_CPP=./Input/DemoSceneController.cpp
+D_SCENE_C_H=./Input/DemoSceneController.h
+D_SCENE_C=$(FILE_OBJECTS_FOLDER)/DemoSceneController.o
+
+D_PAUSE_TEXT_CPP=./Scene/Pause/PauseText.cpp
+D_PAUSE_TEXT_H=./Scene/Pause/PauseText.h
+D_PAUSE_TEXT=$(FILE_OBJECTS_FOLDER)/PauseText.o
+
+D_PAUSE_C_CPP=./Input/PauseController.cpp
+D_PAUSE_C_H=./Input/PauseController.h
+D_PAUSE_C=$(FILE_OBJECTS_FOLDER)/PauseController.o
 
 
+PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
+	$(PAT_ANIMATED_K_OBJ_O) $(PAT_ANIMATION_M_O) $(PAT_VECTOR2D_O) \
+	$(PAT_GRAPHIC_S_O)
 
-PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O)
-DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE)
-#OBJECTS= $(PAT_OBJECTS) $(DEMO_OBJECTS)
+DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
+	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 #$@ is a macro that refers to the target
@@ -77,6 +98,33 @@ $(D_SCENE): $(D_SCENE_CPP) $(D_SCENE_H)
 	-I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) -I./Input \
 	-I$(PAT_INPUT) -I./GameObjects/Player/ -I$(PAT_MATH) \
 	-I$(PAT_GRAPHICS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_SCENE_C): $(D_SCENE_C_CPP) $(D_SCENE_C_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_INPUT) -I./GameObjects/Player/ -I$(PAT_GAME_OBJ) -I$(PAT_MATH) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_SCENE) -I./Scene/Pause/ \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_SCENE_P): $(D_SCENE_P_CPP) $(D_SCENE_P_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) -I$(PAT_INPUT) \
+	-I./Input/ \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PAUSE_TEXT): $(D_PAUSE_TEXT_CPP) $(D_PAUSE_TEXT_CPP)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_INPUT) -I$(PAT_GAME_OBJ) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PAUSE_C): $(D_PAUSE_C_CPP) $(D_PAUSE_C_CPP)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GAME_OBJ) \
 	$(LINKER_FLAGS) $< -o $@
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
