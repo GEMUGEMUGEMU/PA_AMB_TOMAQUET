@@ -55,8 +55,8 @@ D_PAUSE_TEXT_CPP=./Scene/Pause/PauseText.cpp
 D_PAUSE_TEXT_H=./Scene/Pause/PauseText.h
 D_PAUSE_TEXT=$(FILE_OBJECTS_FOLDER)/PauseText.o
 
-D_PAUSE_C_CPP=./Input/PauseController.cpp
-D_PAUSE_C_H=./Input/PauseController.h
+D_PAUSE_C_CPP=./Scene/Pause/PauseController.cpp
+D_PAUSE_C_H=./Scene/Pause/PauseController.h
 D_PAUSE_C=$(FILE_OBJECTS_FOLDER)/PauseController.o
 
 
@@ -124,7 +124,7 @@ $(D_PAUSE_TEXT): $(D_PAUSE_TEXT_CPP) $(D_PAUSE_TEXT_CPP)
 
 $(D_PAUSE_C): $(D_PAUSE_C_CPP) $(D_PAUSE_C_CPP)
 	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GAME_OBJ) \
+	-I$(PAT_GAME_OBJ) -I$(PAT_INPUT) \
 	$(LINKER_FLAGS) $< -o $@
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
