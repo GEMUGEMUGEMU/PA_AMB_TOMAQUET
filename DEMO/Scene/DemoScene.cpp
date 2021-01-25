@@ -13,12 +13,10 @@
 
 #include "DemoScene.h"
 #include "DemoSceneController.h"
-//#include "Test1.h"
-//#include "Test2.h"
 #include "Player.h"
-//#include "Instructions.h"
 #include "Screen.h"
 #include "Controller.h"
+#include "DemoTitle.h"
 
 DemoScene::~DemoScene()
 {
@@ -26,28 +24,19 @@ DemoScene::~DemoScene()
 }
 void DemoScene::Init(SDL_Renderer* render)
 {
-//	AnimatedStaticObject* animatedStatic = new Test1();
-//	animatedStatic->Init(100, 100, render);
-//	mGraphicObjectsList.Add(animatedStatic);
-//	mUpdateObjectsList.Add(animatedStatic);
-//
-//
-//	AnimatedKineticObject* animatedKinetic = new Test2();
-//	animatedKinetic->Init(5, 300, 100, render);
-//	mGraphicObjectsList.Add(animatedKinetic);
-//	mUpdateObjectsList.Add(animatedKinetic);
-
 	Player * player = new Player();
 	player->Init(5, 200, 100, render);
 	mGraphicObjectsList.Add(player);
 	mUpdateObjectsList.Add(player);
 
-//	Instructions* instructions = new Instructions();
-//	instructions->Init(400, 400, render);
-//	mGraphicObjectsList.Add(instructions);
-
 	DemoSceneController* sceneController = new DemoSceneController();
 	sceneController->SetPlayer(player);
+
+	DemoTitle* demoText = new DemoTitle();
+	demoText->Init(10,10, render);
+
+	mGraphicObjectsList.Add(demoText);
+
 
 	mController = sceneController;
 

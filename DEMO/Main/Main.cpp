@@ -7,9 +7,9 @@ Created By: Andrea Andreu Salvagnin
 
 #include "Demo.h"
 #include "Singleton.h"
-const uint32_t SCREEN_WIDTH = 600;
-const uint32_t SCREEN_HEIGHT = 600;
-const char* WINDOW_NAME ="PA AMB TOMÀQUET DEMO";
+const uint32_t SCREEN_WIDTH = 300;
+const uint32_t SCREEN_HEIGHT = 400;
+const char* WINDOW_NAME ="NISHIKIGOI DEMO";
 
 int main(int argc, const char * argv[])
 {

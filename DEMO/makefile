@@ -39,6 +39,10 @@ D_SCENE_CPP=./Scene/DemoScene.cpp
 D_SCENE_H=./Scene/DemoScene.h
 D_SCENE=$(FILE_OBJECTS_FOLDER)/DemoScene.o
 
+D_TITLE_CPP=./Scene/DemoTitle.cpp
+D_TITLE_H=./Scene/DemoTitle.h
+D_TITLE=$(FILE_OBJECTS_FOLDER)/DemoTitle.o
+
 D_SCENE_P_CPP=./Scene/Pause/PauseScene.cpp
 D_SCENE_P_H=./Scene/Pause/PauseScene.h
 D_SCENE_P=$(FILE_OBJECTS_FOLDER)/PauseScene.o
@@ -65,7 +69,7 @@ PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 	$(PAT_GRAPHIC_S_O)
 
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
-	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C)
+	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE)
 
 TARGET=PA_AMB_TOMAQUET_DEMO.out
 #$@ is a macro that refers to the target
@@ -126,6 +130,12 @@ $(D_PAUSE_C): $(D_PAUSE_C_CPP) $(D_PAUSE_C_CPP)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GAME_OBJ) -I$(PAT_INPUT) \
 	$(LINKER_FLAGS) $< -o $@
+
+$(D_TITLE): $(D_TITLE_CPP) $(D_TITLE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GAME_OBJ) \
+	$(LINKER_FLAGS) $< -o $@
+
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 
