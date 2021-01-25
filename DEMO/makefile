@@ -30,17 +30,16 @@ DEMO_H=Game/Demo.h
 DEMO_CPP=Game/Demo.cpp
 DEMO=$(FILE_OBJECTS_FOLDER)/Demo.o
 
-
 D_SCENE_M_CPP=./Scene/DemoSceneManager.cpp
 D_SCENE_M_H=./Scene/DemoSceneManager.h
 D_SCENE_M=$(FILE_OBJECTS_FOLDER)/DemoSceneManger.o
 
-D_SCENE_CPP=./Scene/DemoScene.cpp
-D_SCENE_H=./Scene/DemoScene.h
+D_SCENE_CPP=./Scene/Demo/DemoScene.cpp
+D_SCENE_H=./Scene/Demo/DemoScene.h
 D_SCENE=$(FILE_OBJECTS_FOLDER)/DemoScene.o
 
-D_TITLE_CPP=./Scene/DemoTitle.cpp
-D_TITLE_H=./Scene/DemoTitle.h
+D_TITLE_CPP=./Scene/Demo/DemoTitle.cpp
+D_TITLE_H=./Scene/Demo/DemoTitle.h
 D_TITLE=$(FILE_OBJECTS_FOLDER)/DemoTitle.o
 
 D_SCENE_P_CPP=./Scene/Pause/PauseScene.cpp
@@ -95,6 +94,7 @@ $(DEMO): $(DEMO_CPP) $(DEMO_H)
 $(D_SCENE_M): $(D_SCENE_M_CPP) $(D_SCENE_M_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_INPUT) -I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) \
+	-I./Scene/Demo \
 	$(LINKER_FLAGS) $< -o $@
 
 $(D_SCENE): $(D_SCENE_CPP) $(D_SCENE_H)
