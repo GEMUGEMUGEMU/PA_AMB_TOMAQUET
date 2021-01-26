@@ -19,7 +19,8 @@ class Player;
 
 class PlayerState
 {
-	void Update(float deltaTime, Player* player);
+public:
+	virtual void Update(float deltaTime, Player* player);
 
 };
 

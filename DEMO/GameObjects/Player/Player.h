@@ -29,7 +29,7 @@ public:
 
 	void SetDirection(Vector2D newDirection);
 protected:
-	PlayerState state*;
+	PlayerState * state;
 };
 
 #endif /* Player_h */

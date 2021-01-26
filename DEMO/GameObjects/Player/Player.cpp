@@ -13,6 +13,7 @@
 
 #include "Player.h"
 #include "PlayerAnimationManager.h"
+#include "PlayerMoveS.h"
 
 Player::~Player()
 {
@@ -42,8 +43,10 @@ void Player::Move(float deltaTime)
 
 void Player::Update(float deltaTime)
 {
-	mAnimationManager->UpdateFrame();
-	Move(deltaTime);
+//	mAnimationManager->UpdateFrame();
+//	Move(deltaTime);
+
+	state->Update(deltaTime, this);
 }
 
 void Player::SetDirection(Vector2D newDirection)

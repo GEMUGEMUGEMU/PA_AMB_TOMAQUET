@@ -34,8 +34,8 @@ public:
 
 	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
 
-protected:
 	AnimationManager* mAnimationManager = nullptr;
+protected:
 	//in screen position
 	uint32_t mX, mY;
 
