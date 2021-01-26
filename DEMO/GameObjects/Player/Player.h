@@ -15,6 +15,7 @@
 #define Player_h
 
 #include "AnimatedKineticObject.h"
+#include "PlayerState.h"
 
 class Player : public AnimatedKineticObject
 {
@@ -27,6 +28,8 @@ public:
 	void Update(float deltaTime);
 
 	void SetDirection(Vector2D newDirection);
+protected:
+	PlayerState state*;
 };
 
 #endif /* Player_h */
