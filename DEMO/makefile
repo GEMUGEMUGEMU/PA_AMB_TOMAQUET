@@ -70,7 +70,7 @@ PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE)
 
-TARGET=PA_AMB_TOMAQUET_DEMO.out
+TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
 #$^ is a macro that name of all dependencies separated by space
 $(TARGET): $(DEMO_OBJECTS) $(PAT_OBJECTS)
@@ -143,4 +143,4 @@ include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 clean:
 	-rm $(FILE_OBJECTS_FOLDER)/*.o
 	-rm $(OBJECT_DIRECTORY)/*.gch
-
+	-rm $(TARGET)
