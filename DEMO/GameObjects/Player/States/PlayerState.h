@@ -19,6 +19,7 @@ class Player;
 
 class PlayerState
 {
+	void Update(float deltaTime, Player* player);
 
 };
 
