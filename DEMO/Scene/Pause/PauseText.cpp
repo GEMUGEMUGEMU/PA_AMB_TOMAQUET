@@ -33,7 +33,7 @@ void PauseText::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 
 	font = TTF_OpenFont( "./Fonts/YourQuotaRegular-z2zl.ttf", 28 );
 
-	SDL_Surface * tempSurface = TTF_RenderText_Solid( font, "PAUSE", textColor );
+	SDL_Surface * tempSurface = TTF_RenderText_Solid( font, "NISHIKIGOI DEMO PAUSE", textColor );
 
 	mSpriteDimensions = new SDL_Rect;
 	mSpriteDimensions->x = 0;
