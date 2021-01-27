@@ -161,5 +161,5 @@ include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 .PHONY: clean
 clean:
 	-rm $(FILE_OBJECTS_FOLDER)/*.o
-	-rm $(OBJECT_DIRECTORY)/*.gch
+	-rm $(FILE_OBJECTS_FOLDER)/*.gch
 	-rm $(TARGET)
