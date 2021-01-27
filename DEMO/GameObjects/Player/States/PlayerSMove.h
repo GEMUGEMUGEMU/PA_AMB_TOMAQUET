@@ -6,24 +6,24 @@
 *   ~~\t  Gemu/~~
 *    ~GEAR~GEAR~
 *
-*  File Name: PlayerMoveS.h
+*  File Name: PlayerSMove.h
 *  Purpose:
 *  Creation Date: 26-01-21
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef PlayerMoveS_h
-#define PlayerMoveS_h
+#ifndef PlayerSMove_h
+#define PlayerSMove_h
 
 #include "PlayerState.h"
 #include "Player.h"
 
 
-class PlayerMoveS : public PlayerState
+class PlayerSMove : public PlayerState
 {
 public:
-	PlayerMoveS(){}
-	~PlayerMoveS(){}
+	PlayerSMove(){}
+	~PlayerSMove(){}
 
 	void Update(float deltaTime, Player* player)
 	{
@@ -32,4 +32,4 @@ public:
 	}
 };
 
-#endif /* PlayerMoveS_h */
+#endif /* PlayerSMove_h */

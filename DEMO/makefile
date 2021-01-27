@@ -53,7 +53,7 @@ D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
 D_PLAYER_S_H=./GameObjects/Player/States/PlayerState.h
 D_PLAYER_S=$(FILE_OBJECTS_FOLDER)/PlayerS.o
 
-D_PLAYER_S_MOVE_H=./GameObjects/Player/States/PlayerMoveS.h
+D_PLAYER_S_MOVE_H=./GameObjects/Player/States/PlayerSMove.h
 D_PLAYER_S_MOVE=$(FILE_OBJECTS_FOLDER)/PlayerSMove.o
 
 D_SCENE_C_CPP=./Input/DemoSceneController.cpp

@@ -13,7 +13,7 @@
 
 #include "Player.h"
 #include "PlayerAnimationManager.h"
-#include "PlayerMoveS.h"
+#include "PlayerSMove.h"
 #include "PlayerState.h"
 
 Player::~Player()
@@ -30,7 +30,7 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 	mX = x;
 	mY = y;
 
-	state = new PlayerMoveS();
+	state = new PlayerSMove();
 }
 
 void Player::Move(float deltaTime)
