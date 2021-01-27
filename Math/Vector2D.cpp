@@ -6,17 +6,18 @@
 *   ~~\ t  Gemu/~~
 *
 *  File Name: Vector2D.cpp
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 27-09-20
 *  Created By: Andrea Andreu Salvagnin
 */
 #include "Vector2D.h"
 #include <cmath>
 
+const Vector2D Vector2D::vector2DZero;
 
 float Vector2D::ScalarProduct(const Vector2D& factorVector)
 {
-	return mX * factorVector.mX + mY * factorVector.mY;	
+	return mX * factorVector.mX + mY * factorVector.mY;
 }
 
 float Vector2D::GetMagnitudePower2()

@@ -6,7 +6,7 @@
 *   ~~\ t  Gemu/~~
 *
 *  File Name: Vector2D.h
-*  Purpose: 
+*  Purpose:
 *  Creation Date: 27-09-20
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -36,6 +36,7 @@ public:
 	float GetX(){return mX;}
 	float GetY(){return mY;}
 
+	static const Vector2D vector2DZero;
 };
 
 #endif /* Vector2D_h */
