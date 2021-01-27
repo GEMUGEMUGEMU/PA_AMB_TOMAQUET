@@ -11,7 +11,7 @@
 *  Created By: Andrea Andreu Salvagnin
 */
 #include "PAT_Vector2D.h"
-#include "PAT_Utils.h"
+#include "PAT_MathUtils.h"
 #include <cmath>
 
 const PAT_Vector2D PAT_Vector2D::vector2DZero;
