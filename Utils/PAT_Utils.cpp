@@ -15,7 +15,7 @@
 #include "PAT_Utils.h"
 
 
-float abs(float n1)
+float pat_abs(float n1)
 {
 	if( n1 < 0.0)
 	{
@@ -31,7 +31,7 @@ float abs(float n1)
 bool f_equals(float n1, float n2)
 {
 
-	if(abs(n1 - n2) < EPSILON)
+	if(pat_abs(n1 - n2) < EPSILON)
 	{
 		return true;
 	}

@@ -17,7 +17,7 @@
 
 static const float EPSILON = 0.0001f;
 
-float abs(float n1);
+float pat_abs(float n1);
 
 bool f_equals(float n1, float n2);
 
