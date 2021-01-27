@@ -14,7 +14,7 @@
 #include "PAT_MathUtils.h"
 #include <cmath>
 
-const PAT_Vector2D PAT_Vector2D::vector2DZero;
+const PAT_Vector2D PAT_Vector2D::Vector2DZero;
 
 float PAT_Vector2D::ScalarProduct(const PAT_Vector2D& factorVector)
 {

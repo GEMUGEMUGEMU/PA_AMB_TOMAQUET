@@ -15,7 +15,8 @@
 //#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
-#include "T_PAT_Utils.cpp"
+#include "T_PAT_MathUtils.cpp"
+#include "T_PAT_Vector2D.cpp"
 
 
 int main( int argc, char* argv[] )

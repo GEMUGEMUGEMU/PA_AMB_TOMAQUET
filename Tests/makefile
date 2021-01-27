@@ -27,21 +27,25 @@ include $(PAT_FOLDER)/makefile.dictionary
 TESTS_CPP=./Tests.cpp
 TESTS=$(FILE_OBJECTS_FOLDER)/Tests.o
 
+T_MATH_UTILS=./Math/T_PAT_MathUtils.cpp
+T_VECTOR_2D=./Math/T_PAT_Vector2D.cpp
+
+
 T_OBJECTS= $(TESTS)
-PAT_OBJECTS= $(PAT_UTILS_O)
+PAT_OBJECTS= $(PAT_MATH_UTILS_O) $(PAT_VECTOR2D_O)
 
 
 TARGET=Tests.out
 
-$(TARGET): $(T_OBJECTS)
+$(TARGET): $(T_OBJECTS) $(PAT_OBJECTS)
 	$(CC) -g \
 	$(T_OBJECTS) \
 	$(PAT_OBJECTS) \
 	-o $@
 
-$(TESTS): $(TESTS_CPP)
+$(TESTS): $(TESTS_CPP) $(T_MATH_UTILS) $(T_VECTOR_2D)
 	$(CC) \
-	-I./Catch1/ -I./TEST2/ -I./Utils/ -I$(PAT_UTILS) \
+	-I./Catch1/ -I./Math/ -I$(PAT_MATH) \
 	$(COMPILER_FLAGS) $(TESTS_CPP) -o $@
 
 

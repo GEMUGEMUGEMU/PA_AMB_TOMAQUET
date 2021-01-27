@@ -37,7 +37,7 @@ public:
 	float GetX(){return mX;}
 	float GetY(){return mY;}
 
-	static const PAT_Vector2D vector2DZero;
+	static const PAT_Vector2D Vector2DZero;
 };
 
 #endif /* PAT_Vector2D_h */

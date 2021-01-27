@@ -6,12 +6,12 @@
 *   ~~\t  Gemu/~~
 *    ~GEAR~GEAR~
 *
-*  File Name: T_PAT_Utils.cpp
+*  File Name: T_PAT_MathUtils.cpp
 *  Purpose:
 *  Creation Date: 27-01-21
 *  Created By: Andrea Andreu Salvagnin
 */
-#include "PAT_Utils.h"
+#include "PAT_MathUtils.h"
 
 TEST_CASE( "PAT Utils tests pat_abs", "[dunno]" ) {
     REQUIRE( pat_abs(-1) == 1.0);
