@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "PlayerAnimationManager.h"
 #include "PlayerMoveS.h"
+#include "PlayerState.h"
 
 Player::~Player()
 {
@@ -28,6 +29,8 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 
 	mX = x;
 	mY = y;
+
+	state = new PlayerMoveS();
 }
 
 void Player::Move(float deltaTime)
@@ -43,10 +46,10 @@ void Player::Move(float deltaTime)
 
 void Player::Update(float deltaTime)
 {
-//	mAnimationManager->UpdateFrame();
-//	Move(deltaTime);
+	mAnimationManager->UpdateFrame();
+	Move(deltaTime);
 
-	state->Update(deltaTime, this);
+//	state->Update(deltaTime, this);
 }
 
 void Player::SetDirection(Vector2D newDirection)

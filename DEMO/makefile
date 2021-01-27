@@ -6,7 +6,7 @@
 #   ~~\t  Gemu/~~
 #
 #  File Name: makefile
-#  Purpose:
+#  Purpose: Organize demo makefile
 #  Creation Date: 24-01-21
 #  Created By: Andrea Andreu Salvagnin
 #
@@ -75,7 +75,7 @@ PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE) $(D_PLAYER_S) \
-	$(D_PLAYER_S_MOVE)
+#	$(D_PLAYER_S_MOVE)
 
 TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
@@ -151,8 +151,6 @@ $(D_PLAYER_S): $(D_PLAYER_S_H)
 	$(LINKER_FLAGS) -x c++ $< -o $@
 
 $(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_H)
-	@echo "1$(D_PLAYER_S_MOVE)"
-	@echo "2$(D_PLAYER_S_MOVE_H)"
 	$(CC) $(COMPILER_FLAGS) \
 	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \

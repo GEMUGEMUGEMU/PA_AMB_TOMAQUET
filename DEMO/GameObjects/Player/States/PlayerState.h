@@ -20,7 +20,10 @@ class Player;
 class PlayerState
 {
 public:
-	virtual void Update(float deltaTime, Player* player);
+	PlayerState(){}
+	virtual ~PlayerState(){}
+
+	virtual void Update(float deltaTime, Player* player) =0;
 
 };
 

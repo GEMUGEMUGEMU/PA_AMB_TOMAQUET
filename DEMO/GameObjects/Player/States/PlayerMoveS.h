@@ -17,11 +17,14 @@
 
 #include "PlayerState.h"
 #include "Player.h"
-//class Player;
+
 
 class PlayerMoveS : public PlayerState
 {
 public:
+	PlayerMoveS(){}
+	~PlayerMoveS(){}
+
 	void Update(float deltaTime, Player* player)
 	{
 		player->mAnimationManager->UpdateFrame();
