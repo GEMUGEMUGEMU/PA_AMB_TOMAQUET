@@ -12,13 +12,13 @@
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef Utils_h
-#define Utils_h
+#ifndef PAT_Utils_h
+#define PAT_Utils_h
 
 static const float EPSILON = 0.0001f;
 
 float pat_abs(float n1);
 
-bool f_equals(float n1, float n2);
+bool FloatIsEquals(float n1, float n2);
 
-#endif /* Utils_h */
+#endif /* PAT_Utils_h */

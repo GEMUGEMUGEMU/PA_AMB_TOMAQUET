@@ -11,6 +11,7 @@
 *  Created By: Andrea Andreu Salvagnin
 */
 #include "PAT_Vector2D.h"
+#include "PAT_Utils.h"
 #include <cmath>
 
 const PAT_Vector2D PAT_Vector2D::vector2DZero;
@@ -69,3 +70,10 @@ PAT_Vector2D PAT_Vector2D::operator/(float scalar) const
 		return PAT_Vector2D();
 	}
 }
+
+bool PAT_Vector2D::operator==(const PAT_Vector2D& vector2D) const
+{
+	return FloatIsEquals(mX, vector2D.mX)
+		&& FloatIsEquals(mY, vector2D.mY);
+}
+

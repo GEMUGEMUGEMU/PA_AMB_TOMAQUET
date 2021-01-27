@@ -24,13 +24,12 @@ FILE_OBJECTS_FOLDER=./FileObjects
 
 include $(PAT_FOLDER)/makefile.dictionary
 
-T_PAT_UTILS=./Utils/T_PAT_Utils.cpp
-
 TESTS_CPP=./Tests.cpp
 TESTS=$(FILE_OBJECTS_FOLDER)/Tests.o
 
 T_OBJECTS= $(TESTS)
 PAT_OBJECTS= $(PAT_UTILS_O)
+
 
 TARGET=Tests.out
 
@@ -40,15 +39,11 @@ $(TARGET): $(T_OBJECTS)
 	$(PAT_OBJECTS) \
 	-o $@
 
-$(TESTS): $(T_PAT_UTILS) $(TESTS_CPP)
+$(TESTS): $(TESTS_CPP)
 	$(CC) \
 	-I./Catch1/ -I./TEST2/ -I./Utils/ -I$(PAT_UTILS) \
-	$(COMPILER_FLAGS) $(TESTS_CPP)  -o $@
+	$(COMPILER_FLAGS) $(TESTS_CPP) -o $@
 
-
-.PHONY: $(T_PAT_UTILS)
-
-$(T_PAT_UTILS): $(PAT_UTILS_H) $(PAT_UTILS_CPP)
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 

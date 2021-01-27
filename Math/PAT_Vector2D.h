@@ -30,6 +30,7 @@ public:
 	PAT_Vector2D operator*(float scalar) const;
 	friend PAT_Vector2D operator*(float scalar, const PAT_Vector2D& vector);
 	PAT_Vector2D operator/(float scalar) const;
+	bool operator==(const PAT_Vector2D& vector2D) const;
 
 	void SetX(float x){mX = x;}
 	void SetY(float y){mY = y;}

@@ -28,7 +28,7 @@ float pat_abs(float n1)
 }
 
 
-bool f_equals(float n1, float n2)
+bool FloatIsEquals(float n1, float n2)
 {
 
 	if(pat_abs(n1 - n2) < EPSILON)
