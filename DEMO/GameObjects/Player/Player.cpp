@@ -35,7 +35,7 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 
 void Player::Move(float deltaTime)
 {
-	Vector2D newPosition = mDirection * mSpeed * deltaTime;
+	PAT_Vector2D newPosition = mDirection * mSpeed * deltaTime;
 
 	mX += newPosition.GetX();
 	mY += newPosition.GetY();
@@ -52,7 +52,7 @@ void Player::Update(float deltaTime)
 	state->Update(deltaTime, this);
 }
 
-void Player::SetDirection(Vector2D newDirection)
+void Player::SetDirection(PAT_Vector2D newDirection)
 {
 	mDirection.SetX(newDirection.GetX());
 	mDirection.SetY(newDirection.GetY());

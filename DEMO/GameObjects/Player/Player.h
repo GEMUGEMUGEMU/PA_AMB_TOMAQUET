@@ -27,7 +27,7 @@ public:
 
 	void Update(float deltaTime);
 
-	void SetDirection(Vector2D newDirection);
+	void SetDirection(PAT_Vector2D newDirection);
 protected:
 	PlayerState * state;
 };

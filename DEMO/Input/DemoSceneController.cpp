@@ -13,7 +13,7 @@
 
 #include "SDL2/SDL.h"
 #include "DemoSceneController.h"
-#include "Vector2D.h"
+#include "PAT_Vector2D.h"
 #include "PauseScene.h"
 
 void DemoSceneController::ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
@@ -23,33 +23,33 @@ void DemoSceneController::ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
 
 	if( event->type == SDL_KEYDOWN)
 	{
-		Vector2D movement;
+		PAT_Vector2D movement;
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_UP:
 				{
-					Vector2D up(0, -1);
+					PAT_Vector2D up(0, -1);
 					movement = movement + up;
 				}
 				break;
 
 			case SDLK_DOWN:
 				{
-					Vector2D down(0, 1);
+					PAT_Vector2D down(0, 1);
 					movement = movement + down;
 				}
 				break;
 
 			case SDLK_LEFT:
 				{
-					Vector2D left(-1, 0);
+					PAT_Vector2D left(-1, 0);
 					movement = movement + left;
 				}
 				break;
 
 			case SDLK_RIGHT:
 				{
-					Vector2D right(1, 0);
+					PAT_Vector2D right(1, 0);
 					movement = movement + right;
 				}
 				break;

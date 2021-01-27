@@ -15,7 +15,7 @@
 #define AnimatedKineticObject_h
 
 #include "SDL2/SDL.h"
-#include "Vector2D.h"
+#include "PAT_Vector2D.h"
 #include "GraphicObject.h"
 #include "AnimationManager.h"
 #include "UpdateObject.h"
@@ -32,7 +32,7 @@ public:
 	virtual void Update(float deltaTime){}
 	virtual void Move(float deltaTime){}
 
-	inline void SetDirection(Vector2D newDirection){mDirection = newDirection;}
+	inline void SetDirection(PAT_Vector2D newDirection){mDirection = newDirection;}
 
 	AnimationManager* mAnimationManager = nullptr;
 protected:
@@ -40,7 +40,7 @@ protected:
 	uint32_t mX, mY;
 
 	uint32_t mSpeed;
-	Vector2D mDirection;
+	PAT_Vector2D mDirection;
 
 };
 
