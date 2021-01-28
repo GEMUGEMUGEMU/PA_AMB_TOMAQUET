@@ -37,6 +37,8 @@ public:
 	float GetX(){return mX;}
 	float GetY(){return mY;}
 
+	bool EqualsVectorZero();
+
 	static const PAT_Vector2D Vector2DZero;
 };
 

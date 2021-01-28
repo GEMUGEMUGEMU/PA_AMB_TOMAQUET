@@ -77,3 +77,7 @@ bool PAT_Vector2D::operator==(const PAT_Vector2D& vector2D) const
 		&& FloatIsEquals(mY, vector2D.mY);
 }
 
+bool PAT_Vector2D::EqualsVectorZero()
+{
+	return *this == Vector2DZero;
+}
