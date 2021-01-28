@@ -7,7 +7,7 @@
 *    ~GEAR~GEAR~
 *
 *  File Name: PlayerState.h
-*  Purpose:
+*  Purpose: Abstract class used to implement STATE pattern for player
 *  Creation Date: 26-01-21
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -20,11 +20,14 @@ class Player;
 class PlayerState
 {
 public:
-	PlayerState(){}
+	PlayerState();
 	virtual ~PlayerState(){}
 
-	virtual void Update(float deltaTime, Player* player) =0;
+	virtual void Update(float deltaTime, Player* player);
+	virtual void Move();
 
+protected:
+	void ChangeState(Player* player, PlayerState* newState);
 };
 
 #endif /* PlayerState_h */

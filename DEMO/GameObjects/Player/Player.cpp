@@ -13,8 +13,8 @@
 
 #include "Player.h"
 #include "PlayerAnimationManager.h"
-#include "PlayerSMove.h"
 #include "PlayerState.h"
+#include "PlayerSIdle.h"
 
 Player::~Player()
 {
@@ -30,7 +30,8 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 	mX = x;
 	mY = y;
 
-	state = new PlayerSMove();
+//	state = new PlayerSMove();
+	mState = new PlayerSIdle();
 }
 
 void Player::Move(float deltaTime)
@@ -49,11 +50,22 @@ void Player::Update(float deltaTime)
 //	mAnimationManager->UpdateFrame();
 //	Move(deltaTime);
 
-	state->Update(deltaTime, this);
+	mState->Update(deltaTime, this);
 }
 
 void Player::SetDirection(PAT_Vector2D newDirection)
 {
 	mDirection.SetX(newDirection.GetX());
 	mDirection.SetY(newDirection.GetY());
+}
+
+void Player::SetState(PlayerState* newState)
+{
+	mState = newState;
+}
+
+
+bool Player::DirectionIsNotNull()
+{
+	return mDirection.EqualsVectorZero();
 }

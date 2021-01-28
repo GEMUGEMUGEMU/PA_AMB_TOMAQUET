@@ -22,14 +22,22 @@ class Player : public AnimatedKineticObject
 public:
 	Player() : AnimatedKineticObject() {}
 	~Player();
+
+
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
 	void Move(float deltaTime);
 
 	void Update(float deltaTime);
 
 	void SetDirection(PAT_Vector2D newDirection);
+
+	void SetState(PlayerState* newState);
+
+	bool DirectionIsNotNull();
+
 protected:
-	PlayerState * state;
+	PlayerState * mState;
+
 };
 
 #endif /* Player_h */

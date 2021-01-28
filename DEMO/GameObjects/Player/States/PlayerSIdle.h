@@ -22,13 +22,10 @@
 class PlayerSIdle : public PlayerState
 {
 public:
-	PlayerSMove(){}
-	~PlayerSMove(){}
+	PlayerSIdle();
+	~PlayerSIdle();
 
-	void Update(float deltaTime, Player* player)
-	{
-		player->mAnimationManager->UpdateFrame();
-	}
+	void Update(float deltaTime, Player* player);
 };
 
 

@@ -50,11 +50,17 @@ D_PLAYER_CPP=./GameObjects/Player/Player.cpp
 D_PLAYER_H=./GameObjects/Player/Player.h
 D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
 
+D_PLAYER_S_CPP=./GameObjects/Player/States/PlayerState.cpp
 D_PLAYER_S_H=./GameObjects/Player/States/PlayerState.h
 D_PLAYER_S=$(FILE_OBJECTS_FOLDER)/PlayerS.o
 
+D_PLAYER_S_MOVE_CPP=./GameObjects/Player/States/PlayerSMove.cpp
 D_PLAYER_S_MOVE_H=./GameObjects/Player/States/PlayerSMove.h
 D_PLAYER_S_MOVE=$(FILE_OBJECTS_FOLDER)/PlayerSMove.o
+
+D_PLAYER_S_IDLE_CPP=./GameObjects/Player/States/PlayerSIdle.cpp
+D_PLAYER_S_IDLE_H=./GameObjects/Player/States/PlayerSIdle.h
+D_PLAYER_S_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerSIdle.o
 
 D_SCENE_C_CPP=./Input/DemoSceneController.cpp
 D_SCENE_C_H=./Input/DemoSceneController.h
@@ -75,7 +81,7 @@ PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE) $(D_PLAYER_S) \
-#	$(D_PLAYER_S_MOVE)
+	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) \
 
 TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
@@ -146,15 +152,23 @@ $(D_TITLE): $(D_TITLE_CPP) $(D_TITLE_H)
 	-I$(PAT_GAME_OBJ) \
 	$(LINKER_FLAGS) $< -o $@
 
-$(D_PLAYER_S): $(D_PLAYER_S_H)
+$(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
 	$(CC) $(COMPILER_FLAGS) \
-	$(LINKER_FLAGS) -x c++ $< -o $@
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
 
-$(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_H)
+$(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \
-	$(LINKER_FLAGS) -x c++ $< -o $@
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \
+	$(LINKER_FLAGS) $< -o $@
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 

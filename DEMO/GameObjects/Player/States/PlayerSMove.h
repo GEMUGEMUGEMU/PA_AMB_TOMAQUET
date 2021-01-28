@@ -22,14 +22,10 @@
 class PlayerSMove : public PlayerState
 {
 public:
-	PlayerSMove(){}
-	~PlayerSMove(){}
+	PlayerSMove();
+	~PlayerSMove();
 
-	void Update(float deltaTime, Player* player)
-	{
-		player->mAnimationManager->UpdateFrame();
-		player->Move(deltaTime);
-	}
+	void Update(float deltaTime, Player* player);
 };
 
 #endif /* PlayerSMove_h */
