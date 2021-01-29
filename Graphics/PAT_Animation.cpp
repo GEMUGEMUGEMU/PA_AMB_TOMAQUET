@@ -55,3 +55,9 @@ void PAT_Animation::UpdateFrame()
 		ResetAnimation();
 	}
 }
+
+PAT_Animation& PAT_Animation::operator=(const PAT_Animation& animation)
+{
+	return *this;
+}
+

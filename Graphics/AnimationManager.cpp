@@ -14,13 +14,13 @@
 #include "AnimationManager.h"
 #include "SDL2/SDL_image.h"
 
+AnimationManager::AnimationManager() /*: mAnimationSheet(nullptr)*/{}
+
 void AnimationManager::Update()
 {
-	mActualAnimation.UpdateFrame();
+	mActualAnimation->UpdateFrame();
 }
 
-//AnimationManager::AnimationManager() : mAnimationSheet(nullptr){}
-//
 //void AnimationManager::Init(SDL_Renderer* render)
 //{
 //	LoadImage(render);
@@ -29,7 +29,7 @@ void AnimationManager::Update()
 
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
-	mActualAnimation.Draw(x, y, renderer);
+	mActualAnimation->Draw(x, y, renderer);
 
 //	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
 //

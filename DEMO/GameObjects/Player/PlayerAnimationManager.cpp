@@ -21,7 +21,7 @@ PlayerAnimationManager::~PlayerAnimationManager() { }
 void PlayerAnimationManager::Init(SDL_Renderer* render)
 {
 	mAIdle.Init(render);
-	mActualAnimation = mAIdle;
+	mActualAnimation = &mAIdle;
 }
 
 
