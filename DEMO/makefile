@@ -50,6 +50,10 @@ D_PLAYER_CPP=./GameObjects/Player/Player.cpp
 D_PLAYER_H=./GameObjects/Player/Player.h
 D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
 
+D_PLAYER_A_M_CPP=./GameObjects/Player/PlayerAnimationManager.cpp
+D_PLAYER_A_M_H=./GameObjects/Player/PlayerAnimationManager.h
+D_PLAYER_A_M=$(FILE_OBJECTS_FOLDER)/PlayerAM.o
+
 D_PLAYER_S_CPP=./GameObjects/Player/States/PlayerState.cpp
 D_PLAYER_S_H=./GameObjects/Player/States/PlayerState.h
 D_PLAYER_S=$(FILE_OBJECTS_FOLDER)/PlayerS.o
@@ -61,6 +65,10 @@ D_PLAYER_S_MOVE=$(FILE_OBJECTS_FOLDER)/PlayerSMove.o
 D_PLAYER_S_IDLE_CPP=./GameObjects/Player/States/PlayerSIdle.cpp
 D_PLAYER_S_IDLE_H=./GameObjects/Player/States/PlayerSIdle.h
 D_PLAYER_S_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerSIdle.o
+
+D_PLAYER_A_IDLE_CPP=./GameObjects/Player/Animations/PlayerAIdle.cpp
+D_PLAYER_A_IDLE_H=./GameObjects/Player/Animations/PlayerAIdle.h
+D_PLAYER_A_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerAIdle.o
 
 D_SCENE_C_CPP=./Input/DemoSceneController.cpp
 D_SCENE_C_H=./Input/DemoSceneController.h
@@ -77,11 +85,12 @@ D_PAUSE_C=$(FILE_OBJECTS_FOLDER)/PauseController.o
 
 PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 	$(PAT_ANIMATED_K_OBJ_O) $(PAT_ANIMATION_M_O) $(PAT_VECTOR2D_O) \
-	$(PAT_GRAPHIC_S_O) $(PAT_MATH_UTILS_O)
+	$(PAT_GRAPHIC_S_O) $(PAT_MATH_UTILS_O) $(PAT_ANIMATION_O)
 
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE) $(D_PLAYER_S) \
-	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) \
+	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) $(D_PLAYER_A_IDLE) \
+	$(D_PLAYER_A_M) \
 
 TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
@@ -122,6 +131,7 @@ $(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
 	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@
 
 $(D_SCENE_C): $(D_SCENE_C_CPP) $(D_SCENE_C_H)
@@ -168,6 +178,17 @@ $(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_M): $(D_PLAYER_A_M_CPP) $(D_PLAYER_A_M_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
 	$(LINKER_FLAGS) $< -o $@
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
