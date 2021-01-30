@@ -65,7 +65,7 @@ void Player::SetAnimation(PAT_Animation* newAnimation)
 	mAnimationManager->SetAnimation(newAnimation);
 }
 
-bool Player::DirectionIsNotNull()
+bool Player::DirectionIsNull()
 {
 	return mDirection.EqualsVectorZero();
 }

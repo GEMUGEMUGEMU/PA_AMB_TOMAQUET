@@ -21,7 +21,7 @@ PlayerSIdle::~PlayerSIdle(){ }
 
 void PlayerSIdle::Update(float deltaTime, Player* player)
 {
-	if(player->DirectionIsNotNull())
+	if(player->DirectionIsNull())
 	{
 		player->mAnimationManager->Update();
 	}
