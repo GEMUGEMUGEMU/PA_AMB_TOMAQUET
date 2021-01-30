@@ -24,7 +24,7 @@ public:
 	virtual ~PlayerState(){}
 
 	virtual void Update(float deltaTime, Player* player);
-	virtual void Move();
+//	virtual void Move();
 
 protected:
 	void ChangeState(Player* player, PlayerState* newState);
