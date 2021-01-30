@@ -14,11 +14,11 @@
 #ifndef PlayerAnimationManager_h
 #define PlayerAnimationManager_h
 
-#include "AnimationManager.h"
+#include "PAT_AnimationManager.h"
 #include "SDL2/SDL_image.h"
 #include "PlayerAIdle.h"
 
-class PlayerAnimationManager : public AnimationManager
+class PlayerAnimationManager : public PAT_AnimationManager
 {
 public:
 	PlayerAnimationManager();

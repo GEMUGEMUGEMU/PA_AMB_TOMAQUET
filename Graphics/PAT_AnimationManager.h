@@ -5,24 +5,24 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: AnimationManager.h
+*  File Name: PAT_AnimationManager.h
 *  Purpose:
 *  Creation Date: 03-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef AnimationManager_h
-#define AnimationManager_h
+#ifndef PAT_AnimationManager_h
+#define PAT_AnimationManager_h
 
 #include "SDL2/SDL.h"
 #include "LinkedList.h"
 #include "PAT_Animation.h"
 
-class AnimationManager
+class PAT_AnimationManager
 {
 public:
-	AnimationManager();
-	virtual ~AnimationManager(){ }
+	PAT_AnimationManager();
+	virtual ~PAT_AnimationManager(){ }
 
 	virtual void Init(SDL_Renderer* render) = 0;
 	void Draw(int x, int y, SDL_Renderer* renderer);
@@ -34,4 +34,4 @@ public:
 protected:
 	SDL_Renderer* mRender;
 };
-#endif /* AnimationManager_h */
+#endif /* PAT_AnimationManager_h */

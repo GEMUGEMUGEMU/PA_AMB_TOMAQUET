@@ -15,7 +15,7 @@
 #define AnimatedStaticObject_h
 
 #include "GraphicObject.h"
-#include "AnimationManager.h"
+#include "PAT_AnimationManager.h"
 #include "UpdateObject.h"
 
 class AnimatedStaticObject : public GraphicObject, public UpdateObject
@@ -28,7 +28,7 @@ public:
 	virtual void Update(){}
 
 protected:
-	AnimationManager* mAnimationManager;
+	PAT_AnimationManager* mAnimationManager;
 	//In screen position
 	uint32_t mX, mY;
 

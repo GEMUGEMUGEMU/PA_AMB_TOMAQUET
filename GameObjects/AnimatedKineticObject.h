@@ -17,7 +17,7 @@
 #include "SDL2/SDL.h"
 #include "PAT_Vector2D.h"
 #include "GraphicObject.h"
-#include "AnimationManager.h"
+#include "PAT_AnimationManager.h"
 #include "UpdateObject.h"
 
 class AnimatedKineticObject : public GraphicObject, public UpdateObject
@@ -34,7 +34,7 @@ public:
 
 	inline void SetDirection(PAT_Vector2D newDirection){mDirection = newDirection;}
 
-	AnimationManager* mAnimationManager = nullptr;
+	PAT_AnimationManager* mAnimationManager = nullptr;
 protected:
 	//in screen position
 	uint32_t mX, mY;

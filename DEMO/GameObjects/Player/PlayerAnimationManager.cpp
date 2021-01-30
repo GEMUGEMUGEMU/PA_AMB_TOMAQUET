@@ -14,7 +14,7 @@
 
 #include "PlayerAnimationManager.h"
 
-PlayerAnimationManager::PlayerAnimationManager() : AnimationManager() { }
+PlayerAnimationManager::PlayerAnimationManager() : PAT_AnimationManager() { }
 
 PlayerAnimationManager::~PlayerAnimationManager() { }
 

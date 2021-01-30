@@ -5,28 +5,28 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: AnimationManager.cpp
+*  File Name: PAT_AnimationManager.cpp
 *  Purpose:
 *  Creation Date: 03-10-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "AnimationManager.h"
+#include "PAT_AnimationManager.h"
 #include "SDL2/SDL_image.h"
 
-AnimationManager::AnimationManager() {}
+PAT_AnimationManager::PAT_AnimationManager() {}
 
-void AnimationManager::Update()
+void PAT_AnimationManager::Update()
 {
 	mActualAnimation->UpdateFrame();
 }
 
-void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
+void PAT_AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
 	mActualAnimation->Draw(x, y, renderer);
 }
 
-void AnimationManager::SetAnimation(PAT_Animation* newAnimation)
+void PAT_AnimationManager::SetAnimation(PAT_Animation* newAnimation)
 {
 	delete(mActualAnimation);
 	newAnimation->Init(mRender);
