@@ -70,6 +70,10 @@ D_PLAYER_A_IDLE_CPP=./GameObjects/Player/Animations/PlayerAIdle.cpp
 D_PLAYER_A_IDLE_H=./GameObjects/Player/Animations/PlayerAIdle.h
 D_PLAYER_A_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerAIdle.o
 
+D_PLAYER_A_MOVE_CPP=./GameObjects/Player/Animations/P_A_Move.cpp
+D_PLAYER_A_MOVE_H=./GameObjects/Player/Animations/P_A_Move.h
+D_PLAYER_A_MOVE=$(FILE_OBJECTS_FOLDER)/P_A_Move.o
+
 D_SCENE_C_CPP=./Input/DemoSceneController.cpp
 D_SCENE_C_H=./Input/DemoSceneController.h
 D_SCENE_C=$(FILE_OBJECTS_FOLDER)/DemoSceneController.o
@@ -90,7 +94,7 @@ PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_PAUSE_C) $(D_TITLE) $(D_PLAYER_S) \
 	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) $(D_PLAYER_A_IDLE) \
-	$(D_PLAYER_A_M) \
+	$(D_PLAYER_A_M) $(D_PLAYER_A_MOVE) \
 
 TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
@@ -189,6 +193,11 @@ $(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)
 $(D_PLAYER_A_M): $(D_PLAYER_A_M_CPP) $(D_PLAYER_A_M_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_MOVE): $(D_PLAYER_A_MOVE_CPP) $(D_PLAYER_A_MOVE_H)
+	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
 	$(LINKER_FLAGS) $< -o $@
 
