@@ -43,6 +43,12 @@ void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 //
 }
 
+void AnimationManager::SetAnimation(PAT_Animation* newAnimation)
+{
+	delete(mActualAnimation);
+	newAnimation->Init(mRender);
+	mActualAnimation = newAnimation;
+}
 //Update frame counter in order to preapre the frame to be drawed
 //void AnimationManager::UpdateFrame()
 //{

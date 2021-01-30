@@ -27,9 +27,13 @@ public:
 	virtual void Init(SDL_Renderer* render) = 0;
 	void Draw(int x, int y, SDL_Renderer* renderer);
 	void Update();
+	void SetAnimation(PAT_Animation* newAnimation);
 
 	PAT_Animation* mActualAnimation = nullptr;
-//protected:
+
+protected:
+	SDL_Renderer* mRender;
+
 //	virtual void LoadImage(SDL_Renderer* render){}
 //	virtual void LoadClips(){}
 //	uint32_t mWith, mHeight;
@@ -42,10 +46,4 @@ public:
 //	uint32_t mFrameCounte = 0;
 //	uint32_t mSpriteIndex = 0;
 };
-/*
-A& operator=(A&) {
-    cout << "A::operator=(A&)" << endl;
-    return *this;
-  }
-*/
 #endif /* AnimationManager_h */

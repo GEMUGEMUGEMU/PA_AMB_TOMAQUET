@@ -20,10 +20,23 @@ PlayerAnimationManager::~PlayerAnimationManager() { }
 
 void PlayerAnimationManager::Init(SDL_Renderer* render)
 {
-	mAIdle.Init(render);
-	mActualAnimation = &mAIdle;
+//	mAIdle.Init(render);
+//	mActualAnimation = new PlayerAIdle;
+//	mAnimation->Init(render);
+//TODO pass initialization to anim manager
+//	PlayerAIdle * aIdle = new PlayerAIdle();
+//	aIdle->Init(render);
+//	SetAnimation(aIdle);
+
+	mRender = render;
+	SetAnimation(new PlayerAIdle);
 }
 
+//void PlayerAnimationManager::SetAnimation(PAT_Animation* newAnimation)
+//{
+//	delete(mAnimation);
+//	mAnimation = newAnimation;
+//}
 
 //void Draw(int x, int y, SDL_Renderer* renderer)
 //{

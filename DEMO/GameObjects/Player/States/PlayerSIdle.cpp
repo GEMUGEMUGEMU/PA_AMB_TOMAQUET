@@ -14,6 +14,7 @@
 
 #include "PlayerSIdle.h"
 #include "PlayerSMove.h"
+#include "PlayerAIdle.h"
 
 PlayerSIdle::PlayerSIdle(){ }
 PlayerSIdle::~PlayerSIdle(){ }
@@ -28,5 +29,8 @@ void PlayerSIdle::Update(float deltaTime, Player* player)
 	else
 	{
 		player->SetState(new PlayerSMove);
+		player->SetAnimation(new PlayerAIdle);
+//		player->mAnimationManager->mActualAnimation =
+//			player->mAnimationManager->mAIdle;
 	}
 }

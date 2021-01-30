@@ -29,10 +29,11 @@ public:
 
 	void Init(SDL_Renderer* render) override;
 //	void DrawIdle(int x, int y, SDL_Renderer* renderer);
+	//void SetAnimation(PAT_Animation* newAnimation);
 
 protected:
-
-	PlayerAIdle mAIdle;
+//	PAT_Animation* mAnimation = nullptr;
+//	PlayerAIdle mAIdle;
 //	void LoadImage(SDL_Renderer* render)
 //	{
 //		const char* filePath= "./Sprites/Prehistoric.png";

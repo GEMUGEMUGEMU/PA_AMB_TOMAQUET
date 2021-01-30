@@ -176,8 +176,9 @@ $(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
 
 $(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
 	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
 	$(LINKER_FLAGS) $< -o $@
 
 $(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)

@@ -64,6 +64,10 @@ void Player::SetState(PlayerState* newState)
 	mState = newState;
 }
 
+void Player::SetAnimation(PAT_Animation* newAnimation)
+{
+	mAnimationManager->SetAnimation(newAnimation);
+}
 
 bool Player::DirectionIsNotNull()
 {

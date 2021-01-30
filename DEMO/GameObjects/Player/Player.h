@@ -16,6 +16,7 @@
 
 #include "AnimatedKineticObject.h"
 #include "PlayerState.h"
+#include "PAT_Animation.h"
 
 class Player : public AnimatedKineticObject
 {
@@ -32,11 +33,13 @@ public:
 	void SetDirection(PAT_Vector2D newDirection);
 
 	void SetState(PlayerState* newState);
+	void SetAnimation(PAT_Animation* PlayerAIdle);
+	//void SetStateIdle(PlayerState* newState);
 
 	bool DirectionIsNotNull();
 
 protected:
-	PlayerState * mState;
+	PlayerState * mState = nullptr;
 
 };
 
