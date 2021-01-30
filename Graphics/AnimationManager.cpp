@@ -14,33 +14,16 @@
 #include "AnimationManager.h"
 #include "SDL2/SDL_image.h"
 
-AnimationManager::AnimationManager() /*: mAnimationSheet(nullptr)*/{}
+AnimationManager::AnimationManager() {}
 
 void AnimationManager::Update()
 {
 	mActualAnimation->UpdateFrame();
 }
 
-//void AnimationManager::Init(SDL_Renderer* render)
-//{
-//	LoadImage(render);
-//	LoadClips();
-//}
-
 void AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
 {
 	mActualAnimation->Draw(x, y, renderer);
-
-//	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
-//
-//	SDL_Rect* tDrawPosition = new SDL_Rect();
-//	tDrawPosition->x = x;
-//	tDrawPosition->y = y;
-//	tDrawPosition->w = tClip->w;
-//	tDrawPosition->h = tClip->h;
-//
-//	SDL_RenderCopy( renderer, mAnimationSheet, tClip, tDrawPosition);
-//
 }
 
 void AnimationManager::SetAnimation(PAT_Animation* newAnimation)
@@ -49,17 +32,4 @@ void AnimationManager::SetAnimation(PAT_Animation* newAnimation)
 	newAnimation->Init(mRender);
 	mActualAnimation = newAnimation;
 }
-//Update frame counter in order to preapre the frame to be drawed
-//void AnimationManager::UpdateFrame()
-//{
-//	mSpriteIndex = mFrameCounter / FRAMES_PER_CLIP;
-//
-//	mFrameCounter++;
-////TODO: put everithing on Animation
-////TODO: decouple this
-//	if( mSpriteIndex >= FRAMES_NUMBER )
-//	{//Then restart counters
-//		mFrameCounter = 0;
-//		mSpriteIndex= 0;
-//	}
-//}
+

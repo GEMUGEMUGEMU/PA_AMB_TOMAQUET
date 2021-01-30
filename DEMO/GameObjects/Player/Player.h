@@ -34,7 +34,6 @@ public:
 
 	void SetState(PlayerState* newState);
 	void SetAnimation(PAT_Animation* PlayerAIdle);
-	//void SetStateIdle(PlayerState* newState);
 
 	bool DirectionIsNotNull();
 

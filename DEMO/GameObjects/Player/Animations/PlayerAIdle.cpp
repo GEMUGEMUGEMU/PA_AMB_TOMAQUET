@@ -56,9 +56,3 @@ void PlayerAIdle::LoadClips()
 	mFramesNumber = mClipList.GetSize();
 }
 
-//void PlayerAIdle::Init(SDL_Renderer* render)
-//{
-//	LoadImage(render);
-//
-//	LoadClips();
-//}

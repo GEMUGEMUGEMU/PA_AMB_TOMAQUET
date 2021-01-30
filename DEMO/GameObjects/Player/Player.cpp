@@ -30,7 +30,6 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 	mX = x;
 	mY = y;
 
-//	state = new PlayerSMove();
 	mState = new PlayerSIdle();
 }
 
@@ -47,9 +46,6 @@ void Player::Move(float deltaTime)
 
 void Player::Update(float deltaTime)
 {
-//	mAnimationManager->UpdateFrame();
-//	Move(deltaTime);
-
 	mState->Update(deltaTime, this);
 }
 

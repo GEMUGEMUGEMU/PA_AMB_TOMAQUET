@@ -33,17 +33,5 @@ public:
 
 protected:
 	SDL_Renderer* mRender;
-
-//	virtual void LoadImage(SDL_Renderer* render){}
-//	virtual void LoadClips(){}
-//	uint32_t mWith, mHeight;
-//	uint32_t FRAMES_NUMBER;
-//	LinkedList<SDL_Rect> mClipList;
-//	SDL_Texture* mAnimationSheet;
-
-//private:
-//	const uint32_t FRAMES_PER_CLIP = 30;
-//	uint32_t mFrameCounte = 0;
-//	uint32_t mSpriteIndex = 0;
 };
 #endif /* AnimationManager_h */

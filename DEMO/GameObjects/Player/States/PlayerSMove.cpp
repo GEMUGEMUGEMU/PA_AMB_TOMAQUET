@@ -18,7 +18,6 @@ PlayerSMove::~PlayerSMove(){}
 
 void PlayerSMove::Update(float deltaTime, Player* player)
 {
-	//player->mAnimationManager->UpdateFrame();
 	player->mAnimationManager->Update();
 	player->Move(deltaTime);
 	//TODO when finishes returns to Idle
