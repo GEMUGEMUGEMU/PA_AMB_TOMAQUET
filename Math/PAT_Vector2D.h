@@ -24,12 +24,16 @@ public:
 	float ScalarProduct(const PAT_Vector2D& factorVector);
 	float GetMagnitudePower2();
 	float GetMagnitude();
+	float DistanceFromPoint(const PAT_Vector2D& vec);
 	PAT_Vector2D& Normalize();
+
+	PAT_Vector2D& operator=(const PAT_Vector2D& vec);
 
 	PAT_Vector2D operator+(const PAT_Vector2D& sumVec) const;
 	PAT_Vector2D operator*(float scalar) const;
 	friend PAT_Vector2D operator*(float scalar, const PAT_Vector2D& vector);
 	PAT_Vector2D operator/(float scalar) const;
+
 	bool operator==(const PAT_Vector2D& vector2D) const;
 
 	void SetX(float x){mX = x;}

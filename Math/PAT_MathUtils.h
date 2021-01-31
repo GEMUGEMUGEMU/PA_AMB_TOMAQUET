@@ -15,6 +15,8 @@
 #ifndef PAT_MAthUtils_h
 #define PAT_MAthUtils_h
 
+class PAT_Vector2D;
+
 static const float EPSILON = 0.0001f;
 
 float pat_abs(float n1);
@@ -23,6 +25,6 @@ bool FloatIsEquals(float n1, float n2);
 //Pythagorean theorem
 float GetHypotenuse(float leg1, float leg2);
 
-float TwoPointsDistance(Vector2D v1, Vector2D v2);
+//float TwoPointsDistance(PAT_Vector2D v1, PAT_Vector2D v2);
 
 #endif /* PAT_MAthUtils_h */

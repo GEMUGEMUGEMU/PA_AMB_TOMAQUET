@@ -46,7 +46,6 @@ void Player::Move(float deltaTime)
 	//How much player can move in this delta time
 	mNewPosition = mDirection * mSpeed * deltaTime;
 //TODO: put a Vector2D member to player
-//TODO: put eassignation to vector 2D
 	float distanceTraveled =
 		TwoPointsDistance(mPosition /*actual position of player*/,
 			mNewPosition);
