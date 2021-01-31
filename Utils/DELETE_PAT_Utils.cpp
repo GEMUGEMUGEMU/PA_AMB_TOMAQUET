@@ -13,20 +13,7 @@
 */
 
 #include "PAT_Utils.h"
-
-
-float pat_abs(float n1)
-{
-	if( n1 < 0.0)
-	{
-		return n1 * (-1.0);
-	}
-	else
-	{
-		return n1;
-	}
-}
-
+#include "PAT_MathUtils.h"
 
 bool FloatIsEquals(float n1, float n2)
 {

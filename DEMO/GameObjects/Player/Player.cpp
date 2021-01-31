@@ -15,12 +15,14 @@
 #include "PlayerAnimationManager.h"
 #include "PlayerState.h"
 #include "PlayerSIdle.h"
+#include "PAT_MathUtils.h"
 
 Player::~Player()
 {
 	delete mAnimationManager;
 }
 
+//TODO: I need to set velocity as init argument?
 void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 {
 	mSpeed = speed;
@@ -33,16 +35,41 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 	mState = new PlayerSIdle();
 }
 
+//TODO: put this as returning state 0 if not arrived, 0 if arrived
 void Player::Move(float deltaTime)
 {
-	PAT_Vector2D newPosition = mDirection * mSpeed * deltaTime;
+	//If it's the first time calculate wher it have to arrive
+	if(destination.EqualsVectorZero)
+	{
+		mArrival =  mDirection * mMovingDistance;
+	}
+	//How much player can move in this delta time
+	mNewPosition = mDirection * mSpeed * deltaTime;
+//TODO: put a Vector2D member to player
+//TODO: put eassignation to vector 2D
+	float distanceTraveled =
+		TwoPointsDistance(mPosition /*actual position of player*/,
+			mNewPosition);
 
-	mX += newPosition.GetX();
-	mY += newPosition.GetY();
+	float distanceToArrival = TwoPointsDistance(position, mArrival);
 
-	mDirection.SetX(0);
-	mDirection.SetY(0);
+	//If arrival is surpassed then put new position as arrival
+	if(distanceToArrival < distanceTraveled)
+	{
+		mPosition = mArrival;
+	}
 }
+
+//void Player::Move(float deltaTime)
+//{
+//	PAT_Vector2D newPosition = mDirection * mSpeed * deltaTime;
+//
+//	mX += newPosition.GetX();
+//	mY += newPosition.GetY();
+//
+//	mDirection.SetX(0);
+//	mDirection.SetY(0);
+//}
 
 void Player::Update(float deltaTime)
 {

@@ -13,7 +13,7 @@
 */
 
 #include "PAT_MathUtils.h"
-
+#include <cmath>
 
 float pat_abs(float n1)
 {
@@ -40,3 +40,15 @@ bool FloatIsEquals(float n1, float n2)
 		return false;
 	}
 }
+
+float GetHypotenuse(float leg1, float leg2)
+{
+	return sqrtf( pow( leg1, 2) + pow( leg2, 2) );
+}
+
+float TwoPointsDistance(Vector2D v1, Vector2D v2)
+{
+	return GetHypotenuse( v2.GetX() - v1.GetX(), v2.GetY() - v1.GetY() );
+}
+
+
