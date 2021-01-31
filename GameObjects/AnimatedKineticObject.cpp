@@ -15,5 +15,6 @@
 
 void AnimatedKineticObject::Draw(SDL_Renderer* renderer)
 {
-	mAnimationManager->Draw(mX, mY, renderer);
+	mAnimationManager->Draw(mPosition.GetX(),
+		mPosition.GetY(), renderer);
 }

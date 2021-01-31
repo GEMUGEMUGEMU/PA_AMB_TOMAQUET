@@ -17,6 +17,7 @@
 #include "AnimatedKineticObject.h"
 #include "PlayerState.h"
 #include "PAT_Animation.h"
+#include "PAT_Vector2D.h"
 
 class Player : public AnimatedKineticObject
 {
@@ -26,7 +27,7 @@ public:
 
 
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
-	void Move(float deltaTime);
+	uint8_t Move(float deltaTime);
 
 	void Update(float deltaTime);
 
@@ -39,7 +40,7 @@ public:
 
 protected:
 	PlayerState * mState = nullptr;
-
+	PAT_Vector2D * mArrival = nullptr;
 };
 
 #endif /* Player_h */

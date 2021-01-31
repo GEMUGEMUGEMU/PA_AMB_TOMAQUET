@@ -29,33 +29,48 @@ void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 	mAnimationManager = new PlayerAnimationManager();
 	mAnimationManager->Init(render);
 
-	mX = x;
-	mY = y;
+//	mX = x;
+//	mY = y;
+
+	mPosition = PAT_Vector2D(x, y);
 
 	mState = new PlayerSIdle();
 }
 
-//TODO: put this as returning state 0 if not arrived, 0 if arrived
-void Player::Move(float deltaTime)
+//Function that moves player. Return 1 if it has arrived otherwise 0;
+uint8_t Player::Move(float deltaTime)
 {
-	//If it's the first time calculate wher it have to arrive
-	if(destination.EqualsVectorZero)
+	//If it's the first time calculate destination
+	if(mArrival == nullptr)
 	{
-		mArrival =  mDirection * mMovingDistance;
+		mArrival =  ( mDirection * mSpeed ) + mMovingDistance;
 	}
-	//How much player can move in this delta time
-	mNewPosition = mDirection * mSpeed * deltaTime;
-//TODO: put a Vector2D member to player
-	float distanceTraveled =
-		TwoPointsDistance(mPosition /*actual position of player*/,
-			mNewPosition);
 
-	float distanceToArrival = TwoPointsDistance(position, mArrival);
+	//How much player can move in this delta time
+	PAT_Vector2D newPosition = (mDirection * mSpeed * deltaTime)
+		+ mMovingDistance;
+
+	float distanceToTravel =
+		mPosition.DistanceFromPoint(*mNewPosition);
+
+	float distanceToArrival =
+		mPosition.DistanceFromPoint(mArrival);
 
 	//If arrival is surpassed then put new position as arrival
-	if(distanceToArrival < distanceTraveled)
+	if(distanceToArrival =< distanceToTravel)
 	{
 		mPosition = mArrival;
+
+		delete(mArrival);
+		mArrival = nullptr;
+
+		return 1;
+	}
+	else
+	{
+		mPosition = newPosition;
+
+		return 0;
 	}
 }
 
