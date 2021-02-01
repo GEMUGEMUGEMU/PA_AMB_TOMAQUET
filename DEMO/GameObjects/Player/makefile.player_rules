@@ -1,0 +1,58 @@
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#    ~GEAR~GEAR~
+#
+#  File Name: makefile
+#  Purpose:
+#  Creation Date: 01-02-21
+#  Created By: Andrea Andreu Salvagnin
+#
+
+$(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_M): $(D_PLAYER_A_M_CPP) $(D_PLAYER_A_M_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+$(D_PLAYER_A_MOVE): $(D_PLAYER_A_MOVE_CPP) $(D_PLAYER_A_MOVE_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	$(LINKER_FLAGS) $< -o $@
+
+
