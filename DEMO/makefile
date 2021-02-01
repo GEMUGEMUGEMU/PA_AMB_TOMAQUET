@@ -46,38 +46,6 @@ D_SCENE_P_CPP=./Scene/Pause/PauseScene.cpp
 D_SCENE_P_H=./Scene/Pause/PauseScene.h
 D_SCENE_P=$(FILE_OBJECTS_FOLDER)/PauseScene.o
 
-D_PLAYER_CPP=./GameObjects/Player/Player.cpp
-D_PLAYER_H=./GameObjects/Player/Player.h
-D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
-
-D_PLAYER_A_M_CPP=./GameObjects/Player/PlayerAnimationManager.cpp
-D_PLAYER_A_M_H=./GameObjects/Player/PlayerAnimationManager.h
-D_PLAYER_A_M=$(FILE_OBJECTS_FOLDER)/PlayerAM.o
-
-D_PLAYER_S_CPP=./GameObjects/Player/States/PlayerState.cpp
-D_PLAYER_S_H=./GameObjects/Player/States/PlayerState.h
-D_PLAYER_S=$(FILE_OBJECTS_FOLDER)/PlayerS.o
-
-D_PLAYER_S_MOVE_CPP=./GameObjects/Player/States/PlayerSMove.cpp
-D_PLAYER_S_MOVE_H=./GameObjects/Player/States/PlayerSMove.h
-D_PLAYER_S_MOVE=$(FILE_OBJECTS_FOLDER)/PlayerSMove.o
-
-D_PLAYER_S_IDLE_CPP=./GameObjects/Player/States/PlayerSIdle.cpp
-D_PLAYER_S_IDLE_H=./GameObjects/Player/States/PlayerSIdle.h
-D_PLAYER_S_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerSIdle.o
-
-D_PLAYER_A_IDLE_CPP=./GameObjects/Player/Animations/PlayerAIdle.cpp
-D_PLAYER_A_IDLE_H=./GameObjects/Player/Animations/PlayerAIdle.h
-D_PLAYER_A_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerAIdle.o
-
-D_PLAYER_A_MOVE_CPP=./GameObjects/Player/Animations/P_A_Move.cpp
-D_PLAYER_A_MOVE_H=./GameObjects/Player/Animations/P_A_Move.h
-D_PLAYER_A_MOVE=$(FILE_OBJECTS_FOLDER)/P_A_Move.o
-
-D_SCENE_C_CPP=./Input/DemoSceneController.cpp
-D_SCENE_C_H=./Input/DemoSceneController.h
-D_SCENE_C=$(FILE_OBJECTS_FOLDER)/DemoSceneController.o
-
 D_PAUSE_TEXT_CPP=./Scene/Pause/PauseText.cpp
 D_PAUSE_TEXT_H=./Scene/Pause/PauseText.h
 D_PAUSE_TEXT=$(FILE_OBJECTS_FOLDER)/PauseText.o
@@ -86,6 +54,11 @@ D_PAUSE_C_CPP=./Scene/Pause/PauseController.cpp
 D_PAUSE_C_H=./Scene/Pause/PauseController.h
 D_PAUSE_C=$(FILE_OBJECTS_FOLDER)/PauseController.o
 
+D_SCENE_C_CPP=./Input/DemoSceneController.cpp
+D_SCENE_C_H=./Input/DemoSceneController.h
+D_SCENE_C=$(FILE_OBJECTS_FOLDER)/DemoSceneController.o
+
+include ./GameObjects/Player/makefile.player_dictionary
 
 PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
 	$(PAT_ANIMATED_K_OBJ_O) $(PAT_ANIMATION_M_O) $(PAT_VECTOR2D_O) \
@@ -131,13 +104,6 @@ $(D_SCENE): $(D_SCENE_CPP) $(D_SCENE_H)
 	-I$(PAT_GRAPHICS) \
 	$(LINKER_FLAGS) $< -o $@
 
-$(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
-	-I./GameObjects/Player/Animations/ \
-	$(LINKER_FLAGS) $< -o $@
-
 $(D_SCENE_C): $(D_SCENE_C_CPP) $(D_SCENE_C_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_INPUT) -I./GameObjects/Player/ -I$(PAT_GAME_OBJ) -I$(PAT_MATH) \
@@ -166,41 +132,7 @@ $(D_TITLE): $(D_TITLE_CPP) $(D_TITLE_H)
 	-I$(PAT_GAME_OBJ) \
 	$(LINKER_FLAGS) $< -o $@
 
-$(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
-	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
-	-I./GameObjects/Player/Animations/ \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
-	-I./GameObjects/Player/Animations/ \
-	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PLAYER_A_M): $(D_PLAYER_A_M_CPP) $(D_PLAYER_A_M_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/Animations/ \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PLAYER_A_MOVE): $(D_PLAYER_A_MOVE_CPP) $(D_PLAYER_A_MOVE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	$(LINKER_FLAGS) $< -o $@
+include ./GameObjects/Player/makefile.player_rules
 
 include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 
