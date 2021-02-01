@@ -91,13 +91,13 @@ PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D& vec)
 	return *this;
 }
 
-//PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* vec)
-//{
-//	mX = vec->mX;
-//	mY = vec->mY;
-//
-//	return *this;
-//}
+PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* vec)
+{
+	mX = vec->mX;
+	mY = vec->mY;
+
+	return *this;
+}
 
 float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D& vec)
 {

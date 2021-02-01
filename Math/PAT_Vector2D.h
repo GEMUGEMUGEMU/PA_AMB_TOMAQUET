@@ -30,7 +30,7 @@ public:
 	PAT_Vector2D& Normalize();
 
 	PAT_Vector2D& operator=(const PAT_Vector2D& vec);
-//	PAT_Vector2D& operator=(const PAT_Vector2D* vec);
+	PAT_Vector2D& operator=(const PAT_Vector2D* vec);
 
 	PAT_Vector2D operator+(const PAT_Vector2D& sumVec) const;
 	PAT_Vector2D operator*(float scalar) const;
