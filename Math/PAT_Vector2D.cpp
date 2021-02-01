@@ -96,3 +96,8 @@ float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D& vec)
 
 	return GetHypotenuse( vec.mX - this->mX, vec.mY - this->mY );
 }
+
+PAT_Vector2D::PAT_Vector2D(const PAT_Vector2D& vector)
+{
+	this = vector;
+}

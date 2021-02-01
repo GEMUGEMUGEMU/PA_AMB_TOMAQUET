@@ -27,12 +27,13 @@ public:
 	AnimatedKineticObject() : mPosition(0,0), mSpeed(0) {}
 	virtual ~AnimatedKineticObject(){}
 	void Draw(SDL_Renderer* render);
-	virtual void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer * render){}
-	virtual void Init(float speed, PAT_Vector vector, SDL_Renderer * render){}
+//TODO: make pure virtual
+	virtual void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer * render) = 0;
+	virtual void Init(float speed, PAT_Vector2D vector, SDL_Renderer * render) = 0;
 
-
+//TODO: make pure virtual
 	virtual void Update(float deltaTime){}
-	virtual void Move(float deltaTime){}
+	virtual uint8_t Move(float deltaTime){}
 
 	inline void SetDirection(PAT_Vector2D newDirection){mDirection = newDirection;}
 

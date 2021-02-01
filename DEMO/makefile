@@ -101,8 +101,8 @@ TARGET=NIGHISHIKOI_DEMO.out
 #$^ is a macro that name of all dependencies separated by space
 $(TARGET): $(DEMO_OBJECTS) $(PAT_OBJECTS)
 	$(CC) -g \
-	$(DEMO_OBJECTS) \
 	$(PAT_OBJECTS) \
+	$(DEMO_OBJECTS) \
 	$(LINKER_FLAGS) -o $@
 
 $(MAIN): $(MAIN_CPP)
