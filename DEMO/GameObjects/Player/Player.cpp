@@ -47,7 +47,9 @@ void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
 //Function that moves player. Return 1 if it has arrived otherwise 0;
 uint8_t Player::Move(float deltaTime)
 {
-	//If it's the first time calculating destination
+	float secondsDeltaTime = deltaTime/1000;
+
+	//How much player can move in one second
 	if(mArrival == nullptr)
 	{
 		mArrival = new PAT_Vector2D(( mDirection * mSpeed ) + mPosition);
@@ -56,7 +58,7 @@ uint8_t Player::Move(float deltaTime)
 	//PAT_Vector2D arrival(mArrival.GetX(), mArrival.GetY());
 
 	//How much player can move in this delta time
-	PAT_Vector2D newPosition = (mDirection * mSpeed * deltaTime)
+	PAT_Vector2D newPosition = (mDirection * mSpeed * secondsDeltaTime)
 		+ mPosition;
 
 	float distanceToTravel =
@@ -69,7 +71,7 @@ uint8_t Player::Move(float deltaTime)
 	if(distanceToArrival <= distanceToTravel)
 	{
 		mPosition = mArrival;
-
+		mDirection = PAT_Vector2D::Vector2DZero;
 		delete(mArrival);
 		mArrival = nullptr;
 

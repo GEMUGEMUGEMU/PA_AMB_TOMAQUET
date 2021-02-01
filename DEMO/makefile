@@ -96,7 +96,7 @@ DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) $(D_PLAYER_A_IDLE) \
 	$(D_PLAYER_A_M) $(D_PLAYER_A_MOVE) \
 
-TARGET=NIGHISHIKOI_DEMO.out
+TARGET=NISHIKIGOI_DEMO.out
 #$@ is a macro that refers to the target
 #$^ is a macro that name of all dependencies separated by space
 $(TARGET): $(PAT_OBJECTS) $(DEMO_OBJECTS)
@@ -174,8 +174,9 @@ $(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
 
 $(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
 	$(CC) $(COMPILER_FLAGS) \
-	-I./GameObjects/Player/ -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
-	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
 	$(LINKER_FLAGS) $< -o $@
 
 $(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
