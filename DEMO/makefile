@@ -99,7 +99,7 @@ DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) $(D_SCENE_C) \
 TARGET=NIGHISHIKOI_DEMO.out
 #$@ is a macro that refers to the target
 #$^ is a macro that name of all dependencies separated by space
-$(TARGET): $(DEMO_OBJECTS) $(PAT_OBJECTS)
+$(TARGET): $(PAT_OBJECTS) $(DEMO_OBJECTS)
 	$(CC) -g \
 	$(PAT_OBJECTS) \
 	$(DEMO_OBJECTS) \

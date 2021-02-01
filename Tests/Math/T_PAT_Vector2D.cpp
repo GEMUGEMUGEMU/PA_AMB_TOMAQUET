@@ -31,8 +31,15 @@ TEST_CASE( "Test PAT_Vector2D ") {
 TEST_CASE( "Test PAT_Vector2D assignation") {
 	PAT_Vector2D vector1(1,1);
 	PAT_Vector2D vector2(7,9);
+	PAT_Vector2D vector3(3,6);
 
 	vector1 = vector2;
-	REQUIRE((vector1.GetX()==vector1.GetX()) ==
-			(vector1.GetY()==vector1.GetY()));
+	REQUIRE((vector1.GetX()==vector2.GetX()) ==
+			(vector1.GetY()==vector2.GetY()));
+
+	vector1 = vector3;
+	REQUIRE((vector1.GetX()==vector3.GetX()) ==
+			(vector1.GetY()==vector3.GetY()));
+
 }
+
