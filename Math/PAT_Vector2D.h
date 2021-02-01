@@ -21,7 +21,8 @@ private:
 public:
 	PAT_Vector2D(float x, float y): mX(x), mY(y){}
 	PAT_Vector2D(): PAT_Vector2D(0, 0){}
-	PAT_Vector2D(const PAT_Vector2D& vector) : mX(vector.mX), mY(vector.mY) {}
+	PAT_Vector2D(const PAT_Vector2D& vector)
+		: mX(vector.mX), mY(vector.mY) {}
 
 	float ScalarProduct(const PAT_Vector2D& factorVector);
 	float GetMagnitudePower2();

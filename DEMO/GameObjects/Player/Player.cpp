@@ -22,17 +22,24 @@ Player::~Player()
 	delete mAnimationManager;
 }
 
-//TODO: I need to set velocity as init argument?
 void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
 {
 	mSpeed = speed;
 	mAnimationManager = new PlayerAnimationManager();
 	mAnimationManager->Init(render);
 
-//	mX = x;
-//	mY = y;
-
 	mPosition = PAT_Vector2D(x, y);
+
+	mState = new PlayerSIdle();
+}
+
+void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
+{
+	mSpeed = speed;
+	mAnimationManager = new PlayerAnimationManager();
+	mAnimationManager->Init(render);
+
+	mPosition = vector;
 
 	mState = new PlayerSIdle();
 }

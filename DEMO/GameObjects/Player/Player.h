@@ -27,6 +27,8 @@ public:
 
 
 	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Init(float speed, PAT_Vector2D vector, SDL_Renderer * render);
+
 	uint8_t Move(float deltaTime);
 
 	void Update(float deltaTime);
