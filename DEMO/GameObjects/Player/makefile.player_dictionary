@@ -1,0 +1,42 @@
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#    ~GEAR~GEAR~
+#
+#  File Name: makefile.player_dictionary
+#  Purpose:
+#  Creation Date: 01-02-21
+#  Created By: Andrea Andreu Salvagnin
+#
+
+D_PLAYER_CPP=./GameObjects/Player/Player.cpp
+D_PLAYER_H=./GameObjects/Player/Player.h
+D_PLAYER=$(FILE_OBJECTS_FOLDER)/Player.o
+
+D_PLAYER_A_M_CPP=./GameObjects/Player/PlayerAnimationManager.cpp
+D_PLAYER_A_M_H=./GameObjects/Player/PlayerAnimationManager.h
+D_PLAYER_A_M=$(FILE_OBJECTS_FOLDER)/PlayerAM.o
+
+D_PLAYER_S_CPP=./GameObjects/Player/States/PlayerState.cpp
+D_PLAYER_S_H=./GameObjects/Player/States/PlayerState.h
+D_PLAYER_S=$(FILE_OBJECTS_FOLDER)/PlayerS.o
+
+D_PLAYER_S_MOVE_CPP=./GameObjects/Player/States/PlayerSMove.cpp
+D_PLAYER_S_MOVE_H=./GameObjects/Player/States/PlayerSMove.h
+D_PLAYER_S_MOVE=$(FILE_OBJECTS_FOLDER)/PlayerSMove.o
+
+D_PLAYER_S_IDLE_CPP=./GameObjects/Player/States/PlayerSIdle.cpp
+D_PLAYER_S_IDLE_H=./GameObjects/Player/States/PlayerSIdle.h
+D_PLAYER_S_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerSIdle.o
+
+D_PLAYER_A_IDLE_CPP=./GameObjects/Player/Animations/PlayerAIdle.cpp
+D_PLAYER_A_IDLE_H=./GameObjects/Player/Animations/PlayerAIdle.h
+D_PLAYER_A_IDLE=$(FILE_OBJECTS_FOLDER)/PlayerAIdle.o
+
+D_PLAYER_A_MOVE_CPP=./GameObjects/Player/Animations/P_A_Move.cpp
+D_PLAYER_A_MOVE_H=./GameObjects/Player/Animations/P_A_Move.h
+D_PLAYER_A_MOVE=$(FILE_OBJECTS_FOLDER)/P_A_Move.o
+
