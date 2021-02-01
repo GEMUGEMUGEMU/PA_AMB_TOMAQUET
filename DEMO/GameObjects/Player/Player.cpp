@@ -47,7 +47,7 @@ void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
 //Function that moves player. Return 1 if it has arrived otherwise 0;
 uint8_t Player::Move(float deltaTime)
 {
-	float secondsDeltaTime = deltaTime/1000;
+	float secondsDeltaTime = deltaTime / 100;
 
 	//How much player can move in one second
 	if(mArrival == nullptr)
@@ -85,17 +85,6 @@ uint8_t Player::Move(float deltaTime)
 	}
 }
 
-//void Player::Move(float deltaTime)
-//{
-//	PAT_Vector2D newPosition = mDirection * mSpeed * deltaTime;
-//
-//	mX += newPosition.GetX();
-//	mY += newPosition.GetY();
-//
-//	mDirection.SetX(0);
-//	mDirection.SetY(0);
-//}
-
 void Player::Update(float deltaTime)
 {
 	mState->Update(deltaTime, this);
@@ -103,8 +92,10 @@ void Player::Update(float deltaTime)
 
 void Player::SetDirection(PAT_Vector2D newDirection)
 {
-	mDirection.SetX(newDirection.GetX());
-	mDirection.SetY(newDirection.GetY());
+	if(mDirection.EqualsVectorZero())
+	{
+		mDirection = newDirection;
+	}
 }
 
 void Player::SetState(PlayerState* newState)
