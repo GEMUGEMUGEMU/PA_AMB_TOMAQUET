@@ -27,6 +27,7 @@ public:
 	float GetMagnitudePower2();
 	float GetMagnitude();
 	float DistanceFromPoint(const PAT_Vector2D& vec);
+	float DistanceFromPoint(const PAT_Vector2D* vec);
 	PAT_Vector2D& Normalize();
 
 	PAT_Vector2D& operator=(const PAT_Vector2D& vec);
