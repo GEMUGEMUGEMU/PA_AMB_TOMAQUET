@@ -20,6 +20,7 @@ PlayerSMove::~PlayerSMove(){}
 
 void PlayerSMove::Update(float deltaTime, Player* player)
 {
+	//TODO put switch case and move animation->update
 	player->mAnimationManager->Update();
 	if(player->Move(deltaTime) == 1)
 	{

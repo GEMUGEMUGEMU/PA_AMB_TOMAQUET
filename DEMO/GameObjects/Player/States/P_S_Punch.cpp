@@ -19,6 +19,13 @@ P_S_Punch::~P_S_Punch(){ }
 
 void P_S_Punch::Update(float deltaTime, Player* player)
 {
+	if(player->mAnimationManager->Update())
+	{
+		player->SetState(new PlayerSIdle);
+		player->SetAnimation(new PlayerSIdle);
+	}
+}
+
 //	if(player->DirectionIsNull())
 //	{
 //		player->mAnimationManager->Update();
@@ -28,4 +35,4 @@ void P_S_Punch::Update(float deltaTime, Player* player)
 //		player->SetState(new PlayerSMove);
 //		player->SetAnimation(new P_A_Move);
 //	}
-}
+
