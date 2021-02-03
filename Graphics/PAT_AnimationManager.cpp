@@ -11,25 +11,30 @@
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "PAT_AnimationManager.h"
-#include "SDL2/SDL_image.h"
+//#include "PAT_AnimationManager.h"
+//#include "SDL2/SDL_image.h"
+//
+//PAT_AnimationManager::PAT_AnimationManager() {}
 
-PAT_AnimationManager::PAT_AnimationManager() {}
+//void PAT_AnimationManager::Update()
+//{
+//	mActualAnimation->UpdateFrame();
+//}
 
-void PAT_AnimationManager::Update()
-{
-	mActualAnimation->UpdateFrame();
-}
+//void PAT_AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
+//{
+//	mActualAnimation->Draw(x, y, renderer);
+//}
 
-void PAT_AnimationManager::Draw(int x, int y, SDL_Renderer* renderer)
-{
-	mActualAnimation->Draw(x, y, renderer);
-}
+//void PAT_AnimationManager::Draw(int x, int y, PAT_Amimation animation)
+//{
+//	animation->Draw(x, y, mRender);
+//}
 
-void PAT_AnimationManager::SetAnimation(PAT_Animation* newAnimation)
-{
-	delete(mActualAnimation);
-	newAnimation->Init(mRender);
-	mActualAnimation = newAnimation;
-}
+//void PAT_AnimationManager::SetAnimation(PAT_Animation* newAnimation)
+//{
+//	delete(mActualAnimation);
+//	newAnimation->Init(mRender);
+//	mActualAnimation = newAnimation;
+//}
 

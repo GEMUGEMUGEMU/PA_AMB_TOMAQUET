@@ -1,0 +1,36 @@
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#    ~GEAR~GEAR~
+#
+#  File Name: makefile.game_objects_dictionary
+#  Purpose:
+#  Creation Date: 03-02-21
+#  Created By: Andrea Andreu Salvagnin
+#
+
+PAT_GRAPHIC_OBJ_H=$(PAT_GAME_OBJ)/GraphicObject.h
+PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
+
+PAT_GRAPHIC_S_OBJ_H=$(PAT_GAME_OBJ)/GraphicStaticObject.h
+PAT_GRAPHIC_S_OBJ_CPP=$(PAT_GAME_OBJ)/GraphicStaticObject.cpp
+PAT_GRAPHIC_S_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
+
+PAT_ANIMATED_S_OBJ_H=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.h
+PAT_ANIMATED_S_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.cpp
+PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.o
+
+PAT_ANIMATED_K_OBJ_H=$(PAT_ANIM_KIN_OBJ)/PAT_AnimatedKineticObject.h
+PAT_ANIMATED_K_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.o
+
+PAT_STATE_OBJ_H=$(PAT_GAME_OBJ)/PAT_StateObject.h
+PAT_STATE_OBJ_CPP=$(PAT_GAME_OBJ)/PAT_StateObject.cpp
+PAT_STATE_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_StateObject.o
+
+PAT_STATE_H=$(PAT_GAME_OBJ)/PAT_State.h
+PAT_STATE_CPP=$(PAT_GAME_OBJ)/PAT_State.cpp
+PAT_STATE_O=$(FILE_OBJECTS_FOLDER)/PAT_State.o
+

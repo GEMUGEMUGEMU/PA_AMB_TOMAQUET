@@ -19,15 +19,37 @@
 PlayerSIdle::PlayerSIdle(){ }
 PlayerSIdle::~PlayerSIdle(){ }
 
+void PlayerSIdle::Draw(SDL_Renderer* renderer, Player* player)
+{
+	player->mAnimationManager.Draw(
+		player->mPosition.GetX(),
+		player->mPosition.GetY(),
+		player->mAnimationManager.mAIdle);
+}
+
 void PlayerSIdle::Update(float deltaTime, Player* player)
 {
 	if(player->DirectionIsNull())
 	{//Prepare animation
-		player->mAnimationManager->Update();
+		player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
 	}
 	else
 	{//Set move state
 		player->SetState(new PlayerSMove);
-		player->SetAnimation(new P_A_Move);
+//		player->SetAnimation(new P_A_Move);
 	}
 }
+
+
+//void PlayerSIdle::Update(float deltaTime, Player* player)
+//{
+//	if(player->DirectionIsNull())
+//	{//Prepare animation
+//		player->mAnimationManager->Update();
+//	}
+//	else
+//	{//Set move state
+//		player->SetState(new PlayerSMove);
+//		player->SetAnimation(new P_A_Move);
+//	}
+//}

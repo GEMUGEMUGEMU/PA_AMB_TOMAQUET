@@ -30,7 +30,7 @@ public:
 	void ResetAnimation();
 
 
-	PAT_Animation& operator=(const PAT_Animation& animation);
+//	PAT_Animation& operator=(const PAT_Animation& animation);
 
 protected:
 	virtual void LoadImage(SDL_Renderer* render) = 0;

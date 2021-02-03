@@ -17,7 +17,7 @@
 
 PlayerState::PlayerState(){ }
 
-void PlayerState::Update(float deltaTime, Player* player){ }
+//void PlayerState::Update(float deltaTime, Player* player){ }
 
 //void PlayerState::Move(){ }
 

@@ -16,8 +16,6 @@
 #define PlayerSIdle_h
 
 #include "PlayerState.h"
-#include "Player.h"
-
 
 class PlayerSIdle : public PlayerState
 {
@@ -25,7 +23,9 @@ public:
 	PlayerSIdle();
 	~PlayerSIdle();
 
-	void Update(float deltaTime, Player* player);
+//	void Update(float deltaTime, Player* player);
+	void Update(float deltaTime, Player* player) override;
+	void Draw(SDL_Renderer* renderer, Player* player) override;
 };
 
 

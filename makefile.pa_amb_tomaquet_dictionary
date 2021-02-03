@@ -5,7 +5,7 @@
 #     _!__!__!_
 #   ~~\t  Gemu/~~
 #
-#  File Name: makefile.dictionary
+#  File Name: makefile.pa_amb_tomaquet_dictionary
 #  Purpose: Organize pa amb tomaquet dictionary
 #  Creation Date: 24-01-21
 #  Created By: Andrea Andreu Salvagnin
@@ -14,10 +14,23 @@
 #PAT_FOLDER: path to PA_AMB_TOMAQUET folder
 #FILE_OBJECTS_FOLDER: path to target file objects folder
 
+#Folders
+PAT_INPUT=$(PAT_FOLDER)/Input
+PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
+PAT_UTILS=$(PAT_FOLDER)/Utils
+PAT_MATH=$(PAT_FOLDER)/Math
+
+PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
+PAT_ANIM_OBJ=$(PAT_GAME_OBJ)/AnimatedObject
+PAT_ANIM_KIN_OBJ=$(PAT_ANIM_OBJ)/KineticObject
+
+PAT_VECTOR2D_H=$(PAT_MATH)/PAT_Vector2D.h
+PAT_SCREEN_H=$(PAT_GRAPHICS)/Screen.h
+PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
+PAT_SCENE=$(PAT_FOLDER)/Scene
+PAT_GAME=$(PAT_FOLDER)/Game
 
 #Graphics folder
-PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
-PAT_SCREEN_H=$(PAT_GRAPHICS)/Screen.h
 PAT_SCREEN_CPP=$(PAT_GRAPHICS)/Screen.cpp
 PAT_SCREEN_O=$(FILE_OBJECTS_FOLDER)/PAT_Screen.o
 
@@ -26,13 +39,11 @@ PAT_SPRITE_CPP=$(PAT_FOLDER)/Graphics/Sprite.cpp
 PAT_SPRITE=$(FILE_OBJECTS_FOLDER)/PAT_Sprite.o
 
 #Input folder
-PAT_INPUT=$(PAT_FOLDER)/Input
 PAT_CONTROLLER_H=$(PAT_INPUT)/Controller.h
 #PAT_CONTROLLER_CPP=$(INPUT)/Controller.cpp
 PAT_CONTROLLER=$(FILE_OBJECTS_FOLDER)/PAT_Controller.o
 
 #Utils folder
-PAT_UTILS=$(PAT_FOLDER)/Utils
 PAT_LINKED_LIST_H=$(PAT_UTILS)/LinkedList.h
 PAT_LINKED_LIST=$(FILE_OBJECTS_FOLDER)/PAT_LinkedList.o
 
@@ -41,8 +52,6 @@ PAT_STACK=$(FILE_OBJECTS_FOLDER)/PAT_Stack.o
 
 
 #Math folder
-PAT_MATH=$(PAT_FOLDER)/Math
-PAT_VECTOR2D_H=$(PAT_MATH)/PAT_Vector2D.h
 PAT_VECTOR2D_CPP=$(PAT_MATH)/PAT_Vector2D.cpp
 PAT_VECTOR2D_O=$(FILE_OBJECTS_FOLDER)/PAT_Vector2D.o
 
@@ -51,24 +60,28 @@ PAT_MATH_UTILS_CPP=$(PAT_MATH)/PAT_MathUtils.cpp
 PAT_MATH_UTILS_O=$(FILE_OBJECTS_FOLDER)/PAT_MathUtils.o
 
 #GameObjects folder
-PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
-PAT_GRAPHIC_OBJ_H=$(PAT_GAME_OBJ)/GraphicObject.h
-PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
-
-PAT_GRAPHIC_S_OBJ_H=$(PAT_GAME_OBJ)/GraphicStaticObject.h
-PAT_GRAPHIC_S_OBJ_CPP=$(PAT_GAME_OBJ)/GraphicStaticObject.cpp
-PAT_GRAPHIC_S_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
-
-PAT_ANIMATED_S_OBJ_H=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.h
-PAT_ANIMATED_S_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.cpp
-PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.o
-
-PAT_ANIMATED_K_OBJ_H=$(PAT_GAME_OBJ)/AnimatedKineticObject.h
-PAT_ANIMATED_K_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedKineticObject.cpp
-PAT_ANIMATED_K_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.o
+include $(PAT_FOLDER)/GameObjects/makefile.game_objects_dictionary
+#PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
+#PAT_GRAPHIC_OBJ_H=$(PAT_GAME_OBJ)/GraphicObject.h
+#PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
+#
+#PAT_GRAPHIC_S_OBJ_H=$(PAT_GAME_OBJ)/GraphicStaticObject.h
+#PAT_GRAPHIC_S_OBJ_CPP=$(PAT_GAME_OBJ)/GraphicStaticObject.cpp
+#PAT_GRAPHIC_S_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
+#
+#PAT_ANIMATED_S_OBJ_H=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.h
+#PAT_ANIMATED_S_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.cpp
+#PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.o
+#
+#PAT_A_OBJ_STATE_H=$(PAT_GAME_OBJ)/AnimatedObject/PAT_AnimObjState.h
+#PAT_A_OBJ_STATE_CPP=$(PAT_GAME_OBJ)/AnimatedObject/PAT_AnimObjState.cpp
+#PAT_A_OBJ_STATE_O=$(FILE_OBJECTS_FOLDER)/PAT_A_O_State.o
+#
+#PAT_ANIMATED_K_OBJ_H=$(PAT_GAME_OBJ)/AnimatedObject/KineticObject/PAT_AnimatedKineticObject.h
+##PAT_ANIMATED_K_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedObject/KineticObject/PAT_AnimatedKineticObject.cpp
+#PAT_ANIMATED_K_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.o
 
 #Graphic Folder
-PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
 PAT_SPRITE_H=$(PAT_GRAPHICS)/Sprite.h
 PAT_SPRITE_CPP=$(PAT_GRAPHICS)/Sprite.cpp
 PAT_SPRITE=$(FILE_OBJECTS_FOLDER)/PAT_Sprite.cpp
@@ -82,7 +95,6 @@ PAT_ANIMATION_M_CPP=$(PAT_GRAPHICS)/PAT_AnimationManager.cpp
 PAT_ANIMATION_M_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimationM.o
 
 #Scene folder
-PAT_SCENE=$(PAT_FOLDER)/Scene
 PAT_SCENE_H=$(PAT_SCENE)/PAT_Scene.h
 #PAT_SCENE_CPP=$(PAT_SCENE)/Scene.cpp
 PAT_SCENE_O=$(FILE_OBJECTS_FOLDER)/PAT_Scene.o
@@ -92,7 +104,6 @@ PAT_SCENE_M_CPP=$(PAT_SCENE)/PAT_SceneManager.cpp
 PAT_SCENE_M_O=$(FILE_OBJECTS_FOLDER)/PAT_SceneM.o
 
 #Game folder
-PAT_GAME=$(PAT_FOLDER)/Game
 PAT_GAME_H=$(PAT_GAME)/PAT_Game.h
 PAT_GAME_CPP=$(PAT_GAME)/PAT_Game.cpp
 PAT_GAME_O=$(FILE_OBJECTS_FOLDER)/PAT_Game.o

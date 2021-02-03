@@ -15,15 +15,18 @@
 #ifndef P_S_Punch_h
 #define P_S_Punch_h
 
-#include "Player.h"
+#include "PAT_AnimObjState.h"
 
-class P_S_Punch : public PlayerState
+class P_S_Punch : public PAT_AnimObjState
 {
 public:
 	P_S_Punch();
 	~P_S_Punch();
 
-	void Update(float deltaTime, Player* player);
+//	void Update(float deltaTime, Player* player);
+	void Draw(SDL_Renderer* renderer, PAT_AnimatedKineticObject * player);
+	void Update(float deltaTime, PAT_AnimatedKineticObject * player);
+
 };
 
 #endif /* P_S_Punch_h */

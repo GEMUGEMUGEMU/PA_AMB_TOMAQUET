@@ -14,31 +14,35 @@
 #ifndef Player_h
 #define Player_h
 
-#include "AnimatedKineticObject.h"
-#include "PlayerState.h"
+#include "PAT_StateObject.h"
+#include "PAT_AnimatedKineticObject.h"
 #include "PAT_Animation.h"
 #include "PAT_Vector2D.h"
+#include "PlayerState.h"
+#include "PlayerAnimationManager.h"
 
-class Player : public AnimatedKineticObject
+class Player : public PAT_AnimatedKineticObject, public PAT_StateObject
 {
 public:
-	Player() : AnimatedKineticObject() {}
+	Player(){}
 	~Player();
 
-
-	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
+//	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
 	void Init(float speed, PAT_Vector2D vector, SDL_Renderer * render);
 
 	uint8_t Move(float deltaTime);
 
 	void Update(float deltaTime);
+	void Draw(SDL_Renderer* render);
 
 	void SetDirection(PAT_Vector2D newDirection);
 
-	void SetState(PlayerState* newState);
-	void SetAnimation(PAT_Animation* PlayerAIdle);
+//	void SetState(PlayerState* newState);
+//	void SetAnimation(PAT_Animation* PlayerAIdle);
 
 	bool DirectionIsNull();
+
+	PlayerAnimationManager mAnimationManager;
 
 protected:
 	PlayerState * mState = nullptr;

@@ -17,6 +17,7 @@
 #include "Screen.h"
 #include "Controller.h"
 #include "DemoTitle.h"
+#include "PAT_Vector2D.h"
 
 DemoScene::~DemoScene()
 {
@@ -25,7 +26,7 @@ DemoScene::~DemoScene()
 void DemoScene::Init(SDL_Renderer* render)
 {
 	Player * player = new Player();
-	player->Init(32, 200, 100, render);
+	player->Init(32, PAT_Vector2D(200, 100), render);
 	mGraphicObjectsList.Add(player);
 	mUpdateObjectsList.Add(player);
 

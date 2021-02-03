@@ -20,7 +20,7 @@ public:
 	UpdateObject(){}
 	virtual ~UpdateObject(){}
 //	Everything that needs to be update will be done here
-	virtual void Update(float deltaTime){}
+	virtual void Update(float deltaTime) = 0;
 };
 
 #endif /* UpdateObject_h */

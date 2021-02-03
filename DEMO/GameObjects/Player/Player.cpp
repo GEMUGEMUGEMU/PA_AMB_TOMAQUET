@@ -12,32 +12,31 @@
 */
 
 #include "Player.h"
-#include "PlayerAnimationManager.h"
-#include "PlayerState.h"
-#include "PlayerSIdle.h"
+#include "PAT_State.h"
 #include "PAT_MathUtils.h"
+#include "PlayerAnimationManager.h"
+#include "PlayerSIdle.h"
 
 Player::~Player()
 {
-	delete mAnimationManager;
 }
 
-void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
-{
-	mSpeed = speed;
-	mAnimationManager = new PlayerAnimationManager();
-	mAnimationManager->Init(render);
-
-	mPosition = PAT_Vector2D(x, y);
-
-	mState = new PlayerSIdle();
-}
+//void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
+//{
+//	mSpeed = speed;
+//	//mAnimationManager = new PlayerAnimationManager();
+//	mAnimationManager->Init(render);
+//
+//	mPosition = PAT_Vector2D(x, y);
+//
+//	mState = new PlayerSIdle();
+//}
 
 void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
 {
 	mSpeed = speed;
-	mAnimationManager = new PlayerAnimationManager();
-	mAnimationManager->Init(render);
+	//mAnimationManager = new PlayerAnimationManager();
+	mAnimationManager.Init(render);
 
 	mPosition = vector;
 
@@ -54,8 +53,6 @@ uint8_t Player::Move(float deltaTime)
 	{
 		mArrival = new PAT_Vector2D(( mDirection * mSpeed ) + mPosition);
 	}
-
-	//PAT_Vector2D arrival(mArrival.GetX(), mArrival.GetY());
 
 	//How much player can move in this delta time
 	PAT_Vector2D newPosition = (mDirection * mSpeed * secondsDeltaTime)
@@ -90,6 +87,12 @@ void Player::Update(float deltaTime)
 	mState->Update(deltaTime, this);
 }
 
+void Player::Draw(SDL_Renderer* render)
+{
+	mState->Draw(render, this);
+	//mAnimationManager->Draw(mPosition.GetX(),mPosition.GetY(), renderer);
+}
+
 void Player::SetDirection(PAT_Vector2D newDirection)
 {
 	if(mDirection.EqualsVectorZero())
@@ -98,15 +101,15 @@ void Player::SetDirection(PAT_Vector2D newDirection)
 	}
 }
 
-void Player::SetState(PlayerState* newState)
-{
-	mState = newState;
-}
+//void Player::SetState(PlayerState* newState)
+//{
+//	mState = newState;
+//}
 
-void Player::SetAnimation(PAT_Animation* newAnimation)
-{
-	mAnimationManager->SetAnimation(newAnimation);
-}
+//void Player::SetAnimation(PAT_Animation* newAnimation)
+//{
+//	mAnimationManager->SetAnimation(newAnimation);
+//}
 
 bool Player::DirectionIsNull()
 {

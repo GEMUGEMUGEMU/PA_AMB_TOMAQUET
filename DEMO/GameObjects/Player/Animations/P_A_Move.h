@@ -23,7 +23,6 @@ public:
 	P_A_Move();
 	~P_A_Move();
 
-
 protected:
 	void LoadImage(SDL_Renderer* render);
 	void LoadClips();

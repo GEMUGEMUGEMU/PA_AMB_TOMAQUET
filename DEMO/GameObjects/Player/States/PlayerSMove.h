@@ -25,7 +25,9 @@ public:
 	PlayerSMove();
 	~PlayerSMove();
 
-	void Update(float deltaTime, Player* player);
+//	void Update(float deltaTime, Player* player);
+	void Update(float deltaTime, Player * player) override;
+	void Draw(SDL_Renderer* renderer, Player* player) override;
 };
 
 #endif /* PlayerSMove_h */
