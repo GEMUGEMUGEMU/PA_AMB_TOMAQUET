@@ -40,13 +40,3 @@ void PlayerSMove::Update(float deltaTime, Player* player)
 }
 
 
-//void PlayerSMove::Update(float deltaTime, Player* player)
-//{
-//	//TODO put switch case and move animation->update
-//	player->mAnimationManager->Update();
-//	if(player->Move(deltaTime) == 1)
-//	{
-//		player->SetState(new PlayerSIdle);
-//		player->SetAnimation(new PlayerAIdle);
-//	}
-//}

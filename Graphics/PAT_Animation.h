@@ -29,9 +29,6 @@ public:
 	void UpdateFrame();
 	void ResetAnimation();
 
-
-//	PAT_Animation& operator=(const PAT_Animation& animation);
-
 protected:
 	virtual void LoadImage(SDL_Renderer* render) = 0;
 	virtual void LoadClips() = 0;

@@ -17,10 +17,6 @@
 
 PlayerState::PlayerState(){ }
 
-//void PlayerState::Update(float deltaTime, Player* player){ }
-
-//void PlayerState::Move(){ }
-
 void PlayerState::ChangeState(Player* player, PlayerState* newState)
 {
 	player->SetState(newState);

@@ -23,7 +23,6 @@ public:
 	~PauseText();
 
 	void Init(uint32_t x, uint32_t y, SDL_Renderer* render) override;
-//	void GraphicStaticObject::Draw(uint32_t x, uint32_t y, SDL_Renderer* renderer);
 };
 
 #endif /* PauseText_h */

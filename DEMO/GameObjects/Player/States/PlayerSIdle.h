@@ -23,7 +23,6 @@ public:
 	PlayerSIdle();
 	~PlayerSIdle();
 
-//	void Update(float deltaTime, Player* player);
 	void Update(float deltaTime, Player* player) override;
 	void Draw(SDL_Renderer* renderer, Player* player) override;
 };

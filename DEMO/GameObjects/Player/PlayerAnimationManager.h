@@ -15,9 +15,6 @@
 #define PlayerAnimationManager_h
 
 #include "PAT_AnimationManager.h"
-//#include "SDL2/SDL_image.h"
-//#include "PlayerAIdle.h"
-//#include "PAT_Animation.h"
 #include "P_A_Move.h"
 #include "PlayerAIdle.h"
 
@@ -32,7 +29,7 @@ public:
 	void Update(PAT_Animation& animation) override;
 	PlayerAIdle mAIdle;
 	P_A_Move mAMove;
-	//PAT_Animation mAPunch;
 
 };
+
 #endif /* PlayerAnimationManager_h */

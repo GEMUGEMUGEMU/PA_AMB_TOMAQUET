@@ -27,7 +27,6 @@ public:
 	Player(){}
 	~Player();
 
-//	void Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render);
 	void Init(float speed, PAT_Vector2D vector, SDL_Renderer * render);
 
 	uint8_t Move(float deltaTime);
@@ -36,9 +35,6 @@ public:
 	void Draw(SDL_Renderer* render);
 
 	void SetDirection(PAT_Vector2D newDirection);
-
-//	void SetState(PlayerState* newState);
-//	void SetAnimation(PAT_Animation* PlayerAIdle);
 
 	bool DirectionIsNull();
 

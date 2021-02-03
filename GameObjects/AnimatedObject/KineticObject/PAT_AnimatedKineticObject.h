@@ -26,21 +26,14 @@ public:
 	PAT_AnimatedKineticObject() : mPosition(0,0), mSpeed(0) {}
 	virtual ~PAT_AnimatedKineticObject(){}
 
-//	virtual void Init(float speed, uint32_t x, uint32_t y,
-//		SDL_Renderer * render) = 0;
-
 	virtual void Init(float speed, PAT_Vector2D vector,
 		SDL_Renderer * render) = 0;
 
 	virtual void Update(float deltaTime) = 0;
 	virtual uint8_t Move(float deltaTime) = 0;
 
-	//inline void SetDirection(PAT_Vector2D newDirection)
-	//	{mDirection = newDirection;}
-
 	virtual void Draw(SDL_Renderer* render) = 0;
 
-//	PAT_AnimationManager* mAnimationManager = nullptr;
 	PAT_Vector2D mPosition;
 
 protected:

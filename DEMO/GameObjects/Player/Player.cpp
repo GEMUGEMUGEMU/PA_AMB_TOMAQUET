@@ -21,21 +21,11 @@ Player::~Player()
 {
 }
 
-//void Player::Init(float speed, uint32_t x, uint32_t y, SDL_Renderer* render)
-//{
-//	mSpeed = speed;
-//	//mAnimationManager = new PlayerAnimationManager();
-//	mAnimationManager->Init(render);
-//
-//	mPosition = PAT_Vector2D(x, y);
-//
-//	mState = new PlayerSIdle();
-//}
 
 void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
 {
 	mSpeed = speed;
-	//mAnimationManager = new PlayerAnimationManager();
+
 	mAnimationManager.Init(render);
 
 	mPosition = vector;
@@ -90,7 +80,6 @@ void Player::Update(float deltaTime)
 void Player::Draw(SDL_Renderer* render)
 {
 	mState->Draw(render, this);
-	//mAnimationManager->Draw(mPosition.GetX(),mPosition.GetY(), renderer);
 }
 
 void Player::SetDirection(PAT_Vector2D newDirection)
@@ -100,16 +89,6 @@ void Player::SetDirection(PAT_Vector2D newDirection)
 		mDirection = newDirection;
 	}
 }
-
-//void Player::SetState(PlayerState* newState)
-//{
-//	mState = newState;
-//}
-
-//void Player::SetAnimation(PAT_Animation* newAnimation)
-//{
-//	mAnimationManager->SetAnimation(newAnimation);
-//}
 
 bool Player::DirectionIsNull()
 {

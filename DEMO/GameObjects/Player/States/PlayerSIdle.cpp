@@ -36,20 +36,7 @@ void PlayerSIdle::Update(float deltaTime, Player* player)
 	else
 	{//Set move state
 		player->SetState(new PlayerSMove);
-//		player->SetAnimation(new P_A_Move);
 	}
 }
 
 
-//void PlayerSIdle::Update(float deltaTime, Player* player)
-//{
-//	if(player->DirectionIsNull())
-//	{//Prepare animation
-//		player->mAnimationManager->Update();
-//	}
-//	else
-//	{//Set move state
-//		player->SetState(new PlayerSMove);
-//		player->SetAnimation(new P_A_Move);
-//	}
-//}

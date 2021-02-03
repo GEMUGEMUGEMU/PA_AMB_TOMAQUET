@@ -23,7 +23,6 @@ public:
 	P_S_Punch();
 	~P_S_Punch();
 
-//	void Update(float deltaTime, Player* player);
 	void Draw(SDL_Renderer* renderer, PAT_AnimatedKineticObject * player);
 	void Update(float deltaTime, PAT_AnimatedKineticObject * player);
 
