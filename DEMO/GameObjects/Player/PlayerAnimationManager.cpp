@@ -21,11 +21,9 @@ PlayerAnimationManager::~PlayerAnimationManager() { }
 void PlayerAnimationManager::Init(SDL_Renderer* render)
 {
 	mRender = render;
-	//SetAnimation(new PlayerAIdle);
 
 	mAIdle.Init(mRender);
 	mAMove.Init(mRender);
-	//mAPunch.Init(mRender);
 }
 
 

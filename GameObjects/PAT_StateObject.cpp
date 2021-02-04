@@ -18,6 +18,7 @@
 
 void PAT_StateObject::SetState(PAT_State * newState)
 {
+	delete(mState);
 	mState = newState;
 }
 

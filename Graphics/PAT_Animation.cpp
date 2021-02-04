@@ -48,7 +48,7 @@ void PAT_Animation::UpdateFrame()
 
 	mFrameCounter++;
 
-	if( mSpriteIndex > mFramesNumber)
+	if( mSpriteIndex >= mFramesNumber)
 	{//Then restart counters
 		ResetAnimation();
 		//TODO return 1 when animations is finished else 0
