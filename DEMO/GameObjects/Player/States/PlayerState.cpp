@@ -12,7 +12,7 @@
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "PlayerState.h"
+//#include "PlayerState.h"
 #include "Player.h"
 
 PlayerState::PlayerState(){ }

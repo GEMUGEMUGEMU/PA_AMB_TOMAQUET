@@ -15,6 +15,12 @@ COMPILER_FLAGS=-Wall -c -g
 #CC defines wich compiler will be used
 CC = g++
 LINKER_FLAGS = -lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
+# Y or N
+DEBUG=Y
+
+ifeq ($(DEBUG),Y)
+	COMPILER_FLAGS+= -DDEBUG_MODE
+endif
 
 # path to PA_AMB_TOMAQUET folder
 PAT_FOLDER=..

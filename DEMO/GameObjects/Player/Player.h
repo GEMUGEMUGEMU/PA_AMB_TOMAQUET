@@ -14,14 +14,13 @@
 #ifndef Player_h
 #define Player_h
 
-#include "PAT_StateObject.h"
 #include "PAT_AnimatedKineticObject.h"
 #include "PAT_Animation.h"
 #include "PAT_Vector2D.h"
 #include "PlayerState.h"
 #include "PlayerAnimationManager.h"
 
-class Player : public PAT_AnimatedKineticObject, public PAT_StateObject
+class Player : public PAT_AnimatedKineticObject
 {
 public:
 	Player(){}
@@ -33,7 +32,7 @@ public:
 
 	void Update(float deltaTime);
 	void Draw(SDL_Renderer* render);
-
+	void SetState(PlayerState * newState);
 	void SetDirection(PAT_Vector2D newDirection);
 
 	bool DirectionIsNull();

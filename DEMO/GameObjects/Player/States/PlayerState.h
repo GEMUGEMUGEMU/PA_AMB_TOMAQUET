@@ -15,12 +15,11 @@
 #ifndef PlayerState_h
 #define PlayerState_h
 
-#include "PAT_State.h"
 #include "SDL2/SDL.h"
 
 class Player;
 
-class PlayerState :  public PAT_State
+class PlayerState
 {
 public:
 	PlayerState();

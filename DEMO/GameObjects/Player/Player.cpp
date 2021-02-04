@@ -12,7 +12,6 @@
 */
 
 #include "Player.h"
-#include "PAT_State.h"
 #include "PAT_MathUtils.h"
 #include "PlayerAnimationManager.h"
 #include "PlayerSIdle.h"
@@ -93,4 +92,10 @@ void Player::SetDirection(PAT_Vector2D newDirection)
 bool Player::DirectionIsNull()
 {
 	return mDirection.EqualsVectorZero();
+}
+
+void Player::SetState(PlayerState * newState)
+{
+	delete(mState);
+	mState = newState;
 }
