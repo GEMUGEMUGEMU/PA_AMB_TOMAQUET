@@ -66,7 +66,11 @@ void DemoSceneController::ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
 				break;
 		}
 		movement.Normalize();
-		mPlayer->SetDirection(movement);
+
+		if(!movement.EqualsVectorZero())
+		{
+			mPlayer->SetDirection(movement);
+		}
 	}
 
 	nextScene = tempScene;

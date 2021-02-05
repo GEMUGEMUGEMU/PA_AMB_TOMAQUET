@@ -19,17 +19,21 @@ P_S_Punch::P_S_Punch(){ }
 
 P_S_Punch::~P_S_Punch(){ }
 
-void P_S_Punch::Draw(SDL_Renderer* renderer, PAT_AnimatedKineticObject * player)
+void P_S_Punch::Draw(SDL_Renderer* renderer, Player* player)
 {
-	player->mAnimationManager->Draw(renderer);
+	player->mAnimationManager.Draw(
+		player->mPosition.GetX(),
+		player->mPosition.GetY(),
+		player->mAnimationManager.mAMove);
 }
 
-void P_S_Punch::Update(float deltaTime, PAT_AnimatedKineticObject * player)
+void P_S_Punch::Update(float deltaTime, Player* player)
 {
-	if(player->mAnimationManager->Update())
+//TODO put switch case and move animation->update
+	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
+	if(player->Move(deltaTime) == 1)
 	{
 		player->SetState(new PlayerSIdle);
-		player->SetAnimation(new PlayerSIdle);
 	}
 }
 

@@ -35,7 +35,6 @@ void PlayerSMove::Update(float deltaTime, Player* player)
 	if(player->Move(deltaTime) == 1)
 	{
 		player->SetState(new PlayerSIdle);
-//		player->SetAnimation(new PlayerAIdle);
 	}
 }
 

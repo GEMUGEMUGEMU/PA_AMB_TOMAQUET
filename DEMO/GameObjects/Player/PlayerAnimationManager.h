@@ -16,6 +16,7 @@
 
 #include "PAT_AnimationManager.h"
 #include "P_A_Move.h"
+#include "P_A_Punch.h"
 #include "PlayerAIdle.h"
 
 class PlayerAnimationManager : public PAT_AnimationManager
@@ -27,9 +28,10 @@ public:
 	void Init(SDL_Renderer* render) override;
 	void Draw(int x, int y, PAT_Animation& animation) override;
 	void Update(PAT_Animation& animation) override;
+
 	PlayerAIdle mAIdle;
 	P_A_Move mAMove;
-
+	P_A_Punch mAPunch;
 };
 
 #endif /* PlayerAnimationManager_h */
