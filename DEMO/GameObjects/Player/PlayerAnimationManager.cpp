@@ -24,6 +24,7 @@ void PlayerAnimationManager::Init(SDL_Renderer* render)
 
 	mAIdle.Init(mRender);
 	mAMove.Init(mRender);
+	mAPunch.Init(mRender);
 }
 
 

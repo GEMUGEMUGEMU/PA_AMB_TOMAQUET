@@ -16,7 +16,7 @@
 
 #include "PAT_AnimationManager.h"
 #include "P_A_Move.h"
-//#include "P_A_Punch.h"
+#include "P_A_Punch.h"
 #include "PlayerAIdle.h"
 
 class PlayerAnimationManager : public PAT_AnimationManager
@@ -31,7 +31,7 @@ public:
 
 	PlayerAIdle mAIdle;
 	P_A_Move mAMove;
-//	P_A_Punch mAPunch;
+	P_A_Punch mAPunch;
 };
 
 #endif /* PlayerAnimationManager_h */
