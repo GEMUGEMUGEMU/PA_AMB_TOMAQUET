@@ -32,7 +32,7 @@ void PlayerSMove::Update(float deltaTime, Player* player)
 {
 	//TODO put switch case and move animation->update
 	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
-	if(player->Move(deltaTime) == 1)
+	if(player->Move(deltaTime) == 1 && !player->DirectionIsNull())
 	{
 		player->SetState(new PlayerSIdle);
 	}
