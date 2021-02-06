@@ -33,10 +33,6 @@ void PlayerSIdle::Update(float deltaTime, Player* player)
 	{//Prepare animation
 		player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
 	}
-//	else
-//	{//Set move state
-//		player->SetState(new PlayerSMove);
-//	}
 }
 
 
