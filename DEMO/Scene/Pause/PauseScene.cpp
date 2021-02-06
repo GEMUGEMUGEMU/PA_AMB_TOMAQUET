@@ -12,7 +12,7 @@
 */
 
 #include "PauseScene.h"
-#include "PauseController.h"
+//#include "PauseController.h"
 #include "PauseText.h"
 
 PauseScene::~PauseScene()
@@ -22,8 +22,8 @@ PauseScene::~PauseScene()
 
 void PauseScene::Init(SDL_Renderer * render)
 {
-	PauseController * controller = new PauseController();
-	mController = controller;
+	//PauseController * controller = new PauseController();
+	//mController = controller;
 
 	PauseText* pauseText = new PauseText();
 	pauseText->Init(10, 300, render);
@@ -51,4 +51,23 @@ void PauseScene::Draw(SDL_Renderer * render)
 	}
 }
 
-
+void PauseScene::Input(SDL_Event * event)
+{
+//	if( event->type == SDL_KEYDOWN)
+//	{
+//		PAT_Vector2D movement;
+//		switch (event->key.keysym.sym)
+//		{
+//			case SDLK_SPACE:
+//				InitAndPushScene(new PauseScene());
+//				break;
+//
+//			case SDLK_q:
+//				PopScene();
+//				break;
+//			default:
+//				mController.Input(event);
+//				break;
+//		}
+//	}
+}

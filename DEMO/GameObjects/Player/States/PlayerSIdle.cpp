@@ -40,3 +40,70 @@ void PlayerSIdle::Update(float deltaTime, Player* player)
 }
 
 
+void PlayerSIdle::Input(SDL_Event * event, Player* player)
+{
+	switch (event->type)
+	{
+		case SDL_KEYDOWN:
+		{
+			PAT_Vector2D movement;
+
+			switch (event->key.keysym.sym)
+			{
+				case SDLK_UP:
+				{
+					PAT_Vector2D up(0, -1);
+					movement = movement + up;
+				}
+				break;
+
+				case SDLK_DOWN:
+				{
+					PAT_Vector2D down(0, 1);
+					movement = movement + down;
+				}
+				break;
+			}
+
+			switch (event->key.keysym.sym)
+			{
+				case SDLK_LEFT:
+				{
+					PAT_Vector2D left(-1, 0);
+					movement = movement + left;
+				}
+				break;
+
+				case SDLK_RIGHT:
+				{
+					PAT_Vector2D right(1, 0);
+					movement = movement + right;
+				}
+				break;
+			}
+
+
+			if(!movement.EqualsVectorZero())
+			{
+				movement.Normalize();
+				player->SetDirection(movement);
+			}
+		}
+		break;
+
+//		case SDL_KEYUP:
+//			switch (event->key.keysym.sym)
+//			{
+//				case SDLK_UP:
+//				case SDLK_DOWN:
+//				case SDLK_LEFT:
+//				case SDLK_RIGHT:
+//					mPlayer->SetDirection(
+//							PAT_Vector2D::Vector2DZero);
+//					break;
+//			}
+		default:
+			break;
+	}
+
+}

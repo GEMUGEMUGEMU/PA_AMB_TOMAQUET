@@ -25,7 +25,7 @@ public:
 
 	void Update(float deltaTime, Player* player) override;
 	void Draw(SDL_Renderer* renderer, Player* player) override;
+	void Input(SDL_Event * event, Player* player) override;
 };
-
 
 #endif /* PlayerSIdle_h */

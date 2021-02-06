@@ -12,35 +12,35 @@
 */
 
 #include "DemoScene.h"
-#include "DemoSceneController.h"
+#include "PAT_Vector2D.h"
+#include "PAT_Controller.h"
+//#include "DemoSceneController.h"
 #include "Player.h"
 #include "Screen.h"
-#include "Controller.h"
 #include "DemoTitle.h"
-#include "PAT_Vector2D.h"
+#include "PauseScene.h"
 
 DemoScene::~DemoScene()
 {
 	delete mController;
 }
+
 void DemoScene::Init(SDL_Renderer* render)
 {
 	Player * player = new Player();
 	player->Init(32, PAT_Vector2D(200, 100), render);
 	mGraphicObjectsList.Add(player);
 	mUpdateObjectsList.Add(player);
+	mController= player;
 
-	DemoSceneController* sceneController = new DemoSceneController();
-	sceneController->SetPlayer(player);
+//	DemoSceneController* sceneController = new DemoSceneController();
+//	sceneController->SetPlayer(player);
+//	mController = sceneController;
 
 	DemoTitle* demoText = new DemoTitle();
 	demoText->Init(10,10, render);
 
 	mGraphicObjectsList.Add(demoText);
-
-
-	mController = sceneController;
-
 }
 
 void DemoScene::Update(float deltaTime)
@@ -74,3 +74,27 @@ void DemoScene::Draw(SDL_Renderer * render)
 	}
 }
 
+
+void DemoScene::Input(SDL_Event * event)
+{
+//	if( event->type == SDL_KEYDOWN)
+//	{
+//		PAT_Vector2D movement;
+//		switch (event->key.keysym.sym)
+//		{
+//			case SDLK_SPACE:
+//			{
+//				PauseScene* pauseScene = new PauseScene();
+//				InitAndPushScene(pauseScene);
+//			}
+//				break;
+//
+//			case SDLK_q:
+//				PopScene();
+//				break;
+//			default:
+				mController->Input(event);
+//				break;
+//		}
+//	}
+}

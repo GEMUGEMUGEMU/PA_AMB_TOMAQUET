@@ -15,7 +15,7 @@
 $(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GAME_OBJ) -I$(PAT_ANIM_OBJ) -I$(PAT_ANIM_KIN_OBJ) \
-	-I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
+	-I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_INPUT) \
 	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
 	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@
@@ -23,7 +23,7 @@ $(D_PLAYER): $(D_PLAYER_CPP) $(D_PLAYER_H)
 $(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GRAPHICS) -I$(PAT_ANIM_KIN_OBJ) -I$(PAT_MATH) \
-	-I$(PAT_GAME_OBJ) -I$(PAT_UTILS) \
+	-I$(PAT_GAME_OBJ) -I$(PAT_UTILS) -I$(PAT_INPUT) \
 	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
 	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@
@@ -31,7 +31,7 @@ $(D_PLAYER_S): $(D_PLAYER_S_CPP) $(D_PLAYER_S_H)
 $(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
-	-I$(PAT_ANIM_OBJ) -I$(PAT_ANIM_KIN_OBJ) \
+	-I$(PAT_ANIM_OBJ) -I$(PAT_ANIM_KIN_OBJ) -I$(PAT_INPUT) \
 	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
 	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@
@@ -39,7 +39,7 @@ $(D_PLAYER_S_MOVE): $(D_PLAYER_S_MOVE_CPP) $(D_PLAYER_S_MOVE_H)
 $(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GAME_OBJ) -I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-	-I$(PAT_ANIM_KIN_OBJ) \
+	-I$(PAT_ANIM_KIN_OBJ) -I$(PAT_INPUT) \
 	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
 	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@

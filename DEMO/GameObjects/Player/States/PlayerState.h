@@ -27,6 +27,7 @@ public:
 
 	virtual void Update(float deltaTime, Player* player) = 0;
 	virtual void Draw(SDL_Renderer* renderer, Player* player) = 0;
+	virtual void Input(SDL_Event * event, Player* player) = 0;
 
 protected:
 	void ChangeState(Player* player, PlayerState* newState);

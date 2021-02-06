@@ -17,13 +17,19 @@
 #include "SDL2/SDL.h"
 #include "PAT_Scene.h"
 #include "Stack.h"
-#include "Controller.h"
+//#include "Controller.h"
 
 class PAT_SceneManager
 {
 public:
 	PAT_SceneManager(){}
-	virtual ~PAT_SceneManager(){}
+	virtual ~PAT_SceneManager()
+	{
+		delete mActualScene;
+		mActualScene = nullptr;
+		SDL_DestroyRenderer(mRender);
+	}
+
 	virtual void Init(SDL_Renderer* renderer) = 0;
 
 	bool IsEmpty();
@@ -35,11 +41,11 @@ public:
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);
 	void Render();
-	void Input(SDL_Event * event);
+	virtual void Input(SDL_Event * event) = 0;
 
 protected:
 	PAT_Scene * mActualScene;
-	Controller * mController;
+	//	Controller * mController;
 	SDL_Renderer * mRender;
 	Stack<PAT_Scene> mStackScene;
 };

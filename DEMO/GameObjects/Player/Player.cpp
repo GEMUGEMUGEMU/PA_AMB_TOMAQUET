@@ -99,3 +99,9 @@ void Player::SetState(PlayerState * newState)
 	delete(mState);
 	mState = newState;
 }
+
+void Player::Input(SDL_Event * event)
+{
+
+	mState->Input(event, this);
+}

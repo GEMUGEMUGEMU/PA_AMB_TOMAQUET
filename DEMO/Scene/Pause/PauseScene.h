@@ -26,6 +26,7 @@ public:
 	void Init(SDL_Renderer * render) override;
 	void Update(float deltaTime) override;
 	void Draw(SDL_Renderer * render) override;
+	void Input(SDL_Event * event) override;
 
 private:
 	LinkedList<GraphicObject> mGraphicObjectsList;

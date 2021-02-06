@@ -22,7 +22,7 @@ public:
 	DemoSceneManager(){}
 	~DemoSceneManager();
 	void Init(SDL_Renderer* renderer) override;
-
+	void Input(SDL_Event * event) override;
 };
 
 #endif /* DemoSceneManager_h */

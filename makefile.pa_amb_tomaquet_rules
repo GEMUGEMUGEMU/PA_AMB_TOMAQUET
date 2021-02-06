@@ -30,18 +30,10 @@ $(PAT_SCENE_M_O): $(PAT_SCENE_M_CPP) $(PAT_SCENE_M_H)
 
 $(PAT_SCENE_O): $(PAT_SCENE_H)
 	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_INPUT) \
 	$(LINKER_FLAGS) -x c++ $< -o $@
 
 include $(PAT_FOLDER)/GameObjects/makefile.game_objects_rules
-#$(PAT_GRAPHIC_S_O): $(PAT_GRAPHIC_S_OBJ_CPP) $(PAT_GRAPHIC_S_OBJ_H)
-#	$(CC) $(COMPILER_FLAGS) \
-#	-I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-#	$(LINKER_FLAGS) $< -o $@
-#
-#$(PAT_ANIMATED_K_OBJ_O): $(PAT_ANIMATED_K_OBJ_H)
-#	$(CC) $(COMPILER_FLAGS) \
-#	-I$(PAT_MATH) -I$(PAT_GRAPHICS) -I$(PAT_UTILS) \
-#	$(LINKER_FLAGS) -x c++ $< -o $@
 
 $(PAT_ANIMATION_M_O): $(PAT_ANIMATION_M_CPP) $(PAT_ANIMATION_M_H)
 	$(CC) $(COMPILER_FLAGS) \
