@@ -57,9 +57,10 @@ uint8_t Player::Move(float deltaTime)
 	if(distanceToArrival <= distanceToTravel)
 	{
 		mPosition = mArrival;
-		mDirection = PAT_Vector2D::Vector2DZero;
-		delete(mArrival);
-		mArrival = nullptr;
+	//	mDirection = PAT_Vector2D::Vector2DZero;
+	//	delete(mArrival);
+	//	mArrival = nullptr;
+		ResetMove();
 
 		return 1;
 	}
@@ -69,6 +70,13 @@ uint8_t Player::Move(float deltaTime)
 
 		return 0;
 	}
+}
+
+void Player::ResetMove()
+{
+	mDirection = PAT_Vector2D::Vector2DZero;
+	delete(mArrival);
+	mArrival = nullptr;
 }
 
 void Player::Update(float deltaTime)

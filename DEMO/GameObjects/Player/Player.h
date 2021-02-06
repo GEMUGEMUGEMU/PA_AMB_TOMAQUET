@@ -36,6 +36,7 @@ public:
 
 	void SetState(PlayerState * newState);
 	void SetDirection(PAT_Vector2D newDirection);
+	void ResetMove();
 	bool DirectionIsNull();
 
 	PlayerAnimationManager mAnimationManager;

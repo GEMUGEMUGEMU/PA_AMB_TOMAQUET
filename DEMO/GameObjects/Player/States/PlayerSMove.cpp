@@ -32,10 +32,11 @@ void PlayerSMove::Update(float deltaTime, Player* player)
 {
 	//TODO put switch case and move animation->update
 	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
-	if(player->Move(deltaTime) == 1 && !player->DirectionIsNull())
-	{
-		player->SetState(new PlayerSIdle);
-	}
+	player->Move(deltaTime);
+//	if(player->Move(deltaTime) == 1 && !player->DirectionIsNull())
+//	{
+//		player->SetState(new PlayerSIdle);
+//	}
 }
 
 
@@ -97,8 +98,8 @@ void PlayerSMove::Input(SDL_Event * event, Player* player)
 				case SDLK_DOWN:
 				case SDLK_LEFT:
 				case SDLK_RIGHT:
-					player->SetDirection(
-							PAT_Vector2D::Vector2DZero);
+					player->ResetMove();
+					player->SetState(new PlayerSIdle);
 				break;
 			}
 		default:
