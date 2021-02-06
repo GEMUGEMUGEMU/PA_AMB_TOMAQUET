@@ -33,10 +33,10 @@ void PlayerSIdle::Update(float deltaTime, Player* player)
 	{//Prepare animation
 		player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
 	}
-	else
-	{//Set move state
-		player->SetState(new PlayerSMove);
-	}
+//	else
+//	{//Set move state
+//		player->SetState(new PlayerSMove);
+//	}
 }
 
 
@@ -87,23 +87,13 @@ void PlayerSIdle::Input(SDL_Event * event, Player* player)
 			{
 				movement.Normalize();
 				player->SetDirection(movement);
+				player->SetState(new PlayerSMove);
 			}
 		}
 		break;
 
-//		case SDL_KEYUP:
-//			switch (event->key.keysym.sym)
-//			{
-//				case SDLK_UP:
-//				case SDLK_DOWN:
-//				case SDLK_LEFT:
-//				case SDLK_RIGHT:
-//					mPlayer->SetDirection(
-//							PAT_Vector2D::Vector2DZero);
-//					break;
-//			}
 		default:
-			break;
+		break;
 	}
 
 }

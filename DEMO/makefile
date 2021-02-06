@@ -16,7 +16,7 @@ COMPILER_FLAGS=-Wall -c -g
 CC = g++
 LINKER_FLAGS = -lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
 # Y in order to add DEBUG MODE
-DEBUG=Y
+DEBUG=
 
 ifeq ($(DEBUG),Y)
 	COMPILER_FLAGS+= -DDEBUG_MODE
