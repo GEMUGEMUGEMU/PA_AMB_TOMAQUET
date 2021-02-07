@@ -25,7 +25,8 @@ public:
 
 	virtual void Init(SDL_Renderer* render) = 0;
 	virtual void Draw(int x, int y, PAT_Animation& animation) = 0;
-	virtual void Update(PAT_Animation& animation) = 0;
+	virtual PAT_STATE_ANIMATION Update(PAT_Animation& animation) = 0;
+	//virtual void Update(PAT_Animation& animation) = 0;
 
 protected:
 	SDL_Renderer* mRender;

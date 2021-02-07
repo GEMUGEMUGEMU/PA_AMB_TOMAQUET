@@ -44,6 +44,14 @@ $(D_PLAYER_S_IDLE): $(D_PLAYER_S_IDLE_CPP) $(D_PLAYER_S_IDLE_H)
 	-I./GameObjects/Player/Animations/ \
 	$(LINKER_FLAGS) $< -o $@
 
+$(D_PLAYER_S_PUNCH): $(D_PLAYER_S_PUNCH_CPP) $(D_PLAYER_S_PUNCH_H)
+	$(CC) $(COMPILER_FLAGS) \
+	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ)  -I$(PAT_MATH) \
+	-I$(PAT_ANIM_OBJ) -I$(PAT_ANIM_KIN_OBJ) -I$(PAT_INPUT) \
+	-I./GameObjects/Player/ -I./GameObjects/Player/States/ \
+	-I./GameObjects/Player/Animations/ \
+	$(LINKER_FLAGS) $< -o $@
+
 $(D_PLAYER_A_IDLE): $(D_PLAYER_A_IDLE_CPP) $(D_PLAYER_A_IDLE_H)
 	$(CC) $(COMPILER_FLAGS) \
 	-I$(PAT_GRAPHICS) -I$(PAT_UTILS) \

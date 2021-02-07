@@ -13,7 +13,8 @@
 */
 
 #include "P_S_Punch.h"
-#include "PAT_AnimatedKineticObject.h"
+#include "PlayerSIdle.h"
+//#include "PAT_AnimatedKineticObject.h"
 
 P_S_Punch::P_S_Punch(){ }
 
@@ -24,17 +25,19 @@ void P_S_Punch::Draw(SDL_Renderer* renderer, Player* player)
 	player->mAnimationManager.Draw(
 		player->mPosition.GetX(),
 		player->mPosition.GetY(),
-		player->mAnimationManager.mAMove);
+		player->mAnimationManager.mAPunch);
 }
 
 void P_S_Punch::Update(float deltaTime, Player* player)
 {
-//TODO put switch case and move animation->update
-	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
-	if(player->Move(deltaTime) == 1)
+	if(player->mAnimationManager.Update(player->mAnimationManager.mAPunch)
+		== 0)
 	{
 		player->SetState(new PlayerSIdle);
 	}
 }
 
 
+void P_S_Punch::Input(SDL_Event * event, Player* player)
+{
+}

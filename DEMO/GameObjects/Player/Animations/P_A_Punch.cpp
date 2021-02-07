@@ -48,22 +48,22 @@ void P_A_Punch::LoadClips()
 	mClipList.Add(clip1);
 
 	SDL_Rect* clip2 = new SDL_Rect;
-	clip2->x = 64;
-	clip2->y = 0;
+	clip2->x = 0;
+	clip2->y = 64;
 	clip2->w = 64;
 	clip2->h = 64;
 	mClipList.Add(clip2);
 
 	SDL_Rect* clip3 = new SDL_Rect;
-	clip3->x = 128;
-	clip3->y = 0;
+	clip3->x = 0;
+	clip3->y = 128;
 	clip3->w = 64;
 	clip3->h = 64;
 	mClipList.Add(clip3);
 
 	SDL_Rect* clip4 = new SDL_Rect;
-	clip4->x = 192;
-	clip4->y = 0;
+	clip4->x = 0;
+	clip4->y = 192;
 	clip4->w = 64;
 	clip4->h = 64;
 	mClipList.Add(clip4);

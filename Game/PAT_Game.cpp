@@ -72,8 +72,8 @@ void PAT_Game::Run()
 
 			secondsEnd = SDL_GetTicks();
 			deltaTime = secondsEnd - secondsStart;
-			secondsDelay = FRAME_PER_SECOND - (deltaTime);
 #ifndef DEBUG_MODE
+			secondsDelay = FRAME_PER_SECOND - (deltaTime);
 			SDL_Delay(secondsDelay);
 #endif
 		}

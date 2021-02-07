@@ -18,6 +18,12 @@
 #include "SDL2/SDL.h"
 #include "LinkedList.h"
 
+enum PAT_STATE_ANIMATION
+{
+	ANIMATION_FINISHED,
+	IN_ANIMATION
+};
+
 class PAT_Animation
 {
 public:
@@ -26,7 +32,8 @@ public:
 
 	void Init(SDL_Renderer* render);
 	void Draw(int x, int y, SDL_Renderer* renderer);
-	void UpdateFrame();
+	//void UpdateFrame();
+	PAT_STATE_ANIMATION UpdateFrame();
 	void ResetAnimation();
 
 protected:

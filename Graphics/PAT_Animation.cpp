@@ -42,7 +42,8 @@ void PAT_Animation::ResetAnimation()
 }
 
 //Update frame counter and preapre what will drawed
-void PAT_Animation::UpdateFrame()
+//void PAT_Animation::UpdateFrame()
+PAT_STATE_ANIMATION PAT_Animation::UpdateFrame()
 {
 	mSpriteIndex = mFrameCounter / FRAMES_PER_CLIP;
 
@@ -51,7 +52,8 @@ void PAT_Animation::UpdateFrame()
 	if( mSpriteIndex >= mFramesNumber)
 	{//Then restart counters
 		ResetAnimation();
-		//TODO return 1 when animations is finished else 0
+		return ANIMATION_FINISHED;
 	}
+		return IN_ANIMATION;
 }
 

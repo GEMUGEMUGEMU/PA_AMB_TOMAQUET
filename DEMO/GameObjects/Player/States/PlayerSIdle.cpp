@@ -14,7 +14,8 @@
 
 #include "PlayerSIdle.h"
 #include "PlayerSMove.h"
-#include "P_A_Move.h"
+//#include "P_A_Move.h"
+#include "P_S_Punch.h"
 
 PlayerSIdle::PlayerSIdle(){ }
 PlayerSIdle::~PlayerSIdle(){ }
@@ -29,10 +30,11 @@ void PlayerSIdle::Draw(SDL_Renderer* renderer, Player* player)
 
 void PlayerSIdle::Update(float deltaTime, Player* player)
 {
-	if(player->DirectionIsNull())
-	{//Prepare animation
-		player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
-	}
+//	if(player->DirectionIsNull())
+//	{
+	//Prepare animation for next draw phase
+	player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
+//	}
 }
 
 
@@ -46,6 +48,10 @@ void PlayerSIdle::Input(SDL_Event * event, Player* player)
 
 			switch (event->key.keysym.sym)
 			{
+				case SDLK_p:
+					player->SetState(new P_S_Punch);
+					return;
+
 				case SDLK_UP:
 				{
 					PAT_Vector2D up(0, -1);

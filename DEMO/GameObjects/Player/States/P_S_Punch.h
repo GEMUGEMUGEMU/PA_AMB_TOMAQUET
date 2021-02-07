@@ -16,6 +16,7 @@
 #define P_S_Punch_h
 
 #include "PlayerState.h"
+#include "Player.h"
 
 class P_S_Punch : public PlayerState
 {
@@ -23,9 +24,9 @@ public:
 	P_S_Punch();
 	~P_S_Punch();
 
-
 	void Update(float deltaTime, Player * player) override;
 	void Draw(SDL_Renderer* renderer, Player* player) override;
+	void Input(SDL_Event * event, Player* player) override;
 };
 
 #endif /* P_S_Punch_h */
