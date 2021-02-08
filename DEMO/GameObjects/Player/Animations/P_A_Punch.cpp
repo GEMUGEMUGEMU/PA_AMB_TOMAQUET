@@ -25,7 +25,7 @@ P_A_Punch::~P_A_Punch()
 
 void P_A_Punch::LoadImage(SDL_Renderer* render)
 {
-	const char* filePath= "./Sprites/First_Punch.bmp";
+	const char* filePath= "./Sprites/First_Punch.png";
 
 	SDL_Surface * tempSurface = IMG_Load(filePath);
 
