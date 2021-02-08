@@ -11,24 +11,34 @@
 #  Created By: Andrea Andreu Salvagnin
 #
 
-#PAT_FOLDER: path to PA_AMB_TOMAQUET folder
+#PAT_PATH: path to PA_AMB_TOMAQUET folder
 #FILE_OBJECTS_FOLDER: path to target file objects folder
 
-#Folders
-PAT_INPUT=$(PAT_FOLDER)/Input
-PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
-PAT_UTILS=$(PAT_FOLDER)/Utils
-PAT_MATH=$(PAT_FOLDER)/Math
+IGNORE_GIT_FOLDER:=-not -path "*/.git/*" -not -path "*/.git"
+IGNORE_TEST_FOLDER:=-not -path "*/Tests/*" -not -path "*/Tests"
+IGNORE_UTILS_TEST_FOLDER:=-not -path "*/Utils/Test"
+IGNORE_PAT_FOLDER=-not -path "$(PAT_PATH)"
+IGNORE_FOLDERS:=$(IGNORE_GIT_FOLDER) $(IGNORE_TEST_FOLDER) \
+	$(IGNORE_UTILS_TEST_FOLDER) $(IGNORE_PAT_FOLDER)
+PAT_FOLDERS=$(shell find $(PAT_PATH) -type d $(IGNORE_FOLDERS))
+# Collection of include pat folders
+I_PAT_FOLDERS=$(foreach this_folder,$(PAT_FOLDERS),-I$(this_folder))
 
-PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
-PAT_ANIM_OBJ=$(PAT_GAME_OBJ)/AnimatedObject
-PAT_ANIM_KIN_OBJ=$(PAT_ANIM_OBJ)/KineticObject
+#Folders
+#PAT_INPUT=$(PAT_FOLDER)/Input
+#PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
+#PAT_UTILS=$(PAT_FOLDER)/Utils
+#PAT_MATH=$(PAT_FOLDER)/Math
+#
+#PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
+#PAT_ANIM_OBJ=$(PAT_GAME_OBJ)/AnimatedObject
+#PAT_ANIM_KIN_OBJ=$(PAT_ANIM_OBJ)/KineticObject
 
 PAT_VECTOR2D_H=$(PAT_MATH)/PAT_Vector2D.h
 PAT_SCREEN_H=$(PAT_GRAPHICS)/Screen.h
-PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
-PAT_SCENE=$(PAT_FOLDER)/Scene
-PAT_GAME=$(PAT_FOLDER)/Game
+#PAT_GRAPHICS=$(PAT_FOLDER)/Graphics
+#PAT_SCENE=$(PAT_FOLDER)/Scene
+#PAT_GAME=$(PAT_FOLDER)/Game
 
 #Graphics folder
 PAT_SCREEN_CPP=$(PAT_GRAPHICS)/Screen.cpp
@@ -39,9 +49,6 @@ PAT_SPRITE_CPP=$(PAT_FOLDER)/Graphics/Sprite.cpp
 PAT_SPRITE=$(FILE_OBJECTS_FOLDER)/PAT_Sprite.o
 
 #Input folder
-#PAT_CONTROLLER_H=$(PAT_INPUT)/PAT_Controller.h
-#PAT_CONTROLLER_CPP=$(INPUT)/Controller.cpp
-#PAT_CONTROLLER=$(FILE_OBJECTS_FOLDER)/PAT_Controller.o
 
 #Utils folder
 PAT_LINKED_LIST_H=$(PAT_UTILS)/LinkedList.h
@@ -60,26 +67,21 @@ PAT_MATH_UTILS_CPP=$(PAT_MATH)/PAT_MathUtils.cpp
 PAT_MATH_UTILS_O=$(FILE_OBJECTS_FOLDER)/PAT_MathUtils.o
 
 #GameObjects folder
-include $(PAT_FOLDER)/GameObjects/makefile.game_objects_dictionary
-#PAT_GAME_OBJ=$(PAT_FOLDER)/GameObjects
-#PAT_GRAPHIC_OBJ_H=$(PAT_GAME_OBJ)/GraphicObject.h
-#PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
-#
-#PAT_GRAPHIC_S_OBJ_H=$(PAT_GAME_OBJ)/GraphicStaticObject.h
-#PAT_GRAPHIC_S_OBJ_CPP=$(PAT_GAME_OBJ)/GraphicStaticObject.cpp
-#PAT_GRAPHIC_S_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
-#
-#PAT_ANIMATED_S_OBJ_H=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.h
-#PAT_ANIMATED_S_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.cpp
-#PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.o
-#
-#PAT_A_OBJ_STATE_H=$(PAT_GAME_OBJ)/AnimatedObject/PAT_AnimObjState.h
-#PAT_A_OBJ_STATE_CPP=$(PAT_GAME_OBJ)/AnimatedObject/PAT_AnimObjState.cpp
-#PAT_A_OBJ_STATE_O=$(FILE_OBJECTS_FOLDER)/PAT_A_O_State.o
-#
-#PAT_ANIMATED_K_OBJ_H=$(PAT_GAME_OBJ)/AnimatedObject/KineticObject/PAT_AnimatedKineticObject.h
-##PAT_ANIMATED_K_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedObject/KineticObject/PAT_AnimatedKineticObject.cpp
-#PAT_ANIMATED_K_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.o
+#include $(PAT_FOLDER)/GameObjects/makefile.game_objects_dictionary
+
+PAT_GRAPHIC_OBJ_H=$(PAT_GAME_OBJ)/GraphicObject.h
+PAT_GRAPHIC_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicO.o
+
+PAT_GRAPHIC_S_OBJ_H=$(PAT_GAME_OBJ)/GraphicStaticObject.h
+PAT_GRAPHIC_S_OBJ_CPP=$(PAT_GAME_OBJ)/GraphicStaticObject.cpp
+PAT_GRAPHIC_S_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_GraphicSO.o
+
+PAT_ANIMATED_S_OBJ_H=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.h
+PAT_ANIMATED_S_OBJ_CPP=$(PAT_GAME_OBJ)/AnimatedStaticObjestc.cpp
+PAT_ANIMATED_S_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedSO.o
+
+PAT_ANIMATED_K_OBJ_H=$(PAT_ANIM_KIN_OBJ)/PAT_AnimatedKineticObject.h
+PAT_ANIMATED_K_OBJ_O=$(FILE_OBJECTS_FOLDER)/PAT_AnimatedKO.o
 
 #Graphic Folder
 PAT_SPRITE_H=$(PAT_GRAPHICS)/Sprite.h
