@@ -7,7 +7,7 @@
 #    ~GEAR~GEAR~
 #
 #  File Name: makefile
-#  Purpose:
+#  Purpose: PA_AMB_TOMAQUET makefile
 #  Creation Date: 08-02-21
 #  Created By: Andrea Andreu Salvagnin
 #
@@ -45,6 +45,7 @@ SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
 CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
+RM:=rm
 AR:=ar
 AR_FLAGS:=-crs
 RANLIB:=ranlib
@@ -89,7 +90,8 @@ $(OBJ_SUBDIRS):
 
 .PHONY: clean info
 clean:
-
+	$(RM) -r "./$(OBJ)"
+	$(RM) "./$(TARGET)"
 info:
 #	$(info $(SRC_SUBDIRS))
 #	$(info $(OBJ_SUBDIRS))
