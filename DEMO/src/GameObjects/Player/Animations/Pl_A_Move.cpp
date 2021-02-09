@@ -24,7 +24,7 @@ Pl_A_Move::~Pl_A_Move()
 
 void Pl_A_Move::LoadImage(SDL_Renderer* render)
 {
-	const char* filePath= "./Sprites/Prehistoric.png";
+	const char* filePath= "./src/Sprites/Prehistoric.png";
 
 	SDL_Surface * tempSurface = IMG_Load(filePath);
 

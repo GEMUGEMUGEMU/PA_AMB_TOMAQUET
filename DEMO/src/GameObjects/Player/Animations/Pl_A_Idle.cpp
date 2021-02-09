@@ -24,7 +24,7 @@ Pl_A_Idle::~Pl_A_Idle()
 
 void Pl_A_Idle::LoadImage(SDL_Renderer* render)
 {
-	const char* filePath= "./Sprites/Prehistoric0.png";
+	const char* filePath= "./src/Sprites/Prehistoric0.png";
 
 	SDL_Surface * tempSurface = IMG_Load(filePath);
 
