@@ -62,14 +62,14 @@ OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
 INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 
 
-DEBUG?=0
+DEBUG?=1
 ifeq ($(DEBUG),1)
-	COMPILER_FLAGS+= -DDEBUG_MODE -g
+	CCFLAGS+= -DDEBUG_MODE -g
 endif
 
-RELASE?=1
+RELASE?=0
 ifeq ($(RELASE),1)
-	COMPILER_FLAGS+= -O3
+	CCLAGS+= -O3
 endif
 
 

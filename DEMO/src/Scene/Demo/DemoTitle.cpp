@@ -31,7 +31,7 @@ void DemoTitle::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 	SDL_Color textColor = { 225, 225, 0 };
 	TTF_Font *font;
 
-	font = TTF_OpenFont( "./Fonts/YourQuotaRegular-z2zl.ttf", 40 );
+	font = TTF_OpenFont( "./src/Fonts/YourQuotaRegular-z2zl.ttf", 40 );
 
 	SDL_Surface * tempSurface = TTF_RenderText_Solid( font, "NISHIKIGOI DEMO", textColor );
 

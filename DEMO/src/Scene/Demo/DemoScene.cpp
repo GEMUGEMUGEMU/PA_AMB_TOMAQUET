@@ -14,7 +14,6 @@
 #include "DemoScene.hpp"
 #include "PAT_Vector2D.hpp"
 #include "PAT_Controller.hpp"
-//#include "DemoSceneController.hpp"
 #include "Player.hpp"
 #include "DemoTitle.hpp"
 #include "PauseScene.hpp"
@@ -30,11 +29,7 @@ void DemoScene::Init(SDL_Renderer* render)
 	player->Init(32, PAT_Vector2D(200, 100), render);
 	mGraphicObjectsList.Add(player);
 	mUpdateObjectsList.Add(player);
-	mController= player;
-
-//	DemoSceneController* sceneController = new DemoSceneController();
-//	sceneController->SetPlayer(player);
-//	mController = sceneController;
+	mController = player;
 
 	DemoTitle* demoText = new DemoTitle();
 	demoText->Init(10,10, render);
