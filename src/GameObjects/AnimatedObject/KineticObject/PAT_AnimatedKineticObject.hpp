@@ -14,7 +14,7 @@
 #ifndef PAT_AnimatedKineticObject_hpp
 #define PAT_AnimatedKineticObject_hpp
 
-#include "SDL2/SDL.hpp"
+#include "SDL2/SDL.h"
 #include "PAT_Vector2D.hpp"
 #include "PAT_AnimationManager.hpp"
 #include "PAT_GraphicObject.hpp"
@@ -23,7 +23,7 @@
 class PAT_AnimatedKineticObject : public PAT_GraphicObject, public PAT_UpdateObject
 {
 public:
-	PAT_AnimatedKineticObject() : mPosition(0,0), mSpeed(0) {}
+	PAT_AnimatedKineticObject();
 	virtual ~PAT_AnimatedKineticObject(){}
 
 	virtual void Init(float speed, PAT_Vector2D vector,

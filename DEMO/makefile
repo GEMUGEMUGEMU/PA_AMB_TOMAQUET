@@ -4,130 +4,107 @@
 #     )_))_))_)
 #     _!__!__!_
 #   ~~\t  Gemu/~~
+#    ~GEAR~GEAR~
 #
 #  File Name: makefile
-#  Purpose: Organize demo makefile
-#  Creation Date: 24-01-21
+#  Purpose: PA_AMB_TOMAQUET makefile
+#  Creation Date: 08-02-21
 #  Created By: Andrea Andreu Salvagnin
 #
 
-COMPILER_FLAGS=-Wall -c -g
-#CC defines wich compiler will be used
-CC = g++
-LINKER_FLAGS = -lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-# Y in order to add DEBUG MODE
-DEBUG=
+# Macro COMPILE
+# Generate rules
+# $(1) Compiler
+# $(2) Object file to generate
+# $(3) Source file
+# $(4) Additional dependencies
+# $(5) Compiler flags
+define COMPILE
+$(2): $(3) $(4)
+	$(1) -c -o $(2) $(3) $(5)
+endef
 
-ifeq ($(DEBUG),Y)
-	COMPILER_FLAGS+= -DDEBUG_MODE
+# Macro CPP2O
+# From a .cpp get its .o
+# $(1) Source file
+define CPP2O
+$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1)))
+endef
+
+# Macro CPP2HPP
+# From a .cpp get its .o
+# $(1) Source file
+# $(2) All HPP
+define CPP2HPP
+#$(patsubst %.cpp,%.hpp,$(1))
+
+$(findstring $(patsubst %.cpp,%.hpp,$(1)),$(2))
+endef
+
+
+TARGET:=NISHIKIGOI_DEMO.out
+CC:=g++
+CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
+LIBS:=
+MKDIR:=mkdir -p
+RM:=rm
+SRC:=src
+OBJ:=obj
+
+SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
+CCFLAGS+= $(SDL2_FLAGS)
+
+ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
+ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
+ALL_OBJ:=$(ALL_CPP_OBJ)
+ALL_HS:=$(shell find $(SRC)/ -type f -iname *.h)
+ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
+SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
+OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
+INCLUDE_SOURCE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
+#INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
+
+
+# PA_AMB_TOMAQUET
+PAT_PATH:=..
+include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
+
+INCLUDE_FOLDERS:=$(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
+#CCFLAGS+= $(PAT_LIB)
+
+
+DEBUG?=0
+ifeq ($(DEBUG),1)
+	COMPILER_FLAGS+= -DDEBUG_MODE -g
 endif
 
-# path to PA_AMB_TOMAQUET folder
-PAT_FOLDER=..
-# path to target file objects folder
-FILE_OBJECTS_FOLDER=./FileObjects
-
-include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_dictionary
-
-MAIN_CPP=Main/Main.cpp
-MAIN=$(FILE_OBJECTS_FOLDER)/Main.o
-
-DEMO_H=Game/Demo.h
-DEMO_CPP=Game/Demo.cpp
-DEMO=$(FILE_OBJECTS_FOLDER)/Demo.o
-
-D_SCENE_M_CPP=./Scene/DemoSceneManager.cpp
-D_SCENE_M_H=./Scene/DemoSceneManager.h
-D_SCENE_M=$(FILE_OBJECTS_FOLDER)/DemoSceneManger.o
-
-D_SCENE_CPP=./Scene/Demo/DemoScene.cpp
-D_SCENE_H=./Scene/Demo/DemoScene.h
-D_SCENE=$(FILE_OBJECTS_FOLDER)/DemoScene.o
-
-D_TITLE_CPP=./Scene/Demo/DemoTitle.cpp
-D_TITLE_H=./Scene/Demo/DemoTitle.h
-D_TITLE=$(FILE_OBJECTS_FOLDER)/DemoTitle.o
-
-D_SCENE_P_CPP=./Scene/Pause/PauseScene.cpp
-D_SCENE_P_H=./Scene/Pause/PauseScene.h
-D_SCENE_P=$(FILE_OBJECTS_FOLDER)/PauseScene.o
-
-D_PAUSE_TEXT_CPP=./Scene/Pause/PauseText.cpp
-D_PAUSE_TEXT_H=./Scene/Pause/PauseText.h
-D_PAUSE_TEXT=$(FILE_OBJECTS_FOLDER)/PauseText.o
-
-include ./GameObjects/Player/makefile.player_dictionary
-
-PAT_OBJECTS=$(PAT_GAME_O) $(PAT_SCREEN_O) $(PAT_SCENE_M_O) $(PAT_SCENE_O) \
-	$(PAT_VECTOR2D_O) $(PAT_A_OBJ_STATE_O) $(PAT_GRAPHIC_S_OBJ_O) \
-	$(PAT_GRAPHIC_S_O) $(PAT_MATH_UTILS_O) $(PAT_ANIMATION_O) \
-	$(PAT_STATE_OBJ_O)
-DEMO_OBJECTS=$(MAIN) $(DEMO) $(D_SCENE_M) $(D_SCENE) $(D_PLAYER) \
-	$(D_SCENE_P) $(D_PAUSE_TEXT) $(D_TITLE) $(D_PLAYER_S) \
-	$(D_PLAYER_S_MOVE) $(D_PLAYER_S_IDLE) $(D_PLAYER_A_IDLE) \
-	$(D_PLAYER_A_M) $(D_PLAYER_A_MOVE) $(D_PLAYER_A_PUNCH) \
-	$(D_PLAYER_S_PUNCH)
-
-TARGET=NISHIKIGOI_DEMO.out
-#$@ is a macro that refers to the target
-#$^ is a macro that name of all dependencies separated by space
-$(TARGET): $(PAT_OBJECTS) $(DEMO_OBJECTS)
-	$(CC) -g \
-	$(PAT_OBJECTS) \
-	$(DEMO_OBJECTS) \
-	$(LINKER_FLAGS) -o $@
-
-$(MAIN): $(MAIN_CPP)
-	$(CC) $(COMPILER_FLAGS) \
-	-I./Game -I$(PAT_GAME) -I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_INPUT) \
-	-I$(PAT_GRAPHICS) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(DEMO): $(DEMO_CPP) $(DEMO_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GAME) -I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_INPUT) \
-	-I$(PAT_GRAPHICS) -I./Scene \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_SCENE_M): $(D_SCENE_M_CPP) $(D_SCENE_M_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_INPUT) -I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) \
-	-I./Scene/Demo -I./Scene/Pause \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_SCENE): $(D_SCENE_CPP) $(D_SCENE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) \
-	-I$(PAT_ANIM_KIN_OBJ) -I$(PAT_ANIM_OBJ) -I$(PAT_INPUT) \
-	-I$(PAT_GRAPHICS) -I$(PAT_MATH) \
-	-I./Input -I./GameObjects/Player/ \
-	-I./GameObjects/Player/States/ -I./GameObjects/Player/Animations/ \
-	-I./Scene/Pause/ \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_SCENE_P): $(D_SCENE_P_CPP) $(D_SCENE_P_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_SCENE) -I$(PAT_UTILS) -I$(PAT_GAME_OBJ) -I$(PAT_INPUT) \
-	-I./Input/ \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_PAUSE_TEXT): $(D_PAUSE_TEXT_CPP) $(D_PAUSE_TEXT_CPP)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_INPUT) -I$(PAT_GAME_OBJ) \
-	$(LINKER_FLAGS) $< -o $@
-
-$(D_TITLE): $(D_TITLE_CPP) $(D_TITLE_H)
-	$(CC) $(COMPILER_FLAGS) \
-	-I$(PAT_GAME_OBJ) \
-	$(LINKER_FLAGS) $< -o $@
+RELASE?=0
+ifeq ($(RELASE),1)
+	COMPILER_FLAGS+= -O3
+endif
 
 
-include ./GameObjects/Player/makefile.player_rules
+$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
+	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+#	$(CC) -o $(TARGET) $(ALL_OBJ) $(LIBS)
 
-include $(PAT_FOLDER)/makefile.pa_amb_tomaquet_rules
 
-.PHONY: clean
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
+
+$(OBJ_SUBDIRS):
+	$(MKDIR) $(OBJ_SUBDIRS)
+
+.PHONY: clean info
 clean:
-	-rm $(FILE_OBJECTS_FOLDER)/*.o
-	-rm $(FILE_OBJECTS_FOLDER)/*.gch
-	-rm $(TARGET)
+	- $(RM) -r "./$(OBJ)"
+	- $(RM) "./$(TARGET)"
+info:
+#	$(info $(SRC_SUBDIRS))
+#	$(info $(OBJ_SUBDIRS))
+	$(info $(call CPP2HPP src/Main/Main.cpp))
+#	$(info $(ALL_CPPS))
+#	$(info $(ALL_HPPS))
+#	$(info $(PAT_FOLDERS))
+#	$(info $(INCLUDE_SOURCE_FOLDERS))
+#	$(info $(INCLUDE_FOLDERS))
+

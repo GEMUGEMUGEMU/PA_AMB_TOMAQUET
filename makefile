@@ -39,11 +39,10 @@ $(patsubst %.cpp,%.hpp,$(1))
 endef
 
 
-TARGET:=PaAmbTomaquet.a
+TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
 SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
 CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
-LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -55,6 +54,7 @@ OBJ:=obj
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
 ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
 ALL_OBJ:=$(ALL_CPP_OBJ)
+#ALL_OBJ=$(shell find $(OBJ)/ -type f -iname *.o)
 ALL_HS:=$(shell find $(SRC)/ -type f -iname *.h)
 ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
 SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
@@ -67,7 +67,7 @@ ifeq ($(DEBUG),1)
 	COMPILER_FLAGS+= -DDEBUG_MODE -g
 endif
 
-RELASE?=0
+RELASE?=1
 ifeq ($(RELASE),1)
 	COMPILER_FLAGS+= -O3
 endif
@@ -76,15 +76,11 @@ endif
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
 	$(RANLIB) $(TARGET)
-#$(CC) -o $(TARGET) $(ALL_OBJ) $(LIBS)
 
-
+# Generate and evaluate rules
 $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
-#%.o: %.cpp
-#	$(CC) $(patsubst $(SRC)%,$(OBJ)%,$@) -c $^ $(CCFLAGS))
 
-
-
+# Generate obj folder tree
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
@@ -96,7 +92,7 @@ info:
 #	$(info $(SRC_SUBDIRS))
 #	$(info $(OBJ_SUBDIRS))
 #	$(info $(ALL_CPPS))
+	$(info $(ALL_OBJ))
 #	$(info $(ALL_HPPS))
-	$(info $(INCLUDE_FOLDERS))
-#remeber to define rm command and mind the initial tab
+#	$(info $(INCLUDE_FOLDERS))
 

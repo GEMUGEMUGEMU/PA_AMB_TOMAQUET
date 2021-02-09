@@ -1,0 +1,28 @@
+/*
+*        ~_
+*     ~_ )_)~_
+*     )_))_))_)
+*     _!__!__!_
+*   ~~\t  Gemu/~~
+*
+*  File Name: PauseController.hpp
+*  Purpose:
+*  Creation Date: 07-12-20
+*  Created By: Andrea Andreu Salvagnin
+*/
+
+#ifndef PauseController_hpp
+#define PauseController_hpp
+
+#include "Controller.hpp"
+
+class PauseController : public Controller
+{
+public:
+	PauseController(){}
+	~PauseController(){}
+	void  ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
+		bool * haveToPop) override;
+};
+
+#endif /* PauseController_hpp */
