@@ -44,13 +44,6 @@ void PAT_SceneManager::InitAndPushScene(PAT_Scene * newScene)
 	PushScene(newScene);
 }
 
-void PAT_SceneManager::PopAndPushScene(PAT_Scene * newScene)
-{
-	PopScene();
-	newScene->Init(mRender);
-	PushScene(newScene);
-}
-
 void PAT_SceneManager::Update(double deltaTime)
 {
 	mActualScene->Update(deltaTime);

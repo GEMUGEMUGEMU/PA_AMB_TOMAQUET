@@ -29,11 +29,7 @@ void Pl_S_Idle::Draw(SDL_Renderer* renderer, Player* player)
 
 void Pl_S_Idle::Update(float deltaTime, Player* player)
 {
-//	if(player->DirectionIsNull())
-//	{
-	//Prepare animation for next draw phase
 	player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
-//	}
 }
 
 

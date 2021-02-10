@@ -16,11 +16,5 @@ public:
 	PAT_Controller(){ }
 	virtual ~PAT_Controller(){ }
 	virtual void Input(SDL_Event * event) = 0;
-/*
-	envent: event to manage
-	nextScene: if event implies a new scene, it will initialize this ponter
-*/
-//	virtual void ManageInput(SDL_Event * event, PAT_Scene *& nextScene,
-//		bool * haveToPop) = 0;
 };
 #endif /* PAT_Controller_hpp */

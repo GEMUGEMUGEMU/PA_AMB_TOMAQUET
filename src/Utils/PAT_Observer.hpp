@@ -24,7 +24,6 @@ public:
 	virtual ~PAT_Observer(){ }
 	//Not pure virtal in order to be collectable in PAT_Subject list
 	virtual void Update(PAT_Subject* changedSubject){ };
-//protected:
 };
 
 #endif /* PAT_Observer_hpp */

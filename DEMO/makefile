@@ -7,7 +7,7 @@
 #    ~GEAR~GEAR~
 #
 #  File Name: makefile
-#  Purpose: PA_AMB_TOMAQUET makefile
+#  Purpose: DEMO makefile
 #  Creation Date: 08-02-21
 #  Created By: Andrea Andreu Salvagnin
 #
@@ -62,7 +62,6 @@ ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
 SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
 OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
 INCLUDE_SOURCE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
-#INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 
 
 # PA_AMB_TOMAQUET
@@ -70,7 +69,6 @@ PAT_PATH:=..
 include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
 
 INCLUDE_FOLDERS:=$(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
-#CCFLAGS+= $(PAT_LIB)
 
 
 DEBUG?=1
@@ -86,7 +84,6 @@ endif
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
-#	$(CC) -o $(TARGET) $(ALL_OBJ) $(LIBS)
 
 
 $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
@@ -102,12 +99,5 @@ clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
-#	$(info $(SRC_SUBDIRS))
-#	$(info $(OBJ_SUBDIRS))
-	$(info $(call CPP2HPP src/Main/Main.cpp))
-#	$(info $(ALL_CPPS))
-#	$(info $(ALL_HPPS))
-#	$(info $(PAT_FOLDERS))
-#	$(info $(INCLUDE_SOURCE_FOLDERS))
-#	$(info $(INCLUDE_FOLDERS))
+	$(info $(ALL_HPPS))
 

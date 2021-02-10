@@ -30,7 +30,6 @@ void Pl_S_Move::Draw(SDL_Renderer* renderer, Player* player)
 
 void Pl_S_Move::Update(float deltaTime, Player* player)
 {
-	//TODO put switch case and move animation->update
 	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
 	player->Move(deltaTime);
 }

@@ -54,7 +54,6 @@ OBJ:=obj
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
 ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
 ALL_OBJ:=$(ALL_CPP_OBJ)
-#ALL_OBJ=$(shell find $(OBJ)/ -type f -iname *.o)
 ALL_HS:=$(shell find $(SRC)/ -type f -iname *.h)
 ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
 SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)

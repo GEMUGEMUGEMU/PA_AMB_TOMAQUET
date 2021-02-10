@@ -25,6 +25,4 @@ bool FloatIsEquals(float n1, float n2);
 //Pythagorean theorem
 float GetHypotenuse(float leg1, float leg2);
 
-//float TwoPointsDistance(PAT_Vector2D v1, PAT_Vector2D v2);
-
 #endif /* PAT_MAthUtils_hpp */

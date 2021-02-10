@@ -5,5 +5,3 @@
 *.swo
 *.gch
 debug
-*/Test/*
-FileObjects/*

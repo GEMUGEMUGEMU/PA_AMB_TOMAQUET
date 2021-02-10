@@ -120,7 +120,7 @@ void PAT_Game::Update(double deltaTime)
 
 void PAT_Game::Render()
 {
-	//TODO is ok to migrate RenderClear and Render to SceneManager
+	//TODO is ok to migrate RenderClear and Render to SceneManager?
 	mScreen.RenderClear();
 	mSceneManager->Draw(mScreen.GetRenderer());
 	mScreen.Render();
