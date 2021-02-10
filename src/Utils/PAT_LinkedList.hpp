@@ -32,8 +32,9 @@ public:
 
 	void Add(T* newValue);
 	T* Get(uint32_t index);
-
+//TODO: rename it to RemoveIndex
 	void Delete(uint32_t index);
+	void Remove(T toRemove);
 
 };
 
@@ -148,4 +149,45 @@ void PAT_LinkedList<T>::Delete(uint32_t index)
 		counter = counter + 1;
 	}
 }
+
+template <class T>
+void PAT_LinkedList<T>::Remove(T toRemove)
+{
+	Node *targetNode = mHead;
+	Node *previousNode = nullptr;
+
+	while (targetNode != nullptr)
+	{
+		if(targetNode->*mData==toRemove)
+		{
+			if(targetNode == mHead)
+			{
+				//If there was only one node
+				if(mHead->next == nullptr)
+				{
+					delete mHead;
+					mHead = nullptr;
+					targetNode = nullptr;
+					break;
+				}
+				else
+				{
+					mHead=targetNode->next;
+					delete targetNode;
+					targetNode = nullptr;
+					break;
+				}
+			}
+			else
+			{
+				previousNode->next = targetNode->next;
+				delete targetNode;
+				targetNode = nullptr;
+				break;
+			}
+		}
+	}
+
+}
+
 #endif /* PAT_LinkedList_hpp */
