@@ -24,7 +24,7 @@ public:
 	~SceneManager();
 	void Init(SDL_Renderer* renderer) override;
 	void Input(SDL_Event * event) override;
-//	void Update(PAT_Subject* changedSubject) override;
+	void Update(PAT_Subject* changedSubject) override;
 };
 
 #endif /* SceneManager_hpp */

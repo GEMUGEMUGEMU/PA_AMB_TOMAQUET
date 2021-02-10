@@ -18,6 +18,7 @@
 #include "PAT_LinkedList.hpp"
 #include "PAT_GraphicObject.hpp"
 
+
 class PauseScene : public PAT_Scene
 {
 public:

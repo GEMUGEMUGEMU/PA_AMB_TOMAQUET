@@ -77,18 +77,13 @@ void InGameScene::Input(SDL_Event * event)
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_SPACE:
-//			{
-//				PauseScene* pauseScene = new PauseScene();
-//				InitAndPushScene(pauseScene);
 				mState = PUSH_NEW_SCENE;
 				Notify();// to scene manager
-//			}
 				break;
 
 			case SDLK_q:
 				mState = POP;
 				Notify();// to scene manager
-//				PopScene();
 				break;
 			default:
       				mController->Input(event);

@@ -25,7 +25,8 @@ public:
 	PAT_SceneManager(){}
 	virtual ~PAT_SceneManager()
 	{
-		delete mActualScene;
+		//mActualScene is pointer of the scen on top of the stack
+		//so it's stack who's going to delete its scenes
 		mActualScene = nullptr;
 		SDL_DestroyRenderer(mRender);
 	}
@@ -43,6 +44,7 @@ public:
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);
 	void Render();
+	void PopOrPushScene();
 	virtual void Input(SDL_Event * event) = 0;
 
 protected:

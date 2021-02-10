@@ -54,9 +54,9 @@ void PauseScene::Input(SDL_Event * event)
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_SPACE:
-				//mState = POP;
-				//Notify();// to scene manager
-				//break;
+				mState = POP;
+				Notify();// to scene manager
+				break;
 			case SDLK_q:
 				mState = POP;
 				Notify();// to scene manager

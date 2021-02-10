@@ -18,7 +18,6 @@
 #include "PAT_LinkedList.hpp"
 #include "PAT_GraphicObject.hpp"
 #include "PAT_UpdateObject.hpp"
-#include "PAT_Subject.hpp"
 
 
 class InGameScene : public PAT_Scene

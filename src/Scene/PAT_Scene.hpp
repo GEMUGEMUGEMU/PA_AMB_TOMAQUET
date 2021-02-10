@@ -39,10 +39,10 @@ public:
 	virtual void Draw(SDL_Renderer * renderer) = 0;
 	virtual void Input(SDL_Event * event) = 0;
 	virtual PAT_Scene* GetSceneToPush() = 0;
+	PAT_SCENE_STATE mState = CONTINUE;
 
 protected:
 	PAT_Controller* mController;
-	PAT_SCENE_STATE mState;
 };
 
 #endif /* PAT_Scene_hpp */

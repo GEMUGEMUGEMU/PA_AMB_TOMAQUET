@@ -21,7 +21,7 @@
 class PAT_Subject
 {
 public:
-	virtual ~PAT_Subject(){}
+	virtual ~PAT_Subject(){ }
 	void Attach(PAT_Observer* observer);
 	void Detach(PAT_Observer* observer);
 	void Notify();
