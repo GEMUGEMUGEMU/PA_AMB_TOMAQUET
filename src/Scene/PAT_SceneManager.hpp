@@ -17,7 +17,6 @@
 #include "SDL2/SDL.h"
 #include "PAT_Scene.hpp"
 #include "PAT_Stack.hpp"
-//#include "Controller.hpp"
 
 class PAT_SceneManager
 {
@@ -30,13 +29,15 @@ public:
 		SDL_DestroyRenderer(mRender);
 	}
 
-	virtual void Init(SDL_Renderer* renderer) = 0;
+	virtual void Init(SDL_Renderer* renderer, PAT_SceneManager* self) = 0;
 
 	bool IsEmpty();
 
 	void PopScene();
 	void PushScene(PAT_Scene * newScene);
 	void InitAndPushScene(PAT_Scene * newScene);
+	//Pops actual on top scene then Initialize and push passed scene
+	void PopAndPushScene(PAT_Scene * newScene);
 
 	void Update(double deltaTime);
 	void Draw(SDL_Renderer * render);
@@ -45,7 +46,6 @@ public:
 
 protected:
 	PAT_Scene * mActualScene;
-	//	Controller * mController;
 	SDL_Renderer * mRender;
 	PAT_Stack<PAT_Scene> mStackScene;
 };

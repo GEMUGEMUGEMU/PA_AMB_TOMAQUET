@@ -24,14 +24,10 @@ void PAT_SceneManager::PopScene()
 	if(!mStackScene.IsEmpty())
 	{
 		mActualScene = mStackScene.GetOnTop();
-		//mController = mActualScene->GetController();
 	}
 	else
 	{
 		mActualScene = nullptr;
-		//Controller is deleted by popped scene in mStackScene
-		//mController = nullptr;
-
 	}
 }
 
@@ -39,7 +35,6 @@ void PAT_SceneManager::PushScene(PAT_Scene * newScene)
 {
 	mStackScene.Push(newScene);
 	mActualScene = newScene;
-	//mController = newScene->GetController();
 }
 
 void PAT_SceneManager::InitAndPushScene(PAT_Scene * newScene)
@@ -48,45 +43,12 @@ void PAT_SceneManager::InitAndPushScene(PAT_Scene * newScene)
 	PushScene(newScene);
 }
 
-//TODO:Should be virtual
-//void PAT_SceneManager::Input(SDL_Event * event)
-//{
-//	if( event->type == SDL_KEYDOWN)
-//	{
-//		PAT_Vector2D movement;
-//		switch (event->key.keysym.sym)
-//		{
-//			case SDLK_SPACE:
-//				InitAndPushScene(new PauseScene());
-//				break;
-//
-//			case SDLK_q:
-//				PopScene();
-//				break;
-//			default:
-//
-//				break;
-//		}
-//}
-//void PAT_SceneManager::Input(SDL_Event * event)
-//{
-//	/*
-//	   sceneToPush isn't initialized to nullptr because it have to be
-//	   dereferenciable in mController->ManageInput
-//	 */
-//	PAT_Scene * sceneToPush;
-//	bool haveToPop = false;
-//	mController->ManageInput(event, sceneToPush, &haveToPop);
-//
-//	if(sceneToPush != nullptr)
-//	{
-//		InitAndPushScene(sceneToPush);
-//	}
-//	if(haveToPop)
-//	{
-//		PopScene();
-//	}
-//}
+void PAT_SceneManager::PopAndPushScene(PAT_Scene * newScene)
+{
+	PopScene();
+	newScene->Init(mRender);
+	PushScene(newScene);
+}
 
 void PAT_SceneManager::Update(double deltaTime)
 {
