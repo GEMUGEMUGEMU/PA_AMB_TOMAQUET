@@ -5,27 +5,27 @@
 *     _!__!__!_
 *   ~~\t  Gemu/~~
 *
-*  File Name: DemoTitle.cpp
+*  File Name: InGameTitle.cpp
 *  Purpose:
 *  Creation Date: 10-12-20
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#include "DemoTitle.hpp"
+#include "InGameTitle.hpp"
 #include "SDL_ttf.h"
 
 
-DemoTitle::DemoTitle()
+InGameTitle::InGameTitle()
 {
 
 }
 
-DemoTitle::~DemoTitle()
+InGameTitle::~InGameTitle()
 {
 
 }
 
-void DemoTitle::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
+void InGameTitle::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 {
 
 	SDL_Color textColor = { 225, 225, 0 };

@@ -49,4 +49,27 @@ void PauseScene::Draw(SDL_Renderer * render)
 
 void PauseScene::Input(SDL_Event * event)
 {
+	if( event->type == SDL_KEYDOWN)
+	{
+		switch (event->key.keysym.sym)
+		{
+			case SDLK_SPACE:
+				//mState = POP;
+				//Notify();// to scene manager
+				//break;
+			case SDLK_q:
+				mState = POP;
+				Notify();// to scene manager
+				break;
+			default:
+      				mController->Input(event);
+				break;
+		}
+	}
+}
+
+
+PAT_Scene* PauseScene::GetSceneToPush()
+{
+	return nullptr;
 }

@@ -84,7 +84,7 @@ ifeq ($(RELASE),1)
 endif
 
 
-$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
+$(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
 #	$(CC) -o $(TARGET) $(ALL_OBJ) $(LIBS)
 
@@ -93,6 +93,9 @@ $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(AL
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
+
+$(PAT_LIB):
+	cd $(PAT_PATH) && $(MAKE)
 
 .PHONY: clean info
 clean:

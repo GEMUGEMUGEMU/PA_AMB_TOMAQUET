@@ -84,15 +84,11 @@ $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(F
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
+
 .PHONY: clean info
 clean:
 	$(RM) -r "./$(OBJ)"
 	$(RM) "./$(TARGET)"
 info:
-#	$(info $(SRC_SUBDIRS))
-#	$(info $(OBJ_SUBDIRS))
-#	$(info $(ALL_CPPS))
-	$(info $(ALL_OBJ))
-#	$(info $(ALL_HPPS))
-#	$(info $(INCLUDE_FOLDERS))
+	$(info $(SRC_SUBDIRS))
 

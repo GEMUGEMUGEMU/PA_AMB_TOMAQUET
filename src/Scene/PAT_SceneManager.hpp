@@ -17,8 +17,9 @@
 #include "SDL2/SDL.h"
 #include "PAT_Scene.hpp"
 #include "PAT_Stack.hpp"
+#include "PAT_Observer.hpp"
 
-class PAT_SceneManager
+class PAT_SceneManager : public PAT_Observer
 {
 public:
 	PAT_SceneManager(){}
@@ -29,7 +30,7 @@ public:
 		SDL_DestroyRenderer(mRender);
 	}
 
-	virtual void Init(SDL_Renderer* renderer, PAT_SceneManager* self) = 0;
+	virtual void Init(SDL_Renderer* renderer) = 0;
 
 	bool IsEmpty();
 

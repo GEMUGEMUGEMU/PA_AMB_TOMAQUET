@@ -12,8 +12,12 @@
 */
 
 #include "SceneManager.hpp"
-#include "DemoScene.hpp"
+#include "InGameScene.hpp"
 #include "PauseScene.hpp"
+
+SceneManager::SceneManager()
+{
+}
 
 SceneManager::~SceneManager()
 {
@@ -22,8 +26,8 @@ SceneManager::~SceneManager()
 void SceneManager::Init(SDL_Renderer* renderer)
 {
 	mRender = renderer;
-	DemoScene* demoScene = new DemoScene();
-	InitAndPushScene( demoScene);
+	InGameScene* inGameScene = new InGameScene();
+	InitAndPushScene( inGameScene );
 }
 
 void SceneManager::Input(SDL_Event * event)

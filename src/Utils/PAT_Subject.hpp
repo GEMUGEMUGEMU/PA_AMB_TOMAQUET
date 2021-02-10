@@ -18,16 +18,19 @@
 #include "PAT_Observer.hpp"
 #include "PAT_LinkedList.hpp"
 
-class PAT_Subjcet
+class PAT_Subject
+{
 public:
-	virtual ~PAT_Subjcet(){}
-	virtual void Attach(PAT_Observer* observer);
-	virtual void Detach(PAT_Observer* observer);
-	virtual void Notify();
+	virtual ~PAT_Subject(){}
+	void Attach(PAT_Observer* observer);
+	void Detach(PAT_Observer* observer);
+	void Notify();
+
 protected:
-	Subject();
+	PAT_Subject();
+
 private:
-	PAT_LinkedList<PAT_Observer*> mObserversList;
+	PAT_LinkedList<PAT_Observer> mObserversList;
 };
 
 #endif /* PAT_Subject_hpp */

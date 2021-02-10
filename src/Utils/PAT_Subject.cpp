@@ -14,6 +14,10 @@
 
 #include "PAT_Subject.hpp"
 
+PAT_Subject::PAT_Subject()
+{
+}
+
 void PAT_Subject::Attach(PAT_Observer* observer)
 {
 	mObserversList.Add(observer);
@@ -34,7 +38,7 @@ void PAT_Subject::Notify()
 	while(counter < size)
 	{
 		thisObserver = mObserversList.Get(counter);
-		thisObserver.Update(this);
+		thisObserver->Update(this);
 		counter = counter + 1;
 	}
 }

@@ -33,7 +33,7 @@ void Pl_AnimationManager::Draw(int x, int y, PAT_Animation& animation)
 	animation.Draw(x, y, mRender);
 }
 
-PAT_STATE_ANIMATION Pl_AnimationManager::Update(PAT_Animation& animation)
+PAT_ANIMATION_STATE Pl_AnimationManager::Update(PAT_Animation& animation)
 {
 	return animation.UpdateFrame();
 }

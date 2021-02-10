@@ -15,14 +15,16 @@
 #define SceneManager_hpp
 
 #include "PAT_SceneManager.hpp"
+#include "PAT_Observer.hpp"
 
 class SceneManager : public PAT_SceneManager
 {
 public:
-	SceneManager(){}
+	SceneManager();
 	~SceneManager();
 	void Init(SDL_Renderer* renderer) override;
 	void Input(SDL_Event * event) override;
+//	void Update(PAT_Subject* changedSubject) override;
 };
 
 #endif /* SceneManager_hpp */

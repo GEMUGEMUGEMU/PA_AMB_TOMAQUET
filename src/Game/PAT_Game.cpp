@@ -46,8 +46,10 @@ void PAT_Game::Run()
 	if(mWindow)
 	{
 		double secondsStart;
-		double secondsEnd;
+#ifndef DEBUG_MODE
 		double secondsDelay;
+#endif
+		double secondsEnd;
 		double deltaTime = 0;
 
 /*

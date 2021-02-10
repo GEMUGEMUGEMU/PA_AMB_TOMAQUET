@@ -16,8 +16,16 @@
 
 #include "SDL2/SDL.h"
 #include "PAT_Controller.hpp"
+#include "PAT_Subject.hpp"
 
-class PAT_Scene
+enum PAT_SCENE_STATE
+{
+	CONTINUE, //Continue with this scene
+	POP,
+	PUSH_NEW_SCENE
+};
+
+class PAT_Scene: public PAT_Subject
 {
 public:
 	PAT_Scene(){}
@@ -25,28 +33,16 @@ public:
 	{
 		delete(mController);
 	}
-	virtual void Init(SDL_Renderer * render) = 0;
-	virtual void Update(float deltaTime) = 0;
-	virtual void Draw(SDL_Renderer * render) = 0;
-	virtual void Input(SDL_Event * event) = 0;
 
-//	Controller* GetController()
-//	{
-//		if(mController == nullptr)
-//		{
-//			return nullptr;
-//		}
-//		else
-//		{
-//			return mController;
-//		}
-//	}
+	virtual void Init(SDL_Renderer * renderer) = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Draw(SDL_Renderer * renderer) = 0;
+	virtual void Input(SDL_Event * event) = 0;
+	virtual PAT_Scene* GetSceneToPush() = 0;
 
 protected:
-//	Controller* mController = nullptr;
 	PAT_Controller* mController;
+	PAT_SCENE_STATE mState;
 };
-
-
 
 #endif /* PAT_Scene_hpp */

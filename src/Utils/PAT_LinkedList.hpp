@@ -34,7 +34,7 @@ public:
 	T* Get(uint32_t index);
 //TODO: rename it to RemoveIndex
 	void Delete(uint32_t index);
-	void Remove(T toRemove);
+	void Remove(T* toRemove);
 
 };
 
@@ -151,14 +151,14 @@ void PAT_LinkedList<T>::Delete(uint32_t index)
 }
 
 template <class T>
-void PAT_LinkedList<T>::Remove(T toRemove)
+void PAT_LinkedList<T>::Remove(T* toRemove)
 {
 	Node *targetNode = mHead;
 	Node *previousNode = nullptr;
 
 	while (targetNode != nullptr)
 	{
-		if(targetNode->*mData==toRemove)
+		if(targetNode->mData==toRemove)
 		{
 			if(targetNode == mHead)
 			{

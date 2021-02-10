@@ -27,6 +27,7 @@ public:
 	void Update(float deltaTime) override;
 	void Draw(SDL_Renderer * render) override;
 	void Input(SDL_Event * event) override;
+	PAT_Scene* GetSceneToPush() override;
 
 private:
 	PAT_LinkedList<PAT_GraphicObject> mGraphicObjectsList;

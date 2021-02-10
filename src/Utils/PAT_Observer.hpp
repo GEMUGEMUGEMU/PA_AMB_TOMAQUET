@@ -20,10 +20,11 @@ class PAT_Subject;
 class PAT_Observer
 {
 public:
-	virtual ~PAT_Observer(){}
-	virtual void Update(PAT_Subject* changedSubject) = 0;
-protected:
-	PAT_Observer();
+	PAT_Observer(){ }
+	virtual ~PAT_Observer(){ }
+	//Not pure virtal in order to be collectable in PAT_Subject list
+	virtual void Update(PAT_Subject* changedSubject){ };
+//protected:
 };
 
 #endif /* PAT_Observer_hpp */

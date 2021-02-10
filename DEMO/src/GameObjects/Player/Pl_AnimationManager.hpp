@@ -27,7 +27,7 @@ public:
 
 	void Init(SDL_Renderer* render) override;
 	void Draw(int x, int y, PAT_Animation& animation) override;
-	PAT_STATE_ANIMATION Update(PAT_Animation& animation) override;
+	PAT_ANIMATION_STATE Update(PAT_Animation& animation) override;
 
 	Pl_A_Idle mAIdle;
 	Pl_A_Move mAMove;
