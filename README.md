@@ -1,5 +1,5 @@
 # PA_AMB_TOMAQUET
-*After been inspired by a talk about game engines at AprenDev Barcelona 2019, I have decided, a year later, to develop one myself, It's name is PA_AMB_TOMAQUET.*
+*PA AMB TOMÀQUET is a work in progress c++ 2D game engine*
 
 ### Try demo:
 *You need SDL2 in order to build the demo*
@@ -14,6 +14,9 @@
 - VIM
 - git
 - GraphicsGale
+
+### What's next?
+1. Create Scene
 
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
