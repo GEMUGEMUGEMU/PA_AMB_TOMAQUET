@@ -1,101 +1,93 @@
-#Declare variables
-OBJECT_DIRECTORY=FileObjects
-PAT_OBJECTS=Screen.o Sprite.o Vector2D.o Controller.o LinkedList.o Stack.o \
-	AnimationManager.o GraphicObject.o AnimatedStaticObject.o \
-	AnimatedKineticObject.o GraphicStaticObject.o PAT_Scene.o PAT_SceneManager.o \
-	PAT_Game.o
+#
+#        ~_
+#     ~_ )_)~_
+#     )_))_))_)
+#     _!__!__!_
+#   ~~\t  Gemu/~~
+#    ~GEAR~GEAR~
+#
+#  File Name: makefile
+#  Purpose: PA_AMB_TOMAQUET makefile
+#  Creation Date: 08-02-21
+#  Created By: Andrea Andreu Salvagnin
+#
 
-OBJECTS=$(patsubst %.o,$(OBJECT_DIRECTORY)/%.o, $(PAT_OBJECTS))
+# Macro COMPILER
+# Generate rules
+# $(1) Compiler
+# $(2) Object file to generate
+# $(3) Source file
+# $(4) Additional dependencies
+# $(5) Compiler flags
+define COMPILE
+$(2): $(3) $(4)
+	$(1) -c -o $(2) $(3) $(5)
+endef
 
-COMPILER_FLAGS=-Wall -c -g
-#CC defines wich compiler will be used
-CC = g++
-LINKER_FLAGS = -lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
+# Macro CPP2O
+# From a .cpp get its .o
+# $(1) Source file
+define CPP2O
+$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1)))
+endef
 
-
-#HEADERS FOLDERS:
-GRAPHICS=./Graphics
-MATH=./Math
-INPUT=./Input
-UTILS=./Utils
-GAME_OBJECTS=./GameObjects
-SCENE=./Scene
-GAME=./Game
-
-#INCLUDERS FOR:
-I_PLAYER=-I$(GRAPHICS) -I$(MATH)
-I_CONTROLLER=-I$(GRAPHICS) -I$(MATH) -I$(GAME_OBJECTS) -I$(UTILS) -I$(SCENE)
-I_GAME=-I$(SCENE) -I$(INPUT) -I$(UTILS) -I$(GRAPHICS)
-I_MAIN=-I$(GRAPHICS) -I$(INPUT) -I$(ENTITY) -I$(MATH) -I$(UTILS) \
-	-I$(GAME_OBJECTS) -I$(SCENE)
-I_SCREEN=-I$(UTILS) -I$(GRAPHICS)
-I_ANIMATED_STATIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS)
-I_ANIMATED_KINETIC_OBJECT=-I$(GRAPHICS) -I$(GAME_OBJECTS) -I$(UTILS) -I$(MATH)
-I_ANIMATION_MANAGER=-I$(UTILS)
-I_GRAPICH_STATIC_OBJECT=-I$(GAME_OBJECTS)
-I_SCENE=-I$(INPUT) -I$(GAME_OBJECTS) -I$(MATH) -I$(GRAPHICS) -I$(UTILS)
-I_SCENE_MANAGER=-I$(INPUT) -I$(UTILS)
-
-
-.PHONY: objects
-
-objects: $(OBJECTS)
-	@echo PA AMB TOMÀQUET objects builded
+# Macro CPP2HPP
+# From a .cpp get its .o
+# $(1) Source file
+define CPP2HPP
+$(patsubst %.cpp,%.hpp,$(1))
+endef
 
 
-$(OBJECT_DIRECTORY)/Screen.o: $(GRAPHICS)/Screen.cpp $(GRAPHICS)/Screen.h
-	$(CC) $(COMPILER_FLAGS) $(I_SCREEN) $(LINKER_FLAGS) $< -o $@
+TARGET:=PA_AMB_TOMAQUET.a
+CC:=g++
+SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
+CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
+MKDIR:=mkdir -p
+RM:=rm
+AR:=ar
+AR_FLAGS:=-crs
+RANLIB:=ranlib
+SRC:=src
+OBJ:=obj
 
-$(OBJECT_DIRECTORY)/Sprite.o: $(GRAPHICS)/Sprite.cpp $(GRAPHICS)/Sprite.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
-
-$(OBJECT_DIRECTORY)/Controller.o: $(INPUT)/Controller.h
-	$(CC) $(COMPILER_FLAGS) $(I_CONTROLLER) $(LINKER_FLAGS) -x c++ $< -o $@
-
-$(OBJECT_DIRECTORY)/LinkedList.o: $(UTILS)/LinkedList.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -x c++ $< -o $@
-
-$(OBJECT_DIRECTORY)/Stack.o: $(UTILS)/Stack.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -x c++ $< -o $@
-
-$(OBJECT_DIRECTORY)/Vector2D.o: $(MATH)/Vector2D.cpp Math/Vector2D.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $< -o $@
-
-$(OBJECT_DIRECTORY)/GraphicObject.o: $(GAME_OBJECTS)/GraphicObject.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -x c++ $< -o $@
-
-$(OBJECT_DIRECTORY)/AnimatedStaticObject.o: \
-	$(GAME_OBJECTS)/AnimatedStaticObject.cpp \
-	$(GAME_OBJECTS)/AnimatedStaticObject.h
-	$(CC) $(COMPILER_FLAGS) $(I_ANIMATED_STATIC_OBJECT) $(LINKER_FLAGS) $< -o $@
-
-$(OBJECT_DIRECTORY)/AnimatedKineticObject.o: \
-	$(GAME_OBJECTS)/AnimatedKineticObject.cpp \
-	$(GAME_OBJECTS)/AnimatedKineticObject.h
-	$(CC) $(COMPILER_FLAGS) $(I_ANIMATED_KINETIC_OBJECT) $(LINKER_FLAGS) $< -o $@
-
-$(OBJECT_DIRECTORY)/AnimationManager.o: \
-	$(GRAPHICS)/AnimationManager.cpp $(GRAPHICS)/AnimationManager.h
-	$(CC) $(COMPILER_FLAGS) $(I_ANIMATION_MANAGER) $(LINKER_FLAGS) $< -o $@
-
-$(OBJECT_DIRECTORY)/GraphicStaticObject.o: \
-	$(GAME_OBJECTS)/GraphicStaticObject.cpp \
-	$(GAME_OBJECTS)/GraphicStaticObject.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GRAPICH_STATIC_OBJECT) $< -o $@
-
-$(OBJECT_DIRECTORY)/PAT_Scene.o: $(SCENE)/PAT_Scene.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE) -x c++ $< -o $@
-
-$(OBJECT_DIRECTORY)/PAT_SceneManager.o: $(SCENE)/PAT_SceneManager.cpp \
-	$(SCENE)/PAT_SceneManager.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_SCENE_MANAGER) $< -o $@
-
-$(OBJECT_DIRECTORY)/PAT_Game.o: $(GAME)/PAT_Game.cpp $(GAME)/PAT_Game.h
-	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(I_GAME) $< -o $@
+ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
+ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
+ALL_OBJ:=$(ALL_CPP_OBJ)
+ALL_HS:=$(shell find $(SRC)/ -type f -iname *.h)
+ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
+SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
+OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
+INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 
 
+DEBUG?=1
+ifeq ($(DEBUG),1)
+	CCFLAGS+= -DDEBUG_MODE -g
+endif
 
-.PHONY: clean
+RELASE?=0
+ifeq ($(RELASE),1)
+	CCLAGS+= -O3
+endif
+
+
+$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
+	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
+	$(RANLIB) $(TARGET)
+
+# Generate and evaluate rules
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
+
+# Generate obj folder tree
+$(OBJ_SUBDIRS):
+	$(MKDIR) $(OBJ_SUBDIRS)
+
+
+.PHONY: clean info
 clean:
-	rm $(OBJECT_DIRECTORY)/*.o $(OBJECT_DIRECTORY)/*.gch
+	$(RM) -r "./$(OBJ)"
+	$(RM) "./$(TARGET)"
+info:
+	$(info $(SRC_SUBDIRS))
 

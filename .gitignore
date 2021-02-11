@@ -1,7 +1,7 @@
 *.o
+*.a
 *.out
 *.swp
 *.swo
 *.gch
 debug
-*/Test/*
