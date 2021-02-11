@@ -24,11 +24,11 @@ public:
 	PAT_AnimatedStaticObject(): mX(0) , mY(0) {}
 	virtual ~PAT_AnimatedStaticObject(){}
 	virtual void Draw(SDL_Renderer* renderer) = 0;
-	virtual void Init(int x, int y, SDL_Renderer* render)= 0;
+	virtual void Init(int x, int y, SDL_Renderer* render) = 0;
 	virtual void Update() = 0;
 
 protected:
-	PAT_AnimationManager* mAnimationManager;
+//	PAT_AnimationManager* mAnimationManager;
 	//In screen position
 	uint32_t mX, mY;
 

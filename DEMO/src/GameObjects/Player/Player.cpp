@@ -32,7 +32,7 @@ void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
 	mState = new Pl_S_Idle();
 }
 
-//Function that moves player. Return 1 if it has arrived otherwise 0;
+//Function that moves player. Return  0 if it has arrived otherwise 1;
 uint8_t Player::Move(float deltaTime)
 {
 	float secondsDeltaTime = deltaTime / 100;
@@ -58,14 +58,12 @@ uint8_t Player::Move(float deltaTime)
 	{
 		mPosition = mArrival;
 		ResetMove();
-
-		return 1;
+		return 0;
 	}
 	else
 	{
 		mPosition = newPosition;
-
-		return 0;
+		return 1;
 	}
 }
 

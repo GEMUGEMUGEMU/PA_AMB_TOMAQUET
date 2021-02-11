@@ -9,6 +9,7 @@
 *  Purpose:
 *  Creation Date: 15-10-20
 *  Created By: Andrea Andreu Salvagnin
+*  Move in to DEMO
 */
 
 #ifndef PAT_AnimatedKineticObject_hpp

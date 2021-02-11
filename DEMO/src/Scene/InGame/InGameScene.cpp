@@ -17,6 +17,7 @@
 #include "Player.hpp"
 #include "InGameTitle.hpp"
 #include "PauseScene.hpp"
+#include "Instructions.hpp"
 
 InGameScene::~InGameScene()
 {
@@ -26,15 +27,19 @@ InGameScene::~InGameScene()
 void InGameScene::Init(SDL_Renderer* render)
 {
 	Player * player = new Player();
-	player->Init(32, PAT_Vector2D(200, 100), render);
+	player->Init(32, PAT_Vector2D(10, 100), render);
 	mGraphicObjectsList.Add(player);
 	mUpdateObjectsList.Add(player);
 	mController = player;
 
-	InGameTitle* demoText = new InGameTitle();
-	demoText->Init(10,10, render);
+	InGameTitle* title = new InGameTitle();
+	title->Init(10,10, render);
 
-	mGraphicObjectsList.Add(demoText);
+	mGraphicObjectsList.Add(title);
+
+	Instructions* instr = new Instructions();
+	instr->Init(10,350, render);
+	mGraphicObjectsList.Add(instr);
 }
 
 void InGameScene::Update(float deltaTime)

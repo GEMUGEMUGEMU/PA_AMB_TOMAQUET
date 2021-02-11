@@ -13,6 +13,7 @@
 
 #include "PauseScene.hpp"
 #include "PauseText.hpp"
+#include "Commands.hpp"
 
 PauseScene::~PauseScene()
 {
@@ -25,6 +26,10 @@ void PauseScene::Init(SDL_Renderer * render)
 	pauseText->Init(10, 300, render);
 
 	mGraphicObjectsList.Add(pauseText);
+
+	Commands* cmd = new Commands();
+	cmd->Init(10,10, render);
+	mGraphicObjectsList.Add(cmd);
 }
 
 void PauseScene::Update(float deltaTime)

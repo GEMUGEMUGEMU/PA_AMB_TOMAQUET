@@ -28,8 +28,8 @@ void PAT_Animation::Draw(int x, int y, SDL_Renderer* renderer)
 	SDL_Rect* tDrawPosition = new SDL_Rect();
 	tDrawPosition->x = x;
 	tDrawPosition->y = y;
-	tDrawPosition->w = tClip->w;
-	tDrawPosition->h = tClip->h;
+	tDrawPosition->w = tClip->w/* * MAGNIFY VALUE*/;
+	tDrawPosition->h = tClip->h/* * MAGNIFY VALUE*/;
 
 	SDL_RenderCopy( renderer, mAnimationSheet, tClip, tDrawPosition);
 

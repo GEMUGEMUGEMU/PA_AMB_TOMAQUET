@@ -14,7 +14,6 @@
 
 #include "Pl_S_Move.hpp"
 #include "Pl_S_Idle.hpp"
-#include "Pl_A_Idle.hpp"
 
 Pl_S_Move::Pl_S_Move(){}
 
@@ -31,7 +30,10 @@ void Pl_S_Move::Draw(SDL_Renderer* renderer, Player* player)
 void Pl_S_Move::Update(float deltaTime, Player* player)
 {
 	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
-	player->Move(deltaTime);
+	if(player->Move(deltaTime) == 0)
+	{
+		player->SetState(new Pl_S_Idle);
+	}
 }
 
 
