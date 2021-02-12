@@ -15,9 +15,15 @@
 #ifndef PAT_HittableObject_hpp
 #define PAT_HittableObject_hpp
 
+#include "PAT_Hitbox.hpp"
+
 class PAT_HittableObject
 {
-	SDL_Rect* GetHitBox();
+public:
+	PAT_HittableObject() { }
+	~PAT_HittableObject() { }
+	virtual PAT_Hitbox*  GetHitbox() = 0;
+//	virtual void NotifyHasCollided() = 0;
 };
 
 #endif /* PAT_HittableObject_hpp */
