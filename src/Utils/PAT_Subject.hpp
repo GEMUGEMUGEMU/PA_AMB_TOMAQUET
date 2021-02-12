@@ -26,10 +26,10 @@ public:
 	void Detach(PAT_Observer* observer);
 	void Notify();
 
-protected:
+//protected:
 	PAT_Subject();
 
-private:
+//private:
 	PAT_LinkedList<PAT_Observer> mObserversList;
 };
 

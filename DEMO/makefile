@@ -44,7 +44,7 @@ endef
 
 TARGET:=NISHIKIGOI_DEMO.out
 CC:=g++
-CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -92,12 +92,14 @@ $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
 $(PAT_LIB):
-	cd $(PAT_PATH) && $(MAKE)
+	$(MAKE) -C $(PAT_PATH)
+#	cd $(PAT_PATH) && $(MAKE)
 
 .PHONY: clean info
 clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
-	$(info $(ALL_HPPS))
+#	$(info $(ALL_HPPS))
+	$(info $(PAT_LIB))
 

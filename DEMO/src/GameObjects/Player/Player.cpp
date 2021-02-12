@@ -21,15 +21,17 @@ Player::~Player()
 }
 
 
-void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * render)
+void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * renderer)
 {
 	mSpeed = speed;
 
-	mAnimationManager.Init(render);
+	mAnimationManager.Init(renderer);
 
 	mPosition = vector;
-
+	mRelativePosition = &mPosition;
 	mState = new Pl_S_Idle();
+
+	//mHitbox.Init();
 }
 
 //Function that moves player. Return  0 if it has arrived otherwise 1;
@@ -108,3 +110,11 @@ void Player::Input(SDL_Event * event)
 
 	mState->Input(event, this);
 }
+
+
+//PAT_Hitbox* Player::GetHitbox()
+//{
+//	mHitbox.mHitboxRectangle.x = mPosition.GetX();
+//	mHitbox.mHitboxRectangle.y = mPosition.GetY();
+//	return &mHitbox;
+//}

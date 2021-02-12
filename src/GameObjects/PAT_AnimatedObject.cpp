@@ -19,3 +19,7 @@ PAT_AnimatedObject::PAT_AnimatedObject()
 
 }
 
+PAT_AnimatedObject::~PAT_AnimatedObject()
+{
+
+}

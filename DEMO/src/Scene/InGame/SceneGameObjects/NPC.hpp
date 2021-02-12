@@ -16,10 +16,10 @@
 #define NPC_hpp
 
 #include "PAT_AnimatedObject.hpp"
-#include "PAT_HittableObject.hpp"
+#include "PAT_CollidingObject.hpp"
 #include "NPC_AnimationManager.hpp"
 
-class NPC : public PAT_AnimatedObject, public PAT_HittableObject
+class NPC : public PAT_AnimatedObject, public PAT_CollidingObject
 {
 public:
 	NPC();
@@ -28,7 +28,7 @@ public:
 
 	void Draw(SDL_Renderer* renderer) override;
 	void Update(float deltaTime) override;
-	PAT_Hitbox* GetHitbox() override;
+//	PAT_Hitbox* GetHitbox() override;
 
 	NPC_AnimationManager mAnimationManager;
 

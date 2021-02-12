@@ -24,6 +24,7 @@ NPC::~NPC()
 void NPC::Init(PAT_Vector2D newPosition, SDL_Renderer * renderer)
 {
 	mPosition = newPosition;
+	mRelativePosition = &mPosition;
 	mAnimationManager.Init(renderer);
 }
 
@@ -38,10 +39,11 @@ void NPC::Update(float deltaTime)
 	mAnimationManager.Update(mAnimationManager.mAIdle);
 }
 
-PAT_Hitbox* NPC::GetHitbox()
-{
-	mHitbox.mHitboxRectangle.x = mPosition.GetX();
-	mHitbox.mHitboxRectangle.y = mPosition.GetY();
+//PAT_Hitbox* NPC::GetHitbox()
+//{
+//	mHitbox.mHitboxRectangle.x = mPosition.GetX();
+//	mHitbox.mHitboxRectangle.y = mPosition.GetY();
 
-	return &mHitbox;
-}
+	//return &mHitbox;
+//	return GetHitbox(PAT_Vector2D objectPosition);
+//}

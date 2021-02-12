@@ -15,24 +15,26 @@
 #ifndef PAT_HitBox_hpp
 #define PAT_HitBox_hpp
 
-class PAT_HittableObject;
+#include "SDL2/SDL.h"
+#include "PAT_Vector2D.hpp"
+
+class PAT_CollidingObject;
 
 class PAT_Hitbox
 {
 public:
-	PAT_Hitbox()
-	{
-		mHitboxRectangle = {64, 64, 0, 0};
-		mHitboxRectangle.h = 64;
-		mHitboxRectangle.w = 64;
-		mHitboxRectangle.x = 0;
-		mHitboxRectangle.y = 0;
-	}
-	virtual ~PAT_Hitbox(){ }
-	void Notify(){}
+	PAT_Hitbox();
+	PAT_Hitbox(uint16_t x, uint16_t y);
+	virtual ~PAT_Hitbox();
+	void Notify();
+	SDL_Rect* GetHitbox(PAT_Vector2D objectPosition);
 
-	PAT_HittableObject* owner;
+	//PAT_HittableObject* mOwner;
 	SDL_Rect mHitboxRectangle;
+
+	//Relative coordinates of hitbox in base to hittable object
+	uint16_t mX;
+	uint16_t mY;
 };
 
 #endif /* PAT_HitBox_hpp */

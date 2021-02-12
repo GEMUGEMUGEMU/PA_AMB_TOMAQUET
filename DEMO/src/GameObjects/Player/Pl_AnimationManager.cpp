@@ -18,19 +18,19 @@ Pl_AnimationManager::Pl_AnimationManager() : PAT_AnimationManager() { }
 
 Pl_AnimationManager::~Pl_AnimationManager() { }
 
-void Pl_AnimationManager::Init(SDL_Renderer* render)
+void Pl_AnimationManager::Init(SDL_Renderer* renderer)
 {
-	mRender = render;
+	mRenderer = renderer;
 
-	mAIdle.Init(mRender);
-	mAMove.Init(mRender);
-	mAPunch.Init(mRender);
+	mAIdle.Init(mRenderer);
+	mAMove.Init(mRenderer);
+	mAPunch.Init(mRenderer);
 }
 
 
 void Pl_AnimationManager::Draw(int x, int y, PAT_Animation& animation)
 {
-	animation.Draw(x, y, mRender);
+	animation.Draw(x, y, mRenderer);
 }
 
 PAT_ANIMATION_STATE Pl_AnimationManager::Update(PAT_Animation& animation)

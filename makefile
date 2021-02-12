@@ -42,7 +42,7 @@ endef
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
 SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar

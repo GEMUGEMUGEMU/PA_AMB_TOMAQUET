@@ -14,8 +14,12 @@
 
 #include "PAT_AnimatedKineticObject.hpp"
 
-PAT_AnimatedKineticObject::PAT_AnimatedKineticObject() : mPosition(0,0),
-	mSpeed(0)
+PAT_AnimatedKineticObject::PAT_AnimatedKineticObject() : mSpeed(0)
+{
+
+}
+
+PAT_AnimatedKineticObject::~PAT_AnimatedKineticObject()
 {
 
 }

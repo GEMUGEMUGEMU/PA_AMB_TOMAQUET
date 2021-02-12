@@ -21,13 +21,10 @@
 #include "PAT_GraphicObject.hpp"
 
 class PAT_AnimatedObject : public PAT_GraphicObject, public PAT_UpdateObject
-
 {
 public:
 	PAT_AnimatedObject();
-	virtual ~PAT_AnimatedObject(){ }
-
-	PAT_Vector2D mPosition;
+	virtual ~PAT_AnimatedObject();
 };
 
 #endif /* PAT_AnimatedObject_hpp */

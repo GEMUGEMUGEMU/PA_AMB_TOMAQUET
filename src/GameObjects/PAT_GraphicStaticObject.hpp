@@ -21,11 +21,10 @@
 class PAT_GraphicStaticObject : public PAT_GraphicObject
 {
 public:
-	PAT_GraphicStaticObject(){}
-	virtual ~PAT_GraphicStaticObject(){}
-
-	virtual void Init(uint32_t x, uint32_t y, SDL_Renderer* render) = 0;
+	PAT_GraphicStaticObject();
+	virtual ~PAT_GraphicStaticObject();
 	void Draw(SDL_Renderer* renderer);
+
 protected:
 	SDL_Texture * mSprite = nullptr;
 	SDL_Rect * mSpriteCordinates = nullptr;

@@ -23,7 +23,7 @@ public:
 	PAT_Observer(){ }
 	virtual ~PAT_Observer(){ }
 	//Not pure virtal in order to be collectable in PAT_Subject list
-	virtual void Update(PAT_Subject* changedSubject){ };
+	virtual void UpdateFromSubject(PAT_Subject* changedSubject){ };
 };
 
 #endif /* PAT_Observer_hpp */

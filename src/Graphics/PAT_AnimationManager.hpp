@@ -23,11 +23,11 @@ public:
 	PAT_AnimationManager() { };
 	virtual ~PAT_AnimationManager(){ }
 
-	virtual void Init(SDL_Renderer* render) = 0;
+	virtual void Init(SDL_Renderer* renderer) = 0;
 	virtual void Draw(int x, int y, PAT_Animation& animation) = 0;
 	virtual PAT_ANIMATION_STATE Update(PAT_Animation& animation) = 0;
 
 protected:
-	SDL_Renderer* mRender;
+	SDL_Renderer* mRenderer;
 };
 #endif /* PAT_AnimationManager_hpp */

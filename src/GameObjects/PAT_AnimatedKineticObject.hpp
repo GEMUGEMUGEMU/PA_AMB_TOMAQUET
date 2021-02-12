@@ -17,27 +17,17 @@
 
 #include "SDL2/SDL.h"
 #include "PAT_Vector2D.hpp"
-#include "PAT_AnimationManager.hpp"
-#include "PAT_GraphicObject.hpp"
-#include "PAT_UpdateObject.hpp"
+#include "PAT_AnimatedObject.hpp"
 
-class PAT_AnimatedKineticObject : public PAT_GraphicObject, public PAT_UpdateObject
+class PAT_AnimatedKineticObject : public PAT_AnimatedObject
 {
 public:
 	PAT_AnimatedKineticObject();
-	virtual ~PAT_AnimatedKineticObject(){}
+	virtual ~PAT_AnimatedKineticObject();
 
-	virtual void Init(float speed, PAT_Vector2D vector,
-		SDL_Renderer * render) = 0;
-
-	virtual void Update(float deltaTime) = 0;
 	virtual uint8_t Move(float deltaTime) = 0;
 
-	virtual void Draw(SDL_Renderer* render) = 0;
-
-	PAT_Vector2D mPosition;
-
-protected:
+//protected:
 	uint32_t mSpeed;
 	PAT_Vector2D mDirection;
 };

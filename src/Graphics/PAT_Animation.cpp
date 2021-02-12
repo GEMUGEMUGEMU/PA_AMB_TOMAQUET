@@ -15,9 +15,9 @@
 #include "PAT_Animation.hpp"
 
 
-void PAT_Animation::Init(SDL_Renderer* render)
+void PAT_Animation::Init(SDL_Renderer* renderer)
 {
-	LoadImage(render);
+	LoadImage(renderer);
 	LoadClips();
 }
 
