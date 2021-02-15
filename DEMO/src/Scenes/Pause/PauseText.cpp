@@ -33,7 +33,10 @@ void PauseText::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 
 	font = TTF_OpenFont( "./src/Fonts/YourQuotaRegular-z2zl.ttf", 28 );
 
-	SDL_Surface * tempSurface = TTF_RenderText_Solid( font, "NISHIKIGOI DEMO PAUSE", textColor );
+	SDL_Surface * tempSurface = TTF_RenderText_Solid( font,
+		"NISHIKIGOI DEMO PAUSE", textColor );
+	mSprite = SDL_CreateTextureFromSurface(render, tempSurface);
+	SDL_FreeSurface(tempSurface);
 
 	mSpriteDimensions = new SDL_Rect;
 	mSpriteDimensions->x = 0;
@@ -46,10 +49,6 @@ void PauseText::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
 	mSpriteCordinates->y = y;
 	mSpriteCordinates->w = tempSurface->w;
 	mSpriteCordinates->h = tempSurface->h;
-
-	mSprite = SDL_CreateTextureFromSurface(render, tempSurface);
-
-	SDL_FreeSurface(tempSurface);
 
 }
 

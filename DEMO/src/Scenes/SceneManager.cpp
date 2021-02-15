@@ -37,7 +37,7 @@ void SceneManager::Input(SDL_Event * event)
 }
 
 
-void SceneManager::Update(PAT_Subject* changedSubject)
+void SceneManager::UpdateFromSubject(PAT_Subject* changedSubject)
 {
 	if(changedSubject == mActualScene)
 	{

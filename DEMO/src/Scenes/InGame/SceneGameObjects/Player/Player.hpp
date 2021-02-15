@@ -16,14 +16,15 @@
 
 #include "PAT_AnimatedKineticObject.hpp"
 #include "PAT_Controller.hpp"
+#include "PAT_CollidingObject.hpp"
+#include "PAT_Subject.hpp"
 #include "PAT_Animation.hpp"
 #include "PAT_Vector2D.hpp"
-#include "PAT_CollidingObject.hpp"
 #include "Pl_State.hpp"
 #include "Pl_AnimationManager.hpp"
 
 class Player : public PAT_AnimatedKineticObject, public PAT_Controller,
-public PAT_CollidingObject
+public PAT_CollidingObject, public PAT_Subject
 {
 public:
 	Player(){}
@@ -35,7 +36,6 @@ public:
 	void Update(float deltaTime) override;
 	void Draw(SDL_Renderer* render) override;
 	void Input(SDL_Event * event) override;
-	//PAT_Hitbox* GetHitbox() override;
 
 	void SetState(Pl_State * newState);
 	void SetDirection(PAT_Vector2D newDirection);
@@ -43,9 +43,9 @@ public:
 	bool DirectionIsNull();
 
 	Pl_AnimationManager mAnimationManager;
-//	PAT_Hitbox mHitbox;
 
-protected:
+	PAT_Vector2D mPosition;
+//protected:
 	Pl_State * mState = nullptr;
 	PAT_Vector2D * mArrival = nullptr;
 };

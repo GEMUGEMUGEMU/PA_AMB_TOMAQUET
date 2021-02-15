@@ -17,9 +17,12 @@
 
 #include "PAT_AnimatedObject.hpp"
 #include "PAT_CollidingObject.hpp"
+#include "PAT_Subject.hpp"
+#include "PAT_Vector2D.hpp"
 #include "NPC_AnimationManager.hpp"
 
-class NPC : public PAT_AnimatedObject, public PAT_CollidingObject
+class NPC : public PAT_AnimatedObject, public PAT_CollidingObject,
+public PAT_Subject
 {
 public:
 	NPC();
@@ -28,11 +31,11 @@ public:
 
 	void Draw(SDL_Renderer* renderer) override;
 	void Update(float deltaTime) override;
-//	PAT_Hitbox* GetHitbox() override;
 
 	NPC_AnimationManager mAnimationManager;
 
 	PAT_Hitbox mHitbox;
+	PAT_Vector2D mPosition;
 };
 
 #endif /* NPC_hpp */

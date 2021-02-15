@@ -18,8 +18,7 @@
 #include "PAT_LinkedList.hpp"
 #include "PAT_GraphicObject.hpp"
 #include "PAT_UpdateObject.hpp"
-#include "PAT_CollisionsManager.hpp"
-
+#include "InGame_ObjMan.hpp"
 
 class InGameScene : public PAT_Scene
 {
@@ -31,13 +30,9 @@ public:
 	void Draw(SDL_Renderer * renderer) override;
 	void Input(SDL_Event * event) override;
 	PAT_Scene* GetSceneToPush() override;
-	//void CheckHitboxesCollisions();
 
 private:
-	PAT_LinkedList<PAT_GraphicObject> mGraphicObjectsList;
-	PAT_LinkedList<PAT_UpdateObject> mUpdateObjectsList;
-	//PAT_LinkedList<PAT_HittableObject> mHittableObjectsList;
-	PAT_CollisionsManager mCollisionsManager;
+	InGame_ObjMan mGameObjsManager;
 };
 
 #endif /* InGameScene_h */

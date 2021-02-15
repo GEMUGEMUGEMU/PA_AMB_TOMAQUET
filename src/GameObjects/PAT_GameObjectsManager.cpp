@@ -88,7 +88,10 @@ void PAT_GameObjectsManager::Draw(SDL_Renderer * render)
 
 void PAT_GameObjectsManager::Input(SDL_Event * event)
 {
-	mController->Input(event);
+	if(mController)
+	{
+		mController->Input(event);
+	}
 }
 
 void PAT_GameObjectsManager::AddCollidingObj(PAT_CollidingObject* newObject)
@@ -132,6 +135,13 @@ void PAT_GameObjectsManager::RemoveFromLists(PAT_GameObject* gameObject)
 	{
 		mUpdateObjectsList.Remove(upObj);
 	}
+
+	PAT_Controller* controller =
+		dynamic_cast<PAT_Controller*>(gameObject);
+	if(controller == mController)
+	{
+		mController = nullptr;
+	}
 }
 
 void PAT_GameObjectsManager::CheckCollisions()
@@ -155,10 +165,10 @@ void PAT_GameObjectsManager::CheckCollisions()
 				{
 					colliding =
 						mCollObjList.Get(
-							iterationCounter);
+								iterationCounter);
 
 					collided->HasCollidedWith(
-						colliding->GetHitbox());
+							colliding->GetHitbox());
 				}
 
 				iterationCounter = iterationCounter + 1;
@@ -175,7 +185,8 @@ void PAT_GameObjectsManager::CheckCollisions()
 
 			if(collided->mHasCollided)
 			{
-				mCollObjList.Remove(collided);
+				//mCollObjList.Remove(collided);
+				RemoveGameObject(collided);
 				max = mCollObjList.GetSize();
 			}
 

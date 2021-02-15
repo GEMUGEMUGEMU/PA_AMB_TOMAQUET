@@ -16,9 +16,11 @@
 
 NPC::NPC()
 {
+
 }
 NPC::~NPC()
 {
+
 }
 
 void NPC::Init(PAT_Vector2D newPosition, SDL_Renderer * renderer)
