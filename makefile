@@ -38,6 +38,13 @@ define CPP2HPP
 $(patsubst %.cpp,%.hpp,$(1))
 endef
 
+define print_logo
+@echo "        ~_"
+@echo "     ~_ )_)~_"
+@echo "     )_))_))_) Make $(TARGET)"
+@echo "     _!__!__!_"
+@echo "   ~~\   Gemu/~~"
+endef
 
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
@@ -73,6 +80,7 @@ endif
 
 
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
+	$(call print_logo)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
 	$(RANLIB) $(TARGET)
 

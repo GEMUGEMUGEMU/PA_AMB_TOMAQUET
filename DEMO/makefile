@@ -41,6 +41,14 @@ define CPP2HPP
 $(findstring $(patsubst %.cpp,%.hpp,$(1)),$(2))
 endef
 
+define print_logo
+@echo "        ~_"
+@echo "     ~_ )_)~_"
+@echo "     )_))_))_) Make $(TARGET)"
+@echo "     _!__!__!_"
+@echo "   ~~\   Gemu/~~"
+endef
+
 
 TARGET:=NISHIKIGOI_DEMO.out
 CC:=g++
@@ -83,6 +91,7 @@ endif
 
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
+	$(call print_logo)
 	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
 
 
@@ -91,15 +100,16 @@ $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(AL
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
-$(PAT_LIB):
+$(PAT_LIB): make_pat_lib
 	$(MAKE) -C $(PAT_PATH)
-#	cd $(PAT_PATH) && $(MAKE)
 
 .PHONY: clean info
+
 clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
 #	$(info $(ALL_HPPS))
+	$(info $(MAKE_PAT))
 	$(info $(PAT_LIB))
 
