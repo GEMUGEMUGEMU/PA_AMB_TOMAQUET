@@ -100,7 +100,7 @@ $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(AL
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
-$(PAT_LIB): make_pat_lib
+$(PAT_LIB):
 	$(MAKE) -C $(PAT_PATH)
 
 .PHONY: clean info

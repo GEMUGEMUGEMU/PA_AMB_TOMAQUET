@@ -66,7 +66,7 @@ void InGame_ObjMan::Init(SDL_Renderer * renderer)
 	mController = player;
 
 	NPC* npc = new NPC();
-	npc->Init(PAT_Vector2D(15, 100), renderer);
+	npc->Init(PAT_Vector2D(150, 100), renderer);
 	AddGrpahicObj(npc);
 	AddUpdateObj(npc);
 	AddCollidingObj(npc);
