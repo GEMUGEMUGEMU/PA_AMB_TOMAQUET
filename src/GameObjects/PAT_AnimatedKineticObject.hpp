@@ -22,12 +22,13 @@
 class PAT_AnimatedKineticObject : public PAT_AnimatedObject
 {
 public:
-	PAT_AnimatedKineticObject();
+//	PAT_AnimatedKineticObject();
 	virtual ~PAT_AnimatedKineticObject();
 
 	virtual uint8_t Move(float deltaTime) = 0;
 
-//protected:
+protected:
+	PAT_AnimatedKineticObject(uint32_t speed);
 	uint32_t mSpeed;
 	PAT_Vector2D mDirection;
 };

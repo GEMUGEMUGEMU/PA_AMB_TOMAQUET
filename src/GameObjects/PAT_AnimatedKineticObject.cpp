@@ -14,7 +14,8 @@
 
 #include "PAT_AnimatedKineticObject.hpp"
 
-PAT_AnimatedKineticObject::PAT_AnimatedKineticObject() : mSpeed(0)
+PAT_AnimatedKineticObject::PAT_AnimatedKineticObject(uint32_t speed) :
+	mSpeed(speed), mDirection(PAT_Vector2D(0, 0))
 {
 
 }

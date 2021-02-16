@@ -27,15 +27,15 @@ class Player : public PAT_AnimatedKineticObject, public PAT_Controller,
 public PAT_CollidingObject, public PAT_Subject
 {
 public:
-	Player(){}
+	Player(float speed, PAT_Vector2D position);
 	~Player();
 
-	void Init(float speed, PAT_Vector2D vector, SDL_Renderer * renderer);
+	void Init(SDL_Renderer * pRenderer);
 
 	uint8_t Move(float deltaTime) override;
 	void Update(float deltaTime) override;
-	void Draw(SDL_Renderer* render) override;
-	void Input(SDL_Event * event) override;
+	void Draw() override;
+	void Input(SDL_Event * pEvent) override;
 
 	void SetState(Pl_State * newState);
 	void SetDirection(PAT_Vector2D newDirection);
@@ -45,9 +45,10 @@ public:
 	Pl_AnimationManager mAnimationManager;
 
 	PAT_Vector2D mPosition;
-//protected:
-	Pl_State * mState = nullptr;
-	PAT_Vector2D * mArrival = nullptr;
+
+protected:
+	Pl_State * mpState = nullptr;
+	PAT_Vector2D * mpArrival = nullptr;
 };
 
 #endif /* Player_hpp */

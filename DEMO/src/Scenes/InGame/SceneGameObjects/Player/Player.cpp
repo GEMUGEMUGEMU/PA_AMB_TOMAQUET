@@ -16,22 +16,30 @@
 #include "Pl_AnimationManager.hpp"
 #include "Pl_S_Idle.hpp"
 
-Player::~Player()
+Player::Player(float speed, PAT_Vector2D position) :
+	PAT_AnimatedKineticObject(speed), PAT_CollidingObject(mPosition),
+	mPosition(position), mpState(new Pl_S_Idle())
 {
 }
 
-
-void Player::Init(float speed, PAT_Vector2D vector, SDL_Renderer * renderer)
+Player::~Player()
 {
-	mSpeed = speed;
+	if(mpArrival)
+	{
+		delete mpArrival;
+		mpArrival = nullptr;
+	}
 
-	mAnimationManager.Init(renderer);
+	if(mpState)
+	{
+		delete mpState;
+		mpState = nullptr;
+	}
+}
 
-	mPosition = vector;
-	mRelativePosition = &mPosition;
-	mState = new Pl_S_Idle();
-
-	//mHitbox.Init();
+void Player::Init( SDL_Renderer * pRenderer)
+{
+	mAnimationManager.Init(pRenderer);
 }
 
 //Function that moves player. Return  0 if it has arrived otherwise 1;
@@ -40,9 +48,9 @@ uint8_t Player::Move(float deltaTime)
 	float secondsDeltaTime = deltaTime / 100;
 
 	//How much player can move in one second
-	if(mArrival == nullptr)
+	if(mpArrival == nullptr)
 	{
-		mArrival = new PAT_Vector2D(( mDirection * mSpeed ) + mPosition);
+		mpArrival = new PAT_Vector2D(( mDirection * mSpeed ) + mPosition);
 	}
 
 	//How much player can move in this delta time
@@ -53,12 +61,12 @@ uint8_t Player::Move(float deltaTime)
 		mPosition.DistanceFromPoint(&newPosition);
 
 	float distanceToArrival =
-		mPosition.DistanceFromPoint(mArrival);
+		mPosition.DistanceFromPoint(mpArrival);
 
 	//If arrival is surpassed then put new position as arrival
 	if(distanceToArrival <= distanceToTravel)
 	{
-		mPosition = mArrival;
+		mPosition = mpArrival;
 		ResetMove();
 		return 0;
 	}
@@ -72,18 +80,18 @@ uint8_t Player::Move(float deltaTime)
 void Player::ResetMove()
 {
 	mDirection = PAT_Vector2D::Vector2DZero;
-	delete(mArrival);
-	mArrival = nullptr;
+	delete(mpArrival);
+	mpArrival = nullptr;
 }
 
 void Player::Update(float deltaTime)
 {
-	mState->Update(deltaTime, this);
+	mpState->Update(deltaTime, this);
 }
 
-void Player::Draw(SDL_Renderer* render)
+void Player::Draw()
 {
-	mState->Draw(render, this);
+	mpState->Draw(this);
 }
 
 void Player::SetDirection(PAT_Vector2D newDirection)
@@ -99,22 +107,14 @@ bool Player::DirectionIsNull()
 	return mDirection.EqualsVectorZero();
 }
 
-void Player::SetState(Pl_State * newState)
+void Player::SetState(Pl_State * pNewState)
 {
-	delete(mState);
-	mState = newState;
+	delete(mpState);
+	mpState = pNewState;
 }
 
-void Player::Input(SDL_Event * event)
+void Player::Input(SDL_Event * pEvent)
 {
-
-	mState->Input(event, this);
+	mpState->Input(pEvent, this);
 }
 
-
-//PAT_Hitbox* Player::GetHitbox()
-//{
-//	mHitbox.mHitboxRectangle.x = mPosition.GetX();
-//	mHitbox.mHitboxRectangle.y = mPosition.GetY();
-//	return &mHitbox;
-//}

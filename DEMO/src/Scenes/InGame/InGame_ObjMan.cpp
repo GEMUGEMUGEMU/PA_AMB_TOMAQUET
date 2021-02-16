@@ -53,8 +53,8 @@ InGame_ObjMan::~InGame_ObjMan()
 
 void InGame_ObjMan::Init(SDL_Renderer * renderer)
 {
-	Player * player = new Player();
-	player->Init(32, PAT_Vector2D(10, 100), renderer);
+	Player * player = new Player(32, PAT_Vector2D(10, 100));
+	player->Init( renderer);
 
 	AddGrpahicObj(player);
 	AddUpdateObj(player);
@@ -65,8 +65,8 @@ void InGame_ObjMan::Init(SDL_Renderer * renderer)
 
 	mController = player;
 
-	NPC* npc = new NPC();
-	npc->Init(PAT_Vector2D(150, 100), renderer);
+	NPC* npc = new NPC(PAT_Vector2D(150, 100));
+	npc->Init( renderer);
 	AddGrpahicObj(npc);
 	AddUpdateObj(npc);
 	AddCollidingObj(npc);

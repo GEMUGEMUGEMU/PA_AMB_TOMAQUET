@@ -14,25 +14,24 @@
 
 #include "PAT_CollidingObject.hpp"
 
-PAT_CollidingObject::PAT_CollidingObject() : mRelativePosition(nullptr)
+PAT_CollidingObject::PAT_CollidingObject(PAT_Vector2D& rPosition) : mHasCollided(false),
+	mrRelativePosition(rPosition)
 {
 
 }
 
 PAT_CollidingObject::~PAT_CollidingObject()
 {
-	mRelativePosition = nullptr;
-}
 
-//PAT_Hitbox* PAT_CollidingObject::GetHitbox() { }
+}
 
 SDL_Rect* PAT_CollidingObject::GetHitbox()
 {
-	return hitbox.GetHitbox(*mRelativePosition);
+	return mHitbox.GetHitbox(mrRelativePosition);
 }
 
-void PAT_CollidingObject::HasCollidedWith(SDL_Rect* otherHitbox)
+void PAT_CollidingObject::HasCollidedWith(SDL_Rect* pOtherHitbox)
 {
 	mHasCollided =
-		SDL_HasIntersection(GetHitbox(), otherHitbox);
+		SDL_HasIntersection(GetHitbox(), pOtherHitbox);
 }

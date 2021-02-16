@@ -185,7 +185,6 @@ void PAT_GameObjectsManager::CheckCollisions()
 
 			if(collided->mHasCollided)
 			{
-				//mCollObjList.Remove(collided);
 				RemoveGameObject(collided);
 				max = mCollObjList.GetSize();
 			}

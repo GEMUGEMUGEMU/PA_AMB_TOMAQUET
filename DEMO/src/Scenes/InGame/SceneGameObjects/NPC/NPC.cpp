@@ -14,23 +14,23 @@
 
 #include "NPC.hpp"
 
-NPC::NPC()
+NPC::NPC(PAT_Vector2D position) : PAT_CollidingObject(mPosition),
+	mPosition(position)
 {
 
 }
+
 NPC::~NPC()
 {
 
 }
 
-void NPC::Init(PAT_Vector2D newPosition, SDL_Renderer * renderer)
+void NPC::Init(SDL_Renderer * pRenderer)
 {
-	mPosition = newPosition;
-	mRelativePosition = &mPosition;
-	mAnimationManager.Init(renderer);
+	mAnimationManager.Init(pRenderer);
 }
 
-void NPC::Draw(SDL_Renderer* renderer)
+void NPC::Draw(SDL_Renderer* pRenderer)
 {
 	mAnimationManager.Draw(mPosition.GetX(), mPosition.GetY(),
 		mAnimationManager.mAIdle);
@@ -41,11 +41,3 @@ void NPC::Update(float deltaTime)
 	mAnimationManager.Update(mAnimationManager.mAIdle);
 }
 
-//PAT_Hitbox* NPC::GetHitbox()
-//{
-//	mHitbox.mHitboxRectangle.x = mPosition.GetX();
-//	mHitbox.mHitboxRectangle.y = mPosition.GetY();
-
-	//return &mHitbox;
-//	return GetHitbox(PAT_Vector2D objectPosition);
-//}

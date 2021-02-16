@@ -19,32 +19,32 @@
 Pl_S_Idle::Pl_S_Idle(){ }
 Pl_S_Idle::~Pl_S_Idle(){ }
 
-void Pl_S_Idle::Draw(SDL_Renderer* renderer, Player* player)
+void Pl_S_Idle::Draw( Player* pPlayer)
 {
-	player->mAnimationManager.Draw(
-		player->mPosition.GetX(),
-		player->mPosition.GetY(),
-		player->mAnimationManager.mAIdle);
+	pPlayer->mAnimationManager.Draw(
+		pPlayer->mPosition.GetX(),
+		pPlayer->mPosition.GetY(),
+		pPlayer->mAnimationManager.mAIdle);
 }
 
-void Pl_S_Idle::Update(float deltaTime, Player* player)
+void Pl_S_Idle::Update(float deltaTime, Player* pPlayer)
 {
-	player->mAnimationManager.Update(player->mAnimationManager.mAIdle);
+	pPlayer->mAnimationManager.Update(pPlayer->mAnimationManager.mAIdle);
 }
 
 
-void Pl_S_Idle::Input(SDL_Event * event, Player* player)
+void Pl_S_Idle::Input(SDL_Event * pEvent, Player* pPlayer)
 {
-	switch (event->type)
+	switch (pEvent->type)
 	{
 		case SDL_KEYDOWN:
 		{
-			PAT_Vector2D movement;
+			PAT_Vector2D movement(0, 0);
 
-			switch (event->key.keysym.sym)
+			switch (pEvent->key.keysym.sym)
 			{
 				case SDLK_p:
-					player->SetState(new Pl_S_Punch);
+					pPlayer->SetState(new Pl_S_Punch);
 					return;
 
 				case SDLK_UP:
@@ -62,7 +62,7 @@ void Pl_S_Idle::Input(SDL_Event * event, Player* player)
 				break;
 			}
 
-			switch (event->key.keysym.sym)
+			switch (pEvent->key.keysym.sym)
 			{
 				case SDLK_LEFT:
 				{
@@ -83,8 +83,8 @@ void Pl_S_Idle::Input(SDL_Event * event, Player* player)
 			if(!movement.EqualsVectorZero())
 			{
 				movement.Normalize();
-				player->SetDirection(movement);
-				player->SetState(new Pl_S_Move);
+				pPlayer->SetDirection(movement);
+				pPlayer->SetState(new Pl_S_Move);
 			}
 		}
 		break;

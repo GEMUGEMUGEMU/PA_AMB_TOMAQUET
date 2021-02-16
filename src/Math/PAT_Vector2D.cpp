@@ -14,11 +14,11 @@
 #include "PAT_MathUtils.hpp"
 #include <cmath>
 
-const PAT_Vector2D PAT_Vector2D::Vector2DZero;
+const PAT_Vector2D PAT_Vector2D::Vector2DZero(0, 0);
 
-float PAT_Vector2D::ScalarProduct(const PAT_Vector2D& factorVector)
+float PAT_Vector2D::ScalarProduct(const PAT_Vector2D& rFactorVector)
 {
-	return mX * factorVector.mX + mY * factorVector.mY;
+	return mX * rFactorVector.mX + mY * rFactorVector.mY;
 }
 
 float PAT_Vector2D::GetMagnitudePower2()
@@ -44,14 +44,14 @@ PAT_Vector2D& PAT_Vector2D::Normalize()
 	}
 }
 
-PAT_Vector2D PAT_Vector2D::operator+(const PAT_Vector2D& sumVec) const
+PAT_Vector2D PAT_Vector2D::operator+(const PAT_Vector2D& rSumVec) const
 {
-	return PAT_Vector2D(mX + sumVec.mX, mY + sumVec.mY);
+	return PAT_Vector2D(mX + rSumVec.mX, mY + rSumVec.mY);
 }
 
-PAT_Vector2D PAT_Vector2D::operator*(float scalar) const
+PAT_Vector2D PAT_Vector2D::operator*(float pScalar) const
 {
-	return PAT_Vector2D(mX * scalar, mY * scalar);
+	return PAT_Vector2D(mX * pScalar, mY * pScalar);
 }
 
 PAT_Vector2D operator*(float scalar, PAT_Vector2D vector)
@@ -67,14 +67,14 @@ PAT_Vector2D PAT_Vector2D::operator/(float scalar) const
 	}
 	else
 	{
-		return PAT_Vector2D();
+		return PAT_Vector2D(0, 0);
 	}
 }
 
-bool PAT_Vector2D::operator==(const PAT_Vector2D& vector2D) const
+bool PAT_Vector2D::operator==(const PAT_Vector2D& rVector2D) const
 {
-	return FloatIsEquals(mX, vector2D.mX)
-		&& FloatIsEquals(mY, vector2D.mY);
+	return FloatIsEquals(mX, rVector2D.mX)
+		&& FloatIsEquals(mY, rVector2D.mY);
 }
 
 bool PAT_Vector2D::EqualsVectorZero()
@@ -83,18 +83,18 @@ bool PAT_Vector2D::EqualsVectorZero()
 }
 
 
-PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D& vec)
+PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D& rVector)
 {
-	mX = vec.mX;
-	mY = vec.mY;
+	mX = rVector.mX;
+	mY = rVector.mY;
 
 	return *this;
 }
 
-PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* vec)
+PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* rVector)
 {
-	mX = vec->mX;
-	mY = vec->mY;
+	mX = rVector->mX;
+	mY = rVector->mY;
 
 	return *this;
 }

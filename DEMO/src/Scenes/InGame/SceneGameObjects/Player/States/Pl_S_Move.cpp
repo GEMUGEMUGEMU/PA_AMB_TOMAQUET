@@ -19,34 +19,34 @@ Pl_S_Move::Pl_S_Move(){}
 
 Pl_S_Move::~Pl_S_Move(){}
 
-void Pl_S_Move::Draw(SDL_Renderer* renderer, Player* player)
+void Pl_S_Move::Draw(/*SDL_Renderer* pRenderer,*/ Player* pPlayer)
 {
-	player->mAnimationManager.Draw(
-		player->mPosition.GetX(),
-		player->mPosition.GetY(),
-		player->mAnimationManager.mAMove);
+	pPlayer->mAnimationManager.Draw(
+		pPlayer->mPosition.GetX(),
+		pPlayer->mPosition.GetY(),
+		pPlayer->mAnimationManager.mAMove);
 }
 
-void Pl_S_Move::Update(float deltaTime, Player* player)
+void Pl_S_Move::Update(float deltaTime, Player* pPlayer)
 {
-	player->mAnimationManager.Update(player->mAnimationManager.mAMove);
-	if(player->Move(deltaTime) == 0)
+	pPlayer->mAnimationManager.Update(pPlayer->mAnimationManager.mAMove);
+	if(pPlayer->Move(deltaTime) == 0)
 	{
-		player->SetState(new Pl_S_Idle);
+		pPlayer->SetState(new Pl_S_Idle);
 	}
 }
 
 
-void Pl_S_Move::Input(SDL_Event * event, Player* player)
+void Pl_S_Move::Input(SDL_Event * pEvent, Player* pPlayer)
 {
 
-	switch (event->type)
+	switch (pEvent->type)
 	{
 		case SDL_KEYDOWN:
 		{
-			PAT_Vector2D movement;
+			PAT_Vector2D movement(0, 0);
 
-			switch (event->key.keysym.sym)
+			switch (pEvent->key.keysym.sym)
 			{
 				case SDLK_UP:
 				{
@@ -63,7 +63,7 @@ void Pl_S_Move::Input(SDL_Event * event, Player* player)
 				break;
 			}
 
-			switch (event->key.keysym.sym)
+			switch (pEvent->key.keysym.sym)
 			{
 				case SDLK_LEFT:
 				{
@@ -84,19 +84,19 @@ void Pl_S_Move::Input(SDL_Event * event, Player* player)
 			if(!movement.EqualsVectorZero())
 			{
 				movement.Normalize();
-				player->SetDirection(movement);
+				pPlayer->SetDirection(movement);
 			}
 		}
 			break;
 		case SDL_KEYUP:
-			switch (event->key.keysym.sym)
+			switch (pEvent->key.keysym.sym)
 			{
 				case SDLK_UP:
 				case SDLK_DOWN:
 				case SDLK_LEFT:
 				case SDLK_RIGHT:
-					player->ResetMove();
-					player->SetState(new Pl_S_Idle);
+					pPlayer->ResetMove();
+					pPlayer->SetState(new Pl_S_Idle);
 				break;
 			}
 		default:

@@ -48,7 +48,7 @@ void InGameScene::Input(SDL_Event * event)
 {
 	if( event->type == SDL_KEYDOWN)
 	{
-		PAT_Vector2D movement;
+		PAT_Vector2D movement(0, 0);
 		switch (event->key.keysym.sym)
 		{
 			case SDLK_SPACE:

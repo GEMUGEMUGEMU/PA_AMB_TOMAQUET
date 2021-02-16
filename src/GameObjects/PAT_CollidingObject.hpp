@@ -21,15 +21,18 @@
 class PAT_CollidingObject : public PAT_GameObject
 {
 public:
-	PAT_CollidingObject();
+//	PAT_CollidingObject();
 	virtual ~PAT_CollidingObject();
 
 	virtual SDL_Rect* GetHitbox();
-	void HasCollidedWith(SDL_Rect* otherHitbox);
-	bool mHasCollided = false;
+	void HasCollidedWith(SDL_Rect* pOtherHitbox);
+	bool mHasCollided;// = false;
 
-	PAT_Hitbox hitbox;
-	PAT_Vector2D* mRelativePosition;
+	PAT_Hitbox mHitbox;
+	//PAT_Vector2D* mpRelativePosition;
+	PAT_Vector2D& mrRelativePosition;
+protected:
+	PAT_CollidingObject(PAT_Vector2D& rPosition);
 };
 
 #endif /* PAT_CollidingObject_hpp */

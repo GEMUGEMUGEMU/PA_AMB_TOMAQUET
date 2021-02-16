@@ -25,12 +25,12 @@ public:
 	Pl_State();
 	virtual ~Pl_State(){}
 
-	virtual void Update(float deltaTime, Player* player) = 0;
-	virtual void Draw(SDL_Renderer* renderer, Player* player) = 0;
-	virtual void Input(SDL_Event * event, Player* player) = 0;
+	virtual void Update(float deltaTime, Player* pPlayer) = 0;
+	virtual void Draw(/*SDL_Renderer* renderer,*/ Player* pPlayer) = 0;
+	virtual void Input(SDL_Event * pEvent, Player* pPlayer) = 0;
 
 protected:
-	void ChangeState(Player* player, Pl_State* newState);
+	void ChangeState(Player* pPlayer, Pl_State* pNewState);
 };
 
 #endif /* Pl_State_hpp */

@@ -25,9 +25,9 @@ public:
 	Pl_S_Move();
 	~Pl_S_Move();
 
-	void Update(float deltaTime, Player * player) override;
-	void Draw(SDL_Renderer* renderer, Player* player) override;
-	void Input(SDL_Event * event, Player* player) override;
+	void Update(float deltaTime, Player * pPlayer) override;
+	void Draw(/*SDL_Renderer* pRenderer,*/ Player* pPlayer) override;
+	void Input(SDL_Event * pEvent, Player* pPlayer) override;
 };
 
 #endif /* Pl_S_Move_hpp */

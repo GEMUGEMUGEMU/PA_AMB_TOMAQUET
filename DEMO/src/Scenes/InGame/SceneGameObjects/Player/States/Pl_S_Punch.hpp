@@ -24,9 +24,9 @@ public:
 	Pl_S_Punch();
 	~Pl_S_Punch();
 
-	void Update(float deltaTime, Player * player) override;
-	void Draw(SDL_Renderer* renderer, Player* player) override;
-	void Input(SDL_Event * event, Player* player) override;
+	void Update(float deltaTime, Player * pPlayer) override;
+	void Draw(/*SDL_Renderer* renderer,*/ Player* pPlayer) override;
+	void Input(SDL_Event * pEvent, Player* pPlayer) override;
 };
 
 #endif /* Pl_S_Punch_hpp */

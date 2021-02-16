@@ -25,11 +25,11 @@ class NPC : public PAT_AnimatedObject, public PAT_CollidingObject,
 public PAT_Subject
 {
 public:
-	NPC();
+	NPC(PAT_Vector2D position);
 	~NPC();
-	void Init(PAT_Vector2D newPosition, SDL_Renderer * render);
+	void Init( SDL_Renderer * pRenderer);
 
-	void Draw(SDL_Renderer* renderer) override;
+	void Draw(SDL_Renderer* pRenderer) override;
 	void Update(float deltaTime) override;
 
 	NPC_AnimationManager mAnimationManager;
