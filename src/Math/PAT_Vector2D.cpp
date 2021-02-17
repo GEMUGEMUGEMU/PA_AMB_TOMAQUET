@@ -91,22 +91,22 @@ PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D& rVector)
 	return *this;
 }
 
-PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* rVector)
+PAT_Vector2D& PAT_Vector2D::operator=(const PAT_Vector2D* pVector)
 {
-	mX = rVector->mX;
-	mY = rVector->mY;
+	mX = pVector->mX;
+	mY = pVector->mY;
 
 	return *this;
 }
 
-float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D& vec)
+float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D& rVec)
 {
 
-	return GetHypotenuse( vec.mX - this->mX, vec.mY - this->mY );
+	return GetHypotenuse( rVec.mX - this->mX, rVec.mY - this->mY );
 }
 
-float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D* vec)
+float PAT_Vector2D::DistanceFromPoint(const PAT_Vector2D* pVec)
 {
 
-	return GetHypotenuse( vec->mX - this->mX, vec->mY - this->mY );
+	return GetHypotenuse( pVec->mX - this->mX, pVec->mY - this->mY );
 }

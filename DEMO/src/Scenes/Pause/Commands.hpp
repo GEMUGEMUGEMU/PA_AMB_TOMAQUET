@@ -16,14 +16,17 @@
 #define Commands_hpp
 
 #include "PAT_GraphicStaticObject.hpp"
+#include "PAT_Vector2D.hpp"
 
 class Commands : public PAT_GraphicStaticObject
 {
 public:
-	Commands();
+	Commands(PAT_Vector2D position, SDL_Renderer* pRenderer);
 	~Commands();
 
-	void Init(uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Draw(SDL_Renderer* pRenderer) override;
+
+	PAT_Vector2D mPosition;
 };
 
 

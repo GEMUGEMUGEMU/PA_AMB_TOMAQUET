@@ -25,7 +25,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::Init(SDL_Renderer* renderer)
 {
-	mRender = renderer;
+	mpRenderer = renderer;
 	InGameScene* inGameScene = new InGameScene();
 //	inGameScene->Attach(this);
 	InitAndPushScene( inGameScene );
@@ -33,13 +33,13 @@ void SceneManager::Init(SDL_Renderer* renderer)
 
 void SceneManager::Input(SDL_Event * event)
 {
-	mActualScene->Input(event);
+	mpActualScene->Input(event);
 }
 
 
 void SceneManager::UpdateFromSubject(PAT_Subject* changedSubject)
 {
-	if(changedSubject == mActualScene)
+	if(changedSubject == mpActualScene)
 	{
 		PopOrPushScene();
 	}

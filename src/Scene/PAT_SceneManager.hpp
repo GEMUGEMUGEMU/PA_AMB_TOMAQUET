@@ -18,6 +18,8 @@
 #include "PAT_Scene.hpp"
 #include "PAT_Stack.hpp"
 #include "PAT_Observer.hpp"
+//#include <memory>
+
 
 class PAT_SceneManager : public PAT_Observer
 {
@@ -25,29 +27,30 @@ public:
 	PAT_SceneManager(){}
 	virtual ~PAT_SceneManager()
 	{
-		//mActualScene is a pointer of the scen on top of the stack
+		//mpActualScene is a pointer of the scen on top of the stack
 		//so it's stack who's going to delete its scenes
-		mActualScene = nullptr;
-		SDL_DestroyRenderer(mRender);
+		mpActualScene = nullptr;
+		SDL_DestroyRenderer(mpRenderer);
 	}
 
-	virtual void Init(SDL_Renderer* renderer) = 0;
+	virtual void Init(SDL_Renderer* pRenderer) = 0;
 
 	bool IsEmpty();
 
 	void PopScene();
-	void PushScene(PAT_Scene * newScene);
-	void InitAndPushScene(PAT_Scene * newScene);
+	void PushScene(PAT_Scene * pNewScene);
+	void InitAndPushScene(PAT_Scene * pNewScene);
 
 	void Update(double deltaTime);
-	void Draw(SDL_Renderer * render);
+	void Draw(SDL_Renderer * pRenderer);
 	void Render();
 	void PopOrPushScene();
-	virtual void Input(SDL_Event * event) = 0;
+	virtual void Input(SDL_Event * pEvent) = 0;
 
 protected:
-	PAT_Scene * mActualScene;
-	SDL_Renderer * mRender;
+	PAT_Scene * mpActualScene;
+//	std::unique_ptr<PAT_Scene> mpActualScene;
+	SDL_Renderer * mpRenderer;
 	PAT_Stack<PAT_Scene> mStackScene;
 };
 

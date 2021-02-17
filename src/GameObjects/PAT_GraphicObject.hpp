@@ -15,6 +15,7 @@
 #define PAT_GraphicObject_hpp
 
 #include "PAT_GameObject.hpp"
+#include "SDL2/SDL.h"
 
 class PAT_GraphicObject : public PAT_GameObject
 {
@@ -22,7 +23,7 @@ public:
 	PAT_GraphicObject();
 	virtual ~PAT_GraphicObject();
 
-	virtual void Draw() = 0;
+	virtual void Draw(SDL_Renderer* pRenderer) = 0;
 };
 
 #endif /* PAT_GraphicObject_hpp */

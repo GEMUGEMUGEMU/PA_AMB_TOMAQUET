@@ -19,27 +19,27 @@ PAT_Subject::PAT_Subject()
 
 }
 
-void PAT_Subject::Attach(PAT_Observer* observer)
+void PAT_Subject::Attach(PAT_Observer* pObserver)
 {
-	mObserversList.Add(observer);
+	mObserversList.Add(pObserver);
 }
 
-void PAT_Subject::Detach(PAT_Observer* observer)
+void PAT_Subject::Detach(PAT_Observer* pObserver)
 {
-	mObserversList.Remove(observer);
+	mObserversList.Remove(pObserver);
 }
 
 void PAT_Subject::Notify()
 {
-	PAT_Observer* thisObserver = nullptr;
+	PAT_Observer* p_this_observer = nullptr;
 
 	uint32_t size = mObserversList.GetSize();
 	uint32_t counter = 0;
 
 	while(counter < size)
 	{
-		thisObserver = mObserversList.Get(counter);
-		thisObserver->UpdateFromSubject(this);
+		p_this_observer = mObserversList.Get(counter);
+		p_this_observer->UpdateFromSubject(this);
 		counter = counter + 1;
 	}
 }

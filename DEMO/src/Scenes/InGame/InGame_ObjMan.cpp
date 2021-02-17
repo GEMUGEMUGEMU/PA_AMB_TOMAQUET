@@ -51,10 +51,10 @@ InGame_ObjMan::~InGame_ObjMan()
 	while(deleteSubject != nullptr);
 }
 
-void InGame_ObjMan::Init(SDL_Renderer * renderer)
+void InGame_ObjMan::Init(SDL_Renderer * pRenderer)
 {
 	Player * player = new Player(32, PAT_Vector2D(10, 100));
-	player->Init( renderer);
+	player->Init( pRenderer);
 
 	AddGrpahicObj(player);
 	AddUpdateObj(player);
@@ -66,7 +66,7 @@ void InGame_ObjMan::Init(SDL_Renderer * renderer)
 	mController = player;
 
 	NPC* npc = new NPC(PAT_Vector2D(150, 100));
-	npc->Init( renderer);
+	npc->Init( pRenderer);
 	AddGrpahicObj(npc);
 	AddUpdateObj(npc);
 	AddCollidingObj(npc);
@@ -74,12 +74,12 @@ void InGame_ObjMan::Init(SDL_Renderer * renderer)
 
 	npc->Attach(this);
 
-	InGameTitle* title = new InGameTitle();
-	title->Init(10, 10, renderer);
+	InGameTitle* title = new InGameTitle(PAT_Vector2D(10, 10), pRenderer);
+	//title->Init(10, 10, pRenderer);
 	AddGrpahicObj(title);
 
-	Instructions* instr = new Instructions();
-	instr->Init(10, 350, renderer);
+	Instructions* instr = new Instructions(PAT_Vector2D(10, 350), pRenderer);
+//	instr->Init(10, 350, pRenderer);
 
 	AddGrpahicObj(instr);
 }

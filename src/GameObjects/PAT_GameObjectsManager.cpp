@@ -20,120 +20,120 @@ PAT_GameObjectsManager::PAT_GameObjectsManager()
 
 PAT_GameObjectsManager::~PAT_GameObjectsManager()
 {
-	PAT_GameObject* removeObject = nullptr;
+	PAT_GameObject* remove_object = nullptr;
 
 	do
 	{
-		removeObject = mGraphicObjectsList.RemoveAtIndex(0);
-		if(removeObject)
+		remove_object = mGraphicObjectsList.RemoveAtIndex(0);
+		if(remove_object)
 		{
-			RemoveFromLists(removeObject);
-			delete removeObject;
+			RemoveFromLists(remove_object);
+			delete remove_object;
 		}
 	}
-	while(removeObject != nullptr);
+	while(remove_object != nullptr);
 
 	do
 	{
-		removeObject = mUpdateObjectsList.RemoveAtIndex(0);
-		if(removeObject)
+		remove_object = mUpdateObjectsList.RemoveAtIndex(0);
+		if(remove_object)
 		{
-			RemoveFromLists(removeObject);
-			delete removeObject;
+			RemoveFromLists(remove_object);
+			delete remove_object;
 		}
 	}
-	while(removeObject != nullptr);
+	while(remove_object != nullptr);
 
 	do
 	{
-		removeObject = mCollObjList.RemoveAtIndex(0);
-		if(removeObject)
+		remove_object = mCollObjList.RemoveAtIndex(0);
+		if(remove_object)
 		{
-			RemoveFromLists(removeObject);
-			delete removeObject;
+			RemoveFromLists(remove_object);
+			delete remove_object;
 		}
 	}
-	while(removeObject != nullptr);
+	while(remove_object != nullptr);
 }
 
 void PAT_GameObjectsManager::Update(float deltaTime)
 {
 	uint32_t max = mUpdateObjectsList.GetSize();
-	PAT_UpdateObject* tObject;
+	PAT_UpdateObject* update_object;
 
 	uint32_t counter = 0;
 
 	while ( counter < max)
 	{
-		tObject = mUpdateObjectsList.Get(counter);
-		tObject->Update(deltaTime);
+		update_object = mUpdateObjectsList.Get(counter);
+		update_object->Update(deltaTime);
 		counter = counter + 1;
 	}
 }
 
-void PAT_GameObjectsManager::Draw(SDL_Renderer * render)
+void PAT_GameObjectsManager::Draw(SDL_Renderer * pRenderer)
 {
 	uint32_t max = mGraphicObjectsList.GetSize();
-	PAT_GraphicObject* drawObject;
+	PAT_GraphicObject* draw_object;
 
 	uint32_t counter = 0;
 
 	while ( counter < max)
 	{
-		drawObject = mGraphicObjectsList.Get(counter);
-		drawObject->Draw(render);
+		draw_object = mGraphicObjectsList.Get(counter);
+		draw_object->Draw(pRenderer);
 		counter = counter + 1;
 	}
 }
 
-void PAT_GameObjectsManager::Input(SDL_Event * event)
+void PAT_GameObjectsManager::Input(SDL_Event * pEvent)
 {
 	if(mController)
 	{
-		mController->Input(event);
+		mController->Input(pEvent);
 	}
 }
 
-void PAT_GameObjectsManager::AddCollidingObj(PAT_CollidingObject* newObject)
+void PAT_GameObjectsManager::AddCollidingObj(PAT_CollidingObject* pNewObject)
 {
-	mCollObjList.Add(newObject);
+	mCollObjList.Add(pNewObject);
 }
 
-void PAT_GameObjectsManager::AddGrpahicObj(PAT_GraphicObject* newObject)
+void PAT_GameObjectsManager::AddGrpahicObj(PAT_GraphicObject* pNewObject)
 {
 
-	mGraphicObjectsList.Add(newObject);
+	mGraphicObjectsList.Add(pNewObject);
 }
 
-void PAT_GameObjectsManager::AddUpdateObj(PAT_UpdateObject* newObject)
+void PAT_GameObjectsManager::AddUpdateObj(PAT_UpdateObject* pNewObject)
 {
 
-	mUpdateObjectsList.Add(newObject);
+	mUpdateObjectsList.Add(pNewObject);
 }
 
 void PAT_GameObjectsManager::RemoveFromLists(PAT_GameObject* gameObject)
 {
-	PAT_CollidingObject* collObj =
+	PAT_CollidingObject* coll_obj =
 		dynamic_cast<PAT_CollidingObject*>(gameObject);
-	if(collObj)
+	if(coll_obj)
 	{
-		mCollObjList.Remove(collObj);
+		mCollObjList.Remove(coll_obj);
 	}
 
 
-	PAT_GraphicObject* graphObj =
+	PAT_GraphicObject* graph_obj =
 		dynamic_cast<PAT_GraphicObject*>(gameObject);
-	if(graphObj)
+	if(graph_obj)
 	{
-		mGraphicObjectsList.Remove(graphObj);
+		mGraphicObjectsList.Remove(graph_obj);
 	}
 
 
-	PAT_UpdateObject* upObj =
+	PAT_UpdateObject* update_obj =
 		dynamic_cast<PAT_UpdateObject*>(gameObject);
-	if(upObj)
+	if(update_obj)
 	{
-		mUpdateObjectsList.Remove(upObj);
+		mUpdateObjectsList.Remove(update_obj);
 	}
 
 	PAT_Controller* controller =
@@ -195,9 +195,9 @@ void PAT_GameObjectsManager::CheckCollisions()
 }
 
 
-void PAT_GameObjectsManager::RemoveGameObject(PAT_GameObject* gameObject)
+void PAT_GameObjectsManager::RemoveGameObject(PAT_GameObject* pGameObject)
 {
-	RemoveFromLists(gameObject);
+	RemoveFromLists(pGameObject);
 
-	delete(gameObject);
+	delete(pGameObject);
 }

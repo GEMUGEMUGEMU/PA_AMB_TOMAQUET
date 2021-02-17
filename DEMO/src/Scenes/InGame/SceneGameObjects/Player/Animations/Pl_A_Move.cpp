@@ -22,19 +22,19 @@ Pl_A_Move::~Pl_A_Move()
 	SDL_DestroyTexture(mAnimationSheet);
 }
 
-void Pl_A_Move::LoadImage(SDL_Renderer* render)
+void Pl_A_Move::LoadImage(SDL_Renderer* pRenderer)
 {
-	const char* filePath= "./src/Sprites/Prehistoric.png";
+	const char* file_path= "./src/Sprites/Prehistoric.png";
 
-	SDL_Surface * tempSurface = IMG_Load(filePath);
+	SDL_Surface * temp_surface = IMG_Load(file_path);
 
-	mWith = tempSurface->w;
-	mHeight = tempSurface->h;
+	mWith = temp_surface->w;
+	mHeight = temp_surface->h;
 
 	mAnimationSheet =
-		SDL_CreateTextureFromSurface(render, tempSurface);
+		SDL_CreateTextureFromSurface(pRenderer, temp_surface);
 
-	SDL_FreeSurface(tempSurface);
+	SDL_FreeSurface(temp_surface);
 }
 
 void Pl_A_Move::LoadClips()

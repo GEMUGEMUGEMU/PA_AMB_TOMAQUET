@@ -15,23 +15,23 @@
 #include "PAT_Animation.hpp"
 
 
-void PAT_Animation::Init(SDL_Renderer* renderer)
+void PAT_Animation::Init(SDL_Renderer* pRenderer)
 {
-	LoadImage(renderer);
+	LoadImage(pRenderer);
 	LoadClips();
 }
 
-void PAT_Animation::Draw(int x, int y, SDL_Renderer* renderer)
+void PAT_Animation::Draw(int x, int y, SDL_Renderer* pRenderer)
 {
-	SDL_Rect* tClip = mClipList.Get(mSpriteIndex);
+	SDL_Rect* temp_clip = mClipList.Get(mSpriteIndex);
 
-	SDL_Rect* tDrawPosition = new SDL_Rect();
-	tDrawPosition->x = x;
-	tDrawPosition->y = y;
-	tDrawPosition->w = tClip->w/* * MAGNIFY VALUE*/;
-	tDrawPosition->h = tClip->h/* * MAGNIFY VALUE*/;
+	SDL_Rect* temp_draw_position = new SDL_Rect();
+	temp_draw_position->x = x;
+	temp_draw_position->y = y;
+	temp_draw_position->w = temp_clip->w/* * MAGNIFY VALUE*/;
+	temp_draw_position->h = temp_clip->h/* * MAGNIFY VALUE*/;
 
-	SDL_RenderCopy( renderer, mAnimationSheet, tClip, tDrawPosition);
+	SDL_RenderCopy( pRenderer, mAnimationSheet, temp_clip, temp_draw_position);
 
 }
 

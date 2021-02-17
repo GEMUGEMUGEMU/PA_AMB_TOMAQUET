@@ -15,14 +15,17 @@
 #define PauseText_hpp
 
 #include "PAT_GraphicStaticObject.hpp"
+#include "PAT_Vector2D.hpp"
 
 class PauseText : public PAT_GraphicStaticObject
 {
 public:
-	PauseText();
+	PauseText(PAT_Vector2D position, SDL_Renderer* pRenderer);
 	~PauseText();
 
-	void Init(uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Draw(SDL_Renderer* pRenderer) override;
+
+	PAT_Vector2D mPosition;
 };
 
 #endif /* PauseText_hpp */

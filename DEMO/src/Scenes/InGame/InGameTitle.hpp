@@ -15,14 +15,18 @@
 #define InGameTitle_hpp
 
 #include "PAT_GraphicStaticObject.hpp"
+#include "SDL2/SDL.h"
+#include "PAT_Vector2D.hpp"
 
 class InGameTitle : public PAT_GraphicStaticObject
 {
 public:
-	InGameTitle();
+	InGameTitle(PAT_Vector2D position, SDL_Renderer* pRenderer);
 	~InGameTitle();
 
-	void Init(uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Draw(SDL_Renderer* pRenderer) override;
+
+	PAT_Vector2D mPosition;
 };
 
 #endif /* InGameTitle_hpp */

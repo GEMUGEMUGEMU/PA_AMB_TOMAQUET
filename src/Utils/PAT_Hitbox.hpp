@@ -29,7 +29,6 @@ public:
 	void Notify();
 	SDL_Rect* GetHitbox(PAT_Vector2D objectPosition);
 
-	//PAT_HittableObject* mOwner;
 	SDL_Rect mHitboxRectangle;
 
 	//Relative coordinates of hitbox in base to hittable object

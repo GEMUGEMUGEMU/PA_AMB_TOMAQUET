@@ -16,14 +16,18 @@
 #define PAT_Instructions_hpp
 
 #include "PAT_GraphicStaticObject.hpp"
+#include "PAT_Vector2D.hpp"
+#include "SDL2/SDL.h"
 
 class Instructions : public PAT_GraphicStaticObject
 {
 public:
-	Instructions();
+	Instructions(PAT_Vector2D position, SDL_Renderer* pRenderer);
 	~Instructions();
 
-	void Init(uint32_t x, uint32_t y, SDL_Renderer* render);
+	void Draw(SDL_Renderer* pRenderer);
+
+	PAT_Vector2D mPosition;
 };
 
 #endif /* PAT_Instructions_hpp */

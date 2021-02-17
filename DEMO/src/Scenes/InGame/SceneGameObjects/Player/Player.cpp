@@ -89,7 +89,7 @@ void Player::Update(float deltaTime)
 	mpState->Update(deltaTime, this);
 }
 
-void Player::Draw()
+void Player::Draw(SDL_Renderer* pRenderer)
 {
 	mpState->Draw(this);
 }

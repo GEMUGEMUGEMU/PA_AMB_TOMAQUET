@@ -45,12 +45,12 @@ void PAT_Game::Run()
 {
 	if(mWindow)
 	{
-		double secondsStart;
+		double secons_start;
 #ifndef DEBUG_MODE
 		double secondsDelay;
 #endif
-		double secondsEnd;
-		double deltaTime = 0;
+		double secons_end;
+		double delta_time = 0;
 
 /*
 *		_,-'2_,-'2_,-'2_,-'2_,-'2_
@@ -61,21 +61,21 @@ void PAT_Game::Run()
 */
 		while(mRunning && !mSceneManager->IsEmpty())
 		{
-			secondsStart = SDL_GetTicks();
+			secons_start = SDL_GetTicks();
 
 			ProcessInput();
 
 			if(!mSceneManager->IsEmpty())
 			{
-				Update(deltaTime);
+				Update(delta_time);
 
 				Render();
 			}
 
-			secondsEnd = SDL_GetTicks();
-			deltaTime = secondsEnd - secondsStart;
+			secons_end = SDL_GetTicks();
+			delta_time = secons_end - secons_start;
 #ifndef DEBUG_MODE
-			secondsDelay = FRAME_PER_SECOND - (deltaTime);
+			secondsDelay = FRAME_PER_SECOND - (delta_time);
 			SDL_Delay(secondsDelay);
 #endif
 		}

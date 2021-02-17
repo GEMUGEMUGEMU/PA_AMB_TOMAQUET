@@ -34,7 +34,7 @@ public:
 
 	uint8_t Move(float deltaTime) override;
 	void Update(float deltaTime) override;
-	void Draw() override;
+	void Draw(SDL_Renderer* pRenderer) override;
 	void Input(SDL_Event * pEvent) override;
 
 	void SetState(Pl_State * newState);

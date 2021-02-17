@@ -20,10 +20,12 @@ PAT_GraphicStaticObject::PAT_GraphicStaticObject()
 
 PAT_GraphicStaticObject::~PAT_GraphicStaticObject()
 {
-	SDL_DestroyTexture(mSprite);
+	SDL_DestroyTexture(mpSprite);
 }
 
-void PAT_GraphicStaticObject::Draw(SDL_Renderer* renderer)
+
+void PAT_GraphicStaticObject::Draw(SDL_Renderer* pRenderer)
 {
-	SDL_RenderCopy( renderer, mSprite, mSpriteDimensions, mSpriteCordinates);
+	SDL_RenderCopy( pRenderer, mpSprite, mpSpriteDimensions,
+		mpSpriteCordinates);
 }

@@ -22,7 +22,6 @@
 class PAT_AnimatedKineticObject : public PAT_AnimatedObject
 {
 public:
-//	PAT_AnimatedKineticObject();
 	virtual ~PAT_AnimatedKineticObject();
 
 	virtual uint8_t Move(float deltaTime) = 0;

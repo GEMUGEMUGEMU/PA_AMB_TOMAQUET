@@ -26,9 +26,9 @@ public:
 	void Draw(SDL_Renderer* renderer);
 
 protected:
-	SDL_Texture * mSprite = nullptr;
-	SDL_Rect * mSpriteCordinates = nullptr;
-	SDL_Rect * mSpriteDimensions = nullptr;
+	SDL_Texture * mpSprite = nullptr;
+	SDL_Rect * mpSpriteCordinates = nullptr;
+	SDL_Rect * mpSpriteDimensions = nullptr;
 };
 
 #endif /* PAT_GraphicStaticObject_hpp */

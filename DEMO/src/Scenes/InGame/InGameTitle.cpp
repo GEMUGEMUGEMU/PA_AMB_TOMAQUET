@@ -15,9 +15,30 @@
 #include "SDL_ttf.h"
 
 
-InGameTitle::InGameTitle()
+InGameTitle::InGameTitle(PAT_Vector2D position, SDL_Renderer* pRenderer) :
+mPosition(position)
 {
+	SDL_Color text_color = { 225, 225, 0 };
+	TTF_Font *font;
 
+	font = TTF_OpenFont( "./src/Fonts/YourQuotaRegular-z2zl.ttf", 28 );
+
+	SDL_Surface * text_surface = TTF_RenderText_Solid( font,
+		"NISHIKIGOI DEMO", text_color );
+	mpSprite = SDL_CreateTextureFromSurface(pRenderer, text_surface);
+	SDL_FreeSurface(text_surface);
+
+	mpSpriteDimensions = new SDL_Rect;
+	mpSpriteDimensions->x = 0;
+	mpSpriteDimensions->y = 0;
+	mpSpriteDimensions->w = text_surface->w;
+	mpSpriteDimensions->h = text_surface->h;
+
+	mpSpriteCordinates = new SDL_Rect;
+	mpSpriteCordinates->x = mPosition.GetX();
+	mpSpriteCordinates->y = mPosition.GetY();
+	mpSpriteCordinates->w = text_surface->w;
+	mpSpriteCordinates->h = text_surface->h;
 }
 
 InGameTitle::~InGameTitle()
@@ -25,31 +46,8 @@ InGameTitle::~InGameTitle()
 
 }
 
-void InGameTitle::Init(uint32_t x, uint32_t y, SDL_Renderer* render)
+void InGameTitle::Draw(SDL_Renderer* pRenderer)
 {
-
-	SDL_Color textColor = { 225, 225, 0 };
-	TTF_Font *font;
-
-	font = TTF_OpenFont( "./src/Fonts/YourQuotaRegular-z2zl.ttf", 40 );
-
-	SDL_Surface * tempSurface = TTF_RenderText_Solid( font, "NISHIKIGOI DEMO", textColor );
-
-	mSpriteDimensions = new SDL_Rect;
-	mSpriteDimensions->x = 0;
-	mSpriteDimensions->y = 0;
-	mSpriteDimensions->w = tempSurface->w;
-	mSpriteDimensions->h = tempSurface->h;
-
-	mSpriteCordinates = new SDL_Rect;
-	mSpriteCordinates->x = x;
-	mSpriteCordinates->y = y;
-	mSpriteCordinates->w = tempSurface->w;
-	mSpriteCordinates->h = tempSurface->h;
-
-	mSprite = SDL_CreateTextureFromSurface(render, tempSurface);
-
-	SDL_FreeSurface(tempSurface);
-
+	SDL_RenderCopy( pRenderer, mpSprite, mpSpriteDimensions, mpSpriteCordinates);
 }
 
