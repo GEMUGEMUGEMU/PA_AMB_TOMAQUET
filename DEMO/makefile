@@ -44,7 +44,7 @@ endef
 define print_logo
 @echo "        ~_"
 @echo "     ~_ )_)~_"
-@echo "     )_))_))_) Make $(TARGET)"
+@echo "     )_))_))_) \e[1;36mMake $(TARGET)\e[0m"
 @echo "     _!__!__!_"
 @echo "   ~~\   Gemu/~~"
 endef
@@ -89,19 +89,26 @@ ifeq ($(RELASE),1)
 	CCFLAGS+= -O3
 endif
 
+DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
+DEPFLAGS =-MMD -MP
+
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
 	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
 
 
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
+#$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
+
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
 $(PAT_LIB):
 	$(MAKE) -C $(PAT_PATH)
+
+-include $(DEPEND_FILES)
 
 .PHONY: clean info
 
