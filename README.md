@@ -14,9 +14,14 @@
 - VIM
 - git
 - GraphicsGale
+- GNU makefile
+- Catch2
 
 ### What's next?
-1. Create Scene
+1. Run tests by makefile
+2. Implement more Catch2 tests
+3. Implement Double Buffer
+4. Implement entity component system
 
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
