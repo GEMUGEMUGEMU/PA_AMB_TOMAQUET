@@ -20,7 +20,7 @@ private:
 	float mX, mY;
 public:
 	PAT_Vector2D(float x, float y): mX(x), mY(y){}
-	PAT_Vector2D(): PAT_Vector2D(0, 0){}
+	PAT_Vector2D();//: PAT_Vector2D(0, 0){}
 	PAT_Vector2D(const PAT_Vector2D& vector)
 		: mX(vector.mX), mY(vector.mY) {}
 

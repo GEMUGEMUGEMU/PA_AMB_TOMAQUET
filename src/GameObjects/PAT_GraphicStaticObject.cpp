@@ -13,7 +13,19 @@
 
 #include "PAT_GraphicStaticObject.hpp"
 
-void PAT_GraphicStaticObject::Draw(SDL_Renderer* renderer)
+PAT_GraphicStaticObject::PAT_GraphicStaticObject()
 {
-	SDL_RenderCopy( renderer, mSprite, mSpriteDimensions, mSpriteCordinates);
+
+}
+
+PAT_GraphicStaticObject::~PAT_GraphicStaticObject()
+{
+	SDL_DestroyTexture(mpSprite);
+}
+
+
+void PAT_GraphicStaticObject::Draw(SDL_Renderer* pRenderer)
+{
+	SDL_RenderCopy( pRenderer, mpSprite, mpSpriteDimensions,
+		mpSpriteCordinates);
 }

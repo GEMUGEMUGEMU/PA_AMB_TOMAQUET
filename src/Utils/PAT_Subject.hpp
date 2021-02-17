@@ -22,14 +22,14 @@ class PAT_Subject
 {
 public:
 	virtual ~PAT_Subject(){ }
-	void Attach(PAT_Observer* observer);
-	void Detach(PAT_Observer* observer);
+	void Attach(PAT_Observer* pObserver);
+	void Detach(PAT_Observer* pObserver);
 	void Notify();
 
-protected:
+//protected:
 	PAT_Subject();
 
-private:
+//private:
 	PAT_LinkedList<PAT_Observer> mObserversList;
 };
 

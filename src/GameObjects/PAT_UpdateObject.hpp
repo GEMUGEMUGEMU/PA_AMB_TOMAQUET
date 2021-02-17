@@ -14,12 +14,14 @@
 #ifndef PAT_UpdateObject_hpp
 #define PAT_UpdateObject_hpp
 
-class PAT_UpdateObject
+#include "PAT_GameObject.hpp"
+
+class PAT_UpdateObject : public PAT_GameObject
 {
 public:
-	PAT_UpdateObject(){}
-	virtual ~PAT_UpdateObject(){}
-//	Everything that needs to be update will be done here
+	PAT_UpdateObject();
+	virtual ~PAT_UpdateObject();
+//	Everything that could change as time passes will be done here
 	virtual void Update(float deltaTime) = 0;
 };
 

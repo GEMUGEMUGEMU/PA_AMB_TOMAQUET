@@ -31,6 +31,13 @@ define CPP2O
 $(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1)))
 endef
 
+# Macro CPP2D
+# From a .cpp get its .d
+# $(1) Source file
+define CPP2D
+$(patsubst %.cpp,%.d,$(patsubst $(SRC)%,$(DEP)%,$(1)))
+endef
+
 # Macro CPP2HPP
 # From a .cpp get its .o
 # $(1) Source file
@@ -38,11 +45,18 @@ define CPP2HPP
 $(patsubst %.cpp,%.hpp,$(1))
 endef
 
+define print_logo
+@echo "        ~_"
+@echo "     ~_ )_)~_"
+@echo "     )_))_))_) \e[1;36mMake $(TARGET)\e[0m"
+@echo "     _!__!__!_"
+@echo "   ~~\   Gemu/~~"
+endef
 
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
 SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS:=-Wall -pedantic $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -52,14 +66,17 @@ SRC:=src
 OBJ:=obj
 
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
-ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
+ALL_CPP_OBJ:=$(foreach file,$(ALL_CPPS),$(call CPP2O,$(file)))
 ALL_OBJ:=$(ALL_CPP_OBJ)
 ALL_HS:=$(shell find $(SRC)/ -type f -iname *.h)
 ALL_HPPS:=$(shell find $(SRC)/ -type f -iname *.hpp)
 SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
-OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
+OBJ_SUBDIRS:=$(patsubst $(SRC)%,$(OBJ)%,$(SRC_SUBDIRS))
 INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 
+
+DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
+DEPFLAGS =-MMD -MP
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
@@ -73,21 +90,26 @@ endif
 
 
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
+	$(call print_logo)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
 	$(RANLIB) $(TARGET)
 
 # Generate and evaluate rules
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 # Generate obj folder tree
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
+-include $(DEPEND_FILES)
 
 .PHONY: clean info
 clean:
 	$(RM) -r "./$(OBJ)"
 	$(RM) "./$(TARGET)"
 info:
+	$(info $(DEPEND_FILES))
 	$(info $(SRC_SUBDIRS))
+	$(info $(DEP_SUBDIRS))
+	$(call print_logo)
 

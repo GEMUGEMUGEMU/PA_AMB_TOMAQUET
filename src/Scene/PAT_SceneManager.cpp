@@ -23,46 +23,46 @@ void PAT_SceneManager::PopScene()
 	mStackScene.Pop();
 	if(!mStackScene.IsEmpty())
 	{
-		mActualScene = mStackScene.GetOnTop();
+		mpActualScene = mStackScene.GetOnTop();
 	}
 	else
 	{
-		mActualScene = nullptr;
+		mpActualScene = nullptr;
 	}
 }
 
-void PAT_SceneManager::PushScene(PAT_Scene * newScene)
+void PAT_SceneManager::PushScene(PAT_Scene * pNewScene)
 {
-	mStackScene.Push(newScene);
-	mActualScene = newScene;
+	mStackScene.Push(pNewScene);
+	mpActualScene = pNewScene;
 }
 
-void PAT_SceneManager::InitAndPushScene(PAT_Scene * newScene)
+void PAT_SceneManager::InitAndPushScene(PAT_Scene * pNewScene)
 {
-	newScene->Attach(this);
-	newScene->Init(mRender);
-	PushScene(newScene);
+	pNewScene->Attach(this);
+	pNewScene->Init(mpRenderer);
+	PushScene(pNewScene);
 }
 
 void PAT_SceneManager::Update(double deltaTime)
 {
-	mActualScene->Update(deltaTime);
+	mpActualScene->Update(deltaTime);
 }
 
-void PAT_SceneManager::Draw(SDL_Renderer * render)
+void PAT_SceneManager::Draw(SDL_Renderer * pRender)
 {
-	mActualScene->Draw(render);
+	mpActualScene->Draw(pRender);
 }
 
 void PAT_SceneManager::PopOrPushScene()
 {
-	switch(mActualScene->mState)
+	switch(mpActualScene->mState)
 	{
 		case POP:
 			PopScene();
 			break;
 		case PUSH_NEW_SCENE:
-			InitAndPushScene(mActualScene->GetSceneToPush());
+			InitAndPushScene(mpActualScene->GetSceneToPush());
 			break;
 		case CONTINUE:
 		default:

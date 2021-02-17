@@ -21,21 +21,19 @@ private:
 		Node(T* newData): mData(newData), next(nullptr){}
 	};
 
-	Node *mHead = nullptr;
-	uint32_t mSize = 0;
+	Node *mHead;
+	uint32_t mSize;
 
 public:
-	PAT_LinkedList(){}
+	PAT_LinkedList() : mHead(nullptr), mSize(0) {}
 	~PAT_LinkedList();
 
 	uint32_t GetSize();
 
 	void Add(T* newValue);
 	T* Get(uint32_t index);
-//TODO: rename it to RemoveIndex
-	void Delete(uint32_t index);
-	void Remove(T* toRemove);
-
+	T* RemoveAtIndex(uint32_t index);
+	T* Remove(T* toRemove);
 };
 
 template <class T>
@@ -79,7 +77,6 @@ void PAT_LinkedList<T>::Add(T *newValue)
 	mSize = mSize + 1;
 }
 
-
 template <class T>
 T* PAT_LinkedList<T>::Get(uint32_t index)
 {
@@ -108,7 +105,7 @@ uint32_t PAT_LinkedList<T>::GetSize()
 }
 
 template <class T>
-void PAT_LinkedList<T>::Delete(uint32_t index)
+T* PAT_LinkedList<T>::RemoveAtIndex(uint32_t index)
 {
 
 	Node *targetNode = mHead;
@@ -139,19 +136,23 @@ void PAT_LinkedList<T>::Delete(uint32_t index)
 				}
 			}
 
-			delete targetNode;
 			mSize = mSize -1;
-			break;
+
+			T* removedData = targetNode->mData;
+			delete targetNode;
+			return removedData;
 		}
 
 		previousNode = targetNode;
 		targetNode = targetNode->next;
 		counter = counter + 1;
 	}
+
+	return nullptr;
 }
 
 template <class T>
-void PAT_LinkedList<T>::Remove(T* toRemove)
+T* PAT_LinkedList<T>::Remove(T* toRemove)
 {
 	Node *targetNode = mHead;
 	Node *previousNode = nullptr;
@@ -165,29 +166,27 @@ void PAT_LinkedList<T>::Remove(T* toRemove)
 				//If there was only one node
 				if(mHead->next == nullptr)
 				{
-					delete mHead;
 					mHead = nullptr;
-					targetNode = nullptr;
-					break;
 				}
 				else
 				{
 					mHead=targetNode->next;
-					delete targetNode;
-					targetNode = nullptr;
-					break;
 				}
 			}
 			else
 			{
 				previousNode->next = targetNode->next;
-				delete targetNode;
-				targetNode = nullptr;
-				break;
 			}
+
+			mSize = mSize - 1;
+
+			T* removedData = targetNode->mData;
+			delete targetNode;
+			return removedData;
 		}
 	}
 
+	return nullptr;
 }
 
 #endif /* PAT_LinkedList_hpp */
