@@ -43,8 +43,8 @@ public:
 
 	void SetX(float x){mX = x;}
 	void SetY(float y){mY = y;}
-	float GetX(){return mX;}
-	float GetY(){return mY;}
+	float GetX() const {return mX;}
+	float GetY() const {return mY;}
 
 	bool EqualsVectorZero();
 
