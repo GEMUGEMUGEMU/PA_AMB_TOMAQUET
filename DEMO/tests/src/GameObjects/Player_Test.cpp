@@ -16,5 +16,6 @@
 
 TEST_CASE("Instantiate player") {
 	Player player();
+	REQUIRE(true);
 }
 
