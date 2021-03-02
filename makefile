@@ -85,8 +85,12 @@ ifeq ($(RELASE),1)
 	CCLAGS+= -O3
 endif
 
+$(TESTS_PAT): $(TARGET)
+	$(MAKE) -C $(TEST_PATH)
+	$(TESTS_PAT)
 
-$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ) $(TESTS_PAT)
+#$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ) $(TESTS_PAT)
+$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
 	$(RANLIB) $(TARGET)
@@ -97,10 +101,6 @@ $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(F
 # Generate obj folder tree
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
-
-$(TESTS_PAT):
-	$(MAKE) -C $(TEST_PATH)
-	$(TESTS_PAT)
 
 -include $(DEPEND_FILES)
 
