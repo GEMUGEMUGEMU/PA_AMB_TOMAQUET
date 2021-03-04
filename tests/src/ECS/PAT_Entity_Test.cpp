@@ -15,6 +15,7 @@
 
 #include "catch.hpp"
 #include "PAT_Entity.hpp"
+#include "PAT_BaseComponent.hpp"
 
 TEST_CASE("Instantiate an entity", "[ecs]")
 {
@@ -25,30 +26,15 @@ TEST_CASE("Add an attribute to an entity", "[ecs]")
 {
         ECS::PAT_Entity entity;
 
-//        WHEN( "object position is 0 relative position doesn't change" ) {
-//
-//            THEN( "no changes in hurtbox position" ) {
-//                SDL_Rect* test_rect =
-//                        test_hurtbox.GetHurtbox(PAT_Vector2D(0, 0));
-//
-//                REQUIRE( test_rect->x == gRelPos.GetX());
-//                REQUIRE( test_rect->y == gRelPos.GetY());
-//                REQUIRE( test_rect->w == gWidth);
-//                REQUIRE( test_rect->h == gHeight);
-//            }
-//        }
-//
-//        WHEN( "object position is 30,30 relative position change" ) {
-//
-//                THEN( "no changes in hurtbox position" ) {
-//                        SDL_Rect* test_rect =
-//                                test_hurtbox.GetHurtbox(PAT_Vector2D(30, 30));
-//
-//                        REQUIRE( test_rect->x == gRelPos.GetX() + 30);
-//                        REQUIRE( test_rect->y == gRelPos.GetY() + 30);
-//                        REQUIRE( test_rect->w == gWidth);
-//                        REQUIRE( test_rect->h == gHeight);
-//                }
-//        }
+	struct TestComponent : public ECS::PAT_BaseComponent<TestComponent>
+	{
+		TestComponent(ECS::ComponentTypeID cid) : PAT_BaseComponent(cid){ }
+	};
+
+	WHEN("a componet is added to an entity")
+	{
+
+	}
+
 
 }

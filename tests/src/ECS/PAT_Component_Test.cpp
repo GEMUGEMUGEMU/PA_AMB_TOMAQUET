@@ -21,17 +21,21 @@ TEST_CASE("Instantiate a base component", "[ecs]")
 	struct TestComponentA : public ECS::PAT_BaseComponent<TestComponentA>
 	{
 		TestComponentA() : PAT_BaseComponent(777){ }
-//		ECS::EntityID e_id {777};
 	};
 
         TestComponentA component;
 
-	ECS::ComponentTypeID comp_type = component.GetComponetTypeID();
-	ECS::ComponentTypeID comp_type1 = component.GetComponetTypeID();
-	ECS::ComponentTypeID comp_type2 = component.GetComponetTypeID();
 
 	WHEN("a base component is instantiated")
 	{
+		ECS::ComponentTypeID comp_type =
+			component.GetComponetTypeID();
+		ECS::ComponentTypeID comp_type1 =
+			component.GetComponetTypeID();
+		ECS::ComponentTypeID comp_type2 =
+			component.GetComponetTypeID();
+
+
 		THEN("it's Component type ID doesn't change")
 		{
 			REQUIRE(comp_type == comp_type1);
@@ -39,6 +43,7 @@ TEST_CASE("Instantiate a base component", "[ecs]")
 			REQUIRE(comp_type == comp_type2);
 		}
 	}
+
 
 }
 
@@ -49,22 +54,27 @@ TEST_CASE("Instantiate more base component", "[ecs]")
 		TestComponent() : PAT_BaseComponent(777){ }
 	};
 
-	struct TestComponent1 : public ECS::PAT_BaseComponent<TestComponent1>
-	{
-		TestComponent1() : PAT_BaseComponent(777){ }
-	};
 
-	struct TestComponent2 : public ECS::PAT_BaseComponent<TestComponent2>
-	{
-		TestComponent2() : PAT_BaseComponent(777){ }
-	};
 
         TestComponent component;
-        TestComponent1 component1;
-        TestComponent2 component2;
 
 	WHEN("different base components are instantiated")
 	{
+		struct TestComponent1 :
+			public ECS::PAT_BaseComponent<TestComponent1>
+		{
+			TestComponent1() : PAT_BaseComponent(777){ }
+		};
+
+		struct TestComponent2 :
+			public ECS::PAT_BaseComponent<TestComponent2>
+		{
+			TestComponent2() : PAT_BaseComponent(777){ }
+		};
+
+	        TestComponent1 component1;
+	        TestComponent2 component2;
+
 		THEN("Component ID is different for every new component type")
 		{
 			REQUIRE(component.GetComponetTypeID() !=
