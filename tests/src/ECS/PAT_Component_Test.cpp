@@ -14,27 +14,23 @@
 
 
 #include "catch.hpp"
-#include "PAT_BaseComponent.hpp"
+#include "PAT_Component.hpp"
 
 TEST_CASE("Instantiate a base component", "[ecs]")
 {
-	struct TestComponentA : public ECS::PAT_BaseComponent<TestComponentA>
+	struct TestComponentA : public ECS::PAT_Component<TestComponentA>
 	{
-		TestComponentA() : PAT_BaseComponent(777){ }
+		TestComponentA() : PAT_Component(777){ }
 	};
-
-        TestComponentA component;
-
 
 	WHEN("a base component is instantiated")
 	{
 		ECS::ComponentTypeID comp_type =
-			component.GetComponetTypeID();
+			TestComponentA::GetComponentTypeID();
 		ECS::ComponentTypeID comp_type1 =
-			component.GetComponetTypeID();
+			TestComponentA::GetComponentTypeID();
 		ECS::ComponentTypeID comp_type2 =
-			component.GetComponetTypeID();
-
+			TestComponentA::GetComponentTypeID();
 
 		THEN("it's Component type ID doesn't change")
 		{
@@ -49,42 +45,43 @@ TEST_CASE("Instantiate a base component", "[ecs]")
 
 TEST_CASE("Instantiate more base component", "[ecs]")
 {
-	struct TestComponent : public ECS::PAT_BaseComponent<TestComponent>
+	struct TestComponent : public ECS::PAT_Component<TestComponent>
 	{
-		TestComponent() : PAT_BaseComponent(777){ }
+		TestComponent() : PAT_Component(777){ }
 	};
 
 
+	struct TestComponent1 :
+		public ECS::PAT_Component<TestComponent1>
+	{
+		TestComponent1() : PAT_Component(777){ }
+	};
 
-        TestComponent component;
+	struct TestComponent2 :
+		public ECS::PAT_Component<TestComponent2>
+	{
+		TestComponent2() : PAT_Component(777){ }
+	};
+
+
+	ECS::ComponentTypeID comp_type =
+		TestComponent::GetComponentTypeID();
+	ECS::ComponentTypeID comp_type1 =
+		TestComponent1::GetComponentTypeID();
+	ECS::ComponentTypeID comp_type2 =
+		TestComponent2::GetComponentTypeID();
+
+
 
 	WHEN("different base components are instantiated")
 	{
-		struct TestComponent1 :
-			public ECS::PAT_BaseComponent<TestComponent1>
-		{
-			TestComponent1() : PAT_BaseComponent(777){ }
-		};
-
-		struct TestComponent2 :
-			public ECS::PAT_BaseComponent<TestComponent2>
-		{
-			TestComponent2() : PAT_BaseComponent(777){ }
-		};
-
-	        TestComponent1 component1;
-	        TestComponent2 component2;
-
 		THEN("Component ID is different for every new component type")
 		{
-			REQUIRE(component.GetComponetTypeID() !=
-				component1.GetComponetTypeID());
+			REQUIRE(comp_type != comp_type1);
 
-			REQUIRE(component1.GetComponetTypeID() !=
-				component2.GetComponetTypeID());
+			REQUIRE(comp_type2 != comp_type);
 
-			REQUIRE(component2.GetComponetTypeID() !=
-				component.GetComponetTypeID());
+			REQUIRE(comp_type2 != comp_type1);
 		}
 	}
 }

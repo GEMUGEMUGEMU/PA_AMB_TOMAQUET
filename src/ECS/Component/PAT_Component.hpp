@@ -20,15 +20,31 @@
 namespace ECS
 {
 
-struct PAT_Component
+struct PAT_BaseComponent
 {
+	EntityID GetEnityID()
+	{
+		return mEntityID;
+	}
 
 protected:
-	explicit PAT_Component(EntityID entityID);
-	static ComponentTypeID mNextTypeID;
+	explicit PAT_BaseComponent(EntityID entityID) : mEntityID(entityID){ }
+	static inline ComponentTypeID mNextTypeID { 0 };
 
 private:
 	EntityID mEntityID { 0 };
+};
+
+template<typename TypeComponent>
+struct PAT_Component : PAT_BaseComponent
+{
+	explicit PAT_Component(EntityID eid) : PAT_BaseComponent(eid) {}
+
+	static ComponentTypeID GetComponentTypeID() noexcept
+	{
+		static ComponentTypeID type_id { ++mNextTypeID };
+		return type_id;
+	}
 };
 
 }

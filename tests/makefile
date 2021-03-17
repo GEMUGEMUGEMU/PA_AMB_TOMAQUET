@@ -43,7 +43,7 @@ endef
 
 TARGET:=TESTS_PAT.out
 CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -75,7 +75,7 @@ INCLUDE_FOLDERS:=-I./catch2 $(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
 DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
-DEBUG?=0
+DEBUG?=1
 ifeq ($(DEBUG),1)
 	CCFLAGS+= -DDEBUG_MODE -g
 endif

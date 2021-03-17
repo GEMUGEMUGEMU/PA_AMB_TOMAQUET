@@ -26,10 +26,11 @@ template<typename T>
 using Vector = std::vector<T>;
 
 template<typename Key, typename Value>
-using Hash_t = std::unordered_map<Key, Value>;
+
+using UMap = std::unordered_map<Key, Value>;
 
 template<typename T>
-using UniqPtr= std::unique_ptr<T>;
+using UPtr= std::unique_ptr<T>;
 
 using EntityID = std::size_t;
 using ComponentID = std::size_t;
