@@ -15,19 +15,23 @@
 
 #include "PAT_EntityManager.hpp"
 
-ECS::PAT_EntityManager::PAT_EntityManager()
+namespace ECS
+{
+
+
+PAT_EntityManager::PAT_EntityManager()
 {
 	mEntityVector.reserve(NUM_INITIAL_ENTITIES);
 }
 
-ECS::EntityID ECS::PAT_EntityManager::CreateEntity()
+EntityID PAT_EntityManager::CreateEntity()
 {
-	ECS::EntityID eid = ++mNextEntityID;
+	EntityID eid = ++mNextEntityID;
 	mEntityVector.push_back(eid);
 	return eid;
 }
 
-ECS::EntityID ECS::PAT_EntityManager::DeleteEntity(EntityID id)
+EntityID PAT_EntityManager::DeleteEntity(EntityID id)
 {
 	EntityID erased_id;
 
@@ -48,4 +52,16 @@ ECS::EntityID ECS::PAT_EntityManager::DeleteEntity(EntityID id)
 	return 0;
 }
 
+Vector<EntityID>& PAT_EntityManager::GetEntities()
+{
+	return mEntityVector;
+}
 
+void PAT_EntityManager::DeleteEntityComponent(ComponentTypeID compTypeID,
+	EntityID eID)
+{
+	mComponentStorage.DeleteEntityComponent(compTypeID, eID);
+}
+
+
+}

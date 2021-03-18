@@ -36,7 +36,7 @@ using EntityID = std::size_t;
 using ComponentID = std::size_t;
 using ComponentTypeID = std::size_t;
 
-using VecEntities = std::vector<EntityID>
+using VecEntities = std::vector<EntityID>;
 
 }
 

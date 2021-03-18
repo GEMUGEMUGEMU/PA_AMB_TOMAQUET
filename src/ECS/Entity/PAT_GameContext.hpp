@@ -21,9 +21,8 @@ namespace ECS
 {
 struct PAT_GameContext
 {
-	virtual ~GameContext() = default;
+	virtual ~PAT_GameContext() = default;
 	virtual VecEntities& GetEntities() = 0;
-	virtual const VecEntities& GetEntities() const = 0;
 };
 
 }

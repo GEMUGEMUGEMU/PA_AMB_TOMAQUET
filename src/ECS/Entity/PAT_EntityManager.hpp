@@ -15,21 +15,22 @@
 #ifndef PAT_EntityManager_hpp
 #define PAT_EntityManager_hpp
 
+#include "PAT_GameContext.hpp"
 #include "PAT_ECSAlias.hpp"
 #include "PAT_ComponentStorage.hpp"
-#include "PAT_Component.hpp"
+
 
 namespace ECS
 {
 
-struct PAT_EntityManager
+struct PAT_EntityManager : public PAT_GameContext
 {
 	explicit PAT_EntityManager();
 
 	EntityID CreateEntity();
 	EntityID DeleteEntity(EntityID id);
 
-	Vector<EntityID> mEntityVector;
+	Vector<EntityID>& GetEntities();
 
 	template<typename ComponentType>
 	ComponentType& CreateComponent(EntityID id)
@@ -37,10 +38,9 @@ struct PAT_EntityManager
 		return mComponentStorage.CreateComponent<ComponentType>(id);
 	}
 
-	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID)
-	{
-		mComponentStorage.DeleteEntityComponent(compTypeID, eID);
-	}
+	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID);
+
+	Vector<EntityID> mEntityVector;
 
 private:
 	static inline std::size_t NUM_INITIAL_ENTITIES {100};
