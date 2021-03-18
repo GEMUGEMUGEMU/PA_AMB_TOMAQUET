@@ -36,6 +36,8 @@ using EntityID = std::size_t;
 using ComponentID = std::size_t;
 using ComponentTypeID = std::size_t;
 
+using VecEntities = std::vector<EntityID>
+
 }
 
 #endif /* PAT_ECSAlias_hpp */
