@@ -15,6 +15,7 @@
 
 #include "catch.hpp"
 #include "PAT_EntityManager.hpp"
+#include "PAT_Component.hpp"
 
 TEST_CASE("Instantiate an entity manager", "[ecs]")
 {
@@ -80,7 +81,6 @@ TEST_CASE("Associate components to an entity", "[ecs]")
 		{
 			em.DeleteEntityComponent(comp.GetComponentTypeID(),
 				id);
-		//	REQUIRE(==);
 		}
 	}
 
