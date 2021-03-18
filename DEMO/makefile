@@ -41,18 +41,10 @@ define CPP2HPP
 $(findstring $(patsubst %.cpp,%.hpp,$(1)),$(2))
 endef
 
-define print_logo
-@echo "        ~_"
-@echo "     ~_ )_)~_"
-@echo "     )_))_))_) \e[1;36mMake $(TARGET)\e[0m"
-@echo "     _!__!__!_"
-@echo "   ~~\   Gemu/~~"
-endef
-
 
 TARGET:=NISHIKIGOI_DEMO.out
 CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -75,30 +67,36 @@ INCLUDE_SOURCE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 # PA_AMB_TOMAQUET
 PAT_PATH:=..
 include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
+include $(PAT_PATH)/print_logo.makefile
 
 INCLUDE_FOLDERS:=$(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
 
+RELASE?=0
+ifeq ($(RELASE),1)
+	CCFLAGS+= -O3
+else
+	DEBUG:=1
+endif
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
 	CCFLAGS+= -DDEBUG_MODE -g
 endif
 
-RELASE?=0
-ifeq ($(RELASE),1)
-	CCFLAGS+= -O3
-endif
-
 DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
 
+#.PHONY: run_demo
+run_demo: $(TARGET)
+	valgrind -s --leak-check=full ./$(TARGET)
+
+
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LINK_FLAGS)
 
 
-#$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
 $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 
@@ -116,7 +114,6 @@ clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
-#	$(info $(ALL_HPPS))
 	$(info $(MAKE_PAT))
 	$(info $(PAT_LIB))
 

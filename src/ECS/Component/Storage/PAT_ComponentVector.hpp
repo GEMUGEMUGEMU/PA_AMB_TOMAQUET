@@ -31,22 +31,22 @@ struct PAT_ComponentVectorBase
 template <typename ComponentType>
 struct PAT_ComponentVector : PAT_ComponentVectorBase
 {
-//	explicit PAT_ComponentVector();
 	~PAT_ComponentVector() { };
 
 	void DeleteComponentByEntityID(EntityID eID) override final
 	{
 //		TODO:Impove search
 		auto iter =
-			std::find_if( mComponentVector.begin(),
-				mComponentVector.end(),
+			//std::find_if( mComponentVector.begin(),
+			std::find_if( mComponentVector.Begin(),
+				mComponentVector.End(),
 				[&eID](ComponentType& comp)
 				{
 					return comp.GetEnityID() == eID;
 				});
 
-		if( iter == mComponentVector.end()) return; //ERROR
-		mComponentVector.erase(iter);
+		if( iter == mComponentVector.End()) return; //ERROR
+		mComponentVector.Erase(iter);
 	}
 
 	Vector<ComponentType> mComponentVector;

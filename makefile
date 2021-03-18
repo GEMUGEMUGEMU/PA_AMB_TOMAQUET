@@ -49,8 +49,7 @@ include print_logo.makefile
 
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
-SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -75,14 +74,16 @@ DEPFLAGS =-MMD -MP
 TEST_PATH:=./tests
 TESTS_PAT:=$(TEST_PATH)/TESTS_PAT.out
 
+RELASE?=0
+ifeq ($(RELASE),1)
+	CCFLAGS+= -O3
+else
+	DEBUG:=1
+endif
+
 DEBUG?=1
 ifeq ($(DEBUG),1)
 	CCFLAGS+= -DDEBUG_MODE -g
-endif
-
-RELASE?=0
-ifeq ($(RELASE),1)
-	CCLAGS+= -O3
 endif
 
 .PHONY: run_test
@@ -90,7 +91,6 @@ run_test: $(TARGET)
 	$(MAKE) -C $(TEST_PATH)
 	$(TESTS_PAT)
 
-#$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ) $(TESTS_PAT)
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)
