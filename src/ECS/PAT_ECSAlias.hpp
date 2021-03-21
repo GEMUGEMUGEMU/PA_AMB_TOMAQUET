@@ -16,8 +16,9 @@
 #define PAT_ECSAlias_hpp
 
 #include <vector>
-#include <unordered_map>
+//#include <unordered_map>
 #include <memory>
+#include "PAT_UnorderedMap.hpp"
 
 namespace ECS
 {
@@ -26,8 +27,8 @@ template<typename T>
 using Vector = std::vector<T>;
 
 template<typename Key, typename Value>
-
-using UMap = std::unordered_map<Key, Value>;
+//using UMap = std::unordered_map<Key, Value>;
+using UMap = PAT_UnorderedMap<Key, Value>;
 
 template<typename T>
 using UPtr= std::unique_ptr<T>;

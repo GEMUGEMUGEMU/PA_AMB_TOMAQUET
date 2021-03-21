@@ -58,10 +58,12 @@ struct PAT_ComponentStorage
 	{
 		Vector<Component>* comp_vector { nullptr };
 		auto comp_type_id = Component::GetComponentTypeID();
-		auto iterator = mComponentVectorsMap.find(comp_type_id);
+		//auto iterator = mComponentVectorsMap.find(comp_type_id);
+		auto iterator = mComponentVectorsMap.Find(comp_type_id);
 
 
-		if( iterator != mComponentVectorsMap.end() )
+		//if( iterator != mComponentVectorsMap.end() )
+		if( iterator != mComponentVectorsMap.End() )
 		{
 			auto* p_component_vector =
 				dynamic_cast<PAT_ComponentVector<Component>*>
@@ -82,9 +84,11 @@ struct PAT_ComponentStorage
 	{
 		Vector<ComponentType> p_comp_vec{nullptr};
 		auto type_id = ComponentType::GetComponentTypeID();
-		auto iterator = mComponentVectorsMap.find(type_id);
+		//auto iterator = mComponentVectorsMap.find(type_id);
+		auto iterator = mComponentVectorsMap.Find(type_id);
 
-		if(iterator != mComponentVectorsMap.end())
+		//if(iterator != mComponentVectorsMap.end())
+		if(iterator != mComponentVectorsMap.End())
 		{
 			auto* p_vec_cast =
 				dynamic_cast<PAT_ComponentVector<ComponentType>*>
@@ -102,8 +106,10 @@ struct PAT_ComponentStorage
 	// Delete a component by it's type ID and entity ID
 	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID)
 	{
-		auto it = mComponentVectorsMap.find(compTypeID);
-		if ( it == mComponentVectorsMap.end()) return; //TODO: manage errors
+		//auto it = mComponentVectorsMap.find(compTypeID);
+		auto it = mComponentVectorsMap.Find(compTypeID);
+		//if ( it == mComponentVectorsMap.end()) return; //TODO: manage errors
+		if ( it == mComponentVectorsMap.End()) return; //TODO: manage errors
 
 		auto comp_vector { it->second.get() };
 		comp_vector->DeleteComponentByEntityID(eID);
