@@ -75,20 +75,23 @@ DEPFLAGS =-MMD -MP
 TEST_PATH:=./tests
 TESTS_PAT:=$(TEST_PATH)/TESTS_PAT.out
 
-DEBUG?=1
-ifeq ($(DEBUG),1)
-	CCFLAGS+= -DDEBUG_MODE -g
-endif
-
 RELASE?=0
 ifeq ($(RELASE),1)
 	CCLAGS+= -O3
+else
+	DEBUG:=1
+endif
+
+DEBUG?=1
+ifeq ($(DEBUG),1)
+	CCFLAGS+= -DDEBUG_MODE -g
 endif
 
 .PHONY: run_test
 run_test: $(TARGET)
 	$(MAKE) -C $(TEST_PATH)
 	$(TESTS_PAT)
+	valgrind -s $(TESTS_PAT)
 
 #$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ) $(TESTS_PAT)
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
