@@ -68,7 +68,7 @@ PAT_PATH:=..
 include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
 include $(PAT_PATH)/print_logo.makefile
 
-INCLUDE_FOLDERS:=-I./catch2 $(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
+INCLUDE_FOLDERS:=-I$(PAT_PATH)/lib/catch2 $(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
 
 
 
@@ -110,4 +110,5 @@ clean:
 info:
 	$(info $(MAKE_PAT))
 	$(info $(PAT_LIB))
+	$(info $(INCLUDE_FOLDERS))
 
