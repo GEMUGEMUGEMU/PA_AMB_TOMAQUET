@@ -77,7 +77,7 @@ TESTS_PAT:=$(TEST_PATH)/TESTS_PAT.out
 
 RELASE?=0
 ifeq ($(RELASE),1)
-	CCLAGS+= -O3
+	CCFLAGS+= -O3
 else
 	DEBUG:=1
 endif

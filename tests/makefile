@@ -75,16 +75,17 @@ INCLUDE_FOLDERS:=-I./catch2 $(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
 DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
+RELASE?=0
+ifeq ($(RELASE),1)
+	CCFLAGS+= -O3
+else
+	DEBUG:=1
+endif
+
 DEBUG?=1
 ifeq ($(DEBUG),1)
 	CCFLAGS+= -DDEBUG_MODE -g
 endif
-
-RELASE?=0
-ifeq ($(RELASE),1)
-	CCFLAGS+= -O3
-endif
-
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)

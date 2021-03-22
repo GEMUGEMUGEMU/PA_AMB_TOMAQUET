@@ -15,16 +15,18 @@
 #ifndef PAT_ECSAlias_hpp
 #define PAT_ECSAlias_hpp
 
-#include <vector>
+//#include <vector>
 //#include <unordered_map>
 #include <memory>
 #include "PAT_UnorderedMap.hpp"
+#include "PAT_Vector.hpp"
 
 namespace ECS
 {
 
 template<typename T>
-using Vector = std::vector<T>;
+//using Vector = std::vector<T>;
+using Vector = PAT_Vector<T>;
 
 template<typename Key, typename Value>
 //using UMap = std::unordered_map<Key, Value>;
@@ -37,7 +39,7 @@ using EntityID = std::size_t;
 using ComponentID = std::size_t;
 using ComponentTypeID = std::size_t;
 
-using VecEntities = std::vector<EntityID>;
+using VecEntities = PAT_Vector<EntityID>;
 
 }
 

@@ -36,7 +36,8 @@ struct PAT_ComponentStorage
 	ComponentType& CreateComponent(EntityID eid)
 	{
 		auto& r_comp_vector = GetComponents<ComponentType>();
-		auto& r_comp = r_comp_vector.emplace_back(eid);
+		//auto& r_comp = r_comp_vector.emplace_back(eid);
+		auto& r_comp = r_comp_vector.EmplaceBack(eid);
 		return r_comp;
 	}
 
@@ -45,7 +46,8 @@ struct PAT_ComponentStorage
 	{
 		auto up_comp_vector =
 			std::make_unique<PAT_ComponentVector<ComponentType>>();
-		up_comp_vector->mComponentVector.reserve(mInitialSize);
+		//up_comp_vector->mComponentVector.reserve(mInitialSize);
+		up_comp_vector->mComponentVector.Reserve(mInitialSize);
 		auto* p_comp_vector = up_comp_vector.get();
 
 		auto type_id = ComponentType::GetComponentTypeID();

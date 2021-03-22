@@ -45,7 +45,7 @@ TEST_CASE("Instantiate a component storage", "[ecs]")
 			ECS::Vector<TestComponentCS> vector =
 				component_storage.GetComponents<TestComponentCS>();
 
-			REQUIRE(vector.size() == 0);
+			REQUIRE(vector.Size() == 0);
 		}
 	}
 }

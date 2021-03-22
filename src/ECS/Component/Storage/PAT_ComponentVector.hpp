@@ -38,15 +38,19 @@ struct PAT_ComponentVector : PAT_ComponentVectorBase
 	{
 //		TODO:Impove search
 		auto iter =
-			std::find_if( mComponentVector.begin(),
-				mComponentVector.end(),
+			//std::find_if( mComponentVector.begin(),
+			std::find_if( mComponentVector.Begin(),
+				//mComponentVector.end(),
+				mComponentVector.End(),
 				[&eID](ComponentType& comp)
 				{
 					return comp.GetEnityID() == eID;
 				});
 
-		if( iter == mComponentVector.end()) return; //ERROR
-		mComponentVector.erase(iter);
+		//if( iter == mComponentVector.end()) return; //ERROR
+		if( iter == mComponentVector.End()) return; //ERROR
+		//mComponentVector.erase(iter);
+		mComponentVector.Erase(iter);
 	}
 
 	Vector<ComponentType> mComponentVector;

@@ -30,7 +30,7 @@ struct PAT_EntityManager : public PAT_GameContext
 	EntityID CreateEntity();
 	EntityID DeleteEntity(EntityID id);
 
-	Vector<EntityID>& GetEntities();
+	VecEntities& GetEntities();
 
 	template<typename ComponentType>
 	ComponentType& CreateComponent(EntityID id)
@@ -40,7 +40,8 @@ struct PAT_EntityManager : public PAT_GameContext
 
 	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID);
 
-	Vector<EntityID> mEntityVector;
+	//Vector<EntityID> mEntityVector;
+	VecEntities mEntityVector;
 
 private:
 	static inline std::size_t NUM_INITIAL_ENTITIES {100};

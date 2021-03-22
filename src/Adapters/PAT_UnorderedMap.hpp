@@ -38,7 +38,7 @@ struct PAT_UnorderedMap
 	{
 		return mUnorderedMap.end();
 	}
-//(a).operator[](b) 	cannot be non-member 	Given std::map<int, int> m;, m[1] = 2; calls m.operator[](1)
+
 	Value& operator[](Key key)
 	{
 		return mUnorderedMap[key];

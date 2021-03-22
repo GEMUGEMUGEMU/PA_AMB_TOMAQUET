@@ -21,13 +21,15 @@ namespace ECS
 
 PAT_EntityManager::PAT_EntityManager()
 {
-	mEntityVector.reserve(NUM_INITIAL_ENTITIES);
+	//mEntityVector.reserve(NUM_INITIAL_ENTITIES);
+	mEntityVector.Reserve(NUM_INITIAL_ENTITIES);
 }
 
 EntityID PAT_EntityManager::CreateEntity()
 {
 	EntityID eid = ++mNextEntityID;
-	mEntityVector.push_back(eid);
+	//mEntityVector.push_back(eid);
+	mEntityVector.PushBack(eid);
 	return eid;
 }
 
@@ -35,12 +37,14 @@ EntityID PAT_EntityManager::DeleteEntity(EntityID id)
 {
 	EntityID erased_id;
 
-	for (auto it = mEntityVector.begin(); it != mEntityVector.end(); )
+	//for (auto it = mEntityVector.begin(); it != mEntityVector.end(); )
+	for (auto it = mEntityVector.Begin(); it != mEntityVector.End(); )
 	{
         	if (*it == id)
 		{
 			erased_id = *it;
-			it = mEntityVector.erase(it);
+			//it = mEntityVector.erase(it);
+			it = mEntityVector.Erase(it);
 			return erased_id;
         	}
 		else
@@ -52,7 +56,8 @@ EntityID PAT_EntityManager::DeleteEntity(EntityID id)
 	return 0;
 }
 
-Vector<EntityID>& PAT_EntityManager::GetEntities()
+//Vector<EntityID>& PAT_EntityManager::GetEntities()
+VecEntities& PAT_EntityManager::GetEntities()
 {
 	return mEntityVector;
 }
