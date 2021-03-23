@@ -87,6 +87,12 @@ DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
 
+.PHONY: run_demo
+run_demo: $(TARGET)
+	valgrind -s ./$(TARGET)
+
+
+#$(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
 	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
