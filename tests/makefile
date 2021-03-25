@@ -50,8 +50,6 @@ RM:=rm
 SRC:=src
 OBJ:=obj
 
-SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS+= $(SDL2_FLAGS)
 
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
 ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
@@ -68,7 +66,8 @@ PAT_PATH:=..
 include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
 include $(PAT_PATH)/print_logo.makefile
 
-INCLUDE_FOLDERS:=-I$(PAT_PATH)/lib/catch2 $(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
+INCLUDE_FOLDERS:=-I$(PAT_PATH)/lib/catch2 $(INCLUDE_SOURCE_FOLDERS) \
+	$(INCLUDE_PAT_FOLDERS)
 
 
 
@@ -89,7 +88,9 @@ endif
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(CCFLAGS)
+	$(CC) -o $(TARGET) $(ALL_OBJ) $(CCFLAGS) $(PAT_LINK_FLAGS)
 
 
 $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
@@ -111,4 +112,5 @@ info:
 	$(info $(MAKE_PAT))
 	$(info $(PAT_LIB))
 	$(info $(INCLUDE_FOLDERS))
+	$(info $(DEPEND_FILES))
 

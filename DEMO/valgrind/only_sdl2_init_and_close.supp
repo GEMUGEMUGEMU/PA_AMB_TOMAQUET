@@ -1,0 +1,146 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:_XlcDefaultMapModifiers
+   fun:XSetLocaleModifiers
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+   fun:SDL_InitSubSystem_REAL
+   fun:_ZN3PAT4InitEv
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+   fun:SDL_InitSubSystem_REAL
+   fun:_ZN3PAT4InitEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+   fun:SDL_InitSubSystem_REAL
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+   fun:SDL_InitSubSystem_REAL
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+   fun:SDL_InitSubSystem_REAL
+   fun:_ZN3PAT4InitEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:SDL_DBus_Init.part.0
+   fun:SDL_DBus_Init
+   fun:SDL_DBus_GetContext
+   fun:SDL_IBus_Init
+   fun:SDL_IME_Init
+   fun:X11_InitKeyboard
+   fun:X11_VideoInit
+   fun:SDL_VideoInit_REAL
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}

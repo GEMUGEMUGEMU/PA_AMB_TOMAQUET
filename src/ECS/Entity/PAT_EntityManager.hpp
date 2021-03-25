@@ -40,7 +40,6 @@ struct PAT_EntityManager : public PAT_GameContext
 
 	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID);
 
-	//Vector<EntityID> mEntityVector;
 	VecEntities mEntityVector;
 
 private:

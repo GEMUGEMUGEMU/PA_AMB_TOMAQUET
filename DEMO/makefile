@@ -44,7 +44,8 @@ endef
 
 TARGET:=NISHIKIGOI_DEMO.out
 CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+#CCFLAGS:=-Wall -pedantic -std=c++17 -fsanitize=address $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -87,26 +88,32 @@ DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
 
-.PHONY: run_demo
-run_demo: $(TARGET)
-	valgrind -s ./$(TARGET)
 
-
-#$(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
-$(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
+$(TARGET): pa $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LINK_FLAGS)
 
 
-#$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE),$(ALLHPPS)),$(FILE),$(call CPP2HPP,$(FILE)),$(CCFLAGS) $(INCLUDE_FOLDERS))))
 $(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
-$(PAT_LIB):
+.PHONY: valgrind pa valgrind_gensup
+
+valgrind:
+	valgrind -s --leak-check=full --show-leak-kinds=all \
+	--suppressions=valgrind/only_sdl2_init_and_close.supp \
+	--log-file=valgrind/valgrind.log ./$(TARGET)
+
+valgrind_gensup:
+	valgrind -s --leak-check=full \
+	--log-file="valgrind/valgrind.log" --gen-suppressions=all  ./$(TARGET)
+
+pa:
 	$(MAKE) -C $(PAT_PATH)
+
 
 -include $(DEPEND_FILES)
 
@@ -116,7 +123,6 @@ clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
-#	$(info $(ALL_HPPS))
 	$(info $(MAKE_PAT))
 	$(info $(PAT_LIB))
 

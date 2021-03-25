@@ -49,8 +49,8 @@ include print_logo.makefile
 
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
-SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17
+#CCFLAGS:=-Wall -pedantic -std=c++17 -fsanitize=address
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -91,9 +91,7 @@ endif
 run_test: $(TARGET)
 	$(MAKE) -C $(TEST_PATH)
 	$(TESTS_PAT)
-	valgrind -s $(TESTS_PAT)
 
-#$(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ) $(TESTS_PAT)
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
 	$(AR) $(AR_FLAGS) $(TARGET) $(ALL_OBJ)

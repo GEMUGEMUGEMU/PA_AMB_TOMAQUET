@@ -14,8 +14,9 @@
 # PAT_PATH path to PA_AMB_TOMAQUET that have to be defined
 # befor including this makefile
 
-PAT_LIB:=$(PAT_PATH)/PA_AMB_TOMAQUET.a
 PAT_FOLDERS:=$(shell find $(PAT_PATH)/src/ -type d)
 INCLUDE_PAT_FOLDERS:=$(foreach this_folder,$(PAT_FOLDERS),-I./$(this_folder))
 
 
+PAT_LINK_FLAGS:= /usr/local/lib/libSDL2.a -lSDL2 -Wl,--no-undefined -lm -ldl \
+-lpthread -lrt -lSDL2_image $(PAT_PATH)/PA_AMB_TOMAQUET.a

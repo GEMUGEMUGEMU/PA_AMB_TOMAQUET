@@ -15,12 +15,12 @@
 #ifndef PAT_GameSystem_hpp
 #define PAT_GameSystem_hpp
 
+#include "PAT_GameContext.hpp"
 
 struct PAT_GameSystem
 {
-	virtual ~PAT_GameSystem() explicit;
-	virtual void Update() = 0;
-
+	virtual ~PAT_GameSystem() = default;
+	virtual void Update(ECS::PAT_GameContext* pGameContext) = 0;
 };
 
 #endif /* PAT_GameSystem_hpp */

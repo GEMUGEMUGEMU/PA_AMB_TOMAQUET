@@ -14,30 +14,35 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-//#include "SDL2/SDL.h"
 //#include "PAT_SceneManager.hpp"
 //#include "PAT_Screen.hpp"
+#include "PAT.hpp"
+#include "GraphicSystem.hpp"
 
 class Game
 {
 public:
+	typedef short unsigned int SI;
 	Game();
 	~Game();
 //	virtual bool Init(uint32_t width, uint32_t height,
 //		const char* windowName) = 0;
 
-//	void Run();
+	SI Init();
+
+	void Run();
 //	bool InitSDL();
 //	void Close();
 
-	//void ProcessInput();
+	void ProcessInput();
 //	void Update(double deltaTime);
-	//void Render();
+	void Render();
 
 protected:
 //	static double FRAME_PER_SECOND;
-//	bool mRunning = false;
+	bool mRunning = true;
 //	SDL_Window * mWindow;
+	GraphicSystem mGraphicSystem;
 //	PAT_Screen mScreen;
 //	PAT_SceneManager* mSceneManager;
 };
