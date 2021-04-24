@@ -45,18 +45,11 @@ define CPP2HPP
 $(patsubst %.cpp,%.hpp,$(1))
 endef
 
-define print_logo
-@echo "        ~_"
-@echo "     ~_ )_)~_"
-@echo "     )_))_))_) \e[1;36mMake $(TARGET)\e[0m"
-@echo "     _!__!__!_"
-@echo "   ~~\   Gemu/~~"
-endef
+include print_logo.makefile
 
 TARGET:=PA_AMB_TOMAQUET.a
 CC:=g++
-SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS:=-Wall -pedantic -std=c++14 $(SDL2_FLAGS)
+CCFLAGS:=-Wall -pedantic -std=c++17
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -78,16 +71,25 @@ INCLUDE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
+TEST_PATH:=./tests
+TESTS_PAT:=$(TEST_PATH)/TESTS_PAT.out
+
+RELASE?=0
+ifeq ($(RELASE),1)
+	CCFLAGS+= -O3
+else
+	DEBUG:=1
+endif
+
 DEBUG?=1
 ifeq ($(DEBUG),1)
 	CCFLAGS+= -DDEBUG_MODE -g
 endif
 
-RELASE?=0
-ifeq ($(RELASE),1)
-	CCLAGS+= -O3
-endif
-
+.PHONY: run_test
+run_test: $(TARGET)
+	$(MAKE) -C $(TEST_PATH)
+	$(TESTS_PAT)
 
 $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
@@ -104,12 +106,12 @@ $(OBJ_SUBDIRS):
 -include $(DEPEND_FILES)
 
 .PHONY: clean info
+
 clean:
 	$(RM) -r "./$(OBJ)"
 	$(RM) "./$(TARGET)"
 info:
 	$(info $(DEPEND_FILES))
 	$(info $(SRC_SUBDIRS))
-	$(info $(DEP_SUBDIRS))
-	$(call print_logo)
+	$(info $(TESTS_PAT))
 

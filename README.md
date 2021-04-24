@@ -18,10 +18,10 @@
 - Catch2
 
 ### What's next?
-1. Run tests by makefile
+1. Run tests by makefile (done for PA_AMB_TOMAQUET but not for demo)
 2. Implement more Catch2 tests
 3. Implement Double Buffer
-4. Implement entity component system
+4. Improve Entity Component System
 
 
 *In case you are curious about what the hell means pa amb tomàquet: https://en.wikipedia.org/wiki/Pa_amb_tomaquet*
