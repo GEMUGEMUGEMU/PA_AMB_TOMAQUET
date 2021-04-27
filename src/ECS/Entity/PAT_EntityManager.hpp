@@ -18,7 +18,7 @@
 #include "PAT_GameContext.hpp"
 #include "PAT_ECSAlias.hpp"
 #include "PAT_ComponentStorage.hpp"
-
+#include "PAT_EntityManager.hpp"
 
 namespace ECS
 {
@@ -36,6 +36,12 @@ struct PAT_EntityManager : public PAT_GameContext
 	ComponentType& CreateComponent(EntityID id)
 	{
 		return mComponentStorage.CreateComponent<ComponentType>(id);
+	}
+//NEW
+	template<typename ComponentType>
+	Vector<ComponentType>& GetComponents()
+	{
+		return mComponentStorage.GetComponents<ComponentType>();
 	}
 
 	void DeleteEntityComponent(ComponentTypeID compTypeID, EntityID eID);

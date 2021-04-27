@@ -14,10 +14,10 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-//#include "PAT_SceneManager.hpp"
-//#include "PAT_Screen.hpp"
-#include "PAT.hpp"
+#include "PAT_System.hpp"
+#include "PAT_EntityManager.hpp"
 #include "GraphicSystem.hpp"
+
 
 class Game
 {
@@ -25,14 +25,10 @@ public:
 	typedef short unsigned int SI;
 	Game();
 	~Game();
-//	virtual bool Init(uint32_t width, uint32_t height,
-//		const char* windowName) = 0;
 
 	SI Init();
 
 	void Run();
-//	bool InitSDL();
-//	void Close();
 
 	void ProcessInput();
 //	void Update(double deltaTime);
@@ -41,10 +37,10 @@ public:
 protected:
 //	static double FRAME_PER_SECOND;
 	bool mRunning = true;
-//	SDL_Window * mWindow;
 	GraphicSystem mGraphicSystem;
 //	PAT_Screen mScreen;
 //	PAT_SceneManager* mSceneManager;
+	ECS::PAT_EntityManager mEntityManager;
 };
 
 #endif /* Game_hpp */

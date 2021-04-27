@@ -15,12 +15,14 @@
 #ifndef PAT_GameSystem_hpp
 #define PAT_GameSystem_hpp
 
-#include "PAT_GameContext.hpp"
+//#include "PAT_GameContext.hpp"
+#include "PAT_EntityManager.hpp"
 
 struct PAT_GameSystem
 {
 	virtual ~PAT_GameSystem() = default;
-	virtual void Update(ECS::PAT_GameContext* pGameContext) = 0;
+	//virtual void Update(ECS::PAT_GameContext* pGameContext) = 0;
+	virtual void Update(ECS::PAT_EntityManager* pEntityManager) = 0;
 };
 
 #endif /* PAT_GameSystem_hpp */

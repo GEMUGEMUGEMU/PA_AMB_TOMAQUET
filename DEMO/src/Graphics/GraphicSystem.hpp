@@ -17,20 +17,20 @@
 
 #include "PAT_GameSystem.hpp"
 #include "PAT_Window.hpp"
+#include "PrehistoricSprite.hpp"
 
-struct GraphicSystem //: public PAT_GameSystem
+struct GraphicSystem : public PAT_GameSystem
 {
 	GraphicSystem();
 	~GraphicSystem();
 
-	unsigned short int Init();
-//	void Update(ECS::PAT_GameContext* pGameContext) override;
-	void Update();
+	unsigned short int Init(ECS::PAT_EntityManager* pEntityManager);
+	void Update(ECS::PAT_EntityManager* pEntityManager) override;
 
-	PAT_Sprite mSprite;
+	PrehistoricSprite mPrehistoricSpriteSheet;
+
 private:
 	PAT_Window mWindow;
-	SDL_Texture* mTexture {nullptr};
 };
 
 #endif /* GraphicSystem_hpp */

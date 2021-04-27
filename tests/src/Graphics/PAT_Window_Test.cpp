@@ -26,18 +26,29 @@ TEST_CASE("Instantiate a PAT window", "[grphcs]")
 
 	WHEN("a pat window is instantiated without PAT been initialized")
 	{
-		PAT::Quit();
+		PAT_System::Quit();
 		THEN("initializing a PAT window retunrs an error")
 		{
 			REQUIRE(t_window.Init() != 0);
 		}
 
-		PAT::Init();
+		PAT_System::Init();
 		THEN("initializing PAT then initializing a PAT window")
 		{
 			REQUIRE(t_window.Init() == 0);
 		}
-		PAT::Quit();
+		PAT_System::Quit();
 	}
+
+//	WHEN("it's added a render to window renderer")
+//	{
+//		PAT::Init();
+//
+//		THEN("It's possible to add the render")
+//		{
+//			REQUIRE(t_window.AddToRender(PAT_Sprite* pSprite) == 0);
+//		}
+//		PAT::Quit();
+//	}
 }
 

@@ -6,7 +6,7 @@
 *   ~~\t  Gemu/~~
 *    ~GEAR~GEAR~
 *
-*  File Name: PAT_Test.cpp
+*  File Name: PAT_System_Test.cpp
 *  Purpose:
 *  Creation Date: 24-03-21
 *  Created By: Andrea Andreu Salvagnin
@@ -14,13 +14,13 @@
 
 
 #include "catch.hpp"
-#include "PAT.hpp"
+#include "PAT_System.hpp"
 
-TEST_CASE("Initialize PAT use its methods and quit it", "[pat]")
+TEST_CASE("Initialize PAT_System use its methods and quit it", "[pat]")
 {
-	PAT::STATUS status = PAT::Init();
+	PAT_System::STATUS status = PAT_System::Init();
 
-	WHEN("PAT is initialized")
+	WHEN("PAT_System is initialized")
 	{
 
 		THEN("can be initialized correctlyu")
@@ -30,10 +30,10 @@ TEST_CASE("Initialize PAT use its methods and quit it", "[pat]")
 
 		THEN("it's Component type ID doesn't change")
 		{
-			uint32_t ticks = PAT::GetTicks();
+			uint32_t ticks = PAT_System::GetTicks();
 			REQUIRE(ticks != 0);
 		}
 	}
 
-	PAT::Quit();
+	PAT_System::Quit();
 }

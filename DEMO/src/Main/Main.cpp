@@ -5,14 +5,14 @@ Creation Date: 08-09-20
 Created By: Andrea Andreu Salvagnin
 */
 
-#include "PAT.hpp"
+#include "PAT_System.hpp"
 #include "Game.hpp"
 
 Game gGame;
 
 int main(int argc, const char * argv[])
 {
-	if(PAT::Init() == 0)
+	if(PAT_System::Init() == 0)
 	{
 		if(gGame.Init() == 0)
 		{
@@ -20,7 +20,7 @@ int main(int argc, const char * argv[])
 		}
 	}
 
-	PAT::Quit();
+	PAT_System::Quit();
 
 	return 0;
 }

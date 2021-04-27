@@ -14,6 +14,8 @@
 
 
 #include "GraphicSystem.hpp"
+#include "PrehistoricSprite.hpp"
+#include "SpritePosition.hpp"
 
 GraphicSystem::GraphicSystem() : mWindow(400, 600, "NISHIKIGOI DEMO")
 {
@@ -23,20 +25,34 @@ GraphicSystem::~GraphicSystem()
 {
 }
 
-unsigned short int GraphicSystem::Init()
+unsigned short int GraphicSystem::Init(ECS::PAT_EntityManager* pEntityManager)
 {
-	mWindow.Init();
-	return mSprite.Init(mWindow.mRenderer);
+	if (mWindow.Init() != 0)
+	{
+		return 1;
+	}
+
+//TODO: return state
+	mPrehistoricSpriteSheet.Init(&mWindow.mRenderer);
+	ECS::EntityID eid = pEntityManager->CreateEntity();
+	pEntityManager->CreateComponent<SpritePosition>(eid);
+
+	return 0;
 }
 
-void GraphicSystem::Update()
+
+void GraphicSystem::Update(ECS::PAT_EntityManager* pEntityManager)
 {
-	mWindow.AddToRender(&mSprite);
-	mWindow.Render();
 	mWindow.CleanRender();
+	ECS::Vector<SpritePosition> sprites_vector =
+		pEntityManager->GetComponents<SpritePosition>();
+
+	for (auto it = sprites_vector.Begin(); it != sprites_vector.End();)
+	{
+		mWindow.AddToRender(&mPrehistoricSpriteSheet, &it->mSpritePos);
+		it++;
+	}
+
+	mWindow.Render();
 }
 
-//void GraphicSystem::Update(ECS::PAT_GameContext* pGameContext)
-//{
-//	mWindow.Render();
-//}

@@ -14,6 +14,7 @@
 
 
 #include "PAT_Window.hpp"
+#include "PAT_Renderer_SDL2.hpp"
 
 #ifdef DEBUG_MODE
 #include <iostream>
@@ -26,15 +27,13 @@ PAT_Window::~PAT_Window()
 {
 	FreePixelFormat();
 
-	DeleteSDLRender();
-
 	DeleteSDLWindow();
 }
 
 PAT_Window::STATUS PAT_Window::Init()
 {
 
-	if(PAT::WasInit() != 0)
+	if(PAT_System::WasInit() != 0)
 	{
 		return E_PAT_UNINT;
 	}
@@ -64,10 +63,10 @@ PAT_Window::STATUS PAT_Window::Init()
 		return INIT_ERROR;
 	}
 
-	mRenderer = SDL_CreateRenderer(mWindow,	-1, SDL_RENDERER_ACCELERATED
+	SDL_Renderer* renderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED
 		| SDL_RENDERER_PRESENTVSYNC);
 
-	if(mRenderer == nullptr)
+	if(renderer == nullptr)
 	{
 #ifdef DEBUG_MODE
 		std::cout << "Error SDL Renderer initialization: "
@@ -77,12 +76,18 @@ PAT_Window::STATUS PAT_Window::Init()
 		return RENDERER_ERROR;
 	}
 
-	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255 );
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255 );
+
+	PAT::SDL2A::RendererAdapter renderer_adapter(renderer);
+
+	mRenderer = PAT::Renderer(renderer_adapter);
 
 	mPixelFormat =
 		SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 
 	mCleanColor = SDL_MapRGBA( mPixelFormat, 0, 0, 255, 255);
+
+
 
 	return OK;
 }
@@ -98,8 +103,6 @@ PAT_Window::STATUS PAT_Window::Quit()
 	{
 		FreePixelFormat();
 
-		DeleteSDLRender();
-
 		DeleteSDLWindow();
 
 		return OK;
@@ -108,19 +111,26 @@ PAT_Window::STATUS PAT_Window::Quit()
 
 void PAT_Window::Render()
 {
-	SDL_RenderPresent( mRenderer );
+	mRenderer.Render();
 }
 
 void PAT_Window::CleanRender()
 {
-	SDL_RenderClear( mRenderer );
+	mRenderer.Clean();
 }
 
 
-void PAT_Window::AddToRender(PAT_Sprite* pSprite)
+void PAT_Window::AddToRender(PAT::Sprite* pSprite, SDL_Rect* pClip)
 {
-	SDL_RenderCopy( mRenderer, pSprite->mTexture, pSprite->clip1,
-		pSprite->clip1);
+	mRenderer.AddToRender(pSprite, pClip);
+//	if(SDL_RenderCopy( mRenderer, pSprite->mSprite, pClip, pClip) !=0)
+//	{
+//#ifdef DEBUG_MODE
+//		std::cout << "Error SDL Renderer rendering: "
+//			<< std::endl;
+//		std::cout << SDL_GetError() << std::endl;
+//#endif
+//	}
 }
 
 void PAT_Window::DeleteSDLWindow()
@@ -129,22 +139,6 @@ void PAT_Window::DeleteSDLWindow()
 	{
 		SDL_DestroyWindow( mWindow );
 	}
-}
-
-
-void PAT_Window::DeleteSDLRender()
-{
-	if(mRenderer != nullptr)
-	{
-		SDL_DestroyRenderer(mRenderer);
-	}
-
-#ifdef DEBUG_MODE
-	std::cout << "Renders avaiable: "
-		<< std::endl;
-
-	std::cout << SDL_GetNumRenderDrivers() << std::endl;
-#endif
 }
 
 void PAT_Window::FreePixelFormat()

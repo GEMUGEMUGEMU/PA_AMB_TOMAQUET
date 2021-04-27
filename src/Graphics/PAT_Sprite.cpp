@@ -14,39 +14,45 @@
 
 
 #include "PAT_Sprite.hpp"
+#include "PAT_System.hpp"
 
-PAT_Sprite::PAT_Sprite()
+namespace PAT
+{
+
+Sprite::Sprite()
 {
 }
 
-PAT_Sprite::~PAT_Sprite()
+Sprite::~Sprite()
 {
-	SDL_DestroyTexture(mTexture);
+	SDL_DestroyTexture(mSprite);
 }
 
-PAT_Sprite::STATUS PAT_Sprite::Init(SDL_Renderer* pRenderer)
+PAT::Status Sprite::InitSprite(Renderer* pRenderer, const char* pFilePath)
 {
-	if(PAT::WasInit() != 0)
+	if(pRenderer == nullptr || pFilePath == nullptr)
 	{
-		return E_PAT_UNINT;
+		return Status::INVALID_ARGS;
 	}
 
-	const char* filePath= "./sprites/Prehistoric0.png";
+	SDL_Surface * t_surface = IMG_Load(pFilePath);
+	if(t_surface == nullptr)
+	{
+#ifdef DEBUG_MODE
+		std::cout << "PAT_Sprite: Error in SDL Surface initialization: nullptr"
+			<< std::endl;
+		std::cout << SDL_GetError() << std::endl;
+#endif
 
-	SDL_Surface * tempSurface = IMG_Load(filePath);
+		return Status::LOAD_FILE_E;
+	}
 
-	mTexture =
-		SDL_CreateTextureFromSurface(pRenderer, tempSurface);
+	mSprite =
+		SDL_CreateTextureFromSurface(pRenderer->mAdapter.mRenderer, t_surface);
 
-	SDL_FreeSurface(tempSurface);
+	SDL_FreeSurface(t_surface);
 
-	clip1 = new SDL_Rect;
-	clip1->x = 0;
-	clip1->y = 0;
-	clip1->w = 64;
-	clip1->h = 64;
-
-	return OK;
+	return PAT::Status::OK;
 }
 
-//constexpr
+}

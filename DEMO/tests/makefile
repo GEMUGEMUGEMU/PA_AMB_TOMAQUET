@@ -7,7 +7,7 @@
 #    ~GEAR~GEAR~
 #
 #  File Name: makefile
-#  Purpose: DEMO makefile
+#  Purpose: test makefile
 #  Creation Date: 08-02-21
 #  Created By: Andrea Andreu Salvagnin
 #
@@ -37,24 +37,19 @@ endef
 # $(2) All HPP
 define CPP2HPP
 #$(patsubst %.cpp,%.hpp,$(1))
-
 $(findstring $(patsubst %.cpp,%.hpp,$(1)),$(2))
 endef
 
 
-TARGET:=NISHIKIGOI_DEMO.out
-CCX:=g++
-CCXFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
-#CCXFLAGS+= -fsanitize=address
-CCXFLAGS+= $(SDL2_FLAGS)
+TARGET:=TESTS_DEMO.out
+CC:=g++
+CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
 SRC:=src
 OBJ:=obj
 
-SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCXFLAGS+= $(SDL2_FLAGS)
 
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
 ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
@@ -65,56 +60,53 @@ SRC_SUBDIRS:=$(shell find $(SRC)/ -type d)
 OBJ_SUBDIRS:=$(patsubst $(SRC)%, $(OBJ)%,$(SRC_SUBDIRS))
 INCLUDE_SOURCE_FOLDERS:=$(foreach this_folder,$(SRC_SUBDIRS),-I./$(this_folder))
 
+DEMO_PATH:=..
+include $(DEMO_PATH)/demo_dictionary.makefile
 
 # PA_AMB_TOMAQUET
-PAT_PATH:=..
+PAT_PATH:=../..
 include $(PAT_PATH)/pa_amb_tomaquet_dictionary.makefile
 include $(PAT_PATH)/print_logo.makefile
 
-INCLUDE_FOLDERS:=$(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
+INCLUDE_FOLDERS:=-I$(PAT_PATH)/lib/catch2 $(INCLUDE_SOURCE_FOLDERS) \
+	$(INCLUDE_PAT_FOLDERS) $(INCLUDE_DEMO_FOLDERS)
+
+#DEMO
+DEMO_PATH:=..
+include $(DEMO_PATH)/demo_dictionary.makefile
+
+ALL_OBJ+= ../obj/Graphics/GraphicSystem.o ../obj/Graphics/Sprite.o
+
+
+DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
+DEPFLAGS =-MMD -MP
 
 RELASE?=0
 ifeq ($(RELASE),1)
-	CCXFLAGS+= -O3
+	CCFLAGS+= -O3
 else
 	DEBUG:=1
 endif
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
-	CCXFLAGS+= -DDEBUG_MODE -g
+	CCFLAGS+= -DDEBUG_MODE -g
 endif
-
-DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
-DEPFLAGS =-MMD -MP
-
-
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	$(CCX) -o $(TARGET) $(ALL_OBJ) $(PAT_LINK_FLAGS)
+	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
+	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(CCFLAGS)
+	$(CC) -o $(TARGET) $(ALL_OBJ) $(CCFLAGS) $(PAT_LINK_FLAGS)
 
 
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CCX),$(call CPP2O,$(FILE)),$(FILE),,$(CCXFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
-
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
-.PHONY: valgrind pa valgrind_gensupp
-
-valgrind:
-	valgrind -s --leak-check=full --show-leak-kinds=all \
-	--suppressions=valgrind/only_sdl2_init_and_close.supp \
-	--log-file=valgrind/valgrind.log ./$(TARGET)
-
-valgrind_gensupp:
-	valgrind -s --leak-check=full \
-	--log-file="valgrind/valgrind.log" --gen-suppressions=all  ./$(TARGET)
-
-pa:
+$(PAT_LIB):
 	$(MAKE) -C $(PAT_PATH)
-
 
 -include $(DEPEND_FILES)
 
@@ -124,6 +116,9 @@ clean:
 	- $(RM) -r "./$(OBJ)"
 	- $(RM) "./$(TARGET)"
 info:
-	$(info $(MAKE_PAT))
-	$(info $(PAT_LIB))
+#	$(info $(ALL_OBJ))
+	$(info $(ALL_CPPS))
+#	$(info $(PAT_LIB))
+#	$(info $(INCLUDE_FOLDERS))
+#	$(info $(DEPEND_FILES))
 

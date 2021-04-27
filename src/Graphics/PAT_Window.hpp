@@ -14,8 +14,10 @@
 
 #ifndef PAT_Window_hpp
 #define PAT_Window_hpp
-#include "PAT.hpp"
+#include "PAT_System.hpp"
 #include "PAT_Sprite.hpp"
+#include "PAT_Renderer.hpp"
+
 
 struct PAT_Window
 {
@@ -28,14 +30,14 @@ struct PAT_Window
 
 	void Render();
 	void CleanRender();
-	void AddToRender(PAT_Sprite* pSprite);
+	void AddToRender(PAT::Sprite* pSprite, SDL_Rect* pClip);
 
 	~PAT_Window();
 
 	STATUS Init();
 	STATUS Quit();
-	SDL_Renderer* mRenderer { nullptr };
-
+//	SDL_Renderer* mRenderer { nullptr };
+	PAT::Renderer mRenderer;
 protected:
 	SI mHeight = 0;
 	SI mWidth = 0;
@@ -44,7 +46,7 @@ protected:
 
 private:
 	void DeleteSDLWindow();
-	void DeleteSDLRender();
+//	void DeleteSDLRender();
 	void FreePixelFormat();
 
 	SDL_Window* mWindow { nullptr };

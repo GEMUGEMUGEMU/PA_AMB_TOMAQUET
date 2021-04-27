@@ -6,25 +6,27 @@
 *   ~~\t  Gemu/~~
 *    ~GEAR~GEAR~
 *
-*  File Name: PAT.hpp
+*  File Name: PAT_System.hpp
 *  Purpose: SDL2 adapter
 *  Creation Date: 23-03-21
 *  Created By: Andrea Andreu Salvagnin
 */
 
-#ifndef PAT_hpp
-#define PAT_hpp
+#ifndef PAT_System_hpp
+#define PAT_System_hpp
 
 #include <SDL2/SDL.h>
 #include "SDL2/SDL_image.h"
 #include <stdint.h>
+#include "PAT_Renderer.hpp"
+
 
 #ifdef DEBUG_MODE
 #include <iostream>
 #endif
 
 
-struct PAT
+struct PAT_System
 {
 	enum STATUS{OK, E_INIT_VIDEO, E_INIT_IMG, E_UNINT};
 
@@ -88,10 +90,35 @@ struct PAT
 		SDL_Quit();
 	}
 
-	//void LoadImage()
-	//{
-	//}
+	static SDL_Texture* LoadTexture(PAT::Renderer* pRenderer, const char* pFilePath)
+	{
+//		if(pRenderer == nullptr || pFilePath == nullptr)
+//		{
+//			return Status::INVALID_ARGS;
+//		}
+
+		SDL_Surface * t_surface = IMG_Load(pFilePath);
+//		if(t_surface == nullptr)
+//		{
+//#ifdef DEBUG_MODE
+//			std::cout << "PAT_Sprite: Error in SDL Surface initialization: nullptr"
+//				<< std::endl;
+//			std::cout << SDL_GetError() << std::endl;
+//#endif
+//
+//			return Status::LOAD_FILE_E;
+//		}
+
+
+
+		SDL_Texture* mSprite =
+			SDL_CreateTextureFromSurface(pRenderer->mAdapter.mRenderer, t_surface);
+
+		SDL_FreeSurface(t_surface);
+
+		return mSprite;
+	}
 
 };
 
-#endif /* PAT_hpp */
+#endif /* PAT_System_hpp */

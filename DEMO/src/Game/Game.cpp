@@ -12,8 +12,6 @@
 */
 
 #include "Game.hpp"
-#include "PAT.hpp"
-
 
 Game::Game()
 {
@@ -26,7 +24,8 @@ Game::~Game()
 
 short unsigned int Game::Init()
 {
-	return mGraphicSystem.Init();
+	mGraphicSystem.Init(&mEntityManager);
+	return 0;
 }
 
 
@@ -34,7 +33,7 @@ void Game::Run()
 {
 	double seconds_start;
 #ifndef DEBUG_MODE
-	double secondsDelay;
+	double seconds_delay;
 #endif
 	double milliseconds_end;
 	double delta_time = 0;
@@ -59,11 +58,11 @@ void Game::Run()
 		Render();
 		//			}
 
-		milliseconds_end = PAT::GetTicks();
+		milliseconds_end = PAT_System::GetTicks();
 		delta_time = milliseconds_end - seconds_start;
 #ifndef DEBUG_MODE
-		secondsDelay = FRAME_PER_SECOND - (delta_time);
-		PAT::Delay(secondsDelay);
+		seconds_delay = FRAME_PER_SECOND - (delta_time);
+		PAT_System::Delay(seconds_delay);
 #endif
 	}
 
@@ -96,6 +95,6 @@ void Game::ProcessInput()
 
 void Game::Render()
 {
-	mGraphicSystem.Update();
+	mGraphicSystem.Update(&mEntityManager);
 }
 

@@ -7,7 +7,7 @@
 *    ~GEAR~GEAR~
 *
 *  File Name: PAT_Sprite.hpp
-*  Purpose: Adapter of Texture
+*  Purpose: Adapter of SDL_Texture used for sprites
 *  Creation Date: 25-04-21
 *  Created By: Andrea Andreu Salvagnin
 */
@@ -15,18 +15,25 @@
 #ifndef PAT_Sprite_hpp
 #define PAT_Sprite_hpp
 
-#include "PAT.hpp"
+#include <SDL2/SDL.h>
+#include "PAT_Status.hpp"
 
-struct PAT_Sprite
+namespace PAT
 {
-	enum STATUS {OK, E_PAT_UNINT, E_EMPTY_SURFACE, E_EMPTY_TEXTURE};
 
-	PAT_Sprite();
-	~PAT_Sprite();
-	STATUS Init(SDL_Renderer* pRenderer);
+class Renderer;
 
-	SDL_Texture* mTexture {nullptr};
-	SDL_Rect* clip1 {nullptr};
+struct Sprite
+{
+	Sprite();
+	~Sprite();
+
+	SDL_Texture* mSprite;
+
+protected:
+	PAT::Status InitSprite(/*SDL_Renderer*/ Renderer* pRenderer, const char* pFilePath);
+
 };
 
+}
 #endif /* PAT_Sprite_hpp */
