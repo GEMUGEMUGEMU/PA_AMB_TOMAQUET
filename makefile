@@ -48,8 +48,9 @@ endef
 include print_logo.makefile
 
 TARGET:=PA_AMB_TOMAQUET.a
-CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++17
+CCX:=g++
+CCXFLAGS:=-Wall -pedantic -std=c++17
+#CCXFLAGS:=-Wall -pedantic -std=c++17 -fsanitize=address
 MKDIR:=mkdir -p
 RM:=rm
 AR:=ar
@@ -76,14 +77,14 @@ TESTS_PAT:=$(TEST_PATH)/TESTS_PAT.out
 
 RELASE?=0
 ifeq ($(RELASE),1)
-	CCFLAGS+= -O3
+	CCXFLAGS+= -O3
 else
 	DEBUG:=1
 endif
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
-	CCFLAGS+= -DDEBUG_MODE -g
+	CCXFLAGS+= -DDEBUG_MODE -g
 endif
 
 .PHONY: run_test
@@ -97,7 +98,7 @@ $(TARGET): $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(RANLIB) $(TARGET)
 
 # Generate and evaluate rules
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CCX),$(call CPP2O,$(FILE)),$(FILE),,$(CCXFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 # Generate obj folder tree
 $(OBJ_SUBDIRS):
@@ -108,8 +109,8 @@ $(OBJ_SUBDIRS):
 .PHONY: clean info
 
 clean:
-	$(RM) -r "./$(OBJ)"
-	$(RM) "./$(TARGET)"
+	- $(RM) -r "./$(OBJ)"
+	- $(RM) "./$(TARGET)"
 info:
 	$(info $(DEPEND_FILES))
 	$(info $(SRC_SUBDIRS))

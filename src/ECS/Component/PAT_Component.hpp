@@ -38,7 +38,7 @@ private:
 template<typename TypeComponent>
 struct PAT_Component : PAT_BaseComponent
 {
-	explicit PAT_Component(EntityID eid) : PAT_BaseComponent(eid) {}
+	explicit PAT_Component(EntityID eid) : PAT_BaseComponent(eid) { }
 
 	static ComponentTypeID GetComponentTypeID() noexcept
 	{

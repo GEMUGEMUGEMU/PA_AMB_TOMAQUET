@@ -43,8 +43,10 @@ endef
 
 
 TARGET:=NISHIKIGOI_DEMO.out
-CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+CCX:=g++
+CCXFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+#CCXFLAGS+= -fsanitize=address
+CCXFLAGS+= $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -52,7 +54,7 @@ SRC:=src
 OBJ:=obj
 
 SDL2_FLAGS:=-lSDL2 -lSDL2_image `sdl2-config --cflags` -lSDL2_ttf
-CCFLAGS+= $(SDL2_FLAGS)
+CCXFLAGS+= $(SDL2_FLAGS)
 
 ALL_CPPS:=$(shell find $(SRC)/ -type f -iname *.cpp)
 ALL_CPP_OBJ:=$(foreach FILE,$(ALL_CPPS),$(call CPP2O,$(FILE)))
@@ -73,38 +75,46 @@ INCLUDE_FOLDERS:=$(INCLUDE_SOURCE_FOLDERS) $(INCLUDE_PAT_FOLDERS)
 
 RELASE?=0
 ifeq ($(RELASE),1)
-	CCFLAGS+= -O3
+	CCXFLAGS+= -O3
 else
 	DEBUG:=1
 endif
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
-	CCFLAGS+= -DDEBUG_MODE -g
+	CCXFLAGS+= -DDEBUG_MODE -g
 endif
 
 DEPEND_FILES:=$(patsubst %.o,%.d,$(ALL_OBJ))
 DEPFLAGS =-MMD -MP
 
 
-#.PHONY: run_demo
-run_demo: $(TARGET)
-	valgrind -s --leak-check=full ./$(TARGET)
-
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LINK_FLAGS)
+	$(CCX) -o $(TARGET) $(ALL_OBJ) $(PAT_LINK_FLAGS)
 
 
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CCX),$(call CPP2O,$(FILE)),$(FILE),,$(CCXFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)
 
-$(PAT_LIB):
+.PHONY: valgrind pa valgrind_gensupp
+
+valgrind:
+	valgrind -s --leak-check=full --show-leak-kinds=all \
+	--suppressions=valgrind/only_sdl2_init_and_close.supp \
+	--log-file=valgrind/valgrind.log ./$(TARGET)
+
+valgrind_gensupp:
+	valgrind -s --leak-check=full \
+	--log-file="valgrind/valgrind.log" --gen-suppressions=all  ./$(TARGET)
+
+pa:
 	$(MAKE) -C $(PAT_PATH)
+
 
 -include $(DEPEND_FILES)
 

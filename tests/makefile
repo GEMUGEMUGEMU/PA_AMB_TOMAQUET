@@ -42,8 +42,8 @@ endef
 
 
 TARGET:=TESTS_PAT.out
-CC:=g++
-CCFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
+CCX:=g++
+CCXFLAGS:=-Wall -pedantic -std=c++17 $(SDL2_FLAGS)
 LIBS:=
 MKDIR:=mkdir -p
 RM:=rm
@@ -76,24 +76,23 @@ DEPFLAGS =-MMD -MP
 
 RELASE?=0
 ifeq ($(RELASE),1)
-	CCFLAGS+= -O3
+	CCXFLAGS+= -O3
 else
 	DEBUG:=1
 endif
 
 DEBUG?=1
 ifeq ($(DEBUG),1)
-	CCFLAGS+= -DDEBUG_MODE -g
+	CCXFLAGS+= -DDEBUG_MODE -g
 endif
 
 $(TARGET): $(PAT_LIB) $(OBJ_SUBDIRS) $(ALL_OBJ)
 	$(call print_logo)
-	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(SDL2_FLAGS)
-	#$(CC) -o $(TARGET) $(ALL_OBJ) $(PAT_LIB) $(CCFLAGS)
-	$(CC) -o $(TARGET) $(ALL_OBJ) $(CCFLAGS) $(PAT_LINK_FLAGS)
+	@echo "\e[1;36mEXECUTE $(TARGET) FROM PA_AMB_TOMAQUET FODER\e[0m"
+	$(CCX) -o $(TARGET) $(ALL_OBJ) $(CCXFLAGS) $(PAT_LINK_FLAGS)
 
 
-$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CC),$(call CPP2O,$(FILE)),$(FILE),,$(CCFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
+$(foreach FILE,$(ALL_CPPS),$(eval $(call COMPILE,$(CCX),$(call CPP2O,$(FILE)),$(FILE),,$(CCXFLAGS) $(INCLUDE_FOLDERS) $(DEPFLAGS))))
 
 $(OBJ_SUBDIRS):
 	$(MKDIR) $(OBJ_SUBDIRS)

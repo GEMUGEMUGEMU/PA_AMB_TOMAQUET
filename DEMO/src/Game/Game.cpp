@@ -12,12 +12,9 @@
 */
 
 #include "Game.hpp"
-#include "PAT.hpp"
-
 
 Game::Game()
 {
-
 }
 
 Game::~Game()
@@ -27,64 +24,52 @@ Game::~Game()
 
 short unsigned int Game::Init()
 {
-	return mWindow.Init();
+	mGraphicSystem.Init(&mEntityManager);
+	return 0;
 }
 
 
 void Game::Run()
 {
-//	if(mWindow)
-//	{
-		double seconds_start;
+	double seconds_start;
 #ifndef DEBUG_MODE
-		double secondsDelay;
+	double seconds_delay;
 #endif
-		double milliseconds_end;
-		double delta_time = 0;
+	double milliseconds_end;
+	double delta_time = 0;
 
 /*
-*		_,-'2_,-'2_,-'2_,-'2_,-'2_
-*		_,-'2_,            2_,-'2_
-*		_,-'2_, MAIN LOOP  2_,-'2_
-*		_,-'2_,            2_,-'2_
-*		_,-'2_,-'2_,-'2_,-'2_,-'2_
+*	_,-'2_,-'2_,-'2_,-'2_,-'2_
+*	_,-'2_,            2_,-'2_
+*	_,-'2_, MAIN LOOP  2_,-'2_
+*	_,-'2_,            2_,-'2_
+*	_,-'2_,-'2_,-'2_,-'2_,-'2_
 */
-		while(mRunning /*&& !mSceneManager->IsEmpty()*/)
-		{
-//			seconds_start = SDL_GetTicks();
+	while(mRunning /*&& !mSceneManager->IsEmpty()*/)
+	{
+		//			seconds_start = SDL_GetTicks();
 
-			ProcessInput();
+		ProcessInput();
 
-//			if(!mSceneManager->IsEmpty())
-//			{
-//				Update(delta_time);
+		//			if(!mSceneManager->IsEmpty())
+		//			{
+		//				Update(delta_time);
 
-				Render();
-//			}
+		Render();
+		//			}
 
-			milliseconds_end = PAT::GetTicks();
-			delta_time = milliseconds_end - seconds_start;
+		milliseconds_end = PAT_System::GetTicks();
+		delta_time = milliseconds_end - seconds_start;
 #ifndef DEBUG_MODE
-			secondsDelay = FRAME_PER_SECOND - (delta_time);
-			PAT::Delay(secondsDelay);
+		seconds_delay = FRAME_PER_SECOND - (delta_time);
+		PAT_System::Delay(seconds_delay);
 #endif
-		}
-//	}
+	}
 
-//	Close();
+
+	//	Close();
 }
 
-
-//void Game::Close()
-//{
-//	//Destroy window
-//	SDL_DestroyWindow( mWindow );
-//
-//	//Quit SDL subsystems
-//	TTF_Quit();
-//	IMG_Quit();
-//	SDL_Quit();
-//}
 
 void Game::ProcessInput()
 {
@@ -110,8 +95,6 @@ void Game::ProcessInput()
 
 void Game::Render()
 {
-//	mScreen.RenderClear();
-//	mSceneManager->Draw(mScreen.GetRenderer());
-	mWindow.Render();
+	mGraphicSystem.Update(&mEntityManager);
 }
 

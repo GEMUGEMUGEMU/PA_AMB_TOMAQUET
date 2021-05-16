@@ -18,5 +18,5 @@ PAT_FOLDERS:=$(shell find $(PAT_PATH)/src/ -type d)
 INCLUDE_PAT_FOLDERS:=$(foreach this_folder,$(PAT_FOLDERS),-I./$(this_folder))
 
 
-PAT_LINK_FLAGS:=$(PAT_PATH)/PA_AMB_TOMAQUET.a /usr/local/lib/libSDL2.a \
--lSDL2 -Wl,--no-undefined -lm -ldl -lpthread -lrt
+PAT_LINK_FLAGS:= /usr/local/lib/libSDL2.a -lSDL2 -Wl,--no-undefined -lm -ldl \
+-lpthread -lrt -lSDL2_image $(PAT_PATH)/PA_AMB_TOMAQUET.a

@@ -19,6 +19,7 @@
 
 namespace ECS
 {
+
 struct PAT_GameContext
 {
 	virtual ~PAT_GameContext() = default;

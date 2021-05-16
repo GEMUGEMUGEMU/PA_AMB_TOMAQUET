@@ -83,5 +83,4 @@ TEST_CASE("Associate components to an entity", "[ecs]")
 				id);
 		}
 	}
-
 }
