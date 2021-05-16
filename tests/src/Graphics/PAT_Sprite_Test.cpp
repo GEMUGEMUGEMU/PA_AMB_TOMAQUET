@@ -50,11 +50,13 @@ TEST_CASE("Instantiate a PAT Sprite", "[grphcs]")
 	{
 		PAT_System::Init();
 		TestWindow t_window;
-		t_window.Init();
+		t_window.TestInit();
+		PAT::Renderer renderer;
+		t_window.InitRenderer(renderer);
 
 		THEN("Initializing a PAT sprite it's possible")
 		{
-			REQUIRE(t_sprite.Init(&t_window.mRenderer) == 0);
+			REQUIRE(t_sprite.Init(&renderer) == 0);
 		}
 		PAT_System::Quit();
 	}
@@ -64,11 +66,13 @@ TEST_CASE("Instantiate a PAT Sprite", "[grphcs]")
 	{
 		PAT_System::Init();
 		TestWindow t_window;
-		t_window.Init();
+		t_window.TestInit();
+		PAT::Renderer renderer;
+		t_window.InitRenderer(renderer);
 
 		THEN("Initializing a PAT sprite returns an error")
 		{
-			REQUIRE(wrong_path.Init(&t_window.mRenderer) ==
+			REQUIRE(wrong_path.Init(&renderer) ==
 				PAT::Status::LOAD_FILE_E);
 		}
 		PAT_System::Quit();
@@ -78,7 +82,10 @@ TEST_CASE("Instantiate a PAT Sprite", "[grphcs]")
 	{
 		PAT_System::Init();
 		TestWindow t_window;
-		t_window.Init();
+		t_window.TestInit();
+		PAT::Renderer renderer;
+		t_window.InitRenderer(renderer);
+
 
 		THEN("for a null renderer PAT sprite returns an error")
 		{

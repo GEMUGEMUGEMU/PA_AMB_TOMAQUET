@@ -14,44 +14,27 @@
 
 #ifndef PAT_Window_hpp
 #define PAT_Window_hpp
-#include "PAT_System.hpp"
-#include "PAT_Sprite.hpp"
-#include "PAT_Renderer.hpp"
 
+#include "PAT_IWindow.hpp"
+#include "PAT_Window_SDL2.hpp"
 
-struct PAT_Window
+namespace PAT
 {
-	enum STATUS {OK, WRONG_DIMENSINOS, WRONG_W_NAME, INIT_ERROR,
-		QUIT_UNINT_WINDOW, E_PAT_UNINT, RENDERER_ERROR, SURFACE_ERROR};
+using namespace SDL2A;
 
+struct Window : public IWindow
+{
 	typedef short unsigned int SI;
 
-	PAT_Window(SI height, SI width, const char* windowName);
+	Window();
+	~Window();
 
-	void Render();
-	void CleanRender();
-	void AddToRender(PAT::Sprite* pSprite, SDL_Rect* pClip);
+	Status InitRenderer(Renderer& pRenderer) override;
 
-	~PAT_Window();
+	Status Init(SI height, SI width, const char* windowName);
 
-	STATUS Init();
-	STATUS Quit();
-//	SDL_Renderer* mRenderer { nullptr };
-	PAT::Renderer mRenderer;
-protected:
-	SI mHeight = 0;
-	SI mWidth = 0;
-
-	const char* mWindowName { nullptr };
-
-private:
-	void DeleteSDLWindow();
-//	void DeleteSDLRender();
-	void FreePixelFormat();
-
-	SDL_Window* mWindow { nullptr };
-	SDL_PixelFormat* mPixelFormat { nullptr };
-	uint32_t mCleanColor;
+	WindowAdapter mAdapter;
 };
 
+}
 #endif /* PAT_Window_hpp */

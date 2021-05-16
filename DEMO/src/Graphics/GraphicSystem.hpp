@@ -30,7 +30,8 @@ struct GraphicSystem : public PAT_GameSystem
 	PrehistoricSprite mPrehistoricSpriteSheet;
 
 private:
-	PAT_Window mWindow;
+	PAT::Window mWindow;
+	PAT::Renderer mRenderer;
 };
 
 #endif /* GraphicSystem_hpp */

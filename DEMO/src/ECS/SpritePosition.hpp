@@ -21,8 +21,7 @@ struct SpritePosition : public ECS::PAT_Component<SpritePosition>
 {
 	SpritePosition(ECS::EntityID pEID);
 	~SpritePosition();
-	//SDL_Rect* mSpritePos {nullptr};
-	SDL_Rect mSpritePos;// {0,0,64,64};
+	PAT::Rect mSpritePos;
 };
 
 #endif /* SpritePosition_hpp */

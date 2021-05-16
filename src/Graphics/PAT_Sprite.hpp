@@ -21,7 +21,7 @@
 namespace PAT
 {
 
-class Renderer;
+struct Renderer;
 
 struct Sprite
 {
@@ -31,8 +31,7 @@ struct Sprite
 	SDL_Texture* mSprite;
 
 protected:
-	PAT::Status InitSprite(/*SDL_Renderer*/ Renderer* pRenderer, const char* pFilePath);
-
+	PAT::Status InitSprite(Renderer* pRenderer, const char* pFilePath);
 };
 
 }

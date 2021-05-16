@@ -24,7 +24,8 @@ enum/* class*/ Status
 	OK = 0,
 	PAT_SYS_UNINT,
 	INVALID_ARGS,
-	LOAD_FILE_E
+	LOAD_FILE_E,
+	INIT_ERROR
 };
 
 }

@@ -29,13 +29,10 @@ Renderer::Renderer()
 Renderer::Renderer(RendererAdapter& pAdapter)
 {
 	mAdapter = std::move(pAdapter);
-//	mAdapter(&pAdapter);
-//	mAdapter = pAdapter.MoveRenderer();
 }
 
 Renderer::~Renderer()
 {
-//	mAdapter.Delete();
 }
 
 void Renderer::Render()
@@ -48,7 +45,7 @@ void Renderer::Clean()
 	mAdapter.Clean();
 }
 
-void Renderer::AddToRender(Sprite* pSprite, SDL_Rect* pClip)
+void Renderer::AddToRender(Sprite* pSprite, Rect* pClip)
 {
 	mAdapter.AddToRender(pSprite, pClip);
 }
@@ -64,7 +61,6 @@ Renderer& Renderer::operator=(Renderer&& pRenderer)
 
 	return *this;
 }
-
 
 
 }

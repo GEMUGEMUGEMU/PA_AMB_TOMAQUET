@@ -109,8 +109,8 @@ $(OBJ_SUBDIRS):
 .PHONY: clean info
 
 clean:
-	$(RM) -r "./$(OBJ)"
-	$(RM) "./$(TARGET)"
+	- $(RM) -r "./$(OBJ)"
+	- $(RM) "./$(TARGET)"
 info:
 	$(info $(DEPEND_FILES))
 	$(info $(SRC_SUBDIRS))

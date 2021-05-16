@@ -30,13 +30,13 @@ struct RendererAdapter : public IRenderer
 	~RendererAdapter();
 
 	RendererAdapter(RendererAdapter&& pAdapter);
-	RendererAdapter& operator=(/*const*/ RendererAdapter&& pAdapter);
+	RendererAdapter& operator=( RendererAdapter&& pAdapter);
 
 	RendererAdapter(const RendererAdapter&) = delete;
 
 	void Render() override;
 	void Clean() override;
-	void AddToRender(Sprite* pSprite, SDL_Rect* pClip) override;
+	void AddToRender(Sprite* pSprite, Rect* pClip) override;
 
 
 	SDL_Renderer* mRenderer {nullptr};

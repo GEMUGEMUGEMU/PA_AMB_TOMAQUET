@@ -18,6 +18,7 @@
 #include "PAT_IRenderer.hpp"
 #include "PAT_Renderer_SDL2.hpp"
 
+
 namespace PAT
 {
 
@@ -31,7 +32,7 @@ struct Renderer : public IRenderer
 
 	void Render() override;
 	void Clean() override;
-	void AddToRender(Sprite* pSprite, SDL_Rect* pClip)  override;
+	void AddToRender(Sprite* pSprite, Rect* pClip)  override;
 
 	Renderer(Renderer&& pRenderer);
 	Renderer& operator=(Renderer&& pRenderer);

@@ -17,7 +17,7 @@
 #include "PrehistoricSprite.hpp"
 #include "SpritePosition.hpp"
 
-GraphicSystem::GraphicSystem() : mWindow(400, 600, "NISHIKIGOI DEMO")
+GraphicSystem::GraphicSystem()/* : mWindow(400, 600, "NISHIKIGOI DEMO")*/
 {
 }
 
@@ -27,13 +27,18 @@ GraphicSystem::~GraphicSystem()
 
 unsigned short int GraphicSystem::Init(ECS::PAT_EntityManager* pEntityManager)
 {
-	if (mWindow.Init() != 0)
+//TODO: return state
+	if (mWindow.Init(400, 600, "NISHIKIGOI DEMO") != 0)
 	{
 		return 1;
 	}
 
-//TODO: return state
-	mPrehistoricSpriteSheet.Init(&mWindow.mRenderer);
+	if(mWindow.InitRenderer(mRenderer))
+	{
+		return 1;
+	}
+
+	mPrehistoricSpriteSheet.Init(&mRenderer);
 	ECS::EntityID eid = pEntityManager->CreateEntity();
 	pEntityManager->CreateComponent<SpritePosition>(eid);
 
@@ -43,16 +48,16 @@ unsigned short int GraphicSystem::Init(ECS::PAT_EntityManager* pEntityManager)
 
 void GraphicSystem::Update(ECS::PAT_EntityManager* pEntityManager)
 {
-	mWindow.CleanRender();
+	mRenderer.Clean();
 	ECS::Vector<SpritePosition> sprites_vector =
 		pEntityManager->GetComponents<SpritePosition>();
 
 	for (auto it = sprites_vector.Begin(); it != sprites_vector.End();)
 	{
-		mWindow.AddToRender(&mPrehistoricSpriteSheet, &it->mSpritePos);
+		mRenderer.AddToRender(&mPrehistoricSpriteSheet, &it->mSpritePos);
 		it++;
 	}
 
-	mWindow.Render();
+	mRenderer.Render();
 }
 

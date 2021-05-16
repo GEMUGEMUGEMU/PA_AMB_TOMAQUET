@@ -16,17 +16,21 @@
 #define PAT_IRenderer_hpp
 
 #include <SDL2/SDL.h>
+#include "PAT_Rect.hpp"
+#include "PAT_Sprite.hpp"
 
 namespace PAT
 {
-struct Sprite;
+
+using namespace SDLA;
+//struct Sprite;
 
 struct IRenderer
 {
 	virtual ~IRenderer() = default;
 	virtual void Render() = 0;
 	virtual void Clean() = 0;
-	virtual void AddToRender(Sprite* pSprite, SDL_Rect* pClip) = 0;
+	virtual void AddToRender(Sprite* pSprite, Rect* pClip) = 0;
 
 };
 

@@ -17,10 +17,14 @@
 
 
 #include "PAT_Window.hpp"
+#include "PAT_Status.hpp"
 
-struct TestWindow : public PAT_Window
+struct TestWindow : public PAT::Window
 {
-	TestWindow() : PAT_Window(100, 100, "Test window") { }
+	PAT::Status TestInit()
+	{
+		return Init(100, 100, "Test window");
+	}
 };
 
 #endif /* TestWindow_hpp */

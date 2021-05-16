@@ -72,9 +72,10 @@ void RendererAdapter::Clean()
 	SDL_RenderClear( mRenderer );
 }
 
-void RendererAdapter::AddToRender(Sprite* pSprite, SDL_Rect* pClip)
+void RendererAdapter::AddToRender(Sprite* pSpriteSheet, Rect* pSpriteSection)
 {
-	if(SDL_RenderCopy( mRenderer, pSprite->mSprite, pClip, pClip) !=0)
+	if(SDL_RenderCopy( mRenderer, pSpriteSheet->mSprite,
+		&pSpriteSection->mRectancle, &pSpriteSection->mRectancle) !=0)
 	{
 #ifdef DEBUG_MODE
 		std::cout << "Error SDL Renderer rendering: "
